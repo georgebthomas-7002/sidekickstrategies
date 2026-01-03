@@ -18,78 +18,82 @@
 @layer base {
   /* Base body styles - PT Sans, minimum 16px */
   body {
-    @apply font-sans text-base leading-relaxed;
+    font-family: var(--font-family-sans);
+    @apply text-base leading-relaxed;
   }
 
   /* H1 - Palatino Linotype, responsive sizing */
   h1 {
-    @apply font-serif font-bold tracking-tight;
-    @apply text-4xl;           /* Mobile: 36px */
+    font-family: var(--font-family-serif);
+    @apply font-bold tracking-tight text-4xl;
   }
   @media (min-width: 768px) {
     h1 {
-      @apply text-5xl;         /* Tablet: 48px */
+      @apply text-5xl;
     }
   }
   @media (min-width: 1024px) {
     h1 {
-      @apply text-6xl;         /* Desktop: 60px */
+      @apply text-6xl;
     }
   }
 
   /* H2 - Palatino Linotype, responsive sizing */
   h2 {
-    @apply font-serif font-bold tracking-tight;
-    @apply text-3xl;           /* Mobile: 30px */
+    font-family: var(--font-family-serif);
+    @apply font-bold tracking-tight text-3xl;
   }
   @media (min-width: 768px) {
     h2 {
-      @apply text-4xl;         /* Tablet: 36px */
+      @apply text-4xl;
     }
   }
   @media (min-width: 1024px) {
     h2 {
-      @apply text-5xl;         /* Desktop: 48px */
+      @apply text-5xl;
     }
   }
 
   /* H3 - Montserrat, responsive sizing */
   h3 {
-    @apply font-heading font-semibold tracking-tight;
-    @apply text-2xl;           /* Mobile: 24px */
+    font-family: var(--font-family-heading);
+    @apply font-semibold tracking-tight text-2xl;
   }
   @media (min-width: 768px) {
     h3 {
-      @apply text-3xl;         /* Tablet: 30px */
+      @apply text-3xl;
     }
   }
 
   /* H4 - Montserrat, responsive sizing */
   h4 {
-    @apply font-heading font-semibold tracking-tight;
-    @apply text-xl;            /* Mobile: 20px */
+    font-family: var(--font-family-heading);
+    @apply font-semibold tracking-tight text-xl;
   }
   @media (min-width: 768px) {
     h4 {
-      @apply text-2xl;         /* Tablet: 24px */
+      @apply text-2xl;
     }
   }
 
   /* H5, H6 - Montserrat */
   h5 {
-    @apply font-heading font-medium tracking-tight text-lg;
+    font-family: var(--font-family-heading);
+    @apply font-medium tracking-tight text-lg;
   }
   h6 {
-    @apply font-heading font-medium tracking-tight text-base;
+    font-family: var(--font-family-heading);
+    @apply font-medium tracking-tight text-base;
   }
 
   /* Paragraph - PT Sans */
   p {
-    @apply font-sans text-base leading-relaxed;
+    font-family: var(--font-family-sans);
+    @apply text-base leading-relaxed;
   }
   @media (min-width: 768px) {
     p {
-      @apply text-lg;          /* Tablet+: 18px */
+      @apply text-lg;
     }
   }
 
