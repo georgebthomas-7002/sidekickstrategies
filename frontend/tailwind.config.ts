@@ -174,19 +174,55 @@ export default {
         },
       },
       // =============================================================================
-      // FONTS - Customize these for Sidekick Strategies
+      // FONTS - Sidekick Strategies
       // =============================================================================
-      // To change fonts:
-      // 1. Update the font names below
-      // 2. Update the font imports in app/layout.tsx
-      // 3. Add your Google Fonts or local fonts
+      // H1, H2: Palatino Linotype (serif)
+      // H3, H4: Montserrat (sans)
+      // Paragraph: PT Sans (sans)
       fontFamily: {
-        // Primary font for body text
-        sans: ['var(--font-inter)'],
-        // Heading font (optional - uses sans by default)
-        heading: ['var(--font-inter)'],
+        // Palatino Linotype - for H1, H2 headings (system font with fallbacks)
+        serif: [
+          '"Palatino Linotype"',
+          'Palatino',
+          '"Book Antiqua"',
+          'Georgia',
+          'serif',
+        ],
+        // Montserrat - for H3, H4 headings
+        heading: ['var(--font-montserrat)', 'sans-serif'],
+        // PT Sans - for body/paragraph text
+        sans: ['var(--font-pt-sans)', 'sans-serif'],
         // Monospace font for code, labels, badges
-        mono: ['var(--font-ibm-plex-mono)'],
+        mono: ['var(--font-ibm-plex-mono)', 'monospace'],
+      },
+      // =============================================================================
+      // TYPOGRAPHY - Responsive font sizes
+      // =============================================================================
+      fontSize: {
+        // Base size (minimum 16px as requested)
+        base: ['1rem', { lineHeight: '1.625' }],        // 16px
+
+        // Small text (still 16px minimum)
+        sm: ['1rem', { lineHeight: '1.5' }],            // 16px
+
+        // Large paragraph
+        lg: ['1.125rem', { lineHeight: '1.75' }],       // 18px
+        xl: ['1.25rem', { lineHeight: '1.75' }],        // 20px
+
+        // H4 sizes
+        '2xl': ['1.5rem', { lineHeight: '1.4' }],       // 24px
+
+        // H3 sizes
+        '3xl': ['1.875rem', { lineHeight: '1.3' }],     // 30px
+
+        // H2 sizes
+        '4xl': ['2.25rem', { lineHeight: '1.2' }],      // 36px
+        '5xl': ['3rem', { lineHeight: '1.15' }],        // 48px
+
+        // H1 sizes
+        '6xl': ['3.75rem', { lineHeight: '1.1' }],      // 60px
+        '7xl': ['4.5rem', { lineHeight: '1.05' }],      // 72px
+        '8xl': ['6rem', { lineHeight: '1' }],           // 96px
       },
     },
   },

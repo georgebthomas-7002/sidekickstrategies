@@ -2,7 +2,7 @@ import './globals.css'
 
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
-import {Inter, IBM_Plex_Mono} from 'next/font/google'
+import {Montserrat, PT_Sans, IBM_Plex_Mono} from 'next/font/google'
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
 import {VisualEditing} from 'next-sanity/visual-editing'
@@ -52,12 +52,33 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const inter = Inter({
-  variable: '--font-inter',
+/**
+ * =============================================================================
+ * SIDEKICK STRATEGIES - FONTS
+ * =============================================================================
+ * H1, H2: Palatino Linotype (system font with fallbacks)
+ * H3, H4: Montserrat
+ * Paragraph: PT Sans
+ * =============================================================================
+ */
+
+// Montserrat - for H3, H4 headings
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
 })
 
+// PT Sans - for body/paragraph text
+const ptSans = PT_Sans({
+  variable: '--font-pt-sans',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+})
+
+// IBM Plex Mono - for code/labels
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
   weight: ['400'],
@@ -69,7 +90,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   const {isEnabled: isDraftMode} = await draftMode()
 
   return (
-    <html lang="en" className={`${inter.variable} ${ibmPlexMono.variable} bg-white text-black`}>
+    <html lang="en" className={`${montserrat.variable} ${ptSans.variable} ${ibmPlexMono.variable} bg-white text-black`}>
       <body>
         <section className="min-h-screen pt-24">
           {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}

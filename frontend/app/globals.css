@@ -2,14 +2,105 @@
 
 @plugin "@tailwindcss/typography";
 
+/* =============================================================================
+   SIDEKICK STRATEGIES - TYPOGRAPHY
+   =============================================================================
+   H1, H2: Palatino Linotype (font-serif)
+   H3, H4: Montserrat (font-heading)
+   Paragraph: PT Sans (font-sans)
+
+   Responsive sizing:
+   - Mobile: Smaller sizes
+   - Tablet (md): Medium sizes
+   - Desktop (lg): Full sizes
+   ============================================================================= */
+
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  /* Base body styles - PT Sans, minimum 16px */
+  body {
+    @apply font-sans text-base leading-relaxed;
+  }
+
+  /* H1 - Palatino Linotype, responsive sizing */
+  h1 {
+    @apply font-serif font-bold tracking-tight;
+    @apply text-4xl;           /* Mobile: 36px */
+  }
+  @media (min-width: 768px) {
+    h1 {
+      @apply text-5xl;         /* Tablet: 48px */
+    }
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      @apply text-6xl;         /* Desktop: 60px */
+    }
+  }
+
+  /* H2 - Palatino Linotype, responsive sizing */
+  h2 {
+    @apply font-serif font-bold tracking-tight;
+    @apply text-3xl;           /* Mobile: 30px */
+  }
+  @media (min-width: 768px) {
+    h2 {
+      @apply text-4xl;         /* Tablet: 36px */
+    }
+  }
+  @media (min-width: 1024px) {
+    h2 {
+      @apply text-5xl;         /* Desktop: 48px */
+    }
+  }
+
+  /* H3 - Montserrat, responsive sizing */
+  h3 {
+    @apply font-heading font-semibold tracking-tight;
+    @apply text-2xl;           /* Mobile: 24px */
+  }
+  @media (min-width: 768px) {
+    h3 {
+      @apply text-3xl;         /* Tablet: 30px */
+    }
+  }
+
+  /* H4 - Montserrat, responsive sizing */
+  h4 {
+    @apply font-heading font-semibold tracking-tight;
+    @apply text-xl;            /* Mobile: 20px */
+  }
+  @media (min-width: 768px) {
+    h4 {
+      @apply text-2xl;         /* Tablet: 24px */
+    }
+  }
+
+  /* H5, H6 - Montserrat */
+  h5 {
+    @apply font-heading font-medium tracking-tight text-lg;
+  }
   h6 {
-    @apply font-medium tracking-tight;
+    @apply font-heading font-medium tracking-tight text-base;
+  }
+
+  /* Paragraph - PT Sans */
+  p {
+    @apply font-sans text-base leading-relaxed;
+  }
+  @media (min-width: 768px) {
+    p {
+      @apply text-lg;          /* Tablet+: 18px */
+    }
+  }
+
+  /* Links */
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Strong/Bold */
+  strong, b {
+    @apply font-bold;
   }
 }
 
@@ -23,10 +114,18 @@
 @theme {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
+  /* Sidekick Strategies Brand Colors */
+  --color-brand-primary: #142d63;
+  --color-brand-secondary: #028393;
+  --color-brand-accent: #f65625;
+  --color-brand-peach: #faaa68;
+  --color-brand-light-blue: #98c1d9;
+  --color-brand-slate: #3d5a80;
+
   --color-framework: #000;
-  --color-black: #0b0b0b;
-  --color-white: #fff;
-  --color-brand: #f50;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-brand: #142d63;
   --color-blue: #0052ff;
   --color-yellow: #cdea19;
   --color-gray-50: #f6f6f8;
