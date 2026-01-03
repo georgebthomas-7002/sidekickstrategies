@@ -174,11 +174,11 @@ export default async function PodcastPage(props: Props) {
             </div>
           )}
 
-          {podcast.tags?.length > 0 && (
+          {podcast.tags && podcast.tags.length > 0 && (
             <div className="mt-6">
               <h3 className="font-semibold mb-3">Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {podcast.tags.map((tag: string, idx: number) => (
+                {podcast.tags?.map((tag: string, idx: number) => (
                   <span
                     key={idx}
                     className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full"

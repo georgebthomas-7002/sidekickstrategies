@@ -28,8 +28,9 @@ export default function FAQAccordion({block}: FAQAccordionProps) {
   const cleanLayout = stegaClean(layout)
   const isDark = cleanTheme === 'dark'
 
+  const safeItems = items || []
   const [openItems, setOpenItems] = useState<string[]>(
-    expandFirst && items.length > 0 ? [items[0]._key] : []
+    expandFirst && safeItems.length > 0 ? [safeItems[0]._key] : []
   )
 
   const toggleItem = (key: string) => {
@@ -61,7 +62,7 @@ export default function FAQAccordion({block}: FAQAccordionProps) {
         <div
           className={`max-w-4xl mx-auto ${isTwoColumn ? 'grid md:grid-cols-2 gap-6' : 'space-y-4'}`}
         >
-          {items.map((item: any) => (
+          {safeItems.map((item: any) => (
             <FAQItem
               key={item._key}
               item={item}

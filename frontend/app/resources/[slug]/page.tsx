@@ -102,21 +102,22 @@ export default async function ResourcePage(props: Props) {
               alt={download.thumbnail.alt || download.title}
               width={600}
               height={400}
-              crop={download.thumbnail.crop}
+              crop={download.thumbnail.crop as any}
+              hotspot={download.thumbnail.hotspot as any}
               mode="cover"
               className="w-full rounded-lg mb-8"
             />
           )}
 
-          {download.description?.length > 0 && (
+          {download.description && download.description.length > 0 && (
             <div className="prose prose-lg max-w-none mb-8">
               <PortableText value={download.description as PortableTextBlock[]} />
             </div>
           )}
 
-          {download.tags?.length > 0 && (
+          {download.tags && download.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {download.tags.map((tag: string, idx: number) => (
+              {download.tags?.map((tag: string, idx: number) => (
                 <span
                   key={idx}
                   className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
@@ -131,10 +132,10 @@ export default async function ResourcePage(props: Props) {
         <div className="lg:sticky lg:top-8">
           <DownloadForm
             isGated={download.isGated || false}
-            fileUrl={download.file}
-            fileType={download.fileType}
-            formHeading={download.formHeading}
-            formDescription={download.formDescription}
+            fileUrl={download.file || ''}
+            fileType={download.fileType || undefined}
+            formHeading={download.formHeading || undefined}
+            formDescription={download.formDescription || undefined}
           />
         </div>
       </div>
