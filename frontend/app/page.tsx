@@ -11,7 +11,7 @@ import {GetPageQueryResult} from '@/sanity.types'
 export async function generateMetadata(): Promise<Metadata> {
   const {data: page} = await sanityFetch({
     query: getPageQuery,
-    params: {slug: 'home'},
+    params: {slug: 'home-page'},
     stega: false,
   })
 
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const {data: page} = await sanityFetch({
     query: getPageQuery,
-    params: {slug: 'home'},
+    params: {slug: 'home-page'},
   })
 
   if (!page?._id) {

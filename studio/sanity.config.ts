@@ -66,7 +66,7 @@ export default defineConfig({
         mainDocuments: defineDocuments([
           {
             route: '/',
-            filter: `_type == "page" && slug.current == "home"`,
+            filter: `_type == "page" && slug.current == "home-page"`,
           },
           {
             route: '/:slug',
