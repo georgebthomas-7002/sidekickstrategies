@@ -30,27 +30,6 @@ export const page = defineType({
       },
     }),
     defineField({
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-      description: 'Main page headline (H1)',
-      options: {
-        canvasApp: {
-          purpose: 'Main page headline (H1) - should be compelling and SEO-friendly',
-        },
-      },
-    }),
-    defineField({
-      name: 'subheading',
-      title: 'Subheading',
-      type: 'string',
-      options: {
-        canvasApp: {
-          purpose: 'Supporting text that expands on the headline',
-        },
-      },
-    }),
-    defineField({
       name: 'pageBuilder',
       title: 'Page builder',
       type: 'array',

@@ -30,6 +30,11 @@ export const hero = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Main page headline (H1) - should be compelling and SEO-friendly',
+        },
+      },
     }),
     defineField({
       name: 'subheading',
@@ -37,6 +42,11 @@ export const hero = defineType({
       type: 'text',
       rows: 3,
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Supporting text that expands on the headline',
+        },
+      },
     }),
     defineField({
       name: 'primaryButton',

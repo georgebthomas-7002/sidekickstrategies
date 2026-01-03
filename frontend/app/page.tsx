@@ -16,8 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 
   return {
-    title: page?.name || 'Home',
-    description: page?.heading,
+    title: page?.name || 'Sidekick Strategies',
   } satisfies Metadata
 }
 
@@ -46,22 +45,5 @@ export default async function HomePage() {
     )
   }
 
-  return (
-    <div>
-      {/* Optional: Show heading/subheading at top */}
-      {page.heading && (
-        <div className="container py-12">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{page.heading}</h1>
-            {page.subheading && (
-              <p className="mt-4 text-base lg:text-lg leading-relaxed text-gray-600 uppercase font-light">
-                {page.subheading}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
-      <PageBuilderPage page={page as GetPageQueryResult} />
-    </div>
-  )
+  return <PageBuilderPage page={page as GetPageQueryResult} />
 }
