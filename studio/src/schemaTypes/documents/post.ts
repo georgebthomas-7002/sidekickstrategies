@@ -18,6 +18,11 @@ export const post = defineType({
       title: 'Title',
       type: 'string',
       validation: (rule) => rule.required(),
+      options: {
+        canvasApp: {
+          purpose: 'Article headline - engaging, descriptive, SEO-optimized',
+        },
+      },
     }),
     defineField({
       name: 'slug',
@@ -35,11 +40,21 @@ export const post = defineType({
       name: 'content',
       title: 'Content',
       type: 'blockContent',
+      options: {
+        canvasApp: {
+          purpose: 'Main article body content',
+        },
+      },
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
+      options: {
+        canvasApp: {
+          purpose: 'Brief article summary for listings and social sharing (150-200 chars)',
+        },
+      },
     }),
     defineField({
       name: 'coverImage',

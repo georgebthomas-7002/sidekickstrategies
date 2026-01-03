@@ -24,6 +24,11 @@ export const podcast = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Podcast episode title - descriptive and engaging',
+        },
+      },
     }),
     defineField({
       name: 'slug',
@@ -45,6 +50,11 @@ export const podcast = defineType({
       rows: 3,
       description: 'Brief description for listings and SEO',
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Episode description for podcast directories and website',
+        },
+      },
     }),
     defineField({
       name: 'showNotes',
@@ -52,6 +62,11 @@ export const podcast = defineType({
       type: 'blockContent',
       description: 'Full show notes with links, timestamps, etc.',
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Detailed show notes with timestamps, links, and key takeaways',
+        },
+      },
     }),
     defineField({
       name: 'transistorUrl',
@@ -70,6 +85,11 @@ export const podcast = defineType({
       type: 'string',
       description: 'Episode ID from Transistor.fm for API integration',
       group: 'media',
+      options: {
+        canvasApp: {
+          exclude: true, // Technical field, not for content authors
+        },
+      },
     }),
     defineField({
       name: 'coverImage',
@@ -143,6 +163,9 @@ export const podcast = defineType({
       of: [{type: 'string'}],
       options: {
         layout: 'tags',
+        canvasApp: {
+          purpose: 'SEO keywords for search visibility and categorization',
+        },
       },
       group: 'meta',
     }),

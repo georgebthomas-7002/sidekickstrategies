@@ -24,6 +24,11 @@ export const download = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Resource title - clear value proposition',
+        },
+      },
     }),
     defineField({
       name: 'slug',
@@ -44,6 +49,11 @@ export const download = defineType({
       type: 'blockContent',
       description: 'Detailed description of the download',
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Resource description explaining what users will learn',
+        },
+      },
     }),
     defineField({
       name: 'excerpt',
@@ -52,6 +62,11 @@ export const download = defineType({
       rows: 3,
       description: 'Brief description for listings',
       group: 'content',
+      options: {
+        canvasApp: {
+          purpose: 'Brief summary for resource listings (150-200 chars)',
+        },
+      },
     }),
     defineField({
       name: 'thumbnail',
@@ -161,6 +176,9 @@ export const download = defineType({
       of: [{type: 'string'}],
       options: {
         layout: 'tags',
+        canvasApp: {
+          purpose: 'SEO keywords for search visibility and categorization',
+        },
       },
       group: 'settings',
     }),

@@ -34,11 +34,21 @@ export const page = defineType({
       title: 'Heading',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      options: {
+        canvasApp: {
+          purpose: 'Main page headline - should be compelling and SEO-friendly',
+        },
+      },
     }),
     defineField({
       name: 'subheading',
       title: 'Subheading',
       type: 'string',
+      options: {
+        canvasApp: {
+          purpose: 'Supporting text that expands on the headline',
+        },
+      },
     }),
     defineField({
       name: 'pageBuilder',
