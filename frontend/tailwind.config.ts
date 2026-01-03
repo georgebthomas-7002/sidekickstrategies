@@ -18,51 +18,55 @@ import typography from '@tailwindcss/typography'
  */
 
 // =============================================================================
-// BRAND COLORS - Customize these for Sidekick Strategies
+// BRAND COLORS - Sidekick Strategies
 // =============================================================================
 const brandColors = {
-  // Primary brand color - used for CTAs, links, accents
+  // Primary brand color - Dark Blue (#142d63)
   primary: {
-    50: '#f0f9ff',
-    100: '#e0f2fe',
-    200: '#bae6fd',
-    300: '#7dd3fc',
-    400: '#38bdf8',
-    500: '#0ea5e9',  // Main primary color
-    600: '#0284c7',
-    700: '#0369a1',
-    800: '#075985',
-    900: '#0c4a6e',
-    950: '#082f49',
+    50: '#f0f4fa',
+    100: '#dce4f2',
+    200: '#b9c9e5',
+    300: '#8aa5d3',
+    400: '#5a7fc0',
+    500: '#3a5a9a',
+    600: '#2a4578',
+    700: '#1e3561',
+    800: '#142d63',  // Main primary color
+    900: '#0f2250',
+    950: '#0a1633',
   },
-  // Secondary brand color - used for accents, highlights
+  // Secondary brand color - Teal (#028393)
   secondary: {
-    50: '#fdf4ff',
-    100: '#fae8ff',
-    200: '#f5d0fe',
-    300: '#f0abfc',
-    400: '#e879f9',
-    500: '#d946ef',  // Main secondary color
-    600: '#c026d3',
-    700: '#a21caf',
-    800: '#86198f',
-    900: '#701a75',
-    950: '#4a044e',
+    50: '#e6f7f9',
+    100: '#cceff3',
+    200: '#99dfe7',
+    300: '#4dc5d4',
+    400: '#1aabb9',
+    500: '#028393',  // Main secondary color
+    600: '#026d7a',
+    700: '#025762',
+    800: '#014149',
+    900: '#012b31',
+    950: '#001518',
   },
-  // Accent color - for special highlights, badges, alerts
+  // Accent/Button color - Orange (#f65625)
   accent: {
-    50: '#fff7ed',
-    100: '#ffedd5',
-    200: '#fed7aa',
-    300: '#fdba74',
-    400: '#fb923c',
-    500: '#f97316',  // Main accent color
-    600: '#ea580c',
-    700: '#c2410c',
-    800: '#9a3412',
-    900: '#7c2d12',
-    950: '#431407',
+    50: '#fff5f0',
+    100: '#ffe8de',
+    200: '#ffd0bd',
+    300: '#ffab8c',
+    400: '#fa7d4d',
+    500: '#f65625',  // Main accent/button color
+    600: '#d9441a',
+    700: '#b53615',
+    800: '#912b11',
+    900: '#6d200d',
+    950: '#3a1006',
   },
+  // Additional brand colors
+  peach: '#faaa68',      // Light orange/peach
+  lightBlue: '#98c1d9',  // Light blue
+  slate: '#3d5a80',      // Slate blue
 }
 
 export default {
@@ -82,9 +86,14 @@ export default {
         secondary: brandColors.secondary,
         accent: brandColors.accent,
 
+        // Additional brand colors
+        peach: brandColors.peach,
+        'light-blue': brandColors.lightBlue,
+        slate: brandColors.slate,
+
         // Base colors
-        black: '#0d0e12',
-        white: '#fff',
+        black: '#000000',
+        white: '#ffffff',
         cyan: {
           50: '#e7fefe',
           100: '#c5fcfc',

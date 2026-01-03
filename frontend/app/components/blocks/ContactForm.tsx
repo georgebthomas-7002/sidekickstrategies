@@ -55,7 +55,7 @@ export default function ContactForm({block}: ContactFormProps) {
           <button
             type="submit"
             disabled={isLoading}
-            className="px-6 py-3 bg-black text-white rounded-lg font-mono text-sm hover:bg-gray-800 disabled:opacity-50 transition-colors"
+            className="px-6 py-3 bg-accent-500 text-white rounded-lg font-mono text-sm hover:bg-accent-600 disabled:opacity-50 transition-colors"
           >
             {isLoading ? 'Subscribing...' : 'Subscribe'}
           </button>
@@ -131,7 +131,7 @@ export default function ContactForm({block}: ContactFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full px-6 py-3 bg-black text-white rounded-lg font-mono text-sm hover:bg-gray-800 disabled:opacity-50 transition-colors"
+          className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg font-mono text-sm hover:bg-accent-600 disabled:opacity-50 transition-colors"
         >
           {isLoading ? 'Sending...' : submitButtonText}
         </button>

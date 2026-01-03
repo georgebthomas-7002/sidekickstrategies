@@ -56,7 +56,7 @@ export default function FeaturedArticles({block}: FeaturedArticlesProps) {
           <div className="text-center mt-12">
             <Link
               href="/articles"
-              className="inline-block rounded-full font-mono text-sm bg-black text-white hover:bg-gray-800 py-3 px-8 transition-colors duration-200"
+              className="inline-block rounded-full font-mono text-sm bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 transition-colors duration-200"
             >
               {buttonText}
             </Link>

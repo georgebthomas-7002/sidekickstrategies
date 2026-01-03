@@ -93,7 +93,7 @@ export default function Hero({block}: HeroProps) {
               {primaryButton?.buttonText && primaryButton?.link && (
                 <ResolvedLink
                   link={primaryButton.link}
-                  className="rounded-full font-mono text-sm whitespace-nowrap bg-black text-white hover:bg-gray-800 py-3 px-8 transition-colors duration-200"
+                  className="rounded-full font-mono text-sm whitespace-nowrap bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 transition-colors duration-200"
                 >
                   {primaryButton.buttonText}
                 </ResolvedLink>
@@ -101,7 +101,7 @@ export default function Hero({block}: HeroProps) {
               {secondaryButton?.buttonText && secondaryButton?.link && (
                 <ResolvedLink
                   link={secondaryButton.link}
-                  className={`rounded-full font-mono text-sm whitespace-nowrap border-2 py-3 px-8 transition-colors duration-200 ${isDark ? 'border-white text-white hover:bg-white hover:text-gray-900' : 'border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white'}`}
+                  className={`rounded-full font-mono text-sm whitespace-nowrap border-2 py-3 px-8 transition-colors duration-200 ${isDark ? 'border-white text-white hover:bg-white hover:text-brand-800' : 'border-brand-800 text-brand-800 hover:bg-brand-800 hover:text-white'}`}
                 >
                   {secondaryButton.buttonText}
                 </ResolvedLink>
