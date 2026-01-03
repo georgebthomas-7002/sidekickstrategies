@@ -40,7 +40,10 @@
 ## Sanity Studio
 
 ### Hosted Studio
-Deploy to Sanity hosting for Canvas features:
+- **URL**: https://sidekickstrategies.sanity.studio/
+- **App ID**: `b8cg1miy0qq8njs9tlsyuzlw`
+
+Deploy updates to Sanity hosting:
 ```bash
 cd studio
 npx sanity deploy
