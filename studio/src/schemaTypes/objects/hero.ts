@@ -1,0 +1,145 @@
+import {defineField, defineType} from 'sanity'
+import {HomeIcon} from '@sanity/icons'
+
+/**
+ * Hero section block for page builder.
+ * Large banner with headline, subtitle, CTA buttons, and optional background.
+ */
+
+export const hero = defineType({
+  name: 'hero',
+  title: 'Hero',
+  type: 'object',
+  icon: HomeIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'media', title: 'Media'},
+    {name: 'design', title: 'Design'},
+  ],
+  fields: [
+    defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow Text',
+      type: 'string',
+      description: 'Small text above the headline',
+      group: 'content',
+    }),
+    defineField({
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      group: 'content',
+    }),
+    defineField({
+      name: 'subheading',
+      title: 'Subheading',
+      type: 'text',
+      rows: 3,
+      group: 'content',
+    }),
+    defineField({
+      name: 'primaryButton',
+      title: 'Primary Button',
+      type: 'button',
+      group: 'content',
+    }),
+    defineField({
+      name: 'secondaryButton',
+      title: 'Secondary Button',
+      type: 'button',
+      group: 'content',
+    }),
+    defineField({
+      name: 'backgroundImage',
+      title: 'Background Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        },
+      ],
+      group: 'media',
+    }),
+    defineField({
+      name: 'foregroundImage',
+      title: 'Foreground Image',
+      type: 'image',
+      description: 'Optional image displayed alongside the content',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        },
+      ],
+      group: 'media',
+    }),
+    defineField({
+      name: 'size',
+      title: 'Size',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Large (Full Height)', value: 'large'},
+          {title: 'Medium', value: 'medium'},
+          {title: 'Small', value: 'small'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'large',
+      group: 'design',
+    }),
+    defineField({
+      name: 'alignment',
+      title: 'Content Alignment',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Left', value: 'left'},
+          {title: 'Center', value: 'center'},
+          {title: 'Right', value: 'right'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'center',
+      group: 'design',
+    }),
+    defineField({
+      name: 'theme',
+      title: 'Theme',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Light', value: 'light'},
+          {title: 'Dark', value: 'dark'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'light',
+      group: 'design',
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'heading',
+      subtitle: 'subheading',
+      media: 'backgroundImage',
+    },
+    prepare({title, subtitle, media}) {
+      return {
+        title: title || 'Untitled Hero',
+        subtitle: 'Hero Section',
+        media,
+      }
+    },
+  },
+})

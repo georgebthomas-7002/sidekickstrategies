@@ -1,0 +1,8 @@
+export {default as Hero} from './Hero'
+export {default as FeaturedArticles} from './FeaturedArticles'
+export {default as FeaturedPodcasts} from './FeaturedPodcasts'
+export {default as DownloadsGrid} from './DownloadsGrid'
+export {default as Testimonial} from './Testimonial'
+export {default as TeamGrid} from './TeamGrid'
+export {default as ContactForm} from './ContactForm'
+export {default as FAQAccordion} from './FAQAccordion'
