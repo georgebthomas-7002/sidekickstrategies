@@ -33,10 +33,10 @@ export const page = defineType({
       name: 'heading',
       title: 'Heading',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'Main page headline (H1)',
       options: {
         canvasApp: {
-          purpose: 'Main page headline - should be compelling and SEO-friendly',
+          purpose: 'Main page headline (H1) - should be compelling and SEO-friendly',
         },
       },
     }),
