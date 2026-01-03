@@ -879,6 +879,411 @@ export type SettingsQueryResult = {
 } | null
 
 // Source: sanity/lib/queries.ts
+// Variable: getPageQuery
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },      _type == "hero" => {        ...,        primaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        },        secondaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "featuredArticles" => {        ...,        "articles": select(          displayMode == "selected" => articles[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},},          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},}        )      },      _type == "featuredPodcasts" => {        ...,        "episodes": select(          displayMode == "selected" => episodes[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,},          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,}        )      },      _type == "downloadsGrid" => {        ...,        "downloads": select(          displayMode == "selected" => downloads[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,},          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,},          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,}        )      },      _type == "teamGrid" => {        ...,        "members": select(          displayMode == "selected" => members[]->{firstName, lastName, picture},          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}        )      },      _type == "faqAccordion" => {        ...,        items[]{          ...,          answer[]{            ...,            markDefs[]{              ...,                _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }            }          }        }      },    },  }
+export type GetPageQueryResult = {
+  _id: string
+  _type: 'page'
+  name: string | null
+  slug: Slug | null
+  heading: string | null
+  subheading: string | null
+  pageBuilder: Array<
+    | {
+        _key: string
+        _type: 'callToAction'
+        eyebrow?: string
+        heading?: string
+        body?: BlockContentTextOnly
+        button: {
+          _type: 'button'
+          buttonText?: string
+          link: {
+            _type: 'link'
+            linkType?: 'href' | 'page' | 'post'
+            href?: string
+            page: string | null
+            post: string | null
+            openInNewTab?: boolean
+          } | null
+        } | null
+        image?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+        theme?: 'dark' | 'light'
+        contentAlignment?: 'imageFirst' | 'textFirst'
+      }
+    | {
+        _key: string
+        _type: 'contactForm'
+        heading?: string
+        subheading?: string
+        formType?: 'consultation' | 'contact' | 'custom' | 'newsletter'
+        fields?: Array<{
+          label?: string
+          type?: 'email' | 'select' | 'tel' | 'text' | 'textarea'
+          placeholder?: string
+          required?: boolean
+          options?: Array<string>
+          _type: 'formField'
+          _key: string
+        }>
+        submitButtonText?: string
+        successMessage?: string
+        showContactInfo?: boolean
+        contactEmail?: string
+        contactPhone?: string
+        contactAddress?: string
+        theme?: 'dark' | 'light'
+      }
+    | {
+        _key: string
+        _type: 'downloadsGrid'
+        heading?: string
+        subheading?: string
+        displayMode?: 'category' | 'latest' | 'selected'
+        downloads: Array<{
+          _id: string
+          status: 'draft' | 'published'
+          title: string | 'Untitled'
+          slug: string | null
+          excerpt: string | null
+          thumbnail: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          } | null
+          file: string | null
+          fileType:
+            | 'checklist'
+            | 'ebook'
+            | 'guide'
+            | 'other'
+            | 'pdf'
+            | 'presentation'
+            | 'spreadsheet'
+            | 'template'
+            | 'whitepaper'
+            | null
+          category:
+            | 'case-study'
+            | 'checklist'
+            | 'ebook'
+            | 'guide'
+            | 'research'
+            | 'template'
+            | 'toolkit'
+            | 'whitepaper'
+            | null
+          isGated: boolean | null
+          formHeading: string | null
+          formDescription: string | null
+          publishedAt: string
+          tags: Array<string> | null
+        }> | null
+        category?:
+          | 'case-study'
+          | 'checklist'
+          | 'ebook'
+          | 'guide'
+          | 'research'
+          | 'template'
+          | 'toolkit'
+          | 'whitepaper'
+        limit?: number
+        layout?: 'grid-2' | 'grid-3' | 'list'
+        showButton?: boolean
+        buttonText?: string
+      }
+    | {
+        _key: string
+        _type: 'faqAccordion'
+        heading?: string
+        subheading?: string
+        items: Array<{
+          question?: string
+          answer: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>
+                  text?: string
+                  _type: 'span'
+                  _key: string
+                }>
+                style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+                listItem?: 'bullet' | 'number'
+                markDefs: Array<{
+                  linkType?: 'href' | 'page' | 'post'
+                  href?: string
+                  page: string | null
+                  post: string | null
+                  openInNewTab?: boolean
+                  _type: 'link'
+                  _key: string
+                }> | null
+                level?: number
+                _type: 'block'
+                _key: string
+              }
+            | {
+                asset?: SanityImageAssetReference
+                media?: unknown
+                hotspot?: SanityImageHotspot
+                crop?: SanityImageCrop
+                _type: 'image'
+                _key: string
+                markDefs: null
+              }
+          > | null
+          _type: 'faqItem'
+          _key: string
+        }> | null
+        layout?: 'single' | 'two-column'
+        expandFirst?: boolean
+        allowMultiple?: boolean
+        theme?: 'dark' | 'light'
+      }
+    | {
+        _key: string
+        _type: 'featuredArticles'
+        heading?: string
+        subheading?: string
+        displayMode?: 'latest' | 'selected'
+        articles: Array<{
+          _id: string
+          status: 'draft' | 'published'
+          title: string | 'Untitled'
+          slug: string | null
+          excerpt: string | null
+          coverImage: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          } | null
+          date: string
+          author: {
+            firstName: string | null
+            lastName: string | null
+            picture: {
+              asset?: SanityImageAssetReference
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+            } | null
+          } | null
+        }> | null
+        limit?: number
+        layout?: 'featured' | 'grid-2' | 'grid-3' | 'list'
+        showButton?: boolean
+        buttonText?: string
+      }
+    | {
+        _key: string
+        _type: 'featuredPodcasts'
+        heading?: string
+        subheading?: string
+        displayMode?: 'latest' | 'selected'
+        episodes: Array<{
+          _id: string
+          status: 'draft' | 'published'
+          title: string | 'Untitled'
+          slug: string | null
+          description: string | null
+          coverImage: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          } | null
+          transistorUrl: string | null
+          transistorEpisodeId: string | null
+          duration: string | null
+          episodeNumber: number | null
+          seasonNumber: number | null
+          publishedAt: string
+          guests: Array<{
+            firstName: string | null
+            lastName: string | null
+            picture: {
+              asset?: SanityImageAssetReference
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+            } | null
+          }> | null
+          hosts: Array<{
+            firstName: string | null
+            lastName: string | null
+            picture: {
+              asset?: SanityImageAssetReference
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              alt?: string
+              _type: 'image'
+            } | null
+          }> | null
+          tags: Array<string> | null
+        }> | null
+        limit?: number
+        layout?: 'featured' | 'grid-2' | 'grid-3' | 'list'
+        showButton?: boolean
+        buttonText?: string
+      }
+    | {
+        _key: string
+        _type: 'hero'
+        eyebrow?: string
+        heading?: string
+        subheading?: string
+        primaryButton: {
+          _type: 'button'
+          buttonText?: string
+          link: {
+            _type: 'link'
+            linkType?: 'href' | 'page' | 'post'
+            href?: string
+            page: string | null
+            post: string | null
+            openInNewTab?: boolean
+          } | null
+        } | null
+        secondaryButton: {
+          _type: 'button'
+          buttonText?: string
+          link: {
+            _type: 'link'
+            linkType?: 'href' | 'page' | 'post'
+            href?: string
+            page: string | null
+            post: string | null
+            openInNewTab?: boolean
+          } | null
+        } | null
+        backgroundImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        foregroundImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        size?: 'large' | 'medium' | 'small'
+        alignment?: 'center' | 'left' | 'right'
+        theme?: 'dark' | 'light'
+      }
+    | {
+        _key: string
+        _type: 'infoSection'
+        heading?: string
+        subheading?: string
+        content: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+              listItem?: 'bullet' | 'number'
+              markDefs: Array<{
+                linkType?: 'href' | 'page' | 'post'
+                href?: string
+                page: string | null
+                post: string | null
+                openInNewTab?: boolean
+                _type: 'link'
+                _key: string
+              }> | null
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              asset?: SanityImageAssetReference
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+              _key: string
+              markDefs: null
+            }
+        > | null
+      }
+    | {
+        _key: string
+        _type: 'teamGrid'
+        heading?: string
+        subheading?: string
+        displayMode?: 'all' | 'selected'
+        members: Array<{
+          firstName: string | null
+          lastName: string | null
+          picture: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          } | null
+        }> | null
+        layout?: 'grid-2' | 'grid-3' | 'grid-4' | 'list'
+        showBio?: boolean
+        showSocialLinks?: boolean
+      }
+    | {
+        _key: string
+        _type: 'testimonial'
+        quote?: string
+        authorName?: string
+        authorTitle?: string
+        authorImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+        companyLogo?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+        rating?: number
+        theme?: 'accent' | 'dark' | 'light'
+      }
+  > | null
+} | null
+
+// Source: sanity/lib/queries.ts
 // Variable: sitemapData
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
 export type SitemapDataResult = Array<
@@ -928,7 +1333,7 @@ export type AllPostsQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
 export type MorePostsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
@@ -1314,9 +1719,10 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "hero" => {\n        ...,\n        primaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        },\n        secondaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "featuredArticles" => {\n        ...,\n        "articles": select(\n          displayMode == "selected" => articles[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n},\n          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n}\n        )\n      },\n      _type == "featuredPodcasts" => {\n        ...,\n        "episodes": select(\n          displayMode == "selected" => episodes[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n},\n          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n}\n        )\n      },\n      _type == "downloadsGrid" => {\n        ...,\n        "downloads": select(\n          displayMode == "selected" => downloads[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n},\n          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n},\n          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n}\n        )\n      },\n      _type == "teamGrid" => {\n        ...,\n        "members": select(\n          displayMode == "selected" => members[]->{firstName, lastName, picture},\n          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}\n        )\n      },\n      _type == "faqAccordion" => {\n        ...,\n        items[]{\n          ...,\n          answer[]{\n            ...,\n            markDefs[]{\n              ...,\n              \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n            }\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult
-    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult
+    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult

@@ -103,22 +103,22 @@ export const getPageQuery = defineQuery(`
         ...,
         "articles": select(
           displayMode == "selected" => articles[]->{${postFields}},
-          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...coalesce(^.limit, 3)] {${postFields}}
+          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {${postFields}}
         )
       },
       _type == "featuredPodcasts" => {
         ...,
         "episodes": select(
           displayMode == "selected" => episodes[]->{${podcastFields}},
-          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...coalesce(^.limit, 3)] {${podcastFields}}
+          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {${podcastFields}}
         )
       },
       _type == "downloadsGrid" => {
         ...,
         "downloads": select(
           displayMode == "selected" => downloads[]->{${downloadFields}},
-          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...coalesce(^.limit, 6)] {${downloadFields}},
-          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...coalesce(^.limit, 6)] {${downloadFields}}
+          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {${downloadFields}},
+          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {${downloadFields}}
         )
       },
       _type == "teamGrid" => {
@@ -160,7 +160,7 @@ export const allPostsQuery = defineQuery(`
 `)
 
 export const morePostsQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {
     ${postFields}
   }
 `)
