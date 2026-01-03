@@ -47,7 +47,7 @@ function resolveHref(documentType?: string, slug?: string): string | undefined {
 // Main Sanity configuration
 export default defineConfig({
   name: 'default',
-  title: 'Sanity + Next.js Starter Template',
+  title: 'Sidekick Strategies',
 
   projectId,
   dataset,
@@ -66,7 +66,7 @@ export default defineConfig({
         mainDocuments: defineDocuments([
           {
             route: '/',
-            filter: `_type == "settings" && _id == "siteSettings"`,
+            filter: `_type == "page" && slug.current == "home"`,
           },
           {
             route: '/:slug',
@@ -75,6 +75,18 @@ export default defineConfig({
           {
             route: '/posts/:slug',
             filter: `_type == "post" && slug.current == $slug || _id == $slug`,
+          },
+          {
+            route: '/articles/:slug',
+            filter: `_type == "post" && slug.current == $slug || _id == $slug`,
+          },
+          {
+            route: '/podcasts/:slug',
+            filter: `_type == "podcast" && slug.current == $slug || _id == $slug`,
+          },
+          {
+            route: '/resources/:slug',
+            filter: `_type == "download" && slug.current == $slug || _id == $slug`,
           },
         ]),
         // Locations Resolver API allows you to define where data is being used in your application. https://www.sanity.io/docs/presentation-resolver-api#8d8bca7bfcd7
