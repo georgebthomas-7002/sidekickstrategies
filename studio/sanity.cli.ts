@@ -15,9 +15,9 @@ export default defineCliConfig({
     projectId,
     dataset,
   },
-  studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || '', // Visit https://www.sanity.io/docs/environment-variables to learn more about using environment variables for local & production.
+  studioHost: 'sidekick-strategies',
   deployment: {
-    appId: 'b8cg1miy0qq8njs9tlsyuzlw',
+    appId: 't72zifau2hu3kkz1vl3vvfjn',
     autoUpdates: true,
   },
 })

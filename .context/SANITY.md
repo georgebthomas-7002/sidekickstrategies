@@ -1,7 +1,7 @@
 # Sanity CMS Configuration
 
 ## Project Details
-- **Project ID**: `j0b8qr5r`
+- **Project ID**: `n6sl2ooh`
 - **Dataset**: `production`
 - **API Version**: `2025-09-25`
 - **Studio Version**: v5.1.0

@@ -17,7 +17,7 @@
 ### Environment Variables (Required)
 | Variable | Value | Scope |
 |----------|-------|-------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `j0b8qr5r` | All |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `n6sl2ooh` | All |
 | `NEXT_PUBLIC_SANITY_DATASET` | `production` | All |
 | `NEXT_PUBLIC_SANITY_API_VERSION` | `2025-09-25` | All |
 | `SANITY_API_READ_TOKEN` | `[secret - see .env.local]` | All |
@@ -40,8 +40,8 @@
 ## Sanity Studio
 
 ### Hosted Studio
-- **URL**: https://sidekickstrategies.sanity.studio/
-- **App ID**: `b8cg1miy0qq8njs9tlsyuzlw`
+- **URL**: https://sidekick-strategies.sanity.studio/
+- **App ID**: `t72zifau2hu3kkz1vl3vvfjn`
 
 Deploy updates to Sanity hosting:
 ```bash
@@ -57,7 +57,7 @@ npm run dev  # http://localhost:3333
 
 ### Environment Variables (studio/.env)
 ```
-SANITY_STUDIO_PROJECT_ID="j0b8qr5r"
+SANITY_STUDIO_PROJECT_ID="n6sl2ooh"
 SANITY_STUDIO_DATASET="production"
 SANITY_STUDIO_PREVIEW_URL="https://sidekickstrategies.vercel.app"
 ```
@@ -93,7 +93,7 @@ cd studio && npm run dev    # http://localhost:3333
 
 ### Frontend Environment (frontend/.env.local)
 ```
-NEXT_PUBLIC_SANITY_PROJECT_ID="j0b8qr5r"
+NEXT_PUBLIC_SANITY_PROJECT_ID="n6sl2ooh"
 NEXT_PUBLIC_SANITY_DATASET="production"
 NEXT_PUBLIC_SANITY_API_VERSION="2025-09-25"
 SANITY_API_READ_TOKEN="[token]"
