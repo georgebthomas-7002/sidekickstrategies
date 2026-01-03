@@ -114,6 +114,12 @@
 @theme {
   --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
+  /* Sidekick Strategies Font Families */
+  --font-family-serif: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-family-heading: var(--font-montserrat), sans-serif;
+  --font-family-sans: var(--font-pt-sans), sans-serif;
+  --font-family-mono: var(--font-ibm-plex-mono), monospace;
+
   /* Sidekick Strategies Brand Colors */
   --color-brand-primary: #142d63;
   --color-brand-secondary: #028393;
