@@ -15,6 +15,7 @@ export const hero = defineType({
     {name: 'content', title: 'Content', default: true},
     {name: 'media', title: 'Media'},
     {name: 'design', title: 'Design'},
+    {name: 'section', title: 'Section Settings'},
   ],
   fields: [
     defineField({
@@ -136,6 +137,42 @@ export const hero = defineType({
       },
       initialValue: 'light',
       group: 'design',
+    }),
+    defineField({
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Centered Content', value: 'centered'},
+          {title: 'Left Content + Right Image', value: 'split-left'},
+          {title: 'Right Content + Left Image', value: 'split-right'},
+          {title: 'Overlay on Background', value: 'overlay'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'centered',
+      group: 'design',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

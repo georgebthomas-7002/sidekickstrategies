@@ -2,6 +2,7 @@ import React from 'react'
 
 import Cta from '@/app/components/Cta'
 import Info from '@/app/components/InfoSection'
+import {SectionWrapper} from '@/app/components/SectionWrapper'
 import {
   Hero,
   FeaturedArticles,
@@ -41,10 +42,17 @@ const Blocks = {
 
 /**
  * Used by the <PageBuilder>, this component renders a the component that matches the block type.
+ * Wraps each block with SectionWrapper for consistent styling support.
  */
 export default function BlockRenderer({block, index, pageId, pageType}: BlockProps) {
   // Block does exist
   if (typeof Blocks[block._type] !== 'undefined') {
+    // Extract section settings from block (if available)
+    const blockWithSettings = block as PageBuilderSection & {
+      sectionSettings?: unknown
+      stylePreset?: unknown
+    }
+
     return (
       <div
         key={block._key}
@@ -54,13 +62,20 @@ export default function BlockRenderer({block, index, pageId, pageType}: BlockPro
           path: `pageBuilder[_key=="${block._key}"]`,
         }).toString()}
       >
-        {React.createElement(Blocks[block._type], {
-          key: block._key,
-          block: block,
-          index: index,
-          pageId: pageId,
-          pageType: pageType,
-        })}
+        <SectionWrapper
+          settings={blockWithSettings.sectionSettings as Parameters<typeof SectionWrapper>[0]['settings']}
+          preset={blockWithSettings.stylePreset as Parameters<typeof SectionWrapper>[0]['preset']}
+          blockType={block._type}
+          blockKey={block._key}
+        >
+          {React.createElement(Blocks[block._type], {
+            key: block._key,
+            block: block,
+            index: index,
+            pageId: pageId,
+            pageType: pageType,
+          })}
+        </SectionWrapper>
       </div>
     )
   }

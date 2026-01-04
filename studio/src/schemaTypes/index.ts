@@ -3,6 +3,7 @@ import {page} from './documents/page'
 import {post} from './documents/post'
 import {podcast} from './documents/podcast'
 import {download} from './documents/download'
+import {stylePreset} from './documents/stylePreset'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
@@ -10,6 +11,7 @@ import {link} from './objects/link'
 import {blockContent} from './objects/blockContent'
 import button from './objects/button'
 import {blockContentTextOnly} from './objects/blockContentTextOnly'
+import {sectionSettings} from './objects/sectionSettings'
 // Page builder blocks
 import {hero} from './objects/hero'
 import {featuredArticles} from './objects/featuredArticles'
@@ -31,6 +33,7 @@ export const schemaTypes = [
   podcast,
   download,
   person,
+  stylePreset,
   // Objects
   button,
   blockContent,
@@ -38,6 +41,7 @@ export const schemaTypes = [
   infoSection,
   callToAction,
   link,
+  sectionSettings,
   // Page builder blocks
   hero,
   featuredArticles,

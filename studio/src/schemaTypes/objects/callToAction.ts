@@ -35,6 +35,10 @@ export const callToAction = defineType({
       name: 'designSystem',
       icon: ControlsIcon,
     },
+    {
+      name: 'section',
+      title: 'Section Settings',
+    },
   ],
   fields: [
     defineField({
@@ -98,6 +102,59 @@ export const callToAction = defineType({
       },
       hidden: ({parent}) => !Boolean(parent?.image?.asset),
       group: 'designSystem',
+    }),
+    defineField({
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Image Left, Content Right', value: 'image-left'},
+          {title: 'Image Right, Content Left', value: 'image-right'},
+          {title: 'Image Top, Content Bottom', value: 'image-top'},
+          {title: 'Content Only (No Image)', value: 'content-only'},
+          {title: 'Full-width Image Background', value: 'image-background'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'image-left',
+      group: 'designSystem',
+    }),
+    defineField({
+      name: 'imageSize',
+      title: 'Image Size',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Small (1/3)', value: 'small'},
+          {title: 'Medium (1/2)', value: 'medium'},
+          {title: 'Large (2/3)', value: 'large'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'medium',
+      hidden: ({parent}) => parent?.layout === 'content-only' || parent?.layout === 'image-background',
+      group: 'designSystem',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

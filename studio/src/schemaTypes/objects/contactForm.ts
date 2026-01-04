@@ -11,18 +11,27 @@ export const contactForm = defineType({
   title: 'Contact Form',
   type: 'object',
   icon: EnvelopeIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'form', title: 'Form Settings'},
+    {name: 'contact', title: 'Contact Info'},
+    {name: 'design', title: 'Design'},
+    {name: 'section', title: 'Section Settings'},
+  ],
   fields: [
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
       initialValue: 'Get in Touch',
+      group: 'content',
     }),
     defineField({
       name: 'subheading',
       title: 'Subheading',
       type: 'text',
       rows: 2,
+      group: 'content',
     }),
     defineField({
       name: 'formType',
@@ -37,6 +46,7 @@ export const contactForm = defineType({
         ],
       },
       initialValue: 'contact',
+      group: 'form',
     }),
     defineField({
       name: 'fields',
@@ -88,12 +98,14 @@ export const contactForm = defineType({
         },
       ],
       hidden: ({parent}) => parent?.formType !== 'custom',
+      group: 'form',
     }),
     defineField({
       name: 'submitButtonText',
       title: 'Submit Button Text',
       type: 'string',
       initialValue: 'Send Message',
+      group: 'form',
     }),
     defineField({
       name: 'successMessage',
@@ -101,6 +113,7 @@ export const contactForm = defineType({
       type: 'text',
       rows: 2,
       initialValue: "Thanks for reaching out! We'll get back to you soon.",
+      group: 'form',
     }),
     defineField({
       name: 'showContactInfo',
@@ -108,18 +121,21 @@ export const contactForm = defineType({
       type: 'boolean',
       description: 'Display email, phone, and address alongside the form',
       initialValue: true,
+      group: 'contact',
     }),
     defineField({
       name: 'contactEmail',
       title: 'Contact Email',
       type: 'email',
       hidden: ({parent}) => !parent?.showContactInfo,
+      group: 'contact',
     }),
     defineField({
       name: 'contactPhone',
       title: 'Contact Phone',
       type: 'string',
       hidden: ({parent}) => !parent?.showContactInfo,
+      group: 'contact',
     }),
     defineField({
       name: 'contactAddress',
@@ -127,6 +143,7 @@ export const contactForm = defineType({
       type: 'text',
       rows: 3,
       hidden: ({parent}) => !parent?.showContactInfo,
+      group: 'contact',
     }),
     defineField({
       name: 'theme',
@@ -140,6 +157,27 @@ export const contactForm = defineType({
         layout: 'radio',
       },
       initialValue: 'light',
+      group: 'design',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

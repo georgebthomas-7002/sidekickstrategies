@@ -6,21 +6,48 @@ export const infoSection = defineType({
   title: 'Info Section',
   type: 'object',
   icon: TextIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'section', title: 'Section Settings'},
+  ],
   fields: [
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'subheading',
       title: 'Subheading',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'content',
       title: 'Content',
       type: 'blockContent',
+      group: 'content',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

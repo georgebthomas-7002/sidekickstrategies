@@ -11,17 +11,24 @@ export const featuredArticles = defineType({
   title: 'Featured Articles',
   type: 'object',
   icon: DocumentsIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'display', title: 'Display'},
+    {name: 'section', title: 'Section Settings'},
+  ],
   fields: [
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
       initialValue: 'Latest Articles',
+      group: 'content',
     }),
     defineField({
       name: 'subheading',
       title: 'Subheading',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'displayMode',
@@ -35,6 +42,7 @@ export const featuredArticles = defineType({
         layout: 'radio',
       },
       initialValue: 'latest',
+      group: 'content',
     }),
     defineField({
       name: 'articles',
@@ -50,6 +58,7 @@ export const featuredArticles = defineType({
           }
           return true
         }),
+      group: 'content',
     }),
     defineField({
       name: 'limit',
@@ -59,6 +68,7 @@ export const featuredArticles = defineType({
       initialValue: 3,
       hidden: ({parent}) => parent?.displayMode !== 'latest',
       validation: (rule) => rule.min(1).max(12),
+      group: 'content',
     }),
     defineField({
       name: 'layout',
@@ -74,12 +84,14 @@ export const featuredArticles = defineType({
         layout: 'radio',
       },
       initialValue: 'grid-3',
+      group: 'display',
     }),
     defineField({
       name: 'showButton',
       title: 'Show View All Button',
       type: 'boolean',
       initialValue: true,
+      group: 'display',
     }),
     defineField({
       name: 'buttonText',
@@ -87,6 +99,27 @@ export const featuredArticles = defineType({
       type: 'string',
       initialValue: 'View All Articles',
       hidden: ({parent}) => !parent?.showButton,
+      group: 'display',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

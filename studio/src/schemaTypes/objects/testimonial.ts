@@ -11,6 +11,11 @@ export const testimonial = defineType({
   title: 'Testimonial',
   type: 'object',
   icon: CommentIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'design', title: 'Design'},
+    {name: 'section', title: 'Section Settings'},
+  ],
   fields: [
     defineField({
       name: 'quote',
@@ -18,18 +23,21 @@ export const testimonial = defineType({
       type: 'text',
       rows: 4,
       validation: (rule) => rule.required(),
+      group: 'content',
     }),
     defineField({
       name: 'authorName',
       title: 'Author Name',
       type: 'string',
       validation: (rule) => rule.required(),
+      group: 'content',
     }),
     defineField({
       name: 'authorTitle',
       title: 'Author Title',
       type: 'string',
       description: 'e.g., "CEO at Company"',
+      group: 'content',
     }),
     defineField({
       name: 'authorImage',
@@ -38,12 +46,14 @@ export const testimonial = defineType({
       options: {
         hotspot: true,
       },
+      group: 'content',
     }),
     defineField({
       name: 'companyLogo',
       title: 'Company Logo',
       type: 'image',
       description: 'Optional company or organization logo',
+      group: 'content',
     }),
     defineField({
       name: 'rating',
@@ -51,6 +61,7 @@ export const testimonial = defineType({
       type: 'number',
       description: 'Optional star rating (1-5)',
       validation: (rule) => rule.min(1).max(5),
+      group: 'content',
     }),
     defineField({
       name: 'theme',
@@ -65,6 +76,44 @@ export const testimonial = defineType({
         layout: 'radio',
       },
       initialValue: 'light',
+      group: 'design',
+    }),
+    defineField({
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Card Style', value: 'card'},
+          {title: 'Large Quote', value: 'large-quote'},
+          {title: 'Minimal', value: 'minimal'},
+          {title: 'With Photo Left', value: 'photo-left'},
+          {title: 'With Photo Right', value: 'photo-right'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'card',
+      group: 'design',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

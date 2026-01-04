@@ -11,17 +11,24 @@ export const faqAccordion = defineType({
   title: 'FAQ Accordion',
   type: 'object',
   icon: HelpCircleIcon,
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'display', title: 'Display'},
+    {name: 'section', title: 'Section Settings'},
+  ],
   fields: [
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
       initialValue: 'Frequently Asked Questions',
+      group: 'content',
     }),
     defineField({
       name: 'subheading',
       title: 'Subheading',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'items',
@@ -59,6 +66,7 @@ export const faqAccordion = defineType({
         },
       ],
       validation: (rule) => rule.min(1),
+      group: 'content',
     }),
     defineField({
       name: 'layout',
@@ -72,6 +80,7 @@ export const faqAccordion = defineType({
         layout: 'radio',
       },
       initialValue: 'single',
+      group: 'display',
     }),
     defineField({
       name: 'expandFirst',
@@ -79,6 +88,7 @@ export const faqAccordion = defineType({
       type: 'boolean',
       description: 'Automatically expand the first FAQ item on page load',
       initialValue: true,
+      group: 'display',
     }),
     defineField({
       name: 'allowMultiple',
@@ -86,6 +96,7 @@ export const faqAccordion = defineType({
       type: 'boolean',
       description: 'Allow multiple FAQ items to be open at once',
       initialValue: false,
+      group: 'display',
     }),
     defineField({
       name: 'theme',
@@ -99,6 +110,27 @@ export const faqAccordion = defineType({
         layout: 'radio',
       },
       initialValue: 'light',
+      group: 'display',
+    }),
+    // Section Settings
+    defineField({
+      name: 'stylePreset',
+      title: 'Style Preset',
+      type: 'reference',
+      to: [{type: 'stylePreset'}],
+      description: 'Apply a saved style preset, or customize below',
+      group: 'section',
+    }),
+    defineField({
+      name: 'sectionSettings',
+      title: 'Custom Section Settings',
+      type: 'sectionSettings',
+      description: 'Override preset settings or customize from scratch',
+      group: 'section',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     }),
   ],
   preview: {

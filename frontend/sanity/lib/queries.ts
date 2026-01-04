@@ -55,6 +55,53 @@ const linkReference = /* groq */ `
   }
 `
 
+// Section settings fragment for page builder blocks
+const sectionSettingsFields = /* groq */ `
+  sectionSettings {
+    containerWidth,
+    contentAlignment,
+    backgroundColor,
+    customBackgroundColor,
+    backgroundImage {
+      asset->{
+        url
+      }
+    },
+    backgroundOverlay,
+    paddingTop,
+    paddingBottom,
+    sectionId,
+    customClasses,
+    dataAttributes[] {
+      key,
+      value
+    }
+  },
+  "stylePreset": stylePreset->{
+    name,
+    settings {
+      containerWidth,
+      contentAlignment,
+      backgroundColor,
+      customBackgroundColor,
+      backgroundImage {
+        asset->{
+          url
+        }
+      },
+      backgroundOverlay,
+      paddingTop,
+      paddingBottom,
+      sectionId,
+      customClasses,
+      dataAttributes[] {
+        key,
+        value
+      }
+    }
+  }
+`
+
 const linkFields = /* groq */ `
   link {
       ...,
@@ -70,6 +117,7 @@ export const getPageQuery = defineQuery(`
     slug,
     "pageBuilder": pageBuilder[]{
       ...,
+      ${sectionSettingsFields},
       _type == "callToAction" => {
         ...,
         button {
