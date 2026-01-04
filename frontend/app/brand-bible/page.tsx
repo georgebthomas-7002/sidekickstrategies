@@ -371,18 +371,20 @@ export default function BrandBiblePage() {
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.25)' }}
                   className="
                     inline-flex items-center justify-center gap-2
                     px-6 py-3.5
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
-                    shadow-lg shadow-accent-500/25
                     transition-all duration-300
-                    hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5
+                    hover:shadow-xl hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
-                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Get Started
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -391,7 +393,7 @@ export default function BrandBiblePage() {
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">bg: #f65625</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-orange-50 text-orange-600 rounded">bg: #f65625</span>
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #d9441a</span>
               </div>
             </div>
@@ -433,24 +435,26 @@ export default function BrandBiblePage() {
             {/* Button 3: Navy Solid */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-brand-600 uppercase tracking-wider">03</span>
-                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Navy Solid</h3>
+                <span className="font-mono text-xs text-blue-600 uppercase tracking-wider">03</span>
+                <h3 className="font-heading text-lg text-gray-800 font-semibold mt-1">Navy Solid</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Professional and authoritative</p>
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ backgroundColor: '#142d63', boxShadow: '0 10px 15px -3px rgba(20, 45, 99, 0.25)' }}
                   className="
                     inline-flex items-center justify-center gap-2
                     px-6 py-3.5
-                    bg-brand-800 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
-                    shadow-lg shadow-brand-800/25
                     transition-all duration-300
-                    hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-800/40 hover:-translate-y-0.5
+                    hover:shadow-xl hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
-                    focus:outline-none focus:ring-2 focus:ring-brand-300 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1e3561'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#142d63'}
                 >
                   Contact Us
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -459,7 +463,7 @@ export default function BrandBiblePage() {
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2 py-1 text-[10px] font-mono bg-brand-50 text-brand-700 rounded">bg: #142d63</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-blue-50 text-blue-700 rounded">bg: #142d63</span>
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #1e3561</span>
               </div>
             </div>
@@ -467,24 +471,26 @@ export default function BrandBiblePage() {
             {/* Button 4: Teal Action */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">04</span>
-                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Teal Action</h3>
+                <span className="font-mono text-xs text-teal-500 uppercase tracking-wider">04</span>
+                <h3 className="font-heading text-lg text-gray-800 font-semibold mt-1">Teal Action</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Fresh alternative accent</p>
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ backgroundColor: '#028393', boxShadow: '0 10px 15px -3px rgba(2, 131, 147, 0.25)' }}
                   className="
                     inline-flex items-center justify-center gap-2
                     px-6 py-3.5
-                    bg-secondary-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
-                    shadow-lg shadow-secondary-500/25
                     transition-all duration-300
-                    hover:bg-secondary-600 hover:shadow-xl hover:shadow-secondary-500/40 hover:-translate-y-0.5
+                    hover:shadow-xl hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
-                    focus:outline-none focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#026d7a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#028393'}
                 >
                   Explore
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -493,7 +499,7 @@ export default function BrandBiblePage() {
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2 py-1 text-[10px] font-mono bg-secondary-50 text-secondary-600 rounded">bg: #028393</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-teal-50 text-teal-600 rounded">bg: #028393</span>
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #026d7a</span>
               </div>
             </div>
@@ -501,55 +507,60 @@ export default function BrandBiblePage() {
             {/* Button 5: Ghost / Outline */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-accent-400 uppercase tracking-wider">05</span>
-                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Ghost Outline</h3>
+                <span className="font-mono text-xs text-orange-400 uppercase tracking-wider">05</span>
+                <h3 className="font-heading text-lg text-gray-800 font-semibold mt-1">Ghost Outline</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Subtle, non-competing actions</p>
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ borderColor: '#f65625', color: '#f65625' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3.5
-                    bg-transparent text-accent-500
+                    bg-transparent
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
-                    border-2 border-accent-500
+                    border-2
                     transition-all duration-300
-                    hover:bg-accent-500 hover:text-white hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                     active:translate-y-0
-                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2
                   "
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f65625'; e.currentTarget.style.color = 'white'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#f65625'; }}
                 >
                   View Details
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">border: #f65625</span>
-                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: fill</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-orange-50 text-orange-600 rounded">hover: fill</span>
               </div>
             </div>
 
             {/* Button 6: Gradient */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-peach uppercase tracking-wider">06</span>
-                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Gradient Premium</h3>
+                <span style={{ color: '#faaa68' }} className="font-mono text-xs uppercase tracking-wider">06</span>
+                <h3 className="font-heading text-lg text-gray-800 font-semibold mt-1">Gradient Premium</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">High-impact premium actions</p>
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ background: 'linear-gradient(to right, #f65625, #faaa68)', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.3)' }}
                   className="
                     inline-flex items-center justify-center gap-2
                     px-6 py-3.5
-                    bg-gradient-to-r from-accent-500 to-peach text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
-                    shadow-lg shadow-accent-500/30
                     transition-all duration-500
-                    hover:from-accent-600 hover:to-accent-400 hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5 hover:scale-[1.02]
+                    hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02]
                     active:translate-y-0 active:scale-100
-                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-offset-2
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #d9441a, #f65625)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(to right, #f65625, #faaa68)'}
                 >
                   Upgrade Now
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -558,7 +569,7 @@ export default function BrandBiblePage() {
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2 py-1 text-[10px] font-mono bg-gradient-to-r from-accent-100 to-orange-100 text-accent-600 rounded">gradient</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 rounded">gradient</span>
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: shift</span>
               </div>
             </div>
@@ -566,25 +577,27 @@ export default function BrandBiblePage() {
             {/* Button 7: Text Link */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-slate uppercase tracking-wider">07</span>
-                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Text Link</h3>
+                <span style={{ color: '#3d5a80' }} className="font-mono text-xs uppercase tracking-wider">07</span>
+                <h3 className="font-heading text-lg text-gray-800 font-semibold mt-1">Text Link</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Inline and minimal actions</p>
               </div>
               <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
+                  style={{ color: '#142d63' }}
                   className="
                     inline-flex items-center justify-center gap-2
                     px-4 py-3
-                    bg-transparent text-brand-800
+                    bg-transparent
                     font-heading text-sm tracking-wide uppercase font-semibold
                     transition-all duration-300
                     group
-                    hover:text-accent-500
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#f65625'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#142d63'}
                 >
                   <span className="relative">
                     Read More
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300 group-hover:w-full"></span>
+                    <span style={{ backgroundColor: '#f65625' }} className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"></span>
                   </span>
                   <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -598,33 +611,35 @@ export default function BrandBiblePage() {
               </div>
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">text only</span>
-                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: underline</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-orange-50 text-orange-600 rounded">hover: underline</span>
               </div>
             </div>
           </div>
 
           {/* Dark Background Button Examples */}
           <div className="mt-16">
-            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">02 — Dark Mode</span>
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">On Dark Backgrounds</h3>
-            <div className="bg-brand-900 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <span className="font-mono text-xs text-orange-500 uppercase tracking-wider">02 — Dark Mode</span>
+            <h3 className="font-heading text-2xl text-gray-800 font-semibold mt-2 mb-6">On Dark Backgrounds</h3>
+            <div style={{ backgroundColor: '#0f2250' }} className="rounded-2xl p-8 md:p-12 relative overflow-hidden">
               {/* Subtle glow effect */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
+              <div style={{ backgroundColor: 'rgba(246, 86, 37, 0.05)' }} className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"></div>
 
               <div className="relative grid grid-cols-2 md:grid-cols-5 gap-6">
                 {/* Primary on Dark */}
                 <div className="text-center">
                   <button
+                    style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.3)' }}
                     className="
                       inline-flex items-center justify-center
                       px-6 py-3.5
-                      bg-accent-500 text-white
+                      text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
-                      shadow-lg shadow-accent-500/30
                       transition-all duration-300
-                      hover:bg-accent-400 hover:shadow-xl hover:shadow-accent-500/50 hover:-translate-y-0.5
+                      hover:shadow-xl hover:-translate-y-0.5
                     "
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#fa7d4d'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                   >
                     Primary
                   </button>
@@ -634,16 +649,17 @@ export default function BrandBiblePage() {
                 {/* Light Blue on Dark */}
                 <div className="text-center">
                   <button
+                    style={{ backgroundColor: '#98c1d9', color: '#0f2250', boxShadow: '0 10px 15px -3px rgba(152, 193, 217, 0.3)' }}
                     className="
                       inline-flex items-center justify-center
                       px-6 py-3.5
-                      bg-light-blue text-brand-900
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
-                      shadow-lg shadow-light-blue/30
                       transition-all duration-300
-                      hover:bg-white hover:shadow-xl hover:shadow-light-blue/50 hover:-translate-y-0.5
+                      hover:shadow-xl hover:-translate-y-0.5
                     "
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'white'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#98c1d9'; }}
                   >
                     Secondary
                   </button>
@@ -653,16 +669,18 @@ export default function BrandBiblePage() {
                 {/* Teal on Dark */}
                 <div className="text-center">
                   <button
+                    style={{ backgroundColor: '#028393', boxShadow: '0 10px 15px -3px rgba(2, 131, 147, 0.3)' }}
                     className="
                       inline-flex items-center justify-center
                       px-6 py-3.5
-                      bg-secondary-500 text-white
+                      text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
-                      shadow-lg shadow-secondary-500/30
                       transition-all duration-300
-                      hover:bg-secondary-400 hover:shadow-xl hover:shadow-secondary-500/50 hover:-translate-y-0.5
+                      hover:shadow-xl hover:-translate-y-0.5
                     "
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1aabb9'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#028393'}
                   >
                     Teal
                   </button>
@@ -672,15 +690,15 @@ export default function BrandBiblePage() {
                 {/* Gradient on Dark */}
                 <div className="text-center">
                   <button
+                    style={{ background: 'linear-gradient(to right, #f65625, #faaa68)', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.3)' }}
                     className="
                       inline-flex items-center justify-center
                       px-6 py-3.5
-                      bg-gradient-to-r from-accent-500 to-peach text-white
+                      text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
-                      shadow-lg shadow-accent-500/30
                       transition-all duration-300
-                      hover:shadow-xl hover:shadow-accent-500/50 hover:-translate-y-0.5
+                      hover:shadow-xl hover:-translate-y-0.5
                     "
                   >
                     Gradient
@@ -691,16 +709,19 @@ export default function BrandBiblePage() {
                 {/* Ghost on Dark */}
                 <div className="text-center">
                   <button
+                    style={{ borderColor: 'rgba(255,255,255,0.4)' }}
                     className="
                       inline-flex items-center justify-center
                       px-6 py-3.5
                       bg-transparent text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
-                      border-2 border-white/40
+                      border-2
                       transition-all duration-300
-                      hover:bg-white hover:text-brand-800 hover:border-white hover:-translate-y-0.5
+                      hover:-translate-y-0.5
                     "
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'white'; e.currentTarget.style.color = '#142d63'; e.currentTarget.style.borderColor = 'white'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)'; }}
                   >
                     Ghost
                   </button>
@@ -712,8 +733,8 @@ export default function BrandBiblePage() {
 
           {/* Button States */}
           <div className="mt-16">
-            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">03 — Interaction</span>
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Button States</h3>
+            <span className="font-mono text-xs text-orange-500 uppercase tracking-wider">03 — Interaction</span>
+            <h3 className="font-heading text-2xl text-gray-800 font-semibold mt-2 mb-6">Button States</h3>
             <p className="font-sans text-gray-600 mb-8 max-w-2xl">
               Comprehensive state handling for loading, disabled, and focus states.
             </p>
@@ -722,15 +743,18 @@ export default function BrandBiblePage() {
               {/* Default */}
               <div className="text-center">
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.25)' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3.5
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-accent-500/25
+                    rounded-lg
                     transition-all duration-300
-                    hover:bg-accent-600 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Default
                 </button>
@@ -740,12 +764,13 @@ export default function BrandBiblePage() {
               {/* Loading */}
               <div className="text-center">
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.25)' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3.5
-                    bg-accent-500 text-transparent
+                    text-transparent
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-accent-500/25
+                    rounded-lg
                     relative cursor-wait
                   "
                   disabled
@@ -764,12 +789,13 @@ export default function BrandBiblePage() {
               {/* Disabled */}
               <div className="text-center">
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.25)' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3.5
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-accent-500/25
+                    rounded-lg
                     opacity-50 cursor-not-allowed
                   "
                   disabled
@@ -782,19 +808,20 @@ export default function BrandBiblePage() {
               {/* Secondary Loading */}
               <div className="text-center">
                 <button
+                  style={{ backgroundColor: '#98c1d9', boxShadow: '0 10px 15px -3px rgba(152, 193, 217, 0.25)' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3.5
-                    bg-light-blue text-transparent
+                    text-transparent
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-light-blue/25
+                    rounded-lg
                     relative cursor-wait
                   "
                   disabled
                 >
                   Loading
                   <span className="absolute inset-0 flex items-center justify-center">
-                    <svg className="animate-spin h-5 w-5 text-brand-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg style={{ color: '#142d63' }} className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -807,32 +834,32 @@ export default function BrandBiblePage() {
 
           {/* Button Groups */}
           <div className="mt-16">
-            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">04 — Composition</span>
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Button Groups</h3>
+            <span className="font-mono text-xs text-orange-500 uppercase tracking-wider">04 — Composition</span>
+            <h3 className="font-heading text-2xl text-gray-800 font-semibold mt-2 mb-6">Button Groups</h3>
             <p className="font-sans text-gray-600 mb-8 max-w-2xl">
               Segmented controls and action groups for related options.
             </p>
 
             <div className="flex flex-wrap gap-8 items-center">
               {/* Toggle Group */}
-              <div className="inline-flex rounded-lg overflow-hidden border-2 border-brand-800">
-                <button className="px-5 py-3 bg-transparent text-brand-800 font-heading text-sm uppercase font-semibold hover:bg-brand-50 transition-colors">
+              <div style={{ borderColor: '#142d63' }} className="inline-flex rounded-lg overflow-hidden border-2">
+                <button style={{ color: '#142d63' }} className="px-5 py-3 bg-transparent font-heading text-sm uppercase font-semibold hover:bg-blue-50 transition-colors">
                   Day
                 </button>
-                <button className="px-5 py-3 bg-brand-800 text-white font-heading text-sm uppercase font-semibold">
+                <button style={{ backgroundColor: '#142d63' }} className="px-5 py-3 text-white font-heading text-sm uppercase font-semibold">
                   Week
                 </button>
-                <button className="px-5 py-3 bg-transparent text-brand-800 font-heading text-sm uppercase font-semibold hover:bg-brand-50 transition-colors">
+                <button style={{ color: '#142d63' }} className="px-5 py-3 bg-transparent font-heading text-sm uppercase font-semibold hover:bg-blue-50 transition-colors">
                   Month
                 </button>
               </div>
 
               {/* Action Group */}
               <div className="inline-flex rounded-lg overflow-hidden">
-                <button className="px-6 py-3.5 bg-accent-500 text-white font-heading text-sm uppercase font-semibold hover:bg-accent-600 transition-colors">
+                <button style={{ backgroundColor: '#f65625' }} className="px-6 py-3.5 text-white font-heading text-sm uppercase font-semibold hover:opacity-90 transition-colors">
                   Save
                 </button>
-                <button className="px-6 py-3.5 bg-transparent text-accent-500 font-heading text-sm uppercase font-semibold border-2 border-l-0 border-accent-500 hover:bg-accent-50 transition-colors">
+                <button style={{ color: '#f65625', borderColor: '#f65625' }} className="px-6 py-3.5 bg-transparent font-heading text-sm uppercase font-semibold border-2 border-l-0 hover:bg-orange-50 transition-colors">
                   Cancel
                 </button>
               </div>
@@ -841,8 +868,8 @@ export default function BrandBiblePage() {
 
           {/* Button Sizing */}
           <div className="mt-16">
-            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">05 — Scale</span>
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Size Variations</h3>
+            <span className="font-mono text-xs text-orange-500 uppercase tracking-wider">05 — Scale</span>
+            <h3 className="font-heading text-2xl text-gray-800 font-semibold mt-2 mb-6">Size Variations</h3>
             <p className="font-sans text-gray-600 mb-8 max-w-2xl">
               Four sizes to accommodate different contexts—from compact inline actions to prominent hero CTAs.
             </p>
@@ -850,54 +877,66 @@ export default function BrandBiblePage() {
             <div className="bg-gray-50 rounded-xl p-8">
               <div className="flex flex-wrap items-center gap-4">
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 4px 6px -1px rgba(246, 86, 37, 0.2)' }}
                   className="
                     inline-flex items-center justify-center
                     px-4 py-2
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-xs tracking-wide uppercase font-semibold
-                    rounded-md shadow-md shadow-accent-500/20
+                    rounded-md
                     transition-all duration-300
-                    hover:bg-accent-600 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Small
                 </button>
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.2)' }}
                   className="
                     inline-flex items-center justify-center
                     px-6 py-3
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-accent-500/20
+                    rounded-lg
                     transition-all duration-300
-                    hover:bg-accent-600 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Medium
                 </button>
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.2)' }}
                   className="
                     inline-flex items-center justify-center
                     px-8 py-4
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg shadow-lg shadow-accent-500/20
+                    rounded-lg
                     transition-all duration-300
-                    hover:bg-accent-600 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Large
                 </button>
                 <button
+                  style={{ backgroundColor: '#f65625', boxShadow: '0 20px 25px -5px rgba(246, 86, 37, 0.25)' }}
                   className="
                     inline-flex items-center justify-center
                     px-10 py-5
-                    bg-accent-500 text-white
+                    text-white
                     font-heading text-base tracking-wide uppercase font-semibold
-                    rounded-xl shadow-xl shadow-accent-500/25
+                    rounded-xl
                     transition-all duration-300
-                    hover:bg-accent-600 hover:-translate-y-0.5
+                    hover:-translate-y-0.5
                   "
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d9441a'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f65625'}
                 >
                   Extra Large
                 </button>
