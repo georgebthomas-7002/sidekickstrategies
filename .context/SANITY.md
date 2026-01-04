@@ -100,6 +100,24 @@ fields: [
 
 ---
 
+## Object Schemas
+
+### seo.ts (Reusable SEO Object)
+Added to all document types for social sharing/SEO control.
+```typescript
+fields: [
+  metaTitle,       // string, max 60 chars (overrides page title)
+  metaDescription, // text, max 160 chars
+  ogImage,         // image 1200x630 with alt text
+  noIndex,         // boolean (hide from search engines)
+]
+// Collapsible section at bottom of documents
+```
+
+**Usage**: All pages, posts, podcasts, and downloads now have an "SEO & Social Sharing" collapsible section. If fields are empty, frontend falls back to default content (title, excerpt, cover image).
+
+---
+
 ## Page Builder Blocks
 
 ### hero.ts
@@ -242,4 +260,4 @@ cd studio && npx sanity deploy
 ```
 
 ## Last Updated
-2026-01-03
+2026-01-04

@@ -88,7 +88,10 @@
 |-----------|----------|---------|
 | `DownloadForm` | `app/resources/[slug]/DownloadForm.tsx` | Gated download form (client) |
 
-### Brand Bible Page (`app/brand-bible/page.tsx`)
+### Brand Bible Page
+- `app/brand-bible/page.tsx` - Client component with full brand documentation
+- `app/brand-bible/layout.tsx` - Static metadata for SEO/OG (since page.tsx is 'use client')
+
 Comprehensive brand documentation with:
 
 **Button Styles (8 types)**:
@@ -112,6 +115,46 @@ Comprehensive brand documentation with:
 - `TextLinkArrow` - Text link with arrow that translates
 - `TertiaryTextLink` - Ghost-style for dark backgrounds
 - `IconCard` - Icon display card with color prop (orange/teal/navy)
+
+---
+
+## SEO & Metadata
+
+### Dynamic Pages (Sanity-Managed)
+All dynamic routes use `generateMetadata()` with SEO field fallbacks:
+```typescript
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const {data: page} = await sanityFetch({query, params, stega: false})
+  const ogImage = resolveOpenGraphImage(page?.seo?.ogImage || page?.coverImage)
+
+  return {
+    title: page?.seo?.metaTitle || page?.title,
+    description: page?.seo?.metaDescription || page?.excerpt,
+    openGraph: { images: ogImage ? [ogImage] : [] },
+    ...(page?.seo?.noIndex && {robots: {index: false, follow: false}}),
+  }
+}
+```
+
+**Routes with SEO support**:
+- `/[slug]` - Pages (uses seo.ogImage, falls back to nothing)
+- `/articles/[slug]` - Posts (falls back to coverImage)
+- `/podcasts/[slug]` - Podcasts (falls back to coverImage)
+- `/resources/[slug]` - Downloads (falls back to thumbnail)
+
+### Static Pages
+For client components that can't export metadata, use a sibling `layout.tsx`:
+```typescript
+// app/brand-bible/layout.tsx
+export const metadata: Metadata = {
+  title: 'Brand Bible - Sidekick Strategies',
+  openGraph: {
+    images: [{ url: '/images/og-brand-bible.png', width: 1200, height: 630 }],
+  },
+}
+```
+
+**OG Image Location**: `/frontend/public/images/og-{page-name}.png`
 
 ---
 

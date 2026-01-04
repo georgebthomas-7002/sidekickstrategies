@@ -170,6 +170,76 @@ const safeItems = items || []
 
 ---
 
+## Server Component Issues
+
+### Issue: Event handlers in server components
+**Error**: `Event handlers cannot be passed to Client Component props`
+
+**Cause**: Using `onMouseEnter`, `onMouseLeave`, `onClick` in a component that's rendered as a server component.
+
+**Fix Applied**: Replace JS event handlers with CSS-only hover states:
+```typescript
+// Before - breaks in server component
+<a
+  style={{color: 'rgba(255,255,255,0.7)'}}
+  onMouseEnter={(e) => e.target.style.color = '#fff'}
+  onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.7)'}
+>
+
+// After - CSS only
+<a className="text-white/70 hover:text-white transition-colors duration-200">
+```
+
+**Files**: `app/components/Footer.tsx`
+
+---
+
+## Sanity Schema Extraction Issues
+
+### Issue: JSX in sanity.config.ts breaks schema extract
+**Error**: `Expected ">" but found "src"`
+
+**Cause**: esbuild can't parse JSX syntax in `.ts` files during `sanity schema extract`.
+
+**Fix Applied**: Use `createElement()` instead of JSX:
+```typescript
+// Before - fails
+const SidekickIcon = () => (
+  <img src="/static/favicon.webp" alt="Sidekick" />
+)
+
+// After - works
+import {createElement} from 'react'
+const SidekickIcon = () =>
+  createElement('img', {
+    src: '/static/favicon.webp',
+    alt: 'Sidekick',
+    style: {width: '100%', height: '100%', objectFit: 'contain'},
+  })
+```
+
+**Files**: `studio/sanity.config.ts`
+
+---
+
+### Issue: BlockRenderer type variance after typegen
+**Error**: `Type ... is not comparable to type ... Property '_type' is incompatible`
+
+**Cause**: After regenerating types, specific block types don't match the generic `BlockProps` type due to TypeScript's strict type checking.
+
+**Fix Applied**: Use double cast through `unknown`:
+```typescript
+const Blocks = {
+  callToAction: Cta,
+  infoSection: Info,
+  // ...
+} as unknown as BlocksType  // not just 'as BlocksType'
+```
+
+**Files**: `app/components/BlockRenderer.tsx`
+
+---
+
 ## Log of Fixes Applied
 
 | Date | Commit | Issue | Fix |
@@ -177,6 +247,9 @@ const safeItems = items || []
 | 2026-01-03 | `b28012b` | font-heading not found | Use CSS vars in @theme |
 | 2026-01-03 | `cb61932` | typegen slicing error | Constant slices [0...12] |
 | 2026-01-03 | `c05c463` | TypeScript type errors | Cast as any, null checks |
+| 2026-01-04 | `6d847e3` | JSX parsing in sanity.config.ts | Use createElement() instead of JSX |
+| 2026-01-04 | `6d847e3` | BlockRenderer type variance | Cast as unknown as BlocksType |
+| 2026-01-04 | `c6890dc` | Event handlers in server component | Use CSS-only hover states |
 
 ## Last Updated
-2026-01-03
+2026-01-04
