@@ -52,6 +52,10 @@ interface HeroKineticGridProps {
     label: string
     href: string
   }
+  tertiaryCta?: {
+    label: string
+    href: string
+  }
   image?: {
     src: string
     alt: string
@@ -64,12 +68,14 @@ export default function HeroKineticGrid({
   subheadline = "We engineer strategic frameworks that grow with your ambition. Precision planning meets adaptive execution.",
   primaryCta = { label: "Initialize", href: "/contact" },
   secondaryCta = { label: "View architecture", href: "/services" },
+  tertiaryCta,
   image,
   eyebrowText = "System Online",
 }: HeroKineticGridProps) {
   const [mounted, setMounted] = useState(false)
   const [primaryHover, setPrimaryHover] = useState(false)
   const [secondaryHover, setSecondaryHover] = useState(false)
+  const [tertiaryHover, setTertiaryHover] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -332,6 +338,31 @@ export default function HeroKineticGrid({
                 {secondaryCta.label}
                 <span className="ml-2 font-mono">_</span>
               </a>
+
+              {/* Tertiary CTA - text link style */}
+              {tertiaryCta && (
+                <a
+                  href={tertiaryCta.href}
+                  className="inline-flex items-center justify-center px-4 py-4 font-mono text-sm tracking-wider uppercase transition-all duration-300"
+                  style={{
+                    color: tertiaryHover ? COLORS.peach : 'rgba(255,255,255,0.5)',
+                  }}
+                  onMouseEnter={() => setTertiaryHover(true)}
+                  onMouseLeave={() => setTertiaryHover(false)}
+                >
+                  {tertiaryCta.label}
+                  <svg
+                    className="ml-2 w-4 h-4 transition-transform duration-300"
+                    style={{ transform: tertiaryHover ? 'translateX(4px)' : 'translateX(0)' }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              )}
             </div>
           </div>
 
