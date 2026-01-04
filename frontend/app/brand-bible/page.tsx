@@ -292,58 +292,504 @@ export default function BrandBiblePage() {
         </div>
       </section>
 
-      {/* Typography Section */}
-      <section id="typography" className="py-20 bg-gray-50 scroll-mt-20">
-        <div className="container mx-auto px-6">
-          <h2 className="font-serif text-4xl text-brand-800 mb-4">Typography</h2>
-          <p className="font-sans text-gray-600 mb-12 max-w-2xl">
-            A refined type system combining classic serifs for headlines with modern sans-serifs for readability.
-          </p>
+      {/* Typography Section - Comprehensive */}
+      <section id="typography" className="py-24 scroll-mt-20 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23142d63' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Serif - Headlines */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">H1 & H2</span>
-              <h3 className="font-serif text-5xl text-brand-800 mt-4 mb-2">Palatino Linotype</h3>
-              <p className="font-sans text-gray-500 text-sm mb-6">Classic serif for major headlines</p>
-              <div className="space-y-4 border-t pt-6">
-                <p className="font-serif text-6xl text-brand-800">Aa</p>
-                <p className="font-serif text-2xl text-gray-600">The quick brown fox jumps over the lazy dog.</p>
-              </div>
+        <div className="container mx-auto px-6 relative">
+          {/* Section Header */}
+          <div className="mb-16">
+            <span style={{ color: '#028393' }} className="font-mono text-xs uppercase tracking-[0.2em]">
+              Type System
+            </span>
+            <h2 style={{ color: '#142d63' }} className="font-serif text-5xl md:text-6xl mt-3 mb-6">
+              Typography
+            </h2>
+            <p className="font-sans text-gray-600 text-lg max-w-2xl leading-relaxed">
+              A refined type system combining classic serifs for headlines with modern sans-serifs for readability.
+              Every text style is crafted for hierarchy, legibility, and brand consistency.
+            </p>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* HEADING HIERARCHY */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                01 — Heading Hierarchy
+              </span>
             </div>
 
-            {/* Heading - Montserrat */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">H3 & H4</span>
-              <h3 className="font-heading text-4xl text-brand-800 mt-4 mb-2 font-semibold">Montserrat</h3>
-              <p className="font-sans text-gray-500 text-sm mb-6">Modern sans for subheadings</p>
-              <div className="space-y-4 border-t pt-6">
-                <p className="font-heading text-6xl text-brand-800 font-bold">Aa</p>
-                <p className="font-heading text-xl text-gray-600">The quick brown fox jumps over the lazy dog.</p>
+            <div className="space-y-1">
+              {/* H1 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H1</span>
+                  </div>
+                  <div className="flex-1">
+                    <h1 style={{ color: '#142d63' }} className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight">
+                      Strategy that moves you forward
+                    </h1>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Palatino Linotype</p>
+                    <p className="font-mono text-[10px] text-gray-400">4.5rem / 72px</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* H2 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H2</span>
+                  </div>
+                  <div className="flex-1">
+                    <h2 style={{ color: '#142d63' }} className="font-serif text-4xl md:text-5xl leading-[1.15] tracking-tight">
+                      Building competitive advantages
+                    </h2>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Palatino Linotype</p>
+                    <p className="font-mono text-[10px] text-gray-400">3rem / 48px</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* H3 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H3</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 style={{ color: '#142d63' }} className="font-heading text-2xl md:text-3xl font-semibold leading-tight">
+                      Navigate complexity with clarity
+                    </h3>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Montserrat Semibold</p>
+                    <p className="font-mono text-[10px] text-gray-400">1.875rem / 30px</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* H4 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H4</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 style={{ color: '#142d63' }} className="font-heading text-xl md:text-2xl font-semibold">
+                      Transforming challenges into opportunities
+                    </h4>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Montserrat Semibold</p>
+                    <p className="font-mono text-[10px] text-gray-400">1.5rem / 24px</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* H5 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H5</span>
+                  </div>
+                  <div className="flex-1">
+                    <h5 style={{ color: '#142d63' }} className="font-heading text-lg md:text-xl font-medium">
+                      Delivering measurable results every time
+                    </h5>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Montserrat Medium</p>
+                    <p className="font-mono text-[10px] text-gray-400">1.25rem / 20px</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* H6 */}
+              <div className="group bg-white rounded-xl p-8 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                  <div className="lg:w-24 shrink-0">
+                    <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">H6</span>
+                  </div>
+                  <div className="flex-1">
+                    <h6 style={{ color: '#142d63' }} className="font-heading text-base font-medium uppercase tracking-wider">
+                      Section Label or Category
+                    </h6>
+                  </div>
+                  <div className="lg:w-48 shrink-0 text-right">
+                    <p className="font-mono text-[10px] text-gray-400">Montserrat Medium</p>
+                    <p className="font-mono text-[10px] text-gray-400">1rem / 16px • Uppercase</p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Body - PT Sans */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">Body Text</span>
-              <h3 className="font-sans text-4xl text-brand-800 mt-4 mb-2">PT Sans</h3>
-              <p className="font-sans text-gray-500 text-sm mb-6">Clean, readable body text</p>
-              <div className="space-y-4 border-t pt-6">
-                <p className="font-sans text-6xl text-brand-800">Aa</p>
-                <p className="font-sans text-lg text-gray-600 leading-relaxed">
-                  The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* BODY TEXT STYLES */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                02 — Body Text Styles
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Lead Paragraph */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Lead Paragraph</span>
+                  <span className="font-mono text-[10px] text-gray-400">PT Sans • 20px</span>
+                </div>
+                <p className="font-sans text-xl text-gray-600 leading-relaxed">
+                  We partner with ambitious organizations to solve complex challenges and unlock sustainable growth.
+                  Our approach combines strategic insight with hands-on execution.
+                </p>
+              </div>
+
+              {/* Body Paragraph */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Body Paragraph</span>
+                  <span className="font-mono text-[10px] text-gray-400">PT Sans • 16px</span>
+                </div>
+                <p className="font-sans text-base text-gray-600 leading-relaxed">
+                  Every engagement begins with understanding. We dive deep into your business, market dynamics,
+                  and competitive landscape to identify opportunities that others miss. Our team brings decades
+                  of experience across industries and disciplines.
+                </p>
+              </div>
+
+              {/* Small Text */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Small Text</span>
+                  <span className="font-mono text-[10px] text-gray-400">PT Sans • 14px</span>
+                </div>
+                <p className="font-sans text-sm text-gray-500 leading-relaxed">
+                  Additional context or supplementary information that supports the main content.
+                  This size works well for metadata, timestamps, and secondary descriptions.
+                </p>
+              </div>
+
+              {/* Caption */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Caption</span>
+                  <span className="font-mono text-[10px] text-gray-400">PT Sans Italic • 12px</span>
+                </div>
+                <p className="font-sans text-xs text-gray-400 italic leading-relaxed">
+                  Image captions, figure descriptions, and footnotes use this style.
+                  The italic treatment provides visual differentiation from body text.
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Mono - IBM Plex */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">Code & Labels</span>
-              <h3 className="font-mono text-3xl text-brand-800 mt-4 mb-2">IBM Plex Mono</h3>
-              <p className="font-sans text-gray-500 text-sm mb-6">Technical text and labels</p>
-              <div className="space-y-4 border-t pt-6">
-                <p className="font-mono text-6xl text-brand-800">Aa</p>
-                <p className="font-mono text-sm text-gray-600">const strategy = new Sidekick();</p>
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* LISTS */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                03 — List Styles
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Unordered List */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Unordered List</span>
+                  <span className="font-mono text-[10px] text-gray-400">Orange bullets</span>
+                </div>
+                <ul className="space-y-3">
+                  {['Strategic planning and roadmap development', 'Market analysis and competitive positioning', 'Operational efficiency optimization', 'Growth strategy and execution'].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span style={{ backgroundColor: '#f65625' }} className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" />
+                      <span className="font-sans text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Ordered List */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Ordered List</span>
+                  <span className="font-mono text-[10px] text-gray-400">Navy numbers</span>
+                </div>
+                <ol className="space-y-3">
+                  {['Discovery and assessment phase', 'Strategy development and validation', 'Implementation planning', 'Execution and monitoring'].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span style={{ color: '#142d63' }} className="font-heading text-sm font-bold mt-0.5 w-5 shrink-0">{i + 1}.</span>
+                      <span className="font-sans text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Nested List */}
+              <div className="md:col-span-2 bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Nested List</span>
+                  <span className="font-mono text-[10px] text-gray-400">Multi-level hierarchy</span>
+                </div>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span style={{ backgroundColor: '#f65625' }} className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" />
+                    <div>
+                      <span className="font-sans text-gray-600 font-medium">Strategic Services</span>
+                      <ul className="mt-2 ml-4 space-y-2">
+                        <li className="flex items-start gap-3">
+                          <span style={{ backgroundColor: '#028393' }} className="w-1 h-1 rounded-full mt-2.5 shrink-0" />
+                          <span className="font-sans text-gray-500 text-sm">Market entry strategy</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span style={{ backgroundColor: '#028393' }} className="w-1 h-1 rounded-full mt-2.5 shrink-0" />
+                          <span className="font-sans text-gray-500 text-sm">Competitive analysis</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span style={{ backgroundColor: '#f65625' }} className="w-1.5 h-1.5 rounded-full mt-2.5 shrink-0" />
+                    <div>
+                      <span className="font-sans text-gray-600 font-medium">Operational Services</span>
+                      <ul className="mt-2 ml-4 space-y-2">
+                        <li className="flex items-start gap-3">
+                          <span style={{ backgroundColor: '#028393' }} className="w-1 h-1 rounded-full mt-2.5 shrink-0" />
+                          <span className="font-sans text-gray-500 text-sm">Process optimization</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span style={{ backgroundColor: '#028393' }} className="w-1 h-1 rounded-full mt-2.5 shrink-0" />
+                          <span className="font-sans text-gray-500 text-sm">Technology integration</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* BLOCKQUOTE */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                04 — Blockquote
+              </span>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 md:p-12 border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <blockquote style={{ borderLeftColor: '#f65625' }} className="border-l-4 pl-8">
+                <p style={{ color: '#142d63' }} className="font-serif text-2xl md:text-3xl italic leading-relaxed mb-6">
+                  "Their strategic insight transformed our approach entirely. What seemed like an insurmountable
+                  challenge became a clear path to growth. A true partnership in every sense."
+                </p>
+                <footer className="flex items-center gap-4">
+                  <div style={{ backgroundColor: '#028393' }} className="w-12 h-12 rounded-full flex items-center justify-center">
+                    <span className="text-white font-heading font-bold text-sm">JM</span>
+                  </div>
+                  <div>
+                    <cite className="font-heading font-semibold text-gray-800 not-italic">James Mitchell</cite>
+                    <p className="font-sans text-sm text-gray-500">CEO, Apex Holdings</p>
+                  </div>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* CODE STYLES */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                05 — Code Styles
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Inline Code */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Inline Code</span>
+                  <span className="font-mono text-[10px] text-gray-400">IBM Plex Mono</span>
+                </div>
+                <p className="font-sans text-gray-600 leading-relaxed">
+                  Use the <code style={{ backgroundColor: '#f0f4fa', color: '#142d63' }} className="font-mono text-sm px-2 py-0.5 rounded">getStrategy()</code> function
+                  to initialize the configuration. Set <code style={{ backgroundColor: '#f0f4fa', color: '#142d63' }} className="font-mono text-sm px-2 py-0.5 rounded">mode: &quot;production&quot;</code> for
+                  live environments.
+                </p>
+              </div>
+
+              {/* Code Block */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Code Block</span>
+                  <span className="font-mono text-[10px] text-gray-400">Syntax highlighting</span>
+                </div>
+                <pre style={{ backgroundColor: '#0f2250' }} className="rounded-lg p-6 overflow-x-auto">
+                  <code className="font-mono text-sm">
+                    <span className="text-gray-500">// Initialize Sidekick strategy</span>{'\n'}
+                    <span style={{ color: '#f65625' }}>const</span> <span className="text-white">strategy</span> <span className="text-gray-400">=</span> <span style={{ color: '#f65625' }}>new</span> <span style={{ color: '#98c1d9' }}>Sidekick</span><span className="text-gray-400">(</span><span className="text-gray-400">{'{'}</span>{'\n'}
+                    {'  '}<span style={{ color: '#faaa68' }}>mode</span><span className="text-gray-400">:</span> <span style={{ color: '#4dc5d4' }}>&quot;growth&quot;</span><span className="text-gray-400">,</span>{'\n'}
+                    {'  '}<span style={{ color: '#faaa68' }}>target</span><span className="text-gray-400">:</span> <span style={{ color: '#4dc5d4' }}>&quot;excellence&quot;</span>{'\n'}
+                    <span className="text-gray-400">{'}'})</span><span className="text-gray-400">;</span>
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* LINKS & SPECIAL TEXT */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                06 — Links & Special Text
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Links */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Links</span>
+                </div>
+                <div className="space-y-4">
+                  <p className="font-sans text-gray-600">
+                    Learn more about our{' '}
+                    <a
+                      href="#"
+                      style={{ color: '#f65625' }}
+                      className="underline underline-offset-2 hover:no-underline transition-all"
+                    >
+                      strategic services
+                    </a>
+                    {' '}and approach.
+                  </p>
+                  <p className="font-sans text-gray-600">
+                    <a
+                      href="#"
+                      style={{ color: '#142d63' }}
+                      className="font-medium hover:underline underline-offset-2 transition-all inline-flex items-center gap-1"
+                    >
+                      View case studies
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Text Variations */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Text Variations</span>
+                </div>
+                <div className="space-y-3 font-sans text-gray-600">
+                  <p><strong className="font-semibold text-gray-800">Bold text</strong> for emphasis</p>
+                  <p><em className="italic">Italic text</em> for titles or quotes</p>
+                  <p><s className="line-through text-gray-400">Strikethrough</s> for outdated info</p>
+                  <p><u className="underline underline-offset-2">Underlined</u> for highlights</p>
+                </div>
+              </div>
+
+              {/* Highlighted Text */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center justify-between mb-6">
+                  <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Highlighted</span>
+                </div>
+                <p className="font-sans text-gray-600 leading-relaxed">
+                  We focus on{' '}
+                  <mark style={{ backgroundColor: '#ffe8de', color: '#142d63' }} className="px-1 rounded">
+                    delivering measurable results
+                  </mark>
+                  {' '}through strategic innovation and{' '}
+                  <mark style={{ backgroundColor: '#cceff3', color: '#142d63' }} className="px-1 rounded">
+                    operational excellence
+                  </mark>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          {/* FONT SPECIMENS */}
+          {/* ═══════════════════════════════════════════════════════════════════ */}
+          <div>
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ backgroundColor: '#f65625' }} className="w-8 h-[2px]" />
+              <span style={{ color: '#f65625' }} className="font-mono text-xs uppercase tracking-[0.15em]">
+                07 — Font Specimens
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Palatino */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Headlines</span>
+                <h3 style={{ color: '#142d63' }} className="font-serif text-4xl mt-4 mb-2">Palatino</h3>
+                <p className="font-sans text-gray-400 text-xs mb-6">Classic serif elegance</p>
+                <div style={{ borderTopColor: '#f0f4fa' }} className="border-t pt-6">
+                  <p style={{ color: '#142d63' }} className="font-serif text-6xl group-hover:scale-105 transition-transform origin-left">Aa</p>
+                </div>
+              </div>
+
+              {/* Montserrat */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Subheadings</span>
+                <h3 style={{ color: '#142d63' }} className="font-heading text-3xl font-semibold mt-4 mb-2">Montserrat</h3>
+                <p className="font-sans text-gray-400 text-xs mb-6">Modern sans-serif</p>
+                <div style={{ borderTopColor: '#f0f4fa' }} className="border-t pt-6">
+                  <p style={{ color: '#142d63' }} className="font-heading text-6xl font-bold group-hover:scale-105 transition-transform origin-left">Aa</p>
+                </div>
+              </div>
+
+              {/* PT Sans */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Body Text</span>
+                <h3 style={{ color: '#142d63' }} className="font-sans text-3xl mt-4 mb-2">PT Sans</h3>
+                <p className="font-sans text-gray-400 text-xs mb-6">Clean readability</p>
+                <div style={{ borderTopColor: '#f0f4fa' }} className="border-t pt-6">
+                  <p style={{ color: '#142d63' }} className="font-sans text-6xl group-hover:scale-105 transition-transform origin-left">Aa</p>
+                </div>
+              </div>
+
+              {/* IBM Plex */}
+              <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                <span style={{ color: '#028393' }} className="font-mono text-[10px] uppercase tracking-wider">Code & Labels</span>
+                <h3 style={{ color: '#142d63' }} className="font-mono text-2xl mt-4 mb-2">IBM Plex Mono</h3>
+                <p className="font-sans text-gray-400 text-xs mb-6">Technical precision</p>
+                <div style={{ borderTopColor: '#f0f4fa' }} className="border-t pt-6">
+                  <p style={{ color: '#142d63' }} className="font-mono text-6xl group-hover:scale-105 transition-transform origin-left">Aa</p>
+                </div>
               </div>
             </div>
           </div>

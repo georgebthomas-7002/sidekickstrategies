@@ -16,12 +16,24 @@
  * - Border accents and fine lines
  * - Premium card elements with soft shadows
  *
+ * NOTE: Uses inline styles for brand colors to prevent Tailwind v4 purging
+ *
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
 'use client'
 
 import { useEffect, useState } from 'react'
+
+// Brand color constants (prevents Tailwind purging)
+const COLORS = {
+  navy800: '#142d63',
+  navy900: '#0f2250',
+  navy950: '#0a1633',
+  orange500: '#f65625',
+  teal500: '#028393',
+  peach: '#faaa68',
+}
 
 interface HeroExecutiveSuiteProps {
   headline?: string
@@ -43,6 +55,8 @@ export default function HeroExecutiveSuite({
   secondaryCta = { label: "Our expertise", href: "/services" },
 }: HeroExecutiveSuiteProps) {
   const [mounted, setMounted] = useState(false)
+  const [primaryHover, setPrimaryHover] = useState(false)
+  const [secondaryHover, setSecondaryHover] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -212,11 +226,15 @@ export default function HeroExecutiveSuite({
                   px-10 py-5
                   overflow-hidden
                   font-heading text-sm tracking-[0.15em] uppercase
-                  bg-accent-500 text-white
+                  text-white
                   transition-all duration-500
-                  hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500/25
-                  focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-brand-900
                 "
+                style={{
+                  backgroundColor: COLORS.orange500,
+                  boxShadow: primaryHover ? `0 10px 25px -5px ${COLORS.orange500}40` : 'none',
+                }}
+                onMouseEnter={() => setPrimaryHover(true)}
+                onMouseLeave={() => setPrimaryHover(false)}
               >
                 <span className="relative z-10">{primaryCta.label}</span>
               </a>
@@ -226,12 +244,15 @@ export default function HeroExecutiveSuite({
                 className="
                   group inline-flex items-center gap-3
                   px-2 py-5
-                  text-accent-500
                   font-heading text-sm tracking-[0.15em] uppercase
                   transition-all duration-300
-                  hover:text-accent-500
-                  focus:outline-none focus:ring-2 focus:ring-accent-500/30 focus:ring-offset-2 focus:ring-offset-brand-900
                 "
+                style={{
+                  color: COLORS.orange500,
+                  opacity: secondaryHover ? 1 : 0.9,
+                }}
+                onMouseEnter={() => setSecondaryHover(true)}
+                onMouseLeave={() => setSecondaryHover(false)}
               >
                 {secondaryCta.label}
                 <svg

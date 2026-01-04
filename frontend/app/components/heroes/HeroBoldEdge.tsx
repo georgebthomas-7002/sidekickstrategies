@@ -14,12 +14,24 @@
  * - Strong typographic hierarchy
  * - Grid-inspired layout with intentional asymmetry
  *
+ * NOTE: Uses inline styles for brand colors to prevent Tailwind v4 purging
+ *
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
 'use client'
 
 import { useEffect, useState } from 'react'
+
+// Brand color constants (prevents Tailwind purging)
+const COLORS = {
+  navy800: '#142d63',
+  navy700: '#1e3561',
+  navy900: '#0f2250',
+  orange500: '#f65625',
+  teal500: '#028393',
+  lightBlue: '#98c1d9',
+}
 
 interface HeroBoldEdgeProps {
   headline?: string
@@ -41,6 +53,8 @@ export default function HeroBoldEdge({
   secondaryCta = { label: "View case studies", href: "/work" },
 }: HeroBoldEdgeProps) {
   const [mounted, setMounted] = useState(false)
+  const [primaryHover, setPrimaryHover] = useState(false)
+  const [secondaryHover, setSecondaryHover] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -48,7 +62,8 @@ export default function HeroBoldEdge({
 
   return (
     <section
-      className="relative min-h-screen flex items-center bg-brand-800 overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ backgroundColor: COLORS.navy800 }}
       aria-label="Hero section"
     >
       {/* Geometric background shapes */}
@@ -57,31 +72,33 @@ export default function HeroBoldEdge({
         <div
           className={`
             absolute -top-20 -right-20 w-[500px] h-[500px]
-            bg-brand-700 rotate-45
+            rotate-45
             transition-all duration-1000 ease-out
             ${mounted ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-20 -translate-y-20'}
           `}
+          style={{ backgroundColor: COLORS.navy700 }}
         />
 
         {/* Accent rectangle */}
         <div
           className={`
             absolute top-1/4 right-[15%] w-3 h-32
-            bg-accent-500
             transition-all duration-700 delay-300
             ${mounted ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
           `}
-          style={{ transformOrigin: 'top' }}
+          style={{ backgroundColor: COLORS.orange500, transformOrigin: 'top' }}
         />
 
         {/* Bottom geometric element */}
         <div
           className={`
             absolute bottom-0 left-0 w-1/3 h-24
-            bg-gradient-to-r from-brand-900 to-transparent
             transition-all duration-700 delay-200
             ${mounted ? 'opacity-100' : 'opacity-0'}
           `}
+          style={{
+            background: `linear-gradient(to right, ${COLORS.navy900}, transparent)`,
+          }}
         />
 
         {/* Grid pattern overlay */}
@@ -100,10 +117,11 @@ export default function HeroBoldEdge({
         <div
           className={`
             absolute bottom-1/4 right-1/4 w-8 h-8
-            border-2 border-accent-500 rotate-12
+            border-2 rotate-12
             transition-all duration-1000 delay-500
             ${mounted ? 'opacity-100 rotate-12' : 'opacity-0 rotate-45'}
           `}
+          style={{ borderColor: COLORS.orange500 }}
         />
       </div>
 
@@ -119,8 +137,11 @@ export default function HeroBoldEdge({
                 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}
               `}
             >
-              <div className="w-12 h-[2px] bg-accent-500" />
-              <span className="font-mono text-xs tracking-[0.25em] uppercase text-light-blue">
+              <div className="w-12 h-[2px]" style={{ backgroundColor: COLORS.orange500 }} />
+              <span
+                className="font-mono text-xs tracking-[0.25em] uppercase"
+                style={{ color: COLORS.lightBlue }}
+              >
                 Strategic Partners
               </span>
             </div>
@@ -135,7 +156,10 @@ export default function HeroBoldEdge({
               `}
             >
               {headline.split(' ').map((word, i) => (
-                <span key={i} className={i === headline.split(' ').length - 1 ? 'text-accent-500' : ''}>
+                <span
+                  key={i}
+                  style={i === headline.split(' ').length - 1 ? { color: COLORS.orange500 } : undefined}
+                >
                   {word}{' '}
                 </span>
               ))}
@@ -166,12 +190,17 @@ export default function HeroBoldEdge({
                 className="
                   group inline-flex items-center justify-center
                   px-8 py-4
-                  bg-accent-500 text-white
+                  text-white
                   font-heading text-sm tracking-wide uppercase font-semibold
                   transition-all duration-300
-                  hover:bg-accent-500 hover:scale-105 hover:shadow-lg hover:shadow-accent-500/25
-                  focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-brand-800
                 "
+                style={{
+                  backgroundColor: COLORS.orange500,
+                  transform: primaryHover ? 'scale(1.05)' : 'scale(1)',
+                  boxShadow: primaryHover ? `0 10px 25px -5px ${COLORS.orange500}40` : 'none',
+                }}
+                onMouseEnter={() => setPrimaryHover(true)}
+                onMouseLeave={() => setPrimaryHover(false)}
               >
                 {primaryCta.label}
                 <svg
@@ -190,13 +219,16 @@ export default function HeroBoldEdge({
                 className="
                   inline-flex items-center justify-center
                   px-8 py-4
-                  text-accent-500
                   font-heading text-sm tracking-wide uppercase
-                  border border-accent-500/50
                   transition-all duration-300
-                  hover:bg-accent-500/10 hover:border-accent-500
-                  focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-brand-800
                 "
+                style={{
+                  color: COLORS.orange500,
+                  border: `1px solid ${secondaryHover ? COLORS.orange500 : COLORS.orange500}80`,
+                  backgroundColor: secondaryHover ? `${COLORS.orange500}15` : 'transparent',
+                }}
+                onMouseEnter={() => setSecondaryHover(true)}
+                onMouseLeave={() => setSecondaryHover(false)}
               >
                 {secondaryCta.label}
               </a>
@@ -213,16 +245,30 @@ export default function HeroBoldEdge({
               `}
             >
               {/* Stacked rectangles */}
-              <div className="absolute top-0 right-0 w-32 h-48 bg-secondary-500/20 backdrop-blur-sm" />
-              <div className="absolute top-12 right-8 w-32 h-48 bg-brand-700/50" />
-              <div className="absolute top-24 right-16 w-32 h-48 border-2 border-accent-500/50" />
+              <div
+                className="absolute top-0 right-0 w-32 h-48 backdrop-blur-sm"
+                style={{ backgroundColor: `${COLORS.teal500}33` }}
+              />
+              <div
+                className="absolute top-12 right-8 w-32 h-48"
+                style={{ backgroundColor: `${COLORS.navy700}80` }}
+              />
+              <div
+                className="absolute top-24 right-16 w-32 h-48 border-2"
+                style={{ borderColor: `${COLORS.orange500}80` }}
+              />
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom edge accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-secondary-500 to-accent-500" />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-1"
+        style={{
+          background: `linear-gradient(to right, ${COLORS.orange500}, ${COLORS.teal500}, ${COLORS.orange500})`,
+        }}
+      />
     </section>
   )
 }

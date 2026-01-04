@@ -14,12 +14,21 @@
  * - No decorative elements - typography IS the design
  * - Subtle entrance animation
  *
+ * NOTE: Uses inline styles for brand colors to prevent Tailwind v4 purging
+ *
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
 'use client'
 
 import { useEffect, useState } from 'react'
+
+// Brand color constants (prevents Tailwind purging)
+const COLORS = {
+  navy800: '#142d63',
+  orange500: '#f65625',
+  teal500: '#028393',
+}
 
 interface HeroCleanSlateProps {
   headline?: string
@@ -43,6 +52,8 @@ export default function HeroCleanSlate({
   showBadge = true,
 }: HeroCleanSlateProps) {
   const [mounted, setMounted] = useState(false)
+  const [primaryHover, setPrimaryHover] = useState(false)
+  const [secondaryHover, setSecondaryHover] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -54,7 +65,12 @@ export default function HeroCleanSlate({
       aria-label="Hero section"
     >
       {/* Subtle top border accent */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-800 to-transparent opacity-20" />
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] opacity-20"
+        style={{
+          background: `linear-gradient(to right, transparent, ${COLORS.navy800}, transparent)`,
+        }}
+      />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="max-w-4xl">
@@ -66,7 +82,10 @@ export default function HeroCleanSlate({
                 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
               `}
             >
-              <span className="font-mono text-sm tracking-[0.2em] uppercase text-secondary-500">
+              <span
+                className="font-mono text-sm tracking-[0.2em] uppercase"
+                style={{ color: COLORS.teal500 }}
+              >
                 Sidekick Strategies
               </span>
             </div>
@@ -76,10 +95,11 @@ export default function HeroCleanSlate({
           <h1
             className={`
               font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-              text-brand-800 leading-[1.1] tracking-tight
+              leading-[1.1] tracking-tight
               transition-all duration-700 delay-100 ease-out
               ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
             `}
+            style={{ color: COLORS.navy800 }}
           >
             {headline}
           </h1>
@@ -109,12 +129,16 @@ export default function HeroCleanSlate({
               className="
                 inline-flex items-center justify-center
                 px-8 py-4
-                bg-accent-500 text-white
+                text-white
                 font-heading text-sm tracking-wide uppercase
                 transition-all duration-300
-                hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500/25
-                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
               "
+              style={{
+                backgroundColor: COLORS.orange500,
+                boxShadow: primaryHover ? `0 10px 25px -5px ${COLORS.orange500}40` : 'none',
+              }}
+              onMouseEnter={() => setPrimaryHover(true)}
+              onMouseLeave={() => setPrimaryHover(false)}
             >
               {primaryCta.label}
             </a>
@@ -124,13 +148,15 @@ export default function HeroCleanSlate({
               className="
                 inline-flex items-center justify-center
                 px-8 py-4
-                text-accent-500
                 font-heading text-sm tracking-wide uppercase
-                border-b-2 border-transparent
                 transition-all duration-300
-                hover:border-accent-500
-                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
               "
+              style={{
+                color: COLORS.orange500,
+                borderBottom: secondaryHover ? `2px solid ${COLORS.orange500}` : '2px solid transparent',
+              }}
+              onMouseEnter={() => setSecondaryHover(true)}
+              onMouseLeave={() => setSecondaryHover(false)}
             >
               {secondaryCta.label}
               <svg
@@ -150,11 +176,11 @@ export default function HeroCleanSlate({
       {/* Bottom accent line */}
       <div
         className={`
-          absolute bottom-24 left-12 md:left-24 w-16 h-[1px] bg-accent-500
+          absolute bottom-24 left-12 md:left-24 w-16 h-[1px]
           transition-all duration-1000 delay-500
           ${mounted ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
         `}
-        style={{ transformOrigin: 'left' }}
+        style={{ backgroundColor: COLORS.orange500, transformOrigin: 'left' }}
       />
     </section>
   )
