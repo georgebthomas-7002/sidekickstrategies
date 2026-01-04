@@ -16,9 +16,9 @@ export default async function Header() {
             <Image
               src="/images/sidekick-logo-2026.png"
               alt={settings?.title || 'Sidekick Strategies'}
-              width={280}
-              height={70}
-              className="h-12 sm:h-14 w-auto"
+              width={320}
+              height={80}
+              className="h-14 sm:h-18 w-auto"
               priority
             />
           </Link>
