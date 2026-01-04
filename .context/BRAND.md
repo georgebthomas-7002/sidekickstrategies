@@ -108,10 +108,73 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 ---
 
+## Voice & Tone
+
+### Voice in 3 Words
+**Empowering • Conversational • Human**
+
+### Tone Characteristics
+
+**Primary Tone: Warm Authority**
+- Knowledgeable but never condescending
+- Confident without being arrogant
+- Accessible yet expert
+- Personal and genuine
+
+**Secondary Tone: Energetic Encouragement**
+- Enthusiasm without hype
+- Supportive coaching style
+- Action-oriented motivation
+- Celebration of wins (big and small)
+
+### Voice Do's
+- Use "humans" instead of "contacts" or "leads"
+- Start sentences with "And" or "But" for conversational flow
+- Include metaphors and analogies (maestro, ninja, X-ray vision)
+- Ask rhetorical questions
+- Use contractions (you're, we're, don't)
+- Reference real experiences and stories
+- End with invitations, not demands
+- Include words like "frankly," "honestly," "here's the thing"
+
+### Voice Don'ts
+- Use corporate jargon ("synergy," "leverage," "optimize")
+- Sound robotic or templated
+- Be preachy or prescriptive
+- Use excessive exclamation points
+- Include meaningless superlatives
+- Gate content behind manipulation
+- Create artificial urgency
+
+### Signature Phrases
+- "Value First Humans"
+- "Your sidekick in the HubSpot journey"
+- "Strategies, tactics, and actions"
+- "FEAM" (Family + Team)
+- "Human signals over digital vanity metrics"
+- "There is no gate"
+- "Speed to meaningful help"
+
+### Headline Patterns
+- Statement + Qualifier: "Building Genuine Connections, Not Managing Transactions"
+- Human-centered: "Learning That Scales and Leadership That Stays Human"
+- Philosophy-forward: "Purpose, Passion, Persistence, and Love in Business"
+
+### CTA Style
+- Soft invitations over hard sells
+- "Let's talk" over "Book now"
+- "Start a conversation" over "Get a quote"
+- Value-first framing: "See how we can help"
+
+---
+
 ## Key Files
 - `frontend/tailwind.config.ts` - Design tokens, color scales
 - `frontend/app/globals.css` - @theme variables, base typography
 - `frontend/app/layout.tsx` - Font imports
+- `.context/PERSONAS.md` - Target audience profiles
+- `.context/TEAM.md` - Team information and roles
+- `.context/RESEARCH.md` - Comprehensive website research
 
 ## Last Updated
 2026-01-03

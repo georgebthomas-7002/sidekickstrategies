@@ -1,7 +1,29 @@
 # Project Overview
 
 ## About
-**Sidekick Strategies** - Marketing/consulting website migrated from HubSpot to Sanity.io + Next.js.
+**Sidekick Strategies** - HubSpot consultancy and training company founded by George B. Thomas in 2022. Website migrated from HubSpot to Sanity.io + Next.js.
+
+### Mission
+"We teach businesses the strategies, tactics, and actions needed to empower them with HubSpot, and frankly, life!"
+
+### Core Services
+| Service | Pricing | Description |
+|---------|---------|-------------|
+| HubSpot Consulting | $350/hr or packages ($2,400-$3,000) | Audits, migrations, integrations, optimization |
+| HubSpot Training | $2,750/month | Team training, 1-on-1 coaching, workshops |
+
+### Key Differentiators
+- 124+ HubSpot certifications (team collective)
+- "FEAM" model (Family + Team)
+- Empowerment over dependency approach
+- Value-first philosophy
+
+### Related Context Files
+- `.context/BRAND.md` - Visual design + voice guidelines
+- `.context/PERSONAS.md` - Target audience profiles
+- `.context/TEAM.md` - Team member information
+- `.context/RESEARCH.md` - Full website research
+- `.context/SKILLS.md` - Recommended Claude Skills
 
 ## Tech Stack
 | Layer | Technology | Version |
