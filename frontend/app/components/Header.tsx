@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {settingsQuery} from '@/sanity/lib/queries'
 import {sanityFetch} from '@/sanity/lib/live'
 
@@ -12,9 +13,14 @@ export default async function Header() {
       <div className="container py-6 px-2 sm:px-6">
         <div className="flex items-center justify-between gap-5">
           <Link className="flex items-center gap-2" href="/">
-            <span className="text-lg sm:text-2xl pl-2 font-semibold">
-              {settings?.title || 'Sidekick Strategies'}
-            </span>
+            <Image
+              src="/images/sidekick-logo-2026.png"
+              alt={settings?.title || 'Sidekick Strategies'}
+              width={220}
+              height={55}
+              className="h-10 sm:h-12 w-auto"
+              priority
+            />
           </Link>
 
           <nav>

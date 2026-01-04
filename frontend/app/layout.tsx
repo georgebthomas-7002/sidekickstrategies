@@ -46,6 +46,10 @@ export async function generateMetadata(): Promise<Metadata> {
       default: title,
     },
     description: toPlainText(description),
+    icons: {
+      icon: '/images/sidekick-favicon.webp',
+      apple: '/images/sidekick-favicon.webp',
+    },
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },

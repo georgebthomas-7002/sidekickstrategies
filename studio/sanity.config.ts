@@ -17,6 +17,11 @@ import {
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
 
+// Custom icon component for the studio
+const SidekickIcon = () => (
+  <img src="/static/favicon.webp" alt="Sidekick" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
+)
+
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
@@ -48,6 +53,7 @@ function resolveHref(documentType?: string, slug?: string): string | undefined {
 export default defineConfig({
   name: 'default',
   title: 'Sidekick Strategies',
+  icon: SidekickIcon,
 
   projectId,
   dataset,
