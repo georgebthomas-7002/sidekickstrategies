@@ -1,27 +1,81 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import BackToTop from './BackToTop'
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-gray-50 relative">
-      <div className="absolute inset-0 bg-[url(/images/tile-grid-black.png)] bg-size-[17px] opacity-20 bg-position-[0_1]" />
-      <div className="container relative">
-        <div className="flex flex-col items-center py-28 lg:flex-row">
-          <h3 className="mb-10 text-center text-4xl font-mono leading-tight tracking-tighter lg:mb-0 lg:w-1/2 lg:pr-4 lg:text-left lg:text-2xl">
-            Built with Sanity + Next.js.
-          </h3>
-          <div className="flex flex-col gap-3 items-center justify-center lg:w-1/2 lg:flex-row lg:pl-4">
-            <a
-              href="https://github.com/sanity-io/sanity-template-nextjs-clean"
-              className="rounded-full flex gap-2 font-mono whitespace-nowrap items-center bg-black hover:bg-blue focus:bg-blue py-3 px-6 text-white transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
+    <>
+      <BackToTop />
+      <footer style={{backgroundColor: '#142d63'}}>
+        <div className="container">
+          {/* Main Footer Content */}
+          <div className="py-16 border-b border-white/10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              {/* Logo & Tagline */}
+              <div className="flex flex-col gap-4">
+                <Link href="/" className="inline-block">
+                  <Image
+                    src="/images/sidekick-logo-2026.png"
+                    alt="Sidekick Strategies"
+                    width={200}
+                    height={50}
+                    className="h-10 w-auto brightness-0 invert"
+                  />
+                </Link>
+                <p
+                  className="font-serif text-lg max-w-xs"
+                  style={{color: 'rgba(255, 255, 255, 0.7)'}}
+                >
+                  Your sidekick in the HubSpot journey.
+                </p>
+              </div>
+
+              {/* Quick Links - Placeholder for future expansion */}
+              <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
+                <div>
+                  <h4
+                    className="font-heading text-xs uppercase tracking-widest mb-4"
+                    style={{color: '#f65625'}}
+                  >
+                    Connect
+                  </h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <a
+                        href="mailto:hello@sidekickstrategies.com"
+                        className="font-sans text-sm transition-colors duration-200"
+                        style={{color: 'rgba(255, 255, 255, 0.7)'}}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)')}
+                      >
+                        hello@sidekickstrategies.com
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p
+              className="font-mono text-xs"
+              style={{color: 'rgba(255, 255, 255, 0.5)'}}
             >
-              View on GitHub
-            </a>
-            <a href="https://nextjs.org/docs" className="mx-3 hover:underline font-mono">
-              Read Next.js Documentation
-            </a>
+              © {currentYear} Sidekick Strategies. All rights reserved.
+            </p>
+            <p
+              className="font-mono text-xs"
+              style={{color: 'rgba(255, 255, 255, 0.3)'}}
+            >
+              Value First Humans
+            </p>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
