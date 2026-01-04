@@ -748,49 +748,10 @@ export default function BrandBiblePage() {
         })}
       </section>
 
-      {/* Summary Footer */}
-      <footer style={{ backgroundColor: '#060d1a' }} className="text-white py-24">
+      {/* Footer */}
+      <footer style={{ backgroundColor: '#060d1a' }} className="text-white py-12">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mb-16">
-            <span style={{ color: '#028393' }} className="font-mono text-xs uppercase tracking-[0.2em]">
-              Quick Reference
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl mt-3 mb-6">Hero Preset Summary</h2>
-            <p className="font-sans text-white/50 text-lg">
-              Choose the right hero for your context. Each preset is designed for specific brand moods and audience expectations.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {heroPresets.map((preset, i) => (
-              <a
-                key={preset.id}
-                href={`#hero-${preset.id}`}
-                className="group p-8 border border-white/10 hover:border-white/30 rounded-xl transition-all duration-300 hover:bg-white/5"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <span style={{ color: '#faaa68' }} className="font-mono text-xl font-bold">0{i + 1}</span>
-                  <h3 className="font-heading text-xl group-hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                    {preset.name}
-                  </h3>
-                </div>
-                <p className="text-white/40 text-sm leading-relaxed mb-6">{preset.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-white/5 text-white/50 uppercase rounded">
-                    {preset.style}
-                  </span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-white/5 text-white/50 uppercase rounded">
-                    {preset.background}
-                  </span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-white/5 text-white/50 uppercase rounded">
-                    {preset.animation}
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-mono text-xs text-white/30">
               Sidekick Strategies Brand Bible — Design System v2.0
             </p>
