@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "prebuild": "npm run typegen",
+    "prebuild": "[ -f ../studio/schema.json ] && npm run typegen || echo 'Skipping typegen (schema not found)'",
     "build": "next build",
     "predev": "npm run typegen",
     "dev": "next dev",
