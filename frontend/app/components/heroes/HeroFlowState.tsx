@@ -194,12 +194,12 @@ export default function HeroFlowState({
               className="
                 group inline-flex items-center justify-center
                 px-8 py-4
-                bg-white text-brand-800
+                bg-accent-500 text-white
                 font-heading text-sm tracking-wide uppercase font-semibold
                 rounded-full
                 transition-all duration-300
-                hover:bg-peach hover:text-brand-900 hover:scale-105 hover:shadow-xl hover:shadow-peach/25
-                focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent
+                hover:bg-accent-500 hover:scale-105 hover:shadow-xl hover:shadow-accent-500/25
+                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-transparent
               "
             >
               {primaryCta.label}
@@ -219,14 +219,14 @@ export default function HeroFlowState({
               className="
                 inline-flex items-center justify-center
                 px-8 py-4
-                text-white
+                text-accent-500
                 font-heading text-sm tracking-wide uppercase
                 rounded-full
-                border border-white/30
+                border border-accent-500/50
                 backdrop-blur-sm
                 transition-all duration-300
-                hover:bg-white/10 hover:border-white/50
-                focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent
+                hover:bg-accent-500/10 hover:border-accent-500
+                focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-transparent
               "
             >
               {secondaryCta.label}

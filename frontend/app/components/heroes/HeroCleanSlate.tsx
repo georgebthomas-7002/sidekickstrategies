@@ -32,6 +32,7 @@ interface HeroCleanSlateProps {
     label: string
     href: string
   }
+  showBadge?: boolean
 }
 
 export default function HeroCleanSlate({
@@ -39,6 +40,7 @@ export default function HeroCleanSlate({
   subheadline = "We partner with ambitious organizations to solve complex challenges and unlock sustainable growth.",
   primaryCta = { label: "Start a conversation", href: "/contact" },
   secondaryCta = { label: "Our approach", href: "/about" },
+  showBadge = true,
 }: HeroCleanSlateProps) {
   const [mounted, setMounted] = useState(false)
 
@@ -57,16 +59,18 @@ export default function HeroCleanSlate({
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="max-w-4xl">
           {/* Eyebrow */}
-          <div
-            className={`
-              mb-8 transition-all duration-700 ease-out
-              ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-            `}
-          >
-            <span className="font-mono text-sm tracking-[0.2em] uppercase text-secondary-500">
-              Sidekick Strategies
-            </span>
-          </div>
+          {showBadge && (
+            <div
+              className={`
+                mb-8 transition-all duration-700 ease-out
+                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+              `}
+            >
+              <span className="font-mono text-sm tracking-[0.2em] uppercase text-secondary-500">
+                Sidekick Strategies
+              </span>
+            </div>
+          )}
 
           {/* Headline */}
           <h1
@@ -105,11 +109,11 @@ export default function HeroCleanSlate({
               className="
                 inline-flex items-center justify-center
                 px-8 py-4
-                bg-brand-800 text-white
+                bg-accent-500 text-white
                 font-heading text-sm tracking-wide uppercase
                 transition-all duration-300
-                hover:bg-brand-900 hover:shadow-lg
-                focus:outline-none focus:ring-2 focus:ring-brand-800 focus:ring-offset-2
+                hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500/25
+                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
               "
             >
               {primaryCta.label}
@@ -120,12 +124,12 @@ export default function HeroCleanSlate({
               className="
                 inline-flex items-center justify-center
                 px-8 py-4
-                text-brand-800
+                text-accent-500
                 font-heading text-sm tracking-wide uppercase
                 border-b-2 border-transparent
                 transition-all duration-300
-                hover:border-brand-800
-                focus:outline-none focus:ring-2 focus:ring-brand-800 focus:ring-offset-2
+                hover:border-accent-500
+                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
               "
             >
               {secondaryCta.label}

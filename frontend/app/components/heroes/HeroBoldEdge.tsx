@@ -169,7 +169,7 @@ export default function HeroBoldEdge({
                   bg-accent-500 text-white
                   font-heading text-sm tracking-wide uppercase font-semibold
                   transition-all duration-300
-                  hover:bg-accent-600 hover:scale-105
+                  hover:bg-accent-500 hover:scale-105 hover:shadow-lg hover:shadow-accent-500/25
                   focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-brand-800
                 "
               >
@@ -190,12 +190,12 @@ export default function HeroBoldEdge({
                 className="
                   inline-flex items-center justify-center
                   px-8 py-4
-                  text-white
+                  text-accent-500
                   font-heading text-sm tracking-wide uppercase
-                  border border-white/30
+                  border border-accent-500/50
                   transition-all duration-300
-                  hover:bg-white/10 hover:border-white/50
-                  focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-brand-800
+                  hover:bg-accent-500/10 hover:border-accent-500
+                  focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-brand-800
                 "
               >
                 {secondaryCta.label}

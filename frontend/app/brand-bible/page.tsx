@@ -67,30 +67,33 @@ const brandColors = {
 export default function BrandBiblePage() {
   return (
     <main className="bg-white">
-      {/* Fixed Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-800/95 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="font-serif text-white text-xl">Brand Bible</h1>
-            <div className="hidden md:flex items-center gap-6">
-              <a href="#colors" className="text-sm text-white/70 hover:text-white transition-colors">Colors</a>
-              <a href="#typography" className="text-sm text-white/70 hover:text-white transition-colors">Typography</a>
-              <a href="#heroes" className="text-sm text-white/70 hover:text-white transition-colors">Hero Presets</a>
+      {/* Secondary Page Navigation - sits under global header */}
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between h-12">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[10px] tracking-wider uppercase text-gray-400">Page:</span>
+              <span className="font-heading text-sm font-medium text-brand-800">Brand Bible</span>
+            </div>
+            <div className="hidden md:flex items-center gap-1">
+              <a href="#colors" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Colors</a>
+              <a href="#typography" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Typography</a>
+              <a href="#heroes" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Hero Presets</a>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Header */}
-      <header className="pt-32 pb-20 bg-gradient-to-b from-brand-800 to-brand-900 text-white">
-        <div className="container mx-auto px-6">
-          <p className="font-mono text-xs tracking-[0.3em] uppercase text-peach mb-4">Design System</p>
-          <h1 className="font-serif text-5xl md:text-7xl mb-6">Brand Bible</h1>
-          <p className="font-sans text-xl text-white/70 max-w-2xl">
-            All the styles we use to build an amazing platform. Colors, typography, and component presets.
-          </p>
-        </div>
-      </header>
+      {/* Main Hero - Using Clean Slate preset */}
+      <div className="pt-12">
+        <HeroCleanSlate
+          headline="Brand Bible"
+          subheadline="All the styles we use to build an amazing platform. Colors, typography, and component presets for Sidekick Strategies."
+          primaryCta={{ label: "View Colors", href: "#colors" }}
+          secondaryCta={{ label: "Hero Presets", href: "#heroes" }}
+          showBadge={false}
+        />
+      </div>
 
       {/* Colors Section */}
       <section id="colors" className="py-20 scroll-mt-20">

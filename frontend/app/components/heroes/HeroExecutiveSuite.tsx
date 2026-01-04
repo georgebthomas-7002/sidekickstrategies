@@ -212,21 +212,12 @@ export default function HeroExecutiveSuite({
                   px-10 py-5
                   overflow-hidden
                   font-heading text-sm tracking-[0.15em] uppercase
-                  border border-peach text-peach
+                  bg-accent-500 text-white
                   transition-all duration-500
-                  hover:text-brand-900
-                  focus:outline-none focus:ring-2 focus:ring-peach focus:ring-offset-2 focus:ring-offset-brand-900
+                  hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500/25
+                  focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-brand-900
                 "
               >
-                {/* Fill animation on hover */}
-                <span
-                  className="
-                    absolute inset-0 bg-peach
-                    transform -translate-x-full
-                    transition-transform duration-500
-                    group-hover:translate-x-0
-                  "
-                />
                 <span className="relative z-10">{primaryCta.label}</span>
               </a>
 
@@ -235,11 +226,11 @@ export default function HeroExecutiveSuite({
                 className="
                   group inline-flex items-center gap-3
                   px-2 py-5
-                  text-gray-400
+                  text-accent-500
                   font-heading text-sm tracking-[0.15em] uppercase
                   transition-all duration-300
-                  hover:text-peach
-                  focus:outline-none focus:ring-2 focus:ring-peach/30 focus:ring-offset-2 focus:ring-offset-brand-900
+                  hover:text-accent-500
+                  focus:outline-none focus:ring-2 focus:ring-accent-500/30 focus:ring-offset-2 focus:ring-offset-brand-900
                 "
               >
                 {secondaryCta.label}
