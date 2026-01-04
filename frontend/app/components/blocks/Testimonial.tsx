@@ -23,9 +23,9 @@ export default function Testimonial({block}: TestimonialProps) {
   const cleanTheme = stegaClean(theme)
 
   const themeClasses = {
-    light: 'bg-white text-gray-900',
-    dark: 'bg-gray-900 text-white',
-    accent: 'bg-blue-600 text-white',
+    light: 'text-gray-900',
+    dark: 'text-white',
+    accent: 'text-white',
   }
 
   return (

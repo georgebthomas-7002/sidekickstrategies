@@ -42,7 +42,7 @@ export default function Hero({block}: HeroProps) {
 
   return (
     <section
-      className={`relative flex items-center ${sizeClasses[cleanSize as keyof typeof sizeClasses] || sizeClasses.large} ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}
+      className={`relative flex items-center ${sizeClasses[cleanSize as keyof typeof sizeClasses] || sizeClasses.large} ${isDark ? 'text-white' : 'text-gray-900'}`}
     >
       {backgroundImage?.asset?._ref && (
         <div className="absolute inset-0 z-0">
