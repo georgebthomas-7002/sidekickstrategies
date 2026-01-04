@@ -3,6 +3,9 @@
  * Complete brand system documentation with hero presets
  */
 
+'use client'
+
+import { useEffect, useState } from 'react'
 import {
   HeroCleanSlate,
   HeroBoldEdge,
@@ -11,10 +14,7 @@ import {
   heroPresets,
 } from '@/app/components/heroes'
 
-export const metadata = {
-  title: 'Brand Bible | Sidekick Strategies',
-  description: 'All the styles we use to build an amazing platform!',
-}
+// Note: metadata moved to layout.tsx for client component compatibility
 
 // Brand color definitions
 const brandColors = {
@@ -65,6 +65,12 @@ const brandColors = {
 }
 
 export default function BrandBiblePage() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <main className="bg-white">
       {/* Secondary Page Navigation - sits under global header */}
@@ -78,22 +84,129 @@ export default function BrandBiblePage() {
             <div className="hidden md:flex items-center gap-1">
               <a href="#colors" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Colors</a>
               <a href="#typography" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Typography</a>
+              <a href="#buttons" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Buttons</a>
               <a href="#heroes" className="px-3 py-1.5 text-xs font-heading text-gray-600 hover:text-brand-800 hover:bg-gray-100 rounded transition-colors">Hero Presets</a>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Main Hero - Using Clean Slate preset */}
-      <div className="pt-12">
-        <HeroCleanSlate
-          headline="Brand Bible"
-          subheadline="All the styles we use to build an amazing platform. Colors, typography, and component presets for Sidekick Strategies."
-          primaryCta={{ label: "View Colors", href: "#colors" }}
-          secondaryCta={{ label: "Hero Presets", href: "#heroes" }}
-          showBadge={false}
+      {/* Main Hero - Custom Brand Bible Hero */}
+      <section className="relative min-h-[85vh] flex items-center bg-white overflow-hidden pt-12">
+        {/* Subtle decorative elements */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-800/20 to-transparent" />
+        <div
+          className={`
+            absolute bottom-24 left-12 md:left-24 w-20 h-[2px] bg-accent-500
+            transition-all duration-1000 delay-500
+            ${mounted ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
+          `}
+          style={{ transformOrigin: 'left' }}
         />
-      </div>
+
+        <div className="container mx-auto px-6 md:px-12 lg:px-24">
+          <div className="max-w-4xl">
+            {/* Eyebrow */}
+            <div
+              className={`
+                mb-6 transition-all duration-700 ease-out
+                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+              `}
+            >
+              <span className="font-mono text-sm tracking-[0.2em] uppercase text-secondary-500">
+                Sidekick Strategies Design System
+              </span>
+            </div>
+
+            {/* Headline - Dark Blue */}
+            <h1
+              className={`
+                font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                text-brand-800 leading-[1.05] tracking-tight
+                transition-all duration-700 delay-100 ease-out
+                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+              `}
+            >
+              Brand Bible
+            </h1>
+
+            {/* Subheadline */}
+            <p
+              className={`
+                mt-8 md:mt-10 font-sans text-lg md:text-xl text-gray-600
+                max-w-2xl leading-relaxed
+                transition-all duration-700 delay-200 ease-out
+                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+              `}
+            >
+              All the styles we use to build an amazing platform. Colors, typography, buttons, and component presets for Sidekick Strategies.
+            </p>
+
+            {/* CTAs - Modern Button Styles */}
+            <div
+              className={`
+                mt-12 md:mt-14 flex flex-col sm:flex-row gap-4 sm:gap-5
+                transition-all duration-700 delay-300 ease-out
+                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+              `}
+            >
+              {/* Primary Button - Orange */}
+              <a
+                href="#colors"
+                className="
+                  group inline-flex items-center justify-center
+                  px-8 py-4
+                  bg-accent-500 text-white
+                  font-heading text-sm tracking-wide uppercase font-semibold
+                  rounded-lg
+                  shadow-lg shadow-accent-500/20
+                  transition-all duration-300
+                  hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-0.5
+                  focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
+                "
+              >
+                View Colors
+                <svg
+                  className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+
+              {/* Secondary Button - Light Blue */}
+              <a
+                href="#heroes"
+                className="
+                  group inline-flex items-center justify-center
+                  px-8 py-4
+                  bg-light-blue text-brand-900
+                  font-heading text-sm tracking-wide uppercase font-semibold
+                  rounded-lg
+                  shadow-lg shadow-light-blue/20
+                  transition-all duration-300
+                  hover:bg-[#7fb3cf] hover:shadow-xl hover:shadow-light-blue/30 hover:-translate-y-0.5
+                  focus:outline-none focus:ring-2 focus:ring-light-blue focus:ring-offset-2
+                "
+              >
+                Hero Presets
+                <svg
+                  className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Colors Section */}
       <section id="colors" className="py-20 scroll-mt-20">
@@ -232,6 +345,332 @@ export default function BrandBiblePage() {
                 <p className="font-mono text-6xl text-brand-800">Aa</p>
                 <p className="font-mono text-sm text-gray-600">const strategy = new Sidekick();</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Buttons Section */}
+      <section id="buttons" className="py-20 scroll-mt-20">
+        <div className="container mx-auto px-6">
+          <h2 className="font-serif text-4xl text-brand-800 mb-4">Button Styles</h2>
+          <p className="font-sans text-gray-600 mb-12 max-w-2xl">
+            Six distinctive button styles designed for clarity, accessibility, and visual impact. Each features carefully crafted hover states with excellent contrast.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Button 1: Primary Orange */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">01</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Primary Action</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Main CTAs and priority actions</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-accent-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    shadow-lg shadow-accent-500/25
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5
+                    active:translate-y-0 active:shadow-md
+                  "
+                >
+                  Get Started
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">bg: #f65625</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #d9441a</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button 2: Secondary Light Blue */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-light-blue uppercase tracking-wider">02</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Secondary Action</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Supporting and alternative actions</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-light-blue text-brand-900
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    shadow-lg shadow-light-blue/25
+                    transition-all duration-300
+                    hover:bg-[#7aafcc] hover:shadow-xl hover:shadow-light-blue/40 hover:-translate-y-0.5
+                    active:translate-y-0 active:shadow-md
+                  "
+                >
+                  Learn More
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-blue-50 text-slate rounded">bg: #98c1d9</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #7aafcc</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button 3: Navy Solid */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-brand-600 uppercase tracking-wider">03</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Navy Solid</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Professional and authoritative</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-brand-800 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    shadow-lg shadow-brand-800/25
+                    transition-all duration-300
+                    hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-800/40 hover:-translate-y-0.5
+                    active:translate-y-0 active:shadow-md
+                  "
+                >
+                  Contact Us
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-brand-50 text-brand-700 rounded">bg: #142d63</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #1e3561</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button 4: Ghost / Outline */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">04</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Ghost Outline</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Subtle, non-competing actions</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-transparent text-accent-500
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    border-2 border-accent-500
+                    transition-all duration-300
+                    hover:bg-accent-500 hover:text-white hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5
+                    active:translate-y-0
+                  "
+                >
+                  View Details
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">border: #f65625</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: fill</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button 5: Gradient */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-peach uppercase tracking-wider">05</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Gradient Premium</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">High-impact premium actions</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-gradient-to-r from-accent-500 via-peach to-accent-400 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    shadow-lg shadow-accent-500/30
+                    transition-all duration-500
+                    hover:from-accent-600 hover:via-accent-500 hover:to-peach hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5 hover:scale-[1.02]
+                    active:translate-y-0 active:scale-100
+                  "
+                >
+                  Upgrade Now
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gradient-to-r from-accent-100 to-orange-100 text-accent-600 rounded">gradient</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: shift</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button 6: Text Link */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-slate uppercase tracking-wider">06</span>
+                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Text Link</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Inline and minimal actions</p>
+              </div>
+              <div className="space-y-4">
+                <button
+                  className="
+                    w-full inline-flex items-center justify-center gap-2
+                    px-6 py-3.5
+                    bg-transparent text-brand-800
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    transition-all duration-300
+                    group
+                    hover:text-accent-500
+                  "
+                >
+                  <span className="relative">
+                    Read More
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                  <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">text only</span>
+                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: underline</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Dark Background Button Examples */}
+          <div className="mt-16">
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mb-6">On Dark Backgrounds</h3>
+            <div className="bg-brand-800 rounded-2xl p-8 md:p-12">
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* Primary on Dark */}
+                <div className="text-center">
+                  <button
+                    className="
+                      inline-flex items-center justify-center
+                      px-8 py-4
+                      bg-accent-500 text-white
+                      font-heading text-sm tracking-wide uppercase font-semibold
+                      rounded-lg
+                      shadow-lg shadow-accent-500/30
+                      transition-all duration-300
+                      hover:bg-accent-400 hover:shadow-xl hover:shadow-accent-500/50 hover:-translate-y-0.5
+                    "
+                  >
+                    Primary
+                  </button>
+                  <p className="font-mono text-xs text-white/50 mt-3">Orange on Navy</p>
+                </div>
+
+                {/* Light Blue on Dark */}
+                <div className="text-center">
+                  <button
+                    className="
+                      inline-flex items-center justify-center
+                      px-8 py-4
+                      bg-light-blue text-brand-900
+                      font-heading text-sm tracking-wide uppercase font-semibold
+                      rounded-lg
+                      shadow-lg shadow-light-blue/30
+                      transition-all duration-300
+                      hover:bg-white hover:shadow-xl hover:shadow-light-blue/50 hover:-translate-y-0.5
+                    "
+                  >
+                    Secondary
+                  </button>
+                  <p className="font-mono text-xs text-white/50 mt-3">Light Blue on Navy</p>
+                </div>
+
+                {/* Ghost on Dark */}
+                <div className="text-center">
+                  <button
+                    className="
+                      inline-flex items-center justify-center
+                      px-8 py-4
+                      bg-transparent text-white
+                      font-heading text-sm tracking-wide uppercase font-semibold
+                      rounded-lg
+                      border-2 border-white/40
+                      transition-all duration-300
+                      hover:bg-white hover:text-brand-800 hover:border-white hover:-translate-y-0.5
+                    "
+                  >
+                    Ghost
+                  </button>
+                  <p className="font-mono text-xs text-white/50 mt-3">White outline on Navy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Button Sizing */}
+          <div className="mt-16">
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mb-6">Size Variations</h3>
+            <div className="flex flex-wrap items-end gap-4">
+              <button
+                className="
+                  inline-flex items-center justify-center
+                  px-4 py-2
+                  bg-accent-500 text-white
+                  font-heading text-xs tracking-wide uppercase font-semibold
+                  rounded-md
+                  transition-all duration-300
+                  hover:bg-accent-600
+                "
+              >
+                Small
+              </button>
+              <button
+                className="
+                  inline-flex items-center justify-center
+                  px-6 py-3
+                  bg-accent-500 text-white
+                  font-heading text-sm tracking-wide uppercase font-semibold
+                  rounded-lg
+                  transition-all duration-300
+                  hover:bg-accent-600
+                "
+              >
+                Medium
+              </button>
+              <button
+                className="
+                  inline-flex items-center justify-center
+                  px-8 py-4
+                  bg-accent-500 text-white
+                  font-heading text-sm tracking-wide uppercase font-semibold
+                  rounded-lg
+                  transition-all duration-300
+                  hover:bg-accent-600
+                "
+              >
+                Large
+              </button>
+              <button
+                className="
+                  inline-flex items-center justify-center
+                  px-10 py-5
+                  bg-accent-500 text-white
+                  font-heading text-base tracking-wide uppercase font-semibold
+                  rounded-xl
+                  transition-all duration-300
+                  hover:bg-accent-600
+                "
+              >
+                Extra Large
+              </button>
             </div>
           </div>
         </div>
