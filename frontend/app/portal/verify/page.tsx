@@ -1,11 +1,11 @@
 'use client'
 
-import {useEffect, useState} from 'react'
+import {Suspense, useEffect, useState} from 'react'
 import {useSearchParams, useRouter} from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function VerifyPage() {
+function VerifyContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const token = searchParams.get('token')
@@ -110,5 +110,28 @@ export default function VerifyPage() {
         )}
       </div>
     </div>
+  )
+}
+
+function LoadingFallback() {
+  return (
+    <div className="w-full max-w-md">
+      <div className="text-center mb-8">
+        <div className="h-12 w-60 bg-gray-200 animate-pulse mx-auto rounded" />
+      </div>
+      <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 text-center">
+        <div className="w-16 h-16 bg-gray-200 animate-pulse rounded-full mx-auto mb-4" />
+        <div className="h-6 w-48 bg-gray-200 animate-pulse mx-auto mb-2 rounded" />
+        <div className="h-4 w-64 bg-gray-200 animate-pulse mx-auto rounded" />
+      </div>
+    </div>
+  )
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <VerifyContent />
+    </Suspense>
   )
 }
