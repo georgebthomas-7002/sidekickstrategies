@@ -1,7 +1,7 @@
 ---
 name: sidekick-brand
-description: Official Sidekick Strategies brand system. Use ONLY when building sidekickstrategies.com, Sidekick brand materials, or internal tools. Enforces specific brand colors, typography, and component patterns. For creative client work or new projects, use /frontend-design instead.
-version: 3.1
+description: Official Sidekick Strategies brand system with finalized Brand Bible. Use ONLY when building sidekickstrategies.com, Sidekick brand materials, or internal tools. Enforces specific brand colors, typography, button styles, iconography, and component patterns. For creative client work or new projects, use /frontend-design instead.
+version: 3.2
 license: Sidekick Strategies internal use
 ---
 
@@ -421,6 +421,82 @@ Elevated:    shadow-xl   (0 20px 25px rgba(0,0,0,0.1))
   </div>
 </header>
 ```
+
+### Footer
+
+**Live Component:** `frontend/app/components/Footer.tsx`
+
+The global footer uses navy-800 background with white/opacity text:
+
+```jsx
+<footer style={{backgroundColor: '#142d63'}}>
+  <div className="container">
+    {/* Main Content */}
+    <div className="py-16 border-b border-white/10">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        {/* Logo & Tagline */}
+        <div>
+          <Image src="/images/sidekick-logo-2026.png" className="h-10 w-auto brightness-0 invert" />
+          <p className="font-serif text-lg" style={{color: 'rgba(255,255,255,0.7)'}}>
+            Your sidekick in the HubSpot journey.
+          </p>
+        </div>
+        {/* Quick Links */}
+        <div>
+          <h4 className="font-heading text-xs uppercase tracking-widest" style={{color: '#f65625'}}>
+            Connect
+          </h4>
+          <a href="mailto:hello@sidekickstrategies.com" style={{color: 'rgba(255,255,255,0.7)'}}>
+            hello@sidekickstrategies.com
+          </a>
+        </div>
+      </div>
+    </div>
+    {/* Bottom Bar */}
+    <div className="py-6 flex justify-between">
+      <p className="font-mono text-xs" style={{color: 'rgba(255,255,255,0.5)'}}>
+        © {currentYear} Sidekick Strategies. All rights reserved.
+      </p>
+      <p className="font-mono text-xs" style={{color: 'rgba(255,255,255,0.3)'}}>
+        Value First Humans
+      </p>
+    </div>
+  </div>
+</footer>
+```
+
+### Back to Top Button
+
+**Live Component:** `frontend/app/components/BackToTop.tsx`
+
+Client component that appears after scrolling 300px:
+
+```jsx
+'use client'
+// Fixed position left-6 bottom-6
+// Navy circle (w-12 h-12) with white arrow icon
+// Fades in/out with transform animation
+// smooth scroll to top on click
+```
+
+### Iconography
+
+**Live Reference:** https://sidekickstrategies.vercel.app/brand-bible#iconography
+
+40+ curated SVG icons organized into categories:
+
+| Category | Icons | Usage |
+|----------|-------|-------|
+| Marketing & Agency | Megaphone, Analytics, Target, Launch, Ideas, Audience, Email, Global, Schedule, Growth | Agency services, marketing content |
+| HubSpot & CRM | Contacts, Pipeline, Deals, Automation, Inbox, Database, Workflow, Reports, Integrate, Dashboard | HubSpot features, CRM pages |
+| Sales | Partner, Success, Revenue, Business, Call, Award, Complete, Time, Premium, Goal | Sales content, success stories |
+| Hero & Strength | Shield, Power, Energy, Protect, Ignite, Navigate, Dawn, Summit, Anchor, Lead | Hero sections, empowerment messaging |
+
+**Icon Specifications:**
+- Style: Stroke-based (1.5-2px stroke width)
+- Base size: 24x24 (`w-6 h-6`)
+- Colors: Use brand palette (Orange #f65625, Teal #028393, Navy #142d63)
+- Light backgrounds: #fff5f0 (orange), #e6f7f9 (teal), #f0f4fa (navy)
 
 ---
 

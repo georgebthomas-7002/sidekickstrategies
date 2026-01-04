@@ -37,8 +37,9 @@
 ### Layout Components
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| `Header` | `app/components/Header.tsx` | Site header/nav |
-| `Footer` | `app/components/Footer.tsx` | Site footer |
+| `Header` | `app/components/Header.tsx` | Site header with logo |
+| `Footer` | `app/components/Footer.tsx` | Navy footer with logo, tagline, contact |
+| `BackToTop` | `app/components/BackToTop.tsx` | Scroll-to-top button (client component) |
 | `RootLayout` | `app/layout.tsx` | HTML wrapper, fonts, global providers |
 
 ### Content Components
