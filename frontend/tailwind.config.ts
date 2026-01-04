@@ -71,6 +71,36 @@ const brandColors = {
 
 export default {
   content: ['./app/**/*.{ts,tsx}', './sanity/**/*.{ts,tsx}'],
+  // Safelist brand color classes to prevent purging
+  safelist: [
+    // Brand/Primary colors
+    'bg-brand-50', 'bg-brand-100', 'bg-brand-200', 'bg-brand-300', 'bg-brand-400',
+    'bg-brand-500', 'bg-brand-600', 'bg-brand-700', 'bg-brand-800', 'bg-brand-900', 'bg-brand-950',
+    'text-brand-50', 'text-brand-100', 'text-brand-200', 'text-brand-300', 'text-brand-400',
+    'text-brand-500', 'text-brand-600', 'text-brand-700', 'text-brand-800', 'text-brand-900', 'text-brand-950',
+    'ring-brand-300', 'ring-brand-500',
+    // Secondary/Teal colors
+    'bg-secondary-50', 'bg-secondary-100', 'bg-secondary-200', 'bg-secondary-300', 'bg-secondary-400',
+    'bg-secondary-500', 'bg-secondary-600', 'bg-secondary-700', 'bg-secondary-800', 'bg-secondary-900',
+    'text-secondary-50', 'text-secondary-100', 'text-secondary-200', 'text-secondary-300', 'text-secondary-400',
+    'text-secondary-500', 'text-secondary-600', 'text-secondary-700', 'text-secondary-800', 'text-secondary-900',
+    'ring-secondary-300', 'ring-secondary-500',
+    // Accent/Orange colors
+    'bg-accent-50', 'bg-accent-100', 'bg-accent-200', 'bg-accent-300', 'bg-accent-400',
+    'bg-accent-500', 'bg-accent-600', 'bg-accent-700', 'bg-accent-800', 'bg-accent-900',
+    'text-accent-50', 'text-accent-100', 'text-accent-200', 'text-accent-300', 'text-accent-400',
+    'text-accent-500', 'text-accent-600', 'text-accent-700', 'text-accent-800', 'text-accent-900',
+    'ring-accent-300', 'ring-accent-500',
+    // Shadow variants with opacity
+    'shadow-accent-500/25', 'shadow-accent-500/40',
+    'shadow-brand-800/25', 'shadow-brand-800/40',
+    'shadow-secondary-500/25', 'shadow-secondary-500/40',
+    'shadow-light-blue/25', 'shadow-light-blue/40',
+    // Border colors
+    'border-accent-500', 'border-brand-800', 'border-secondary-500',
+    // Light blue variations
+    'bg-light-blue', 'text-light-blue', 'ring-light-blue',
+  ],
   theme: {
     container: {
       center: true,
