@@ -625,19 +625,6 @@ export default function HeroKineticGrid({
                   />
                 </div>
 
-                {/* ═══ LAYER 8: FLOATING TECH LABELS ═══ */}
-                <div
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded font-mono text-[9px] tracking-widest uppercase"
-                  style={{
-                    backgroundColor: `${COLORS.navy950}90`,
-                    border: `1px solid ${COLORS.teal500}40`,
-                    color: COLORS.teal400,
-                    animation: mounted ? 'floatLabel 3s ease-in-out infinite' : 'none',
-                  }}
-                >
-                  <span className="animate-pulse mr-1">●</span> Active
-                </div>
-
                 {/* Corner energy dots */}
                 <div className="absolute top-0 left-0 w-3 h-3">
                   <div
