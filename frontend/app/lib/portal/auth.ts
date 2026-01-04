@@ -20,14 +20,28 @@ const JWT_SECRET = process.env.PORTAL_JWT_SECRET || 'default-dev-secret-change-m
 const HUBSPOT_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN
 const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || 'http://localhost:3000/portal'
 
-// Sanity client for portal session management
-export const portalSanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  apiVersion: '2025-09-25',
-  useCdn: false, // Need fresh data for auth
-  token: process.env.SANITY_API_READ_TOKEN,
-})
+// Sanity client for portal session management (lazy-loaded to avoid build-time errors)
+let _portalSanityClient: ReturnType<typeof createClient> | null = null
+
+function getPortalSanityClient() {
+  if (!_portalSanityClient) {
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+    if (!projectId || !dataset) {
+      throw new Error('Sanity configuration missing: NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET are required')
+    }
+
+    _portalSanityClient = createClient({
+      projectId,
+      dataset,
+      apiVersion: '2025-09-25',
+      useCdn: false, // Need fresh data for auth
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
+  }
+  return _portalSanityClient
+}
 
 /**
  * Generate a magic link token and store it in Sanity
@@ -37,7 +51,7 @@ export async function createMagicLinkToken(email: string, contactId: string, com
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000) // 15 minutes
 
   // Store token in Sanity
-  await portalSanityClient.create({
+  await getPortalSanityClient().create({
     _type: 'portalSession',
     token,
     email,
@@ -74,7 +88,7 @@ export async function verifyMagicLinkToken(token: string): Promise<{
 
   // Using type assertion to handle Sanity client's strict typing
   const params = {token} as Record<string, string>
-  const session = await portalSanityClient.fetch<SessionResult>(query, params)
+  const session = await getPortalSanityClient().fetch<SessionResult>(query, params)
 
   if (!session) {
     return {valid: false, error: 'Invalid token'}
@@ -89,7 +103,7 @@ export async function verifyMagicLinkToken(token: string): Promise<{
   }
 
   // Mark token as used
-  await portalSanityClient.patch(session._id).set({used: true}).commit()
+  await getPortalSanityClient().patch(session._id).set({used: true}).commit()
 
   return {
     valid: true,
