@@ -3,7 +3,7 @@
  * HERO PRESETS - Sidekick Strategies
  * ═══════════════════════════════════════════════════════════════════════════
  *
- * A collection of 5 distinct hero section styles, ranging from minimalist
+ * A collection of 4 distinct hero section styles, ranging from minimalist
  * to ultra-premium. Each hero is production-ready and uses the Sidekick
  * Strategies brand system.
  *
@@ -17,8 +17,7 @@
  * 1. HeroCleanSlate     - Minimalist, typography-focused, white background
  * 2. HeroBoldEdge       - Navy background, geometric shapes, accent pops
  * 3. HeroFlowState      - Gradient, floating orbs, modern movement
- * 4. HeroDynamicImpact  - Diagonal lines, asymmetric, high energy
- * 5. HeroExecutiveSuite - Dark luxury, peach accents, ultra-premium
+ * 4. HeroExecutiveSuite - Dark luxury, peach accents, ultra-premium
  *
  * ═══════════════════════════════════════════════════════════════════════════
  */
@@ -26,14 +25,12 @@
 export { default as HeroCleanSlate } from './HeroCleanSlate'
 export { default as HeroBoldEdge } from './HeroBoldEdge'
 export { default as HeroFlowState } from './HeroFlowState'
-export { default as HeroDynamicImpact } from './HeroDynamicImpact'
 export { default as HeroExecutiveSuite } from './HeroExecutiveSuite'
 
 // Type exports for props
 export type { default as HeroCleanSlateProps } from './HeroCleanSlate'
 export type { default as HeroBoldEdgeProps } from './HeroBoldEdge'
 export type { default as HeroFlowStateProps } from './HeroFlowState'
-export type { default as HeroDynamicImpactProps } from './HeroDynamicImpact'
 export type { default as HeroExecutiveSuiteProps } from './HeroExecutiveSuite'
 
 /**
@@ -66,15 +63,6 @@ export const heroPresets = [
     style: 'organic',
     background: 'gradient',
     energy: 'modern',
-  },
-  {
-    id: 'dynamic-impact',
-    name: 'Dynamic Impact',
-    component: 'HeroDynamicImpact',
-    description: 'Energetic diagonal slashes with overlapping elements and asymmetric layout.',
-    style: 'dynamic',
-    background: 'mixed',
-    energy: 'bold',
   },
   {
     id: 'executive-suite',

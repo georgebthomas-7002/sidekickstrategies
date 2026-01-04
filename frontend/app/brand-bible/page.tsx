@@ -7,7 +7,6 @@ import {
   HeroCleanSlate,
   HeroBoldEdge,
   HeroFlowState,
-  HeroDynamicImpact,
   HeroExecutiveSuite,
   heroPresets,
 } from '@/app/components/heroes'
@@ -241,7 +240,7 @@ export default function BrandBiblePage() {
           <div className="container mx-auto px-6">
             <h2 className="font-serif text-4xl text-white mb-4">Hero Presets</h2>
             <p className="font-sans text-white/70 mb-8 max-w-2xl">
-              Five distinct hero styles, from minimalist to ultra-premium. Each is production-ready and customizable.
+              Four distinct hero styles, from minimalist to ultra-premium. Each is production-ready and customizable.
             </p>
             <div className="flex flex-wrap gap-3">
               {heroPresets.map((preset, i) => (
@@ -293,20 +292,10 @@ export default function BrandBiblePage() {
           <HeroFlowState />
         </div>
 
-        {/* Hero 4: Dynamic Impact */}
-        <div id="dynamic-impact" className="relative scroll-mt-16">
-          <div className="absolute top-8 left-6 z-10 bg-white/95 backdrop-blur-sm px-5 py-4 shadow-xl rounded">
-            <span className="font-mono text-xs text-accent-500">04</span>
-            <h3 className="font-heading text-xl text-brand-800 font-semibold">Dynamic Impact</h3>
-            <p className="text-sm text-gray-500 mt-1">Diagonal / High Energy</p>
-          </div>
-          <HeroDynamicImpact />
-        </div>
-
-        {/* Hero 5: Executive Suite */}
+        {/* Hero 4: Executive Suite */}
         <div id="executive-suite" className="relative scroll-mt-16">
           <div className="absolute top-8 left-6 z-10 bg-white/95 backdrop-blur-sm px-5 py-4 shadow-xl rounded">
-            <span className="font-mono text-xs text-accent-500">05</span>
+            <span className="font-mono text-xs text-accent-500">04</span>
             <h3 className="font-heading text-xl text-brand-800 font-semibold">Executive Suite</h3>
             <p className="text-sm text-gray-500 mt-1">Luxury / Ultra-Premium</p>
           </div>
@@ -318,7 +307,7 @@ export default function BrandBiblePage() {
       <footer className="bg-gray-950 text-white py-20">
         <div className="container mx-auto px-6">
           <h2 className="font-serif text-3xl mb-12">Hero Preset Summary</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {heroPresets.map((preset, i) => (
               <a
                 key={preset.id}
