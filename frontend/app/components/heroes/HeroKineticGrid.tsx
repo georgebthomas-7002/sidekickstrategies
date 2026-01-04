@@ -323,20 +323,19 @@ export default function HeroKineticGrid({
                 {primaryCta.label}
               </a>
 
-              {/* Secondary CTA - outline technical style */}
+              {/* Secondary CTA - teal solid style */}
               <a
                 href={secondaryCta.href}
-                className="inline-flex items-center justify-center px-8 py-4 font-mono text-sm tracking-wider uppercase transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 text-white font-mono text-sm tracking-wider uppercase transition-all duration-300"
                 style={{
-                  color: secondaryHover ? COLORS.teal400 : 'rgba(255,255,255,0.6)',
-                  border: `1px solid ${secondaryHover ? COLORS.teal400 : 'rgba(255,255,255,0.2)'}`,
-                  backgroundColor: secondaryHover ? `${COLORS.teal500}10` : 'transparent',
+                  backgroundColor: secondaryHover ? COLORS.teal400 : COLORS.teal500,
+                  clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+                  boxShadow: secondaryHover ? `0 0 30px ${COLORS.teal500}50` : 'none',
                 }}
                 onMouseEnter={() => setSecondaryHover(true)}
                 onMouseLeave={() => setSecondaryHover(false)}
               >
                 {secondaryCta.label}
-                <span className="ml-2 font-mono">_</span>
               </a>
 
               {/* Tertiary CTA - text link style */}
