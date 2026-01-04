@@ -120,6 +120,49 @@ export default function HeroKineticGrid({
           80% { opacity: 1; }
           100% { stroke-dashoffset: -100; opacity: 0; }
         }
+        /* ═══ PIMPED IMAGE ANIMATIONS ═══ */
+        @keyframes rotateRing {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        @keyframes orbitParticle {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes bracketPulse {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
+        }
+        @keyframes streamIn {
+          0% { opacity: 0; transform: translateX(-100%); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: translateX(100%); }
+        }
+        @keyframes streamInV {
+          0% { opacity: 0; transform: translateY(-100%); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: translateY(100%); }
+        }
+        @keyframes borderGlow {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.7; }
+        }
+        @keyframes holoSweep {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+        @keyframes floatLabel {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(-4px); }
+        }
+        @keyframes cornerDot {
+          0%, 100% { transform: scale(1); opacity: 0.6; }
+          50% { transform: scale(1.5); opacity: 1; }
+        }
       `}</style>
 
       {/* Animated grid background */}
@@ -374,18 +417,181 @@ export default function HeroKineticGrid({
             }}
           >
             {image ? (
-              /* Custom image with tech-styled frame */
-              <div className="relative">
-                {/* Glowing border effect */}
+              /* Custom image with PIMPED OUT tech-styled frame */
+              <div className="relative" style={{ width: '420px', height: '420px' }}>
+
+                {/* ═══ LAYER 1: OUTER ROTATING RING ═══ */}
                 <div
-                  className="absolute -inset-1 rounded-lg opacity-50 blur-sm"
+                  className="absolute inset-[-60px] rounded-full"
                   style={{
-                    background: `linear-gradient(135deg, ${COLORS.teal500}, ${COLORS.orange500})`,
+                    border: `1px dashed ${COLORS.teal500}30`,
+                    animation: mounted ? 'rotateRing 30s linear infinite' : 'none',
                   }}
                 />
-                {/* Image container with tech corners */}
+
+                {/* ═══ LAYER 2: PULSING GLOW RINGS ═══ */}
                 <div
-                  className="relative overflow-hidden"
+                  className="absolute inset-[-40px] rounded-full"
+                  style={{
+                    background: `radial-gradient(circle, transparent 60%, ${COLORS.teal500}10 70%, transparent 80%)`,
+                    animation: mounted ? 'pulseGlow 4s ease-in-out infinite' : 'none',
+                  }}
+                />
+                <div
+                  className="absolute inset-[-25px] rounded-full"
+                  style={{
+                    background: `radial-gradient(circle, transparent 65%, ${COLORS.orange500}08 75%, transparent 85%)`,
+                    animation: mounted ? 'pulseGlow 4s ease-in-out infinite 1s' : 'none',
+                  }}
+                />
+
+                {/* ═══ LAYER 3: ORBITING PARTICLES ═══ */}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`orbit-${i}`}
+                    className="absolute"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      animation: mounted ? `orbitParticle ${12 + i * 2}s linear infinite ${i * 0.5}s` : 'none',
+                    }}
+                  >
+                    <div
+                      className="absolute w-2 h-2 rounded-full"
+                      style={{
+                        top: '-4px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        backgroundColor: i % 2 === 0 ? COLORS.orange500 : COLORS.teal400,
+                        boxShadow: `0 0 ${8 + i * 2}px ${i % 2 === 0 ? COLORS.orange500 : COLORS.teal400}`,
+                        opacity: 0.8 - i * 0.05,
+                      }}
+                    />
+                  </div>
+                ))}
+
+                {/* ═══ LAYER 4: CORNER BRACKETS (Animated) ═══ */}
+                {/* Top-left bracket */}
+                <div className="absolute -top-8 -left-8">
+                  <div
+                    className="w-12 h-px"
+                    style={{
+                      backgroundColor: COLORS.orange500,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite' : 'none',
+                    }}
+                  />
+                  <div
+                    className="w-px h-12"
+                    style={{
+                      backgroundColor: COLORS.orange500,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 0.2s' : 'none',
+                    }}
+                  />
+                </div>
+                {/* Top-right bracket */}
+                <div className="absolute -top-8 -right-8 flex flex-col items-end">
+                  <div
+                    className="w-12 h-px"
+                    style={{
+                      backgroundColor: COLORS.teal400,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 0.5s' : 'none',
+                    }}
+                  />
+                  <div
+                    className="w-px h-12 self-end"
+                    style={{
+                      backgroundColor: COLORS.teal400,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 0.7s' : 'none',
+                    }}
+                  />
+                </div>
+                {/* Bottom-left bracket */}
+                <div className="absolute -bottom-8 -left-8 flex flex-col justify-end">
+                  <div
+                    className="w-px h-12"
+                    style={{
+                      backgroundColor: COLORS.teal400,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 1s' : 'none',
+                    }}
+                  />
+                  <div
+                    className="w-12 h-px"
+                    style={{
+                      backgroundColor: COLORS.teal400,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 1.2s' : 'none',
+                    }}
+                  />
+                </div>
+                {/* Bottom-right bracket */}
+                <div className="absolute -bottom-8 -right-8 flex flex-col items-end justify-end">
+                  <div
+                    className="w-px h-12 self-end"
+                    style={{
+                      backgroundColor: COLORS.orange500,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 1.5s' : 'none',
+                    }}
+                  />
+                  <div
+                    className="w-12 h-px"
+                    style={{
+                      backgroundColor: COLORS.orange500,
+                      animation: mounted ? 'bracketPulse 2s ease-in-out infinite 1.7s' : 'none',
+                    }}
+                  />
+                </div>
+
+                {/* ═══ LAYER 5: DATA STREAM LINES ═══ */}
+                {/* Incoming streams from edges */}
+                <div
+                  className="absolute top-1/2 -left-20 w-16 h-px"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${COLORS.teal400})`,
+                    animation: mounted ? 'streamIn 3s ease-in-out infinite' : 'none',
+                  }}
+                />
+                <div
+                  className="absolute top-1/3 -right-20 w-16 h-px"
+                  style={{
+                    background: `linear-gradient(-90deg, transparent, ${COLORS.orange500})`,
+                    animation: mounted ? 'streamIn 3s ease-in-out infinite 1s' : 'none',
+                  }}
+                />
+                <div
+                  className="absolute -top-16 left-1/2 w-px h-12"
+                  style={{
+                    background: `linear-gradient(180deg, transparent, ${COLORS.peach})`,
+                    animation: mounted ? 'streamInV 3s ease-in-out infinite 0.5s' : 'none',
+                  }}
+                />
+                <div
+                  className="absolute -bottom-16 left-2/3 w-px h-12"
+                  style={{
+                    background: `linear-gradient(0deg, transparent, ${COLORS.lightBlue})`,
+                    animation: mounted ? 'streamInV 3s ease-in-out infinite 1.5s' : 'none',
+                  }}
+                />
+
+                {/* ═══ LAYER 6: INNER GLOW ═══ */}
+                <div
+                  className="absolute inset-0 rounded-lg"
+                  style={{
+                    boxShadow: `inset 0 0 60px ${COLORS.teal500}15, 0 0 40px ${COLORS.navy950}`,
+                  }}
+                />
+
+                {/* ═══ LAYER 7: GLOWING BORDER ═══ */}
+                <div
+                  className="absolute -inset-1 rounded-lg blur-sm"
+                  style={{
+                    background: `linear-gradient(135deg, ${COLORS.teal500}, ${COLORS.orange500})`,
+                    opacity: 0.5,
+                    animation: mounted ? 'borderGlow 3s ease-in-out infinite' : 'none',
+                  }}
+                />
+
+                {/* ═══ MAIN IMAGE CONTAINER ═══ */}
+                <div
+                  className="relative overflow-hidden h-full"
                   style={{
                     clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
                     border: `1px solid ${COLORS.teal500}40`,
@@ -395,11 +601,12 @@ export default function HeroKineticGrid({
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-auto max-w-[400px] object-cover"
+                    className="w-full h-full object-cover"
                     style={{
                       filter: 'contrast(1.05) saturate(1.1)',
                     }}
                   />
+
                   {/* Scan line overlay effect */}
                   <div
                     className="absolute inset-0 pointer-events-none opacity-10"
@@ -407,12 +614,49 @@ export default function HeroKineticGrid({
                       backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, ${COLORS.teal500}20 2px, ${COLORS.teal500}20 4px)`,
                     }}
                   />
+
+                  {/* ═══ HOLOGRAPHIC SWEEP EFFECT ═══ */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: `linear-gradient(105deg, transparent 40%, ${COLORS.teal400}15 45%, ${COLORS.orange500}10 50%, transparent 55%)`,
+                      animation: mounted ? 'holoSweep 4s ease-in-out infinite' : 'none',
+                    }}
+                  />
                 </div>
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-4 h-px" style={{ backgroundColor: COLORS.orange500 }} />
-                <div className="absolute top-0 left-0 w-px h-4" style={{ backgroundColor: COLORS.orange500 }} />
-                <div className="absolute bottom-0 right-0 w-4 h-px" style={{ backgroundColor: COLORS.teal400 }} />
-                <div className="absolute bottom-0 right-0 w-px h-4" style={{ backgroundColor: COLORS.teal400 }} />
+
+                {/* ═══ LAYER 8: FLOATING TECH LABELS ═══ */}
+                <div
+                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded font-mono text-[9px] tracking-widest uppercase"
+                  style={{
+                    backgroundColor: `${COLORS.navy950}90`,
+                    border: `1px solid ${COLORS.teal500}40`,
+                    color: COLORS.teal400,
+                    animation: mounted ? 'floatLabel 3s ease-in-out infinite' : 'none',
+                  }}
+                >
+                  <span className="animate-pulse mr-1">●</span> Active
+                </div>
+
+                {/* Corner energy dots */}
+                <div className="absolute top-0 left-0 w-3 h-3">
+                  <div
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      backgroundColor: COLORS.orange500,
+                      animation: mounted ? 'cornerDot 1.5s ease-in-out infinite' : 'none',
+                    }}
+                  />
+                </div>
+                <div className="absolute bottom-0 right-0 w-3 h-3">
+                  <div
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      backgroundColor: COLORS.teal400,
+                      animation: mounted ? 'cornerDot 1.5s ease-in-out infinite 0.75s' : 'none',
+                    }}
+                  />
+                </div>
               </div>
             ) : (
               /* Default decorative circuit-like element */
