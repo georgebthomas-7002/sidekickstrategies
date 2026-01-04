@@ -209,7 +209,7 @@ export default function BrandBiblePage() {
       <div className="fixed right-0 top-1/3 z-50 hidden lg:block">
         <a
           href="/portal/login"
-          className="group flex items-center gap-4 bg-gradient-to-r from-brand-800 to-brand-700 text-white px-7 py-6 rounded-l-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:translate-x-[-6px]"
+          className="group flex items-center gap-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-white px-7 py-6 rounded-l-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:translate-x-[-6px]"
         >
           <div className="flex flex-col items-end">
             <span className="font-mono text-xs uppercase tracking-wider text-white/60">Client Access</span>
