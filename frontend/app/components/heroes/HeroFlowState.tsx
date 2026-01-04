@@ -235,28 +235,6 @@ export default function HeroFlowState({
         </div>
       </div>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes float1 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(30px, -30px) rotate(5deg); }
-          50% { transform: translate(-20px, 20px) rotate(-3deg); }
-          75% { transform: translate(40px, 10px) rotate(2deg); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(50px, 30px); }
-          66% { transform: translate(-30px, -20px); }
-        }
-        @keyframes float3 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-40px, 40px) scale(1.1); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.5); }
-        }
-      `}</style>
     </section>
   )
 }
