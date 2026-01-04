@@ -211,7 +211,7 @@ export default function HeroAuroraPulse({
             }}
           >
             <span
-              className="inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.3em] uppercase"
+              className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.25em] uppercase"
               style={{ color: COLORS.teal400 }}
             >
               <span

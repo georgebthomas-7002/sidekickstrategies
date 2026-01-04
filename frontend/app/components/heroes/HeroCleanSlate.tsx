@@ -136,7 +136,7 @@ export default function HeroCleanSlate({
               }}
             >
               <span
-                className="font-mono text-[11px] tracking-[0.3em] uppercase"
+                className="font-mono text-xs tracking-[0.25em] uppercase"
                 style={{ color: COLORS.teal500 }}
               >
                 Sidekick Strategies

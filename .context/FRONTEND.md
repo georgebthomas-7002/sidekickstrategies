@@ -51,6 +51,23 @@
 | `Avatar` | `app/components/Avatar.tsx` | Author/person display |
 | `ResolvedLink` | `app/components/ResolvedLink.tsx` | Handles internal/external links |
 
+### Hero Preset Components (app/components/heroes/)
+| Component | Style | Background | Animation |
+|-----------|-------|------------|-----------|
+| `HeroCleanSlate.tsx` | Editorial minimalism | White | Subtle entrance |
+| `HeroBoldEdge.tsx` | Architectural geometry | Navy | Floating shapes |
+| `HeroGradientFlow.tsx` | Organic flowing | 3-color gradient | Glass orbs |
+| `HeroAuroraPulse.tsx` | Ethereal aurora | Dark | Morphing blobs |
+| `HeroKineticGrid.tsx` | Tech-forward | Dark navy | Data flow lines |
+| `HeroExecutiveSuite.tsx` | Ultra-premium luxury | Dark navy | Corner accents |
+
+**Hero Pattern**: All heroes use inline styles with hex color values to prevent Tailwind v4 CSS purging. Each has a COLORS constant and CSS keyframe animations via `<style jsx>`.
+
+**HeroKineticGrid Props** (most flexible):
+- `headline`, `subheadline`, `eyebrowText`
+- `primaryCta`, `secondaryCta`, `tertiaryCta` (orange, teal, text link)
+- `image?: { src, alt }` - Shows tech-framed image on right side
+
 ### Block Components (app/components/blocks/)
 | Component | Schema Type | Purpose |
 |-----------|-------------|---------|

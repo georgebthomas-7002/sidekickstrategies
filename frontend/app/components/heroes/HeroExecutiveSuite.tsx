@@ -182,7 +182,7 @@ export default function HeroExecutiveSuite({
                 <div className="w-1 h-1 rounded-full" style={{ backgroundColor: `${COLORS.peach}30` }} />
               </div>
               <span
-                className="font-mono text-[11px] tracking-[0.4em] uppercase"
+                className="font-mono text-xs tracking-[0.25em] uppercase"
                 style={{ color: `${COLORS.peach}cc` }}
               >
                 Sidekick Strategies

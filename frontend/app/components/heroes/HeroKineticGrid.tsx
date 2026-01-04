@@ -251,7 +251,7 @@ export default function HeroKineticGrid({
                 <span className="w-1 h-1 rounded-full bg-current opacity-25" />
               </div>
               <span
-                className="font-mono text-[10px] tracking-[0.4em] uppercase"
+                className="font-mono text-xs tracking-[0.25em] uppercase"
                 style={{ color: COLORS.teal400 }}
               >
                 {eyebrowText}
