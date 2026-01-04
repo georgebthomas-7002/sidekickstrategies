@@ -1,10 +1,11 @@
-import type {Metadata} from 'next'
+import type {Metadata, ResolvingMetadata} from 'next'
 
 import PageBuilderPage from '@/app/components/PageBuilder'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery, pagesSlugs} from '@/sanity/lib/queries'
 import {GetPageQueryResult} from '@/sanity.types'
 import {PageOnboarding} from '@/app/components/Onboarding'
+import {resolveOpenGraphImage} from '@/sanity/lib/utils'
 
 type Props = {
   params: Promise<{slug: string}>
@@ -28,7 +29,7 @@ export async function generateStaticParams() {
  * Generate metadata for the page.
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params
   const {data: page} = await sanityFetch({
     query: getPageQuery,
@@ -37,8 +38,16 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     stega: false,
   })
 
+  const previousImages = (await parent).openGraph?.images || []
+  const ogImage = resolveOpenGraphImage(page?.seo?.ogImage)
+
   return {
-    title: page?.name,
+    title: page?.seo?.metaTitle || page?.name,
+    description: page?.seo?.metaDescription || undefined,
+    openGraph: {
+      images: ogImage ? [ogImage, ...previousImages] : previousImages,
+    },
+    ...(page?.seo?.noIndex && {robots: {index: false, follow: false}}),
   } satisfies Metadata
 }
 

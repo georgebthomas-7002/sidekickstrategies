@@ -182,6 +182,13 @@ export const download = defineType({
       },
       group: 'settings',
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Sharing',
+      type: 'seo',
+      description: 'Configure how this resource appears in search results and social media. Leave blank to use thumbnail and excerpt.',
+      group: 'settings',
+    }),
   ],
   orderings: [
     {

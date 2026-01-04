@@ -169,6 +169,13 @@ export const podcast = defineType({
       },
       group: 'meta',
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Sharing',
+      type: 'seo',
+      description: 'Configure how this episode appears in search results and social media. Leave blank to use cover image and description.',
+      group: 'meta',
+    }),
   ],
   orderings: [
     {

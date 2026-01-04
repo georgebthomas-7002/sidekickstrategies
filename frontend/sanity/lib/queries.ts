@@ -2,6 +2,27 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
+// SEO fields fragment - reusable across all content types
+const seoFields = /* groq */ `
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage {
+      asset->{
+        url,
+        metadata {
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    noIndex
+  }
+`
+
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
@@ -11,6 +32,7 @@ const postFields = /* groq */ `
   coverImage,
   "date": coalesce(date, _updatedAt),
   "author": author->{firstName, lastName, picture},
+  ${seoFields},
 `
 
 const podcastFields = /* groq */ `
@@ -29,6 +51,7 @@ const podcastFields = /* groq */ `
   "guests": guests[]->{firstName, lastName, picture},
   "hosts": hosts[]->{firstName, lastName, picture},
   tags,
+  ${seoFields},
 `
 
 const downloadFields = /* groq */ `
@@ -46,6 +69,7 @@ const downloadFields = /* groq */ `
   formDescription,
   "publishedAt": coalesce(publishedAt, _updatedAt),
   tags,
+  ${seoFields},
 `
 
 const linkReference = /* groq */ `
@@ -115,6 +139,7 @@ export const getPageQuery = defineQuery(`
     _type,
     name,
     slug,
+    ${seoFields},
     "pageBuilder": pageBuilder[]{
       ...,
       ${sectionSettingsFields},

@@ -58,5 +58,11 @@ export const page = defineType({
         },
       },
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Sharing',
+      type: 'seo',
+      description: 'Configure how this page appears in search results and social media shares.',
+    }),
   ],
 })

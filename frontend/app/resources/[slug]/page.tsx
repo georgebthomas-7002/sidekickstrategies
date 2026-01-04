@@ -42,14 +42,16 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     stega: false,
   })
   const previousImages = (await parent).openGraph?.images || []
-  const ogImage = resolveOpenGraphImage(download?.thumbnail)
+  // Use SEO ogImage if set, otherwise fall back to thumbnail
+  const ogImage = resolveOpenGraphImage(download?.seo?.ogImage || download?.thumbnail)
 
   return {
-    title: download?.title,
-    description: download?.excerpt,
+    title: download?.seo?.metaTitle || download?.title,
+    description: download?.seo?.metaDescription || download?.excerpt,
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
+    ...(download?.seo?.noIndex && {robots: {index: false, follow: false}}),
   } satisfies Metadata
 }
 

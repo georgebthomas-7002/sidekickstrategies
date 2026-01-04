@@ -13,13 +13,42 @@
  */
 
 // Source: ../studio/schema.json
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type Seo = {
+  _type: 'seo'
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  noIndex?: boolean
+}
+
+export type StylePresetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'stylePreset'
+}
+
 export type FaqAccordion = {
   _type: 'faqAccordion'
   heading?: string
   subheading?: string
   items?: Array<{
-    question?: string
-    answer?: BlockContent
+    question: string
+    answer: BlockContent
     _type: 'faqItem'
     _key: string
   }>
@@ -27,6 +56,8 @@ export type FaqAccordion = {
   expandFirst?: boolean
   allowMultiple?: boolean
   theme?: 'light' | 'dark'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type ContactForm = {
@@ -50,6 +81,8 @@ export type ContactForm = {
   contactPhone?: string
   contactAddress?: string
   theme?: 'light' | 'dark'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type PersonReference = {
@@ -72,19 +105,14 @@ export type TeamGrid = {
   layout?: 'grid-4' | 'grid-3' | 'grid-2' | 'list'
   showBio?: boolean
   showSocialLinks?: boolean
-}
-
-export type SanityImageAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type Testimonial = {
   _type: 'testimonial'
-  quote?: string
-  authorName?: string
+  quote: string
+  authorName: string
   authorTitle?: string
   authorImage?: {
     asset?: SanityImageAssetReference
@@ -102,6 +130,9 @@ export type Testimonial = {
   }
   rating?: number
   theme?: 'light' | 'dark' | 'accent'
+  layout?: 'card' | 'large-quote' | 'minimal' | 'photo-left' | 'photo-right'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type DownloadReference = {
@@ -134,6 +165,8 @@ export type DownloadsGrid = {
   layout?: 'grid-3' | 'grid-2' | 'list'
   showButton?: boolean
   buttonText?: string
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type PodcastReference = {
@@ -157,6 +190,8 @@ export type FeaturedPodcasts = {
   layout?: 'grid-3' | 'grid-2' | 'list' | 'featured'
   showButton?: boolean
   buttonText?: string
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type PostReference = {
@@ -180,12 +215,14 @@ export type FeaturedArticles = {
   layout?: 'grid-3' | 'grid-2' | 'list' | 'featured'
   showButton?: boolean
   buttonText?: string
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type Hero = {
   _type: 'hero'
   eyebrow?: string
-  heading?: string
+  heading: string
   subheading?: string
   primaryButton?: Button
   secondaryButton?: Button
@@ -208,6 +245,41 @@ export type Hero = {
   size?: 'large' | 'medium' | 'small'
   alignment?: 'left' | 'center' | 'right'
   theme?: 'light' | 'dark'
+  layout?: 'centered' | 'split-left' | 'split-right' | 'overlay'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
+}
+
+export type SectionSettings = {
+  _type: 'sectionSettings'
+  containerWidth?: 'full' | 'wide' | 'default' | 'narrow'
+  contentAlignment?: 'left' | 'center' | 'right'
+  backgroundColor?:
+    | 'transparent'
+    | 'white'
+    | 'gray-50'
+    | 'gray-100'
+    | 'gray-900'
+    | 'primary'
+    | 'secondary'
+    | 'accent'
+  backgroundImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  backgroundOverlay?: 'none' | 'light' | 'medium' | 'dark'
+  paddingTop?: '0' | 'sm' | 'md' | 'lg' | 'xl'
+  paddingBottom?: '0' | 'sm' | 'md' | 'lg' | 'xl'
+  sectionId?: string
+  customClasses?: string
+  dataAttributes?: Array<{
+    key?: string
+    value?: string
+    _key: string
+  }>
 }
 
 export type PageReference = {
@@ -229,7 +301,7 @@ export type Link = {
 export type CallToAction = {
   _type: 'callToAction'
   eyebrow?: string
-  heading?: string
+  heading: string
   body?: BlockContentTextOnly
   button?: Button
   image?: {
@@ -241,6 +313,10 @@ export type CallToAction = {
   }
   theme?: 'light' | 'dark'
   contentAlignment?: 'textFirst' | 'imageFirst'
+  layout?: 'image-left' | 'image-right' | 'image-top' | 'content-only' | 'image-background'
+  imageSize?: 'small' | 'medium' | 'large'
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type InfoSection = {
@@ -248,6 +324,8 @@ export type InfoSection = {
   heading?: string
   subheading?: string
   content?: BlockContent
+  stylePreset?: StylePresetReference
+  sectionSettings?: SectionSettings
 }
 
 export type BlockContentTextOnly = Array<{
@@ -308,6 +386,41 @@ export type Button = {
   link?: Link
 }
 
+export type StylePreset = {
+  _id: string
+  _type: 'stylePreset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  description?: string
+  previewImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  applicableBlocks?: Array<string>
+  settings?: SectionSettings
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
 export type SanityFileAssetReference = {
   _ref: string
   _type: 'reference'
@@ -321,8 +434,8 @@ export type Download = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   description?: BlockContent
   excerpt?: string
   thumbnail?: {
@@ -333,7 +446,7 @@ export type Download = {
     alt?: string
     _type: 'image'
   }
-  file?: {
+  file: {
     asset?: SanityFileAssetReference
     media?: unknown
     _type: 'file'
@@ -362,27 +475,12 @@ export type Download = {
   formDescription?: string
   publishedAt?: string
   tags?: Array<string>
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  seo?: Seo
 }
 
 export type Slug = {
   _type: 'slug'
-  current?: string
+  current: string
   source?: string
 }
 
@@ -392,8 +490,8 @@ export type Podcast = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   description?: string
   showNotes?: BlockContent
   transistorUrl?: string
@@ -421,6 +519,7 @@ export type Podcast = {
     } & PersonReference
   >
   tags?: Array<string>
+  seo?: Seo
 }
 
 export type Settings = {
@@ -429,7 +528,7 @@ export type Settings = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
   description?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -469,10 +568,8 @@ export type Page = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name?: string
-  slug?: Slug
-  heading?: string
-  subheading?: string
+  name: string
+  slug: Slug
   pageBuilder?: Array<
     | ({
         _key: string
@@ -505,6 +602,7 @@ export type Page = {
         _key: string
       } & FaqAccordion)
   >
+  seo?: Seo
 }
 
 export type Post = {
@@ -513,8 +611,8 @@ export type Post = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  slug?: Slug
+  title: string
+  slug: Slug
   content?: BlockContent
   excerpt?: string
   coverImage?: {
@@ -527,6 +625,7 @@ export type Post = {
   }
   date?: string
   author?: PersonReference
+  seo?: Seo
 }
 
 export type Person = {
@@ -535,9 +634,9 @@ export type Person = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  firstName?: string
-  lastName?: string
-  picture?: {
+  firstName: string
+  lastName: string
+  picture: {
     asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
@@ -594,7 +693,7 @@ export type AssistInstructionContextReference = {
 
 export type SanityAssistInstructionContext = {
   _type: 'sanity.assist.instruction.context'
-  reference?: AssistInstructionContextReference
+  reference: AssistInstructionContextReference
 }
 
 export type AssistInstructionContext = {
@@ -622,7 +721,7 @@ export type AssistInstructionContext = {
 
 export type SanityAssistInstructionUserInput = {
   _type: 'sanity.assist.instruction.userInput'
-  message?: string
+  message: string
   description?: string
 }
 
@@ -705,9 +804,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
 }
 
 export type SanityImageMetadata = {
@@ -781,11 +880,13 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
+  | Seo
+  | StylePresetReference
   | FaqAccordion
   | ContactForm
   | PersonReference
   | TeamGrid
-  | SanityImageAssetReference
   | Testimonial
   | DownloadReference
   | DownloadsGrid
@@ -794,6 +895,7 @@ export type AllSanitySchemaTypes =
   | PostReference
   | FeaturedArticles
   | Hero
+  | SectionSettings
   | PageReference
   | Link
   | CallToAction
@@ -801,10 +903,11 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
-  | SanityFileAssetReference
-  | Download
+  | StylePreset
   | SanityImageCrop
   | SanityImageHotspot
+  | SanityFileAssetReference
+  | Download
   | Slug
   | Podcast
   | Settings
@@ -844,7 +947,7 @@ export type SettingsQueryResult = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
+  title: string
   description?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -880,18 +983,35 @@ export type SettingsQueryResult = {
 
 // Source: sanity/lib/queries.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    "pageBuilder": pageBuilder[]{      ...,        sectionSettings {    containerWidth,    contentAlignment,    backgroundColor,    customBackgroundColor,    backgroundImage {      asset->{        url      }    },    backgroundOverlay,    paddingTop,    paddingBottom,    sectionId,    customClasses,    dataAttributes[] {      key,      value    }  },  "stylePreset": stylePreset->{    name,    settings {      containerWidth,      contentAlignment,      backgroundColor,      customBackgroundColor,      backgroundImage {        asset->{          url        }      },      backgroundOverlay,      paddingTop,      paddingBottom,      sectionId,      customClasses,      dataAttributes[] {        key,        value      }    }  },      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },      _type == "hero" => {        ...,        primaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        },        secondaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "featuredArticles" => {        ...,        "articles": select(          displayMode == "selected" => articles[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},},          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},}        )      },      _type == "featuredPodcasts" => {        ...,        "episodes": select(          displayMode == "selected" => episodes[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,},          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,}        )      },      _type == "downloadsGrid" => {        ...,        "downloads": select(          displayMode == "selected" => downloads[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,},          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,},          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,}        )      },      _type == "teamGrid" => {        ...,        "members": select(          displayMode == "selected" => members[]->{firstName, lastName, picture},          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}        )      },      _type == "faqAccordion" => {        ...,        items[]{          ...,          answer[]{            ...,            markDefs[]{              ...,                _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }            }          }        }      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,      seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },    "pageBuilder": pageBuilder[]{      ...,        sectionSettings {    containerWidth,    contentAlignment,    backgroundColor,    customBackgroundColor,    backgroundImage {      asset->{        url      }    },    backgroundOverlay,    paddingTop,    paddingBottom,    sectionId,    customClasses,    dataAttributes[] {      key,      value    }  },  "stylePreset": stylePreset->{    name,    settings {      containerWidth,      contentAlignment,      backgroundColor,      customBackgroundColor,      backgroundImage {        asset->{          url        }      },      backgroundOverlay,      paddingTop,      paddingBottom,      sectionId,      customClasses,      dataAttributes[] {        key,        value      }    }  },      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },      _type == "hero" => {        ...,        primaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        },        secondaryButton {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "featuredArticles" => {        ...,        "articles": select(          displayMode == "selected" => articles[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },},          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },}        )      },      _type == "featuredPodcasts" => {        ...,        "episodes": select(          displayMode == "selected" => episodes[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },},          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },}        )      },      _type == "downloadsGrid" => {        ...,        "downloads": select(          displayMode == "selected" => downloads[]->{  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },},          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },},          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {  _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },}        )      },      _type == "teamGrid" => {        ...,        "members": select(          displayMode == "selected" => members[]->{firstName, lastName, picture},          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}        )      },      _type == "faqAccordion" => {        ...,        items[]{          ...,          answer[]{            ...,            markDefs[]{              ...,                _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }            }          }        }      },    },  }
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
-  name: string | null
-  slug: Slug | null
+  name: string
+  slug: Slug
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
+    } | null
+    noIndex: boolean | null
+  } | null
   pageBuilder: Array<
     | {
         _key: string
         _type: 'callToAction'
         eyebrow?: string
-        heading?: string
+        heading: string
         body?: BlockContentTextOnly
         button: {
           _type: 'button'
@@ -914,8 +1034,10 @@ export type GetPageQueryResult = {
         }
         theme?: 'dark' | 'light'
         contentAlignment?: 'imageFirst' | 'textFirst'
-        sectionSettings: null
-        stylePreset: null
+        layout?: 'content-only' | 'image-background' | 'image-left' | 'image-right' | 'image-top'
+        imageSize?: 'large' | 'medium' | 'small'
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
@@ -939,8 +1061,67 @@ export type GetPageQueryResult = {
         contactPhone?: string
         contactAddress?: string
         theme?: 'dark' | 'light'
-        sectionSettings: null
-        stylePreset: null
+        stylePreset: {
+          name: string
+          settings: {
+            containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+            contentAlignment: 'center' | 'left' | 'right' | null
+            backgroundColor:
+              | 'accent'
+              | 'gray-100'
+              | 'gray-50'
+              | 'gray-900'
+              | 'primary'
+              | 'secondary'
+              | 'transparent'
+              | 'white'
+              | null
+            customBackgroundColor: null
+            backgroundImage: {
+              asset: {
+                url: string | null
+              } | null
+            } | null
+            backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+            paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            sectionId: string | null
+            customClasses: string | null
+            dataAttributes: Array<{
+              key: string | null
+              value: string | null
+            }> | null
+          } | null
+        } | null
+        sectionSettings: {
+          containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+          contentAlignment: 'center' | 'left' | 'right' | null
+          backgroundColor:
+            | 'accent'
+            | 'gray-100'
+            | 'gray-50'
+            | 'gray-900'
+            | 'primary'
+            | 'secondary'
+            | 'transparent'
+            | 'white'
+            | null
+          customBackgroundColor: null
+          backgroundImage: {
+            asset: {
+              url: string | null
+            } | null
+          } | null
+          backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+          paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          sectionId: string | null
+          customClasses: string | null
+          dataAttributes: Array<{
+            key: string | null
+            value: string | null
+          }> | null
+        } | null
       }
     | {
         _key: string
@@ -951,8 +1132,8 @@ export type GetPageQueryResult = {
         downloads: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string | 'Untitled'
-          slug: string | null
+          title: string
+          slug: string
           excerpt: string | null
           thumbnail: {
             asset?: SanityImageAssetReference
@@ -989,6 +1170,23 @@ export type GetPageQueryResult = {
           formDescription: string | null
           publishedAt: string
           tags: Array<string> | null
+          seo: {
+            metaTitle: string | null
+            metaDescription: string | null
+            ogImage: {
+              asset: {
+                url: string | null
+                metadata: {
+                  dimensions: {
+                    width: number
+                    height: number
+                  } | null
+                } | null
+              } | null
+              alt: string | null
+            } | null
+            noIndex: boolean | null
+          } | null
         }> | null
         category?:
           | 'case-study'
@@ -1003,8 +1201,8 @@ export type GetPageQueryResult = {
         layout?: 'grid-2' | 'grid-3' | 'list'
         showButton?: boolean
         buttonText?: string
-        sectionSettings: null
-        stylePreset: null
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
@@ -1012,7 +1210,7 @@ export type GetPageQueryResult = {
         heading?: string
         subheading?: string
         items: Array<{
-          question?: string
+          question: string
           answer: Array<
             | {
                 children?: Array<{
@@ -1045,7 +1243,7 @@ export type GetPageQueryResult = {
                 _key: string
                 markDefs: null
               }
-          > | null
+          >
           _type: 'faqItem'
           _key: string
         }> | null
@@ -1053,8 +1251,8 @@ export type GetPageQueryResult = {
         expandFirst?: boolean
         allowMultiple?: boolean
         theme?: 'dark' | 'light'
-        sectionSettings: null
-        stylePreset: null
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
@@ -1065,8 +1263,8 @@ export type GetPageQueryResult = {
         articles: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string | 'Untitled'
-          slug: string | null
+          title: string
+          slug: string
           excerpt: string | null
           coverImage: {
             asset?: SanityImageAssetReference
@@ -1078,8 +1276,8 @@ export type GetPageQueryResult = {
           } | null
           date: string
           author: {
-            firstName: string | null
-            lastName: string | null
+            firstName: string
+            lastName: string
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1087,15 +1285,32 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
+            }
+          } | null
+          seo: {
+            metaTitle: string | null
+            metaDescription: string | null
+            ogImage: {
+              asset: {
+                url: string | null
+                metadata: {
+                  dimensions: {
+                    width: number
+                    height: number
+                  } | null
+                } | null
+              } | null
+              alt: string | null
             } | null
+            noIndex: boolean | null
           } | null
         }> | null
         limit?: number
         layout?: 'featured' | 'grid-2' | 'grid-3' | 'list'
         showButton?: boolean
         buttonText?: string
-        sectionSettings: null
-        stylePreset: null
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
@@ -1106,8 +1321,8 @@ export type GetPageQueryResult = {
         episodes: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string | 'Untitled'
-          slug: string | null
+          title: string
+          slug: string
           description: string | null
           coverImage: {
             asset?: SanityImageAssetReference
@@ -1124,8 +1339,8 @@ export type GetPageQueryResult = {
           seasonNumber: number | null
           publishedAt: string
           guests: Array<{
-            firstName: string | null
-            lastName: string | null
+            firstName: string
+            lastName: string
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1133,11 +1348,11 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
-            } | null
+            }
           }> | null
           hosts: Array<{
-            firstName: string | null
-            lastName: string | null
+            firstName: string
+            lastName: string
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1145,22 +1360,39 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
-            } | null
+            }
           }> | null
           tags: Array<string> | null
+          seo: {
+            metaTitle: string | null
+            metaDescription: string | null
+            ogImage: {
+              asset: {
+                url: string | null
+                metadata: {
+                  dimensions: {
+                    width: number
+                    height: number
+                  } | null
+                } | null
+              } | null
+              alt: string | null
+            } | null
+            noIndex: boolean | null
+          } | null
         }> | null
         limit?: number
         layout?: 'featured' | 'grid-2' | 'grid-3' | 'list'
         showButton?: boolean
         buttonText?: string
-        sectionSettings: null
-        stylePreset: null
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
         _type: 'hero'
         eyebrow?: string
-        heading?: string
+        heading: string
         subheading?: string
         primaryButton: {
           _type: 'button'
@@ -1205,8 +1437,9 @@ export type GetPageQueryResult = {
         size?: 'large' | 'medium' | 'small'
         alignment?: 'center' | 'left' | 'right'
         theme?: 'dark' | 'light'
-        sectionSettings: null
-        stylePreset: null
+        layout?: 'centered' | 'overlay' | 'split-left' | 'split-right'
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
@@ -1246,8 +1479,67 @@ export type GetPageQueryResult = {
               markDefs: null
             }
         > | null
-        sectionSettings: null
-        stylePreset: null
+        stylePreset: {
+          name: string
+          settings: {
+            containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+            contentAlignment: 'center' | 'left' | 'right' | null
+            backgroundColor:
+              | 'accent'
+              | 'gray-100'
+              | 'gray-50'
+              | 'gray-900'
+              | 'primary'
+              | 'secondary'
+              | 'transparent'
+              | 'white'
+              | null
+            customBackgroundColor: null
+            backgroundImage: {
+              asset: {
+                url: string | null
+              } | null
+            } | null
+            backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+            paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            sectionId: string | null
+            customClasses: string | null
+            dataAttributes: Array<{
+              key: string | null
+              value: string | null
+            }> | null
+          } | null
+        } | null
+        sectionSettings: {
+          containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+          contentAlignment: 'center' | 'left' | 'right' | null
+          backgroundColor:
+            | 'accent'
+            | 'gray-100'
+            | 'gray-50'
+            | 'gray-900'
+            | 'primary'
+            | 'secondary'
+            | 'transparent'
+            | 'white'
+            | null
+          customBackgroundColor: null
+          backgroundImage: {
+            asset: {
+              url: string | null
+            } | null
+          } | null
+          backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+          paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          sectionId: string | null
+          customClasses: string | null
+          dataAttributes: Array<{
+            key: string | null
+            value: string | null
+          }> | null
+        } | null
       }
     | {
         _key: string
@@ -1256,8 +1548,8 @@ export type GetPageQueryResult = {
         subheading?: string
         displayMode?: 'all' | 'selected'
         members: Array<{
-          firstName: string | null
-          lastName: string | null
+          firstName: string
+          lastName: string
           picture: {
             asset?: SanityImageAssetReference
             media?: unknown
@@ -1265,19 +1557,19 @@ export type GetPageQueryResult = {
             crop?: SanityImageCrop
             alt?: string
             _type: 'image'
-          } | null
+          }
         }> | null
         layout?: 'grid-2' | 'grid-3' | 'grid-4' | 'list'
         showBio?: boolean
         showSocialLinks?: boolean
-        sectionSettings: null
-        stylePreset: null
+        stylePreset?: StylePresetReference
+        sectionSettings?: SectionSettings
       }
     | {
         _key: string
         _type: 'testimonial'
-        quote?: string
-        authorName?: string
+        quote: string
+        authorName: string
         authorTitle?: string
         authorImage?: {
           asset?: SanityImageAssetReference
@@ -1295,8 +1587,68 @@ export type GetPageQueryResult = {
         }
         rating?: number
         theme?: 'accent' | 'dark' | 'light'
-        sectionSettings: null
-        stylePreset: null
+        layout?: 'card' | 'large-quote' | 'minimal' | 'photo-left' | 'photo-right'
+        stylePreset: {
+          name: string
+          settings: {
+            containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+            contentAlignment: 'center' | 'left' | 'right' | null
+            backgroundColor:
+              | 'accent'
+              | 'gray-100'
+              | 'gray-50'
+              | 'gray-900'
+              | 'primary'
+              | 'secondary'
+              | 'transparent'
+              | 'white'
+              | null
+            customBackgroundColor: null
+            backgroundImage: {
+              asset: {
+                url: string | null
+              } | null
+            } | null
+            backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+            paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+            sectionId: string | null
+            customClasses: string | null
+            dataAttributes: Array<{
+              key: string | null
+              value: string | null
+            }> | null
+          } | null
+        } | null
+        sectionSettings: {
+          containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
+          contentAlignment: 'center' | 'left' | 'right' | null
+          backgroundColor:
+            | 'accent'
+            | 'gray-100'
+            | 'gray-50'
+            | 'gray-900'
+            | 'primary'
+            | 'secondary'
+            | 'transparent'
+            | 'white'
+            | null
+          customBackgroundColor: null
+          backgroundImage: {
+            asset: {
+              url: string | null
+            } | null
+          } | null
+          backgroundOverlay: 'dark' | 'light' | 'medium' | 'none' | null
+          paddingTop: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          paddingBottom: '0' | 'lg' | 'md' | 'sm' | 'xl' | null
+          sectionId: string | null
+          customClasses: string | null
+          dataAttributes: Array<{
+            key: string | null
+            value: string | null
+          }> | null
+        } | null
       }
   > | null
 } | null
@@ -1306,12 +1658,12 @@ export type GetPageQueryResult = {
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
 export type SitemapDataResult = Array<
   | {
-      slug: string | null
+      slug: string
       _type: 'page'
       _updatedAt: string
     }
   | {
-      slug: string | null
+      slug: string
       _type: 'post'
       _updatedAt: string
     }
@@ -1319,12 +1671,12 @@ export type SitemapDataResult = Array<
 
 // Source: sanity/lib/queries.ts
 // Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },  }
 export type AllPostsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1336,8 +1688,8 @@ export type AllPostsQueryResult = Array<{
   } | null
   date: string
   author: {
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1345,18 +1697,35 @@ export type AllPostsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
+    }
+  } | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
     } | null
+    noIndex: boolean | null
   } | null
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: morePostsQuery
-// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },  }
 export type MorePostsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1368,8 +1737,8 @@ export type MorePostsQueryResult = Array<{
   } | null
   date: string
   author: {
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1377,13 +1746,30 @@ export type MorePostsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
+    }
+  } | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
     } | null
+    noIndex: boolean | null
   } | null
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
+// Query: *[_type == "post" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },  }
 export type PostQueryResult = {
   content: Array<
     | {
@@ -1420,8 +1806,8 @@ export type PostQueryResult = {
   > | null
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1433,8 +1819,8 @@ export type PostQueryResult = {
   } | null
   date: string
   author: {
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1442,7 +1828,24 @@ export type PostQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
+    }
+  } | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
     } | null
+    noIndex: boolean | null
   } | null
 } | null
 
@@ -1450,24 +1853,24 @@ export type PostQueryResult = {
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
 export type PostPagesSlugsResult = Array<{
-  slug: string | null
+  slug: string
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: pagesSlugs
 // Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
 export type PagesSlugsResult = Array<{
-  slug: string | null
+  slug: string
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: allPodcastsQuery
-// Query: *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,  }
+// Query: *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },  }
 export type AllPodcastsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   description: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1484,8 +1887,8 @@ export type AllPodcastsQueryResult = Array<{
   seasonNumber: number | null
   publishedAt: string
   guests: Array<{
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1493,11 +1896,11 @@ export type AllPodcastsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    } | null
+    }
   }> | null
   hosts: Array<{
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1505,19 +1908,36 @@ export type AllPodcastsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    } | null
+    }
   }> | null
   tags: Array<string> | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
+    } | null
+    noIndex: boolean | null
+  } | null
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: podcastQuery
-// Query: *[_type == "podcast" && slug.current == $slug] [0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,    showNotes[]{      ...,      markDefs[]{        ...,          _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }    }  }
+// Query: *[_type == "podcast" && slug.current == $slug] [0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  description,  coverImage,  transistorUrl,  transistorEpisodeId,  duration,  episodeNumber,  seasonNumber,  "publishedAt": coalesce(publishedAt, _updatedAt),  "guests": guests[]->{firstName, lastName, picture},  "hosts": hosts[]->{firstName, lastName, picture},  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },    showNotes[]{      ...,      markDefs[]{        ...,          _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }    }  }
 export type PodcastQueryResult = {
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   description: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1534,8 +1954,8 @@ export type PodcastQueryResult = {
   seasonNumber: number | null
   publishedAt: string
   guests: Array<{
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1543,11 +1963,11 @@ export type PodcastQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    } | null
+    }
   }> | null
   hosts: Array<{
-    firstName: string | null
-    lastName: string | null
+    firstName: string
+    lastName: string
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1555,9 +1975,26 @@ export type PodcastQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    } | null
+    }
   }> | null
   tags: Array<string> | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
+    } | null
+    noIndex: boolean | null
+  } | null
   showNotes: Array<
     | {
         children?: Array<{
@@ -1597,17 +2034,17 @@ export type PodcastQueryResult = {
 // Variable: podcastPagesSlugs
 // Query: *[_type == "podcast" && defined(slug.current)]  {"slug": slug.current}
 export type PodcastPagesSlugsResult = Array<{
-  slug: string | null
+  slug: string
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: allDownloadsQuery
-// Query: *[_type == "download" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,  }
+// Query: *[_type == "download" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },  }
 export type AllDownloadsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   excerpt: string | null
   thumbnail: {
     asset?: SanityImageAssetReference
@@ -1644,16 +2081,33 @@ export type AllDownloadsQueryResult = Array<{
   formDescription: string | null
   publishedAt: string
   tags: Array<string> | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
+    } | null
+    noIndex: boolean | null
+  } | null
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: downloadQuery
-// Query: *[_type == "download" && slug.current == $slug] [0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    description[]{      ...,      markDefs[]{        ...,          _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }    }  }
+// Query: *[_type == "download" && slug.current == $slug] [0] {      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  thumbnail,  "file": file.asset->url,  fileType,  category,  isGated,  formHeading,  formDescription,  "publishedAt": coalesce(publishedAt, _updatedAt),  tags,    seo {    metaTitle,    metaDescription,    ogImage {      asset->{        url,        metadata {          dimensions {            width,            height          }        }      },      alt    },    noIndex  },    description[]{      ...,      markDefs[]{        ...,          _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }    }  }
 export type DownloadQueryResult = {
   _id: string
   status: 'draft' | 'published'
-  title: string | 'Untitled'
-  slug: string | null
+  title: string
+  slug: string
   excerpt: string | null
   thumbnail: {
     asset?: SanityImageAssetReference
@@ -1690,6 +2144,23 @@ export type DownloadQueryResult = {
   formDescription: string | null
   publishedAt: string
   tags: Array<string> | null
+  seo: {
+    metaTitle: string | null
+    metaDescription: string | null
+    ogImage: {
+      asset: {
+        url: string | null
+        metadata: {
+          dimensions: {
+            width: number
+            height: number
+          } | null
+        } | null
+      } | null
+      alt: string | null
+    } | null
+    noIndex: boolean | null
+  } | null
   description: Array<
     | {
         children?: Array<{
@@ -1729,7 +2200,7 @@ export type DownloadQueryResult = {
 // Variable: downloadPagesSlugs
 // Query: *[_type == "download" && defined(slug.current)]  {"slug": slug.current}
 export type DownloadPagesSlugsResult = Array<{
-  slug: string | null
+  slug: string
 }>
 
 // Query TypeMap
@@ -1737,18 +2208,18 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      \n  sectionSettings {\n    containerWidth,\n    contentAlignment,\n    backgroundColor,\n    customBackgroundColor,\n    backgroundImage {\n      asset->{\n        url\n      }\n    },\n    backgroundOverlay,\n    paddingTop,\n    paddingBottom,\n    sectionId,\n    customClasses,\n    dataAttributes[] {\n      key,\n      value\n    }\n  },\n  "stylePreset": stylePreset->{\n    name,\n    settings {\n      containerWidth,\n      contentAlignment,\n      backgroundColor,\n      customBackgroundColor,\n      backgroundImage {\n        asset->{\n          url\n        }\n      },\n      backgroundOverlay,\n      paddingTop,\n      paddingBottom,\n      sectionId,\n      customClasses,\n      dataAttributes[] {\n        key,\n        value\n      }\n    }\n  }\n,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "hero" => {\n        ...,\n        primaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        },\n        secondaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "featuredArticles" => {\n        ...,\n        "articles": select(\n          displayMode == "selected" => articles[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n},\n          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n}\n        )\n      },\n      _type == "featuredPodcasts" => {\n        ...,\n        "episodes": select(\n          displayMode == "selected" => episodes[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n},\n          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n}\n        )\n      },\n      _type == "downloadsGrid" => {\n        ...,\n        "downloads": select(\n          displayMode == "selected" => downloads[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n},\n          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n},\n          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n}\n        )\n      },\n      _type == "teamGrid" => {\n        ...,\n        "members": select(\n          displayMode == "selected" => members[]->{firstName, lastName, picture},\n          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}\n        )\n      },\n      _type == "faqAccordion" => {\n        ...,\n        items[]{\n          ...,\n          answer[]{\n            ...,\n            markDefs[]{\n              ...,\n              \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n            }\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      \n  sectionSettings {\n    containerWidth,\n    contentAlignment,\n    backgroundColor,\n    customBackgroundColor,\n    backgroundImage {\n      asset->{\n        url\n      }\n    },\n    backgroundOverlay,\n    paddingTop,\n    paddingBottom,\n    sectionId,\n    customClasses,\n    dataAttributes[] {\n      key,\n      value\n    }\n  },\n  "stylePreset": stylePreset->{\n    name,\n    settings {\n      containerWidth,\n      contentAlignment,\n      backgroundColor,\n      customBackgroundColor,\n      backgroundImage {\n        asset->{\n          url\n        }\n      },\n      backgroundOverlay,\n      paddingTop,\n      paddingBottom,\n      sectionId,\n      customClasses,\n      dataAttributes[] {\n        key,\n        value\n      }\n    }\n  }\n,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "hero" => {\n        ...,\n        primaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        },\n        secondaryButton {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "featuredArticles" => {\n        ...,\n        "articles": select(\n          displayMode == "selected" => articles[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n},\n          displayMode == "latest" => *[_type == "post" && defined(slug.current)] | order(date desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n}\n        )\n      },\n      _type == "featuredPodcasts" => {\n        ...,\n        "episodes": select(\n          displayMode == "selected" => episodes[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n},\n          displayMode == "latest" => *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n}\n        )\n      },\n      _type == "downloadsGrid" => {\n        ...,\n        "downloads": select(\n          displayMode == "selected" => downloads[]->{\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n},\n          displayMode == "category" => *[_type == "download" && defined(slug.current) && category == ^.category] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n},\n          displayMode == "latest" => *[_type == "download" && defined(slug.current)] | order(publishedAt desc) [0...12] {\n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n}\n        )\n      },\n      _type == "teamGrid" => {\n        ...,\n        "members": select(\n          displayMode == "selected" => members[]->{firstName, lastName, picture},\n          displayMode == "all" => *[_type == "person"] {firstName, lastName, picture}\n        )\n      },\n      _type == "faqAccordion" => {\n        ...,\n        items[]{\n          ...,\n          answer[]{\n            ...,\n            markDefs[]{\n              ...,\n              \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n            }\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
-    '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult
-    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult
-    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult
+    '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n  }\n': AllPostsQueryResult
+    '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...5] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n  }\n': MorePostsQueryResult
+    '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n  }\n': PostQueryResult
     '\n  *[_type == "post" && defined(slug.current)]\n  {"slug": slug.current}\n': PostPagesSlugsResult
     '\n  *[_type == "page" && defined(slug.current)]\n  {"slug": slug.current}\n': PagesSlugsResult
-    '\n  *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n\n  }\n': AllPodcastsQueryResult
-    '\n  *[_type == "podcast" && slug.current == $slug] [0] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n\n    showNotes[]{\n      ...,\n      markDefs[]{\n        ...,\n        \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n    }\n  }\n': PodcastQueryResult
+    '\n  *[_type == "podcast" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n  }\n': AllPodcastsQueryResult
+    '\n  *[_type == "podcast" && slug.current == $slug] [0] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  description,\n  coverImage,\n  transistorUrl,\n  transistorEpisodeId,\n  duration,\n  episodeNumber,\n  seasonNumber,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  "guests": guests[]->{firstName, lastName, picture},\n  "hosts": hosts[]->{firstName, lastName, picture},\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n    showNotes[]{\n      ...,\n      markDefs[]{\n        ...,\n        \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n    }\n  }\n': PodcastQueryResult
     '\n  *[_type == "podcast" && defined(slug.current)]\n  {"slug": slug.current}\n': PodcastPagesSlugsResult
-    '\n  *[_type == "download" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n\n  }\n': AllDownloadsQueryResult
-    '\n  *[_type == "download" && slug.current == $slug] [0] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n\n    description[]{\n      ...,\n      markDefs[]{\n        ...,\n        \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n    }\n  }\n': DownloadQueryResult
+    '\n  *[_type == "download" && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n  }\n': AllDownloadsQueryResult
+    '\n  *[_type == "download" && slug.current == $slug] [0] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  thumbnail,\n  "file": file.asset->url,\n  fileType,\n  category,\n  isGated,\n  formHeading,\n  formDescription,\n  "publishedAt": coalesce(publishedAt, _updatedAt),\n  tags,\n  \n  seo {\n    metaTitle,\n    metaDescription,\n    ogImage {\n      asset->{\n        url,\n        metadata {\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    noIndex\n  }\n,\n\n    description[]{\n      ...,\n      markDefs[]{\n        ...,\n        \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n    }\n  }\n': DownloadQueryResult
     '\n  *[_type == "download" && defined(slug.current)]\n  {"slug": slug.current}\n': DownloadPagesSlugsResult
   }
 }

@@ -96,6 +96,12 @@ export const post = defineType({
       type: 'reference',
       to: [{type: 'person'}],
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Sharing',
+      type: 'seo',
+      description: 'Configure how this article appears in search results and social media shares. Leave blank to use cover image and excerpt.',
+    }),
   ],
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {

@@ -30,14 +30,16 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     stega: false,
   })
   const previousImages = (await parent).openGraph?.images || []
-  const ogImage = resolveOpenGraphImage(podcast?.coverImage)
+  // Use SEO ogImage if set, otherwise fall back to coverImage
+  const ogImage = resolveOpenGraphImage(podcast?.seo?.ogImage || podcast?.coverImage)
 
   return {
-    title: podcast?.title,
-    description: podcast?.description,
+    title: podcast?.seo?.metaTitle || podcast?.title,
+    description: podcast?.seo?.metaDescription || podcast?.description,
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
+    ...(podcast?.seo?.noIndex && {robots: {index: false, follow: false}}),
   } satisfies Metadata
 }
 

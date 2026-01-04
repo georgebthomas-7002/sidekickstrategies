@@ -31,18 +31,20 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     stega: false,
   })
   const previousImages = (await parent).openGraph?.images || []
-  const ogImage = resolveOpenGraphImage(post?.coverImage)
+  // Use SEO ogImage if set, otherwise fall back to coverImage
+  const ogImage = resolveOpenGraphImage(post?.seo?.ogImage || post?.coverImage)
 
   return {
     authors:
       post?.author?.firstName && post?.author?.lastName
         ? [{name: `${post.author.firstName} ${post.author.lastName}`}]
         : [],
-    title: post?.title,
-    description: post?.excerpt,
+    title: post?.seo?.metaTitle || post?.title,
+    description: post?.seo?.metaDescription || post?.excerpt,
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
+    ...(post?.seo?.noIndex && {robots: {index: false, follow: false}}),
   } satisfies Metadata
 }
 

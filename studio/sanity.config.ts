@@ -3,6 +3,7 @@
  * Learn more: https://www.sanity.io/docs/configuration
  */
 
+import {createElement} from 'react'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
@@ -18,9 +19,12 @@ import {
 import {assist} from '@sanity/assist'
 
 // Custom icon component for the studio
-const SidekickIcon = () => (
-  <img src="/static/favicon.webp" alt="Sidekick" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
-)
+const SidekickIcon = () =>
+  createElement('img', {
+    src: '/static/favicon.webp',
+    alt: 'Sidekick',
+    style: {width: '100%', height: '100%', objectFit: 'contain'},
+  })
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'

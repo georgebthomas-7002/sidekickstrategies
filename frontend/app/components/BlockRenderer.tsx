@@ -27,6 +27,8 @@ type BlocksType = {
   [key: string]: React.FC<BlockProps>
 }
 
+// Using 'as unknown as BlocksType' to handle the variance between specific block types
+// and the generic BlockProps. Runtime safety is preserved via the typeof check below.
 const Blocks = {
   callToAction: Cta,
   infoSection: Info,
@@ -38,7 +40,7 @@ const Blocks = {
   teamGrid: TeamGrid,
   contactForm: ContactForm,
   faqAccordion: FAQAccordion,
-} as BlocksType
+} as unknown as BlocksType
 
 /**
  * Used by the <PageBuilder>, this component renders a the component that matches the block type.
