@@ -353,23 +353,26 @@ export default function BrandBiblePage() {
       {/* Buttons Section */}
       <section id="buttons" className="py-20 scroll-mt-20">
         <div className="container mx-auto px-6">
-          <h2 className="font-serif text-4xl text-brand-800 mb-4">Button Styles</h2>
-          <p className="font-sans text-gray-600 mb-12 max-w-2xl">
-            Six distinctive button styles designed for clarity, accessibility, and visual impact. Each features carefully crafted hover states with excellent contrast.
-          </p>
+          <div className="mb-12">
+            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">01 — Core Variants</span>
+            <h2 className="font-serif text-4xl text-brand-800 mt-2 mb-4">Button Styles</h2>
+            <p className="font-sans text-gray-600 max-w-2xl">
+              Seven distinctive button styles, each crafted for specific use cases with careful attention to contrast, hierarchy, and interaction.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {/* Button 1: Primary Orange */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
                 <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">01</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Primary Action</h3>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Primary Action</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Main CTAs and priority actions</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center
+                    inline-flex items-center justify-center gap-2
                     px-6 py-3.5
                     bg-accent-500 text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
@@ -378,28 +381,32 @@ export default function BrandBiblePage() {
                     transition-all duration-300
                     hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
+                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
                   "
                 >
                   Get Started
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">bg: #f65625</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #d9441a</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">bg: #f65625</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #d9441a</span>
               </div>
             </div>
 
             {/* Button 2: Secondary Light Blue */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
                 <span className="font-mono text-xs text-light-blue uppercase tracking-wider">02</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Secondary Action</h3>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Secondary Action</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Supporting and alternative actions</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center
+                    inline-flex items-center justify-center gap-2
                     px-6 py-3.5
                     bg-light-blue text-brand-900
                     font-heading text-sm tracking-wide uppercase font-semibold
@@ -408,28 +415,32 @@ export default function BrandBiblePage() {
                     transition-all duration-300
                     hover:bg-[#7aafcc] hover:shadow-xl hover:shadow-light-blue/40 hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
+                    focus:outline-none focus:ring-2 focus:ring-light-blue focus:ring-offset-2
                   "
                 >
                   Learn More
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-blue-50 text-slate rounded">bg: #98c1d9</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #7aafcc</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-blue-50 text-slate rounded">bg: #98c1d9</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #7aafcc</span>
               </div>
             </div>
 
             {/* Button 3: Navy Solid */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
                 <span className="font-mono text-xs text-brand-600 uppercase tracking-wider">03</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Navy Solid</h3>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Navy Solid</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Professional and authoritative</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center
+                    inline-flex items-center justify-center gap-2
                     px-6 py-3.5
                     bg-brand-800 text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
@@ -438,28 +449,66 @@ export default function BrandBiblePage() {
                     transition-all duration-300
                     hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-800/40 hover:-translate-y-0.5
                     active:translate-y-0 active:shadow-md
+                    focus:outline-none focus:ring-2 focus:ring-brand-300 focus:ring-offset-2
                   "
                 >
                   Contact Us
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-brand-50 text-brand-700 rounded">bg: #142d63</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #1e3561</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-brand-50 text-brand-700 rounded">bg: #142d63</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #1e3561</span>
               </div>
             </div>
 
-            {/* Button 4: Ghost / Outline */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            {/* Button 4: Teal Action */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
                 <span className="font-mono text-xs text-secondary-500 uppercase tracking-wider">04</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Ghost Outline</h3>
-                <p className="font-sans text-sm text-gray-500 mt-1">Subtle, non-competing actions</p>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Teal Action</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Fresh alternative accent</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center
+                    inline-flex items-center justify-center gap-2
+                    px-6 py-3.5
+                    bg-secondary-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg
+                    shadow-lg shadow-secondary-500/25
+                    transition-all duration-300
+                    hover:bg-secondary-600 hover:shadow-xl hover:shadow-secondary-500/40 hover:-translate-y-0.5
+                    active:translate-y-0 active:shadow-md
+                    focus:outline-none focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2
+                  "
+                >
+                  Explore
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-secondary-50 text-secondary-600 rounded">bg: #028393</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: #026d7a</span>
+              </div>
+            </div>
+
+            {/* Button 5: Ghost / Outline */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+              <div className="mb-6">
+                <span className="font-mono text-xs text-accent-400 uppercase tracking-wider">05</span>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Ghost Outline</h3>
+                <p className="font-sans text-sm text-gray-500 mt-1">Subtle, non-competing actions</p>
+              </div>
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
+                <button
+                  className="
+                    inline-flex items-center justify-center
                     px-6 py-3.5
                     bg-transparent text-accent-500
                     font-heading text-sm tracking-wide uppercase font-semibold
@@ -468,62 +517,66 @@ export default function BrandBiblePage() {
                     transition-all duration-300
                     hover:bg-accent-500 hover:text-white hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5
                     active:translate-y-0
+                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
                   "
                 >
                   View Details
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">border: #f65625</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: fill</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">border: #f65625</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: fill</span>
               </div>
             </div>
 
-            {/* Button 5: Gradient */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            {/* Button 6: Gradient */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-peach uppercase tracking-wider">05</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Gradient Premium</h3>
+                <span className="font-mono text-xs text-peach uppercase tracking-wider">06</span>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Gradient Premium</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">High-impact premium actions</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center
+                    inline-flex items-center justify-center gap-2
                     px-6 py-3.5
-                    bg-gradient-to-r from-accent-500 via-peach to-accent-400 text-white
+                    bg-gradient-to-r from-accent-500 to-peach text-white
                     font-heading text-sm tracking-wide uppercase font-semibold
                     rounded-lg
                     shadow-lg shadow-accent-500/30
                     transition-all duration-500
-                    hover:from-accent-600 hover:via-accent-500 hover:to-peach hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5 hover:scale-[1.02]
+                    hover:from-accent-600 hover:to-accent-400 hover:shadow-xl hover:shadow-accent-500/40 hover:-translate-y-0.5 hover:scale-[1.02]
                     active:translate-y-0 active:scale-100
+                    focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-offset-2
                   "
                 >
                   Upgrade Now
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gradient-to-r from-accent-100 to-orange-100 text-accent-600 rounded">gradient</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: shift</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-gradient-to-r from-accent-100 to-orange-100 text-accent-600 rounded">gradient</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">hover: shift</span>
               </div>
             </div>
 
-            {/* Button 6: Text Link */}
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            {/* Button 7: Text Link */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
               <div className="mb-6">
-                <span className="font-mono text-xs text-slate uppercase tracking-wider">06</span>
-                <h3 className="font-heading text-xl text-brand-800 font-semibold mt-2">Text Link</h3>
+                <span className="font-mono text-xs text-slate uppercase tracking-wider">07</span>
+                <h3 className="font-heading text-lg text-brand-800 font-semibold mt-1">Text Link</h3>
                 <p className="font-sans text-sm text-gray-500 mt-1">Inline and minimal actions</p>
               </div>
-              <div className="space-y-4">
+              <div className="flex justify-center min-h-[80px] items-center mb-4">
                 <button
                   className="
-                    w-full inline-flex items-center justify-center gap-2
-                    px-6 py-3.5
+                    inline-flex items-center justify-center gap-2
+                    px-4 py-3
                     bg-transparent text-brand-800
                     font-heading text-sm tracking-wide uppercase font-semibold
-                    rounded-lg
                     transition-all duration-300
                     group
                     hover:text-accent-500
@@ -542,25 +595,29 @@ export default function BrandBiblePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
-                <div className="flex gap-2">
-                  <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">text only</span>
-                  <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: underline</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-[10px] font-mono bg-gray-100 text-gray-600 rounded">text only</span>
+                <span className="px-2 py-1 text-[10px] font-mono bg-accent-50 text-accent-600 rounded">hover: underline</span>
               </div>
             </div>
           </div>
 
           {/* Dark Background Button Examples */}
           <div className="mt-16">
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mb-6">On Dark Backgrounds</h3>
-            <div className="bg-brand-800 rounded-2xl p-8 md:p-12">
-              <div className="grid md:grid-cols-3 gap-6">
+            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">02 — Dark Mode</span>
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">On Dark Backgrounds</h3>
+            <div className="bg-brand-900 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+              {/* Subtle glow effect */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
+
+              <div className="relative grid grid-cols-2 md:grid-cols-5 gap-6">
                 {/* Primary on Dark */}
                 <div className="text-center">
                   <button
                     className="
                       inline-flex items-center justify-center
-                      px-8 py-4
+                      px-6 py-3.5
                       bg-accent-500 text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
@@ -571,7 +628,7 @@ export default function BrandBiblePage() {
                   >
                     Primary
                   </button>
-                  <p className="font-mono text-xs text-white/50 mt-3">Orange on Navy</p>
+                  <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-wider">Orange on Navy</p>
                 </div>
 
                 {/* Light Blue on Dark */}
@@ -579,7 +636,7 @@ export default function BrandBiblePage() {
                   <button
                     className="
                       inline-flex items-center justify-center
-                      px-8 py-4
+                      px-6 py-3.5
                       bg-light-blue text-brand-900
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
@@ -590,7 +647,45 @@ export default function BrandBiblePage() {
                   >
                     Secondary
                   </button>
-                  <p className="font-mono text-xs text-white/50 mt-3">Light Blue on Navy</p>
+                  <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-wider">Light Blue</p>
+                </div>
+
+                {/* Teal on Dark */}
+                <div className="text-center">
+                  <button
+                    className="
+                      inline-flex items-center justify-center
+                      px-6 py-3.5
+                      bg-secondary-500 text-white
+                      font-heading text-sm tracking-wide uppercase font-semibold
+                      rounded-lg
+                      shadow-lg shadow-secondary-500/30
+                      transition-all duration-300
+                      hover:bg-secondary-400 hover:shadow-xl hover:shadow-secondary-500/50 hover:-translate-y-0.5
+                    "
+                  >
+                    Teal
+                  </button>
+                  <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-wider">Teal Accent</p>
+                </div>
+
+                {/* Gradient on Dark */}
+                <div className="text-center">
+                  <button
+                    className="
+                      inline-flex items-center justify-center
+                      px-6 py-3.5
+                      bg-gradient-to-r from-accent-500 to-peach text-white
+                      font-heading text-sm tracking-wide uppercase font-semibold
+                      rounded-lg
+                      shadow-lg shadow-accent-500/30
+                      transition-all duration-300
+                      hover:shadow-xl hover:shadow-accent-500/50 hover:-translate-y-0.5
+                    "
+                  >
+                    Gradient
+                  </button>
+                  <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-wider">Premium</p>
                 </div>
 
                 {/* Ghost on Dark */}
@@ -598,7 +693,7 @@ export default function BrandBiblePage() {
                   <button
                     className="
                       inline-flex items-center justify-center
-                      px-8 py-4
+                      px-6 py-3.5
                       bg-transparent text-white
                       font-heading text-sm tracking-wide uppercase font-semibold
                       rounded-lg
@@ -609,68 +704,204 @@ export default function BrandBiblePage() {
                   >
                     Ghost
                   </button>
-                  <p className="font-mono text-xs text-white/50 mt-3">White outline on Navy</p>
+                  <p className="font-mono text-[10px] text-white/40 mt-3 uppercase tracking-wider">White Outline</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Button States */}
+          <div className="mt-16">
+            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">03 — Interaction</span>
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Button States</h3>
+            <p className="font-sans text-gray-600 mb-8 max-w-2xl">
+              Comprehensive state handling for loading, disabled, and focus states.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {/* Default */}
+              <div className="text-center">
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-accent-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-accent-500/25
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:-translate-y-0.5
+                  "
+                >
+                  Default
+                </button>
+                <p className="font-mono text-[10px] text-gray-400 mt-3 uppercase tracking-wider">Normal State</p>
+              </div>
+
+              {/* Loading */}
+              <div className="text-center">
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-accent-500 text-transparent
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-accent-500/25
+                    relative cursor-wait
+                  "
+                  disabled
+                >
+                  Loading
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
+                </button>
+                <p className="font-mono text-[10px] text-gray-400 mt-3 uppercase tracking-wider">Loading State</p>
+              </div>
+
+              {/* Disabled */}
+              <div className="text-center">
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-accent-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-accent-500/25
+                    opacity-50 cursor-not-allowed
+                  "
+                  disabled
+                >
+                  Disabled
+                </button>
+                <p className="font-mono text-[10px] text-gray-400 mt-3 uppercase tracking-wider">Disabled State</p>
+              </div>
+
+              {/* Secondary Loading */}
+              <div className="text-center">
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-6 py-3.5
+                    bg-light-blue text-transparent
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-light-blue/25
+                    relative cursor-wait
+                  "
+                  disabled
+                >
+                  Loading
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <svg className="animate-spin h-5 w-5 text-brand-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
+                </button>
+                <p className="font-mono text-[10px] text-gray-400 mt-3 uppercase tracking-wider">Secondary Loading</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Button Groups */}
+          <div className="mt-16">
+            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">04 — Composition</span>
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Button Groups</h3>
+            <p className="font-sans text-gray-600 mb-8 max-w-2xl">
+              Segmented controls and action groups for related options.
+            </p>
+
+            <div className="flex flex-wrap gap-8 items-center">
+              {/* Toggle Group */}
+              <div className="inline-flex rounded-lg overflow-hidden border-2 border-brand-800">
+                <button className="px-5 py-3 bg-transparent text-brand-800 font-heading text-sm uppercase font-semibold hover:bg-brand-50 transition-colors">
+                  Day
+                </button>
+                <button className="px-5 py-3 bg-brand-800 text-white font-heading text-sm uppercase font-semibold">
+                  Week
+                </button>
+                <button className="px-5 py-3 bg-transparent text-brand-800 font-heading text-sm uppercase font-semibold hover:bg-brand-50 transition-colors">
+                  Month
+                </button>
+              </div>
+
+              {/* Action Group */}
+              <div className="inline-flex rounded-lg overflow-hidden">
+                <button className="px-6 py-3.5 bg-accent-500 text-white font-heading text-sm uppercase font-semibold hover:bg-accent-600 transition-colors">
+                  Save
+                </button>
+                <button className="px-6 py-3.5 bg-transparent text-accent-500 font-heading text-sm uppercase font-semibold border-2 border-l-0 border-accent-500 hover:bg-accent-50 transition-colors">
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
 
           {/* Button Sizing */}
           <div className="mt-16">
-            <h3 className="font-heading text-2xl text-brand-800 font-semibold mb-6">Size Variations</h3>
-            <div className="flex flex-wrap items-end gap-4">
-              <button
-                className="
-                  inline-flex items-center justify-center
-                  px-4 py-2
-                  bg-accent-500 text-white
-                  font-heading text-xs tracking-wide uppercase font-semibold
-                  rounded-md
-                  transition-all duration-300
-                  hover:bg-accent-600
-                "
-              >
-                Small
-              </button>
-              <button
-                className="
-                  inline-flex items-center justify-center
-                  px-6 py-3
-                  bg-accent-500 text-white
-                  font-heading text-sm tracking-wide uppercase font-semibold
-                  rounded-lg
-                  transition-all duration-300
-                  hover:bg-accent-600
-                "
-              >
-                Medium
-              </button>
-              <button
-                className="
-                  inline-flex items-center justify-center
-                  px-8 py-4
-                  bg-accent-500 text-white
-                  font-heading text-sm tracking-wide uppercase font-semibold
-                  rounded-lg
-                  transition-all duration-300
-                  hover:bg-accent-600
-                "
-              >
-                Large
-              </button>
-              <button
-                className="
-                  inline-flex items-center justify-center
-                  px-10 py-5
-                  bg-accent-500 text-white
-                  font-heading text-base tracking-wide uppercase font-semibold
-                  rounded-xl
-                  transition-all duration-300
-                  hover:bg-accent-600
-                "
-              >
-                Extra Large
-              </button>
+            <span className="font-mono text-xs text-accent-500 uppercase tracking-wider">05 — Scale</span>
+            <h3 className="font-heading text-2xl text-brand-800 font-semibold mt-2 mb-6">Size Variations</h3>
+            <p className="font-sans text-gray-600 mb-8 max-w-2xl">
+              Four sizes to accommodate different contexts—from compact inline actions to prominent hero CTAs.
+            </p>
+
+            <div className="bg-gray-50 rounded-xl p-8">
+              <div className="flex flex-wrap items-center gap-4">
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-4 py-2
+                    bg-accent-500 text-white
+                    font-heading text-xs tracking-wide uppercase font-semibold
+                    rounded-md shadow-md shadow-accent-500/20
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:-translate-y-0.5
+                  "
+                >
+                  Small
+                </button>
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-6 py-3
+                    bg-accent-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-accent-500/20
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:-translate-y-0.5
+                  "
+                >
+                  Medium
+                </button>
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-8 py-4
+                    bg-accent-500 text-white
+                    font-heading text-sm tracking-wide uppercase font-semibold
+                    rounded-lg shadow-lg shadow-accent-500/20
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:-translate-y-0.5
+                  "
+                >
+                  Large
+                </button>
+                <button
+                  className="
+                    inline-flex items-center justify-center
+                    px-10 py-5
+                    bg-accent-500 text-white
+                    font-heading text-base tracking-wide uppercase font-semibold
+                    rounded-xl shadow-xl shadow-accent-500/25
+                    transition-all duration-300
+                    hover:bg-accent-600 hover:-translate-y-0.5
+                  "
+                >
+                  Extra Large
+                </button>
+              </div>
             </div>
           </div>
         </div>
