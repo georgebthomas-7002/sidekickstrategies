@@ -119,5 +119,41 @@
 9. Contact Form - Configurable form
 10. FAQ Accordion - Q&A expandable
 
+## MCP Servers
+
+The project uses Model Context Protocol (MCP) servers to enhance Claude Code capabilities. Configuration is stored in `.mcp.json` (project root).
+
+| Server | Type | Purpose | Authentication |
+|--------|------|---------|----------------|
+| Playwright | Local (stdio) | Browser automation, screenshots, testing | None |
+| Sanity | Remote (HTTP) | CMS operations, GROQ queries, 40+ tools | OAuth (browser) |
+| Vercel | Remote (HTTP) | Deployment logs, project monitoring | OAuth (browser) |
+| HubSpot | Remote (HTTP) | CRM data - contacts, deals, companies | Token in .env.local |
+| Sentry | Remote (HTTP) | Error monitoring, debugging | OAuth (browser) |
+
+### MCP Usage Examples
+```
+# Playwright
+"Use Playwright to navigate to our site and take a screenshot"
+
+# Sanity
+"Query all published articles from Sanity"
+"Run a GROQ query for posts by George"
+
+# Vercel
+"Show me recent deployments for this project"
+
+# HubSpot
+"List recent deals in the Decision stage"
+
+# Sentry
+"Show me recent errors from production"
+```
+
+### MCP Configuration
+- **Config File**: `.mcp.json` (project root, committed to git)
+- **Secrets**: Store tokens in `frontend/.env.local` (gitignored)
+- **Verify Status**: Run `/mcp` in Claude Code
+
 ## Last Updated
-2026-01-03 - Initial context system creation
+2026-01-03 - Added MCP servers (Playwright, Sanity, Vercel, HubSpot, Sentry)
