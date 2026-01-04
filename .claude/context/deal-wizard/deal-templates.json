@@ -1,0 +1,138 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-04",
+  "pipelines": {
+    "master_retainer": {
+      "id": "666933831",
+      "name": "Master Pipeline + Retainer",
+      "description": "Monthly stages for tracking retainer and project work"
+    },
+    "master": {
+      "id": "9297019",
+      "name": "Master Pipeline",
+      "description": "Traditional sales pipeline with win categories"
+    },
+    "sales": {
+      "id": "139600968",
+      "name": "Sales Pipeline",
+      "description": "Discovery to close pipeline"
+    }
+  },
+  "stages": {
+    "january_holding": {"id": "978825825", "label": "January Holding", "pipeline": "master_retainer"},
+    "january_sent": {"id": "1073811210", "label": "January Sent", "pipeline": "master_retainer"},
+    "january_closed": {"id": "978825826", "label": "January Closed", "pipeline": "master_retainer"},
+    "february_holding": {"id": "978825827", "label": "February Holding", "pipeline": "master_retainer"},
+    "february_sent": {"id": "1073811211", "label": "February Sent", "pipeline": "master_retainer"},
+    "february_closed": {"id": "978825828", "label": "February Closed", "pipeline": "master_retainer"},
+    "march_holding": {"id": "978825829", "label": "March Holding", "pipeline": "master_retainer"},
+    "march_sent": {"id": "1073811212", "label": "March Sent", "pipeline": "master_retainer"},
+    "march_closed": {"id": "978825830", "label": "March Closed", "pipeline": "master_retainer"},
+    "april_holding": {"id": "978825831", "label": "April Holding", "pipeline": "master_retainer"},
+    "april_sent": {"id": "1073811213", "label": "April Sent", "pipeline": "master_retainer"},
+    "april_closed": {"id": "978730408", "label": "April Closed", "pipeline": "master_retainer"},
+    "may_holding": {"id": "978730409", "label": "May Holding", "pipeline": "master_retainer"},
+    "may_sent": {"id": "1073811214", "label": "May Sent", "pipeline": "master_retainer"},
+    "may_closed": {"id": "978730410", "label": "May Closed", "pipeline": "master_retainer"},
+    "june_holding": {"id": "978730411", "label": "June Holding", "pipeline": "master_retainer"},
+    "june_sent": {"id": "1073671051", "label": "June Sent", "pipeline": "master_retainer"},
+    "june_closed": {"id": "978730412", "label": "June Closed", "pipeline": "master_retainer"},
+    "july_holding": {"id": "978730413", "label": "July Holding", "pipeline": "master_retainer"},
+    "july_sent": {"id": "1073811215", "label": "July Sent", "pipeline": "master_retainer"},
+    "july_closed": {"id": "978730414", "label": "July Closed", "pipeline": "master_retainer"},
+    "august_holding": {"id": "978730415", "label": "August Holding", "pipeline": "master_retainer"},
+    "august_sent": {"id": "1073811216", "label": "August Sent", "pipeline": "master_retainer"},
+    "august_closed": {"id": "978730416", "label": "August Closed", "pipeline": "master_retainer"},
+    "september_holding": {"id": "978730417", "label": "September Holding", "pipeline": "master_retainer"},
+    "september_sent": {"id": "1073811217", "label": "September Sent", "pipeline": "master_retainer"},
+    "september_closed": {"id": "978730418", "label": "September Closed", "pipeline": "master_retainer"},
+    "october_holding": {"id": "978730419", "label": "October Holding", "pipeline": "master_retainer"},
+    "october_sent": {"id": "1073811218", "label": "October Sent", "pipeline": "master_retainer"},
+    "october_closed": {"id": "978730420", "label": "October Closed", "pipeline": "master_retainer"},
+    "november_holding": {"id": "978730421", "label": "November Holding", "pipeline": "master_retainer"},
+    "november_sent": {"id": "1073811219", "label": "November Sent", "pipeline": "master_retainer"},
+    "november_closed": {"id": "978730422", "label": "November Closed", "pipeline": "master_retainer"},
+    "december_holding": {"id": "978730423", "label": "December Holding", "pipeline": "master_retainer"},
+    "december_sent": {"id": "1073811220", "label": "December Sent", "pipeline": "master_retainer"},
+    "december_closed": {"id": "978730424", "label": "December Closed", "pipeline": "master_retainer"},
+    "discovery_scheduled": {"id": "239484772", "label": "Discovery Call Scheduled", "pipeline": "sales"},
+    "discovery_completed": {"id": "239484773", "label": "Discovery Call Completed", "pipeline": "sales"},
+    "solution_pricing": {"id": "239484774", "label": "Solution + Pricing Discussion", "pipeline": "sales"},
+    "send_quote": {"id": "239484776", "label": "Send Quote", "pipeline": "sales"},
+    "send_invoice": {"id": "239434852", "label": "Send Invoice", "pipeline": "sales"},
+    "closed_won": {"id": "239484777", "label": "Closed Won", "pipeline": "sales"},
+    "closed_lost": {"id": "239484778", "label": "Closed Lost", "pipeline": "sales"}
+  },
+  "templates": [
+    {
+      "id": "implementation_hours",
+      "name": "Implementation Hours Package",
+      "description": "Monthly implementation and strategy hours",
+      "pipeline": "master_retainer",
+      "defaultStageKey": "current_month_holding",
+      "suggestedProducts": ["1555947856", "1558184376", "1558251326"],
+      "quoteTermsTemplate": "implementation_hours",
+      "defaultExpirationDays": 14
+    },
+    {
+      "id": "training",
+      "name": "HubSpot Training",
+      "description": "Training and onboarding programs",
+      "pipeline": "master_retainer",
+      "defaultStageKey": "current_month_holding",
+      "suggestedProducts": ["1689262405", "2473663664", "2473650435"],
+      "quoteTermsTemplate": "training",
+      "defaultExpirationDays": 30
+    },
+    {
+      "id": "consulting",
+      "name": "Consulting Sessions",
+      "description": "One-time consulting hours",
+      "pipeline": "sales",
+      "defaultStageKey": "send_quote",
+      "suggestedProducts": ["1392635984"],
+      "quoteTermsTemplate": "consulting",
+      "defaultExpirationDays": 14
+    },
+    {
+      "id": "audit",
+      "name": "CRM Audit",
+      "description": "Full CRM audit and roadmap",
+      "pipeline": "sales",
+      "defaultStageKey": "send_quote",
+      "suggestedProducts": ["2479083530"],
+      "quoteTermsTemplate": "audit",
+      "defaultExpirationDays": 30
+    },
+    {
+      "id": "cms_website",
+      "name": "CMS Website Build",
+      "description": "HubSpot CMS website development",
+      "pipeline": "sales",
+      "defaultStageKey": "solution_pricing",
+      "suggestedProducts": ["2668530574", "2668587922", "2668587924"],
+      "quoteTermsTemplate": "cms_project",
+      "defaultExpirationDays": 30
+    },
+    {
+      "id": "retainer",
+      "name": "Monthly Retainer",
+      "description": "Ongoing monthly support and coaching",
+      "pipeline": "master_retainer",
+      "defaultStageKey": "current_month_holding",
+      "suggestedProducts": ["1392636749", "2231778696"],
+      "quoteTermsTemplate": "retainer",
+      "defaultExpirationDays": 14
+    },
+    {
+      "id": "custom",
+      "name": "Custom Deal",
+      "description": "Custom deal with manual product selection",
+      "pipeline": "sales",
+      "defaultStageKey": "send_quote",
+      "suggestedProducts": [],
+      "quoteTermsTemplate": "custom",
+      "defaultExpirationDays": 30
+    }
+  ]
+}

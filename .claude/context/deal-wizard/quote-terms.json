@@ -1,0 +1,195 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-04",
+  "defaultComments": "Thank you for the opportunity to partner with you on your HubSpot journey. We're excited to help you achieve your business goals through strategic implementation and training.",
+  "templates": {
+    "implementation_hours": {
+      "name": "Implementation Hours Terms",
+      "validityDays": 14,
+      "comments": "Thank you for the opportunity to partner with you on your HubSpot implementation and strategy needs. This proposal includes dedicated consulting time to help optimize your HubSpot portal and equip your team with the knowledge to succeed.",
+      "terms": [
+        "**Monthly Hours Package**",
+        "This quote represents a monthly package of HubSpot implementation and strategy hours. Hours are used as needed throughout the month based on your priorities and our collaborative planning.",
+        "",
+        "**Hours Usage**",
+        "All hours must be utilized within the billing month. Unused hours do not roll over to subsequent months.",
+        "",
+        "**Scheduling**",
+        "Sessions are scheduled based on mutual availability. We recommend booking sessions at least 48 hours in advance when possible.",
+        "",
+        "**Support Included**",
+        "This package includes email and Slack support for questions between scheduled sessions.",
+        "",
+        "**Payment Terms**",
+        "Payment is due upon acceptance of this quote. Monthly packages renew automatically unless cancelled with 30 days written notice."
+      ]
+    },
+    "training": {
+      "name": "Training Terms",
+      "validityDays": 30,
+      "comments": "We're excited to guide you through your HubSpot training journey. Our program is designed to transform how you and your team use HubSpot, ensuring you get maximum value from the platform.",
+      "terms": [
+        "**Training Program Structure**",
+        "This training program consists of weekly 1-hour sessions focused on HubSpot tools, best practices, and your specific business needs.",
+        "",
+        "**Session Format**",
+        "Training sessions are conducted virtually via Zoom. Recordings are provided for future reference and team training.",
+        "",
+        "**Attendees**",
+        "Up to 5 team members may attend each session. Additional attendees can be accommodated for an additional fee.",
+        "",
+        "**Rescheduling**",
+        "Sessions may be rescheduled with at least 24 hours notice. Missed sessions without notice are forfeited.",
+        "",
+        "**Materials**",
+        "Training materials, recordings, and resources are provided throughout the program and remain available after completion.",
+        "",
+        "**Payment Terms**",
+        "Payment is due according to the billing schedule selected (monthly or full package upfront)."
+      ]
+    },
+    "consulting": {
+      "name": "Consulting Terms",
+      "validityDays": 14,
+      "comments": "Thank you for choosing Sidekick Strategies for your HubSpot consulting needs. During our session(s), we'll focus on your specific challenges and develop actionable next steps.",
+      "terms": [
+        "**Consulting Session**",
+        "This quote covers one or more consulting sessions as specified. Each session is focused on your specific HubSpot and business needs.",
+        "",
+        "**Scheduling**",
+        "Sessions are scheduled via our online booking system after payment is received.",
+        "",
+        "**Preparation**",
+        "We recommend preparing a list of questions or challenges before each session to maximize our time together.",
+        "",
+        "**Deliverables**",
+        "Session notes and action items will be provided within 24 hours of each session.",
+        "",
+        "**Payment Terms**",
+        "Payment is due upon acceptance of this quote. Sessions must be scheduled within 90 days of payment."
+      ]
+    },
+    "audit": {
+      "name": "CRM Audit Terms",
+      "validityDays": 30,
+      "comments": "Our comprehensive CRM audit will provide you with a clear roadmap for optimizing your HubSpot portal. We'll analyze your current setup and deliver actionable recommendations.",
+      "terms": [
+        "**Audit Scope**",
+        "This audit covers a comprehensive analysis of your HubSpot CRM including Contacts, Companies, Deals, Workflows, Email, and Reporting configurations.",
+        "",
+        "**Timeline**",
+        "The audit is typically completed within 2-3 weeks from the kickoff call. Exact timeline may vary based on portal complexity.",
+        "",
+        "**Deliverables**",
+        "You will receive a detailed audit report via an online dashboard, including findings, recommendations, and a prioritized action plan.",
+        "",
+        "**Presentation**",
+        "A 1-hour presentation session is included to walk through findings and answer questions.",
+        "",
+        "**Access Required**",
+        "Super Admin access to your HubSpot portal is required to complete the audit.",
+        "",
+        "**Payment Terms**",
+        "Payment is due upon acceptance of this quote. The audit begins upon receipt of payment and HubSpot access."
+      ]
+    },
+    "cms_project": {
+      "name": "CMS Website Project Terms",
+      "validityDays": 30,
+      "comments": "We're excited to build your new HubSpot CMS website. Our team will create a professional, conversion-focused website that integrates seamlessly with your HubSpot marketing tools.",
+      "terms": [
+        "**Project Scope**",
+        "This quote covers the development of a HubSpot CMS website as specified. Scope changes may require additional quotes.",
+        "",
+        "**Timeline**",
+        "Project timeline will be established during the kickoff meeting. Typical timelines range from 4-12 weeks depending on complexity.",
+        "",
+        "**Payment Schedule**",
+        "50% due upon project kickoff, 50% due upon project completion and launch.",
+        "",
+        "**Content**",
+        "Client is responsible for providing all content (text, images, logos) in a timely manner. Content delays may affect timeline.",
+        "",
+        "**Revisions**",
+        "Two rounds of revisions are included. Additional revisions are billed at our hourly consulting rate.",
+        "",
+        "**Hosting**",
+        "Website will be hosted on HubSpot CMS. HubSpot subscription is separate and client's responsibility.",
+        "",
+        "**Training**",
+        "2 hours of CMS training is included to help your team manage content after launch."
+      ]
+    },
+    "retainer": {
+      "name": "Monthly Retainer Terms",
+      "validityDays": 14,
+      "comments": "Welcome to our monthly partnership program. We're committed to your ongoing success with HubSpot through continuous support, optimization, and strategic guidance.",
+      "terms": [
+        "**Monthly Retainer**",
+        "This is an ongoing monthly engagement for HubSpot support, strategy, and coaching. Services begin on the 1st of the month following payment.",
+        "",
+        "**Included Services**",
+        "Regular scheduled meetings, email and Slack support, and ongoing HubSpot optimization as outlined in the package description.",
+        "",
+        "**Minimum Term**",
+        "This engagement has a 3-month minimum commitment. After the minimum term, the retainer continues month-to-month.",
+        "",
+        "**Cancellation**",
+        "Cancel anytime after the minimum term with 30 days written notice.",
+        "",
+        "**Billing**",
+        "Monthly billing occurs on the 1st of each month. Payment is due within 7 days of invoice.",
+        "",
+        "**Auto-Renewal**",
+        "Retainer renews automatically each month unless cancelled per the cancellation terms."
+      ]
+    },
+    "one_time_hours": {
+      "name": "One-Time Hours Purchase",
+      "validityDays": 14,
+      "comments": "Thank you for the opportunity to partner with you on your HubSpot needs. This proposal includes dedicated consulting time to help optimize your HubSpot portal and equip your team with the knowledge to succeed.",
+      "terms": [
+        "**One-Time Engagement**",
+        "This quote represents a one-time purchase of consulting hours for HubSpot training and implementation services. Unlike our standard monthly partnership arrangements, this engagement does not include recurring billing or automatic renewal.",
+        "",
+        "**Hours Bank**",
+        "All hours must be utilized within 90 days of the agreement date. Hours do not roll over beyond this period.",
+        "",
+        "**Continuing Services**",
+        "Should you wish to continue our partnership after your hours have been utilized, simply reach out to schedule a new bank of hours. We're happy to discuss ongoing support options, whether through another one-time purchase or transitioning to a monthly partnership model.",
+        "",
+        "**Payment Terms**",
+        "Payment is due upon acceptance of this quote. Work will commence upon receipt of payment."
+      ]
+    },
+    "custom": {
+      "name": "Custom Terms",
+      "validityDays": 30,
+      "comments": "Thank you for considering Sidekick Strategies for your HubSpot needs. We've prepared this custom proposal based on our discussions.",
+      "terms": [
+        "**Custom Engagement**",
+        "This quote represents a custom engagement as discussed. Specific terms and deliverables are outlined in the quote details.",
+        "",
+        "**Timeline**",
+        "Project timeline will be confirmed upon acceptance and during kickoff discussions.",
+        "",
+        "**Payment Terms**",
+        "Payment terms are as specified in this quote. Standard terms are Net 15 unless otherwise negotiated.",
+        "",
+        "**Support**",
+        "Email and Slack support is included during the engagement period.",
+        "",
+        "**Changes**",
+        "Any changes to scope will be discussed and may require a change order or additional quote."
+      ]
+    }
+  },
+  "discountPolicies": {
+    "maxDiscountPercent": 25,
+    "standardDiscounts": [
+      {"id": "annual_commitment", "name": "Annual Commitment", "percent": 10, "description": "For 12-month retainer commitment"},
+      {"id": "nonprofit", "name": "Nonprofit Discount", "percent": 15, "description": "For registered 501(c)(3) organizations"},
+      {"id": "referral", "name": "Referral Discount", "percent": 5, "description": "For clients referred by existing customers"}
+    ]
+  }
+}

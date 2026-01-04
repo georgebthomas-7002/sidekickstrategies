@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-04",
+  "defaultSender": {
+    "ownerId": "2740116",
+    "userId": "571309",
+    "name": "George B. Thomas",
+    "email": "george@georgebthomas.com",
+    "title": "Founder & HubSpot Expert"
+  },
+  "company": {
+    "hubspotAccountId": "474711",
+    "name": "Sidekick Strategies",
+    "website": "https://sidekickstrategies.com",
+    "supportEmail": "support@sidekickstrategies.com"
+  },
+  "team": [
+    {
+      "id": "george",
+      "ownerId": "2740116",
+      "userId": "571309",
+      "name": "George B. Thomas",
+      "email": "george@georgebthomas.com"
+    },
+    {
+      "id": "kelly",
+      "ownerId": "6253647",
+      "userId": "603786",
+      "name": "Kelly Thomas",
+      "email": "kelly@georgebthomas.com"
+    },
+    {
+      "id": "chad",
+      "ownerId": "81780625",
+      "userId": "81780625",
+      "name": "Chad Hohn",
+      "email": "chad@georgebthomas.com"
+    },
+    {
+      "id": "noah",
+      "ownerId": "229736267",
+      "userId": "46885520",
+      "name": "Noah Thomas",
+      "email": "noah@georgebthomas.com"
+    },
+    {
+      "id": "jorge",
+      "ownerId": "337823022",
+      "userId": "49903370",
+      "name": "Jorge Fuentes Zapata",
+      "email": "jorge@georgebthomas.com"
+    },
+    {
+      "id": "seth",
+      "ownerId": "372319508",
+      "userId": "50734487",
+      "name": "Seth Thomas",
+      "email": "seth@georgebthomas.com"
+    }
+  ],
+  "quoteSettings": {
+    "defaultExpirationDays": 30,
+    "defaultTemplateId": "284147306418",
+    "defaultTemplateName": "GBT - Quote 2024"
+  }
+}

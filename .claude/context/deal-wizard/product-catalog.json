@@ -1,0 +1,180 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-04",
+  "hubspotAccountId": "474711",
+  "products": [
+    {
+      "id": "1392635984",
+      "name": "1-Hour of HubSpot Consulting",
+      "sku": "1-hr-hs-cons",
+      "price": 350,
+      "description": "One-hour consulting session with George B. Thomas for strategy, problem-solving, and next step actions.",
+      "category": "consulting",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "1555947856",
+      "name": "10 Hours | HubSpot Implementation & INBOUND Strategy",
+      "sku": null,
+      "price": 3000,
+      "description": "10 hours of monthly HubSpot Implementation and INBOUND strategy to be used as needed.",
+      "category": "implementation",
+      "billingFrequency": "monthly"
+    },
+    {
+      "id": "1558184376",
+      "name": "20 Hours | Implementation & Strategy",
+      "sku": null,
+      "price": 5000,
+      "description": "20 hours of monthly HubSpot Implementation and INBOUND strategy to be used as needed.",
+      "category": "implementation",
+      "billingFrequency": "monthly"
+    },
+    {
+      "id": "1558251326",
+      "name": "30 Hours | Implementation & Strategy",
+      "sku": null,
+      "price": 7500,
+      "description": "30 hours of monthly HubSpot Implementation and INBOUND strategy to be used as needed.",
+      "category": "implementation",
+      "billingFrequency": "monthly"
+    },
+    {
+      "id": "1418276911",
+      "name": "90-Day HubSpot Onboarding",
+      "sku": null,
+      "price": 4000,
+      "description": "One-time fee for 90-day onboarding process. Includes kickoff call, 11 training/Q&A sessions, HubSpot setup help, and support.",
+      "category": "onboarding",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "1689262405",
+      "name": "3-Month HubSpot Onboarding & Training",
+      "sku": "3MHS-Training",
+      "price": 2500,
+      "description": "3-months of HubSpot training with weekly 1-hour meetings on HubSpot tools and INBOUND/Content best practices.",
+      "category": "training",
+      "billingFrequency": "quarterly"
+    },
+    {
+      "id": "1418276913",
+      "name": "6-Month HubSpot Onboarding & Training",
+      "sku": null,
+      "price": 2500,
+      "description": "6-months of onboarding and HubSpot training. Onboarding completed in 90 days with deeper dives into HubSpot, processes, and best practices.",
+      "category": "training",
+      "billingFrequency": "6-month"
+    },
+    {
+      "id": "1392636749",
+      "name": "12-Month HubSpot Learn",
+      "sku": "hs-lad-ret-12mnths",
+      "price": 1750,
+      "description": "12-month retainer with weekly 1-hour meetings for best practices, strategy, and deeper education. Includes email, Slack, and chat support.",
+      "category": "retainer",
+      "billingFrequency": "monthly"
+    },
+    {
+      "id": "2473663664",
+      "name": "HubSpot CRM Training + Marketing | 3 Payments",
+      "sku": "HS-TRN-CRM-MRK",
+      "price": 2500,
+      "description": "3-month training program for HubSpot CRM and Marketing Hub with weekly interactive sessions.",
+      "category": "training",
+      "billingFrequency": "quarterly"
+    },
+    {
+      "id": "2473650435",
+      "name": "HubSpot CRM Training + Marketing | Package",
+      "sku": null,
+      "price": 7500,
+      "description": "Complete 3-month training program for HubSpot CRM and Marketing Hub (full package price).",
+      "category": "training",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "2479083530",
+      "name": "Full CRM Audit",
+      "sku": "CRM-ADT",
+      "price": 5000,
+      "description": "Comprehensive analysis of Contacts, Companies, Email, and Workflows. Includes strategic roadmap via online dashboard.",
+      "category": "audit",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "2231778696",
+      "name": "Accountability & Coaching",
+      "sku": null,
+      "price": 300,
+      "description": "Weekly 30-minute meetings for strategy, accountability, and implementation advice.",
+      "category": "coaching",
+      "billingFrequency": "monthly"
+    },
+    {
+      "id": "2668530574",
+      "name": "SKS | CMS Simple | 1 to 10 Pages",
+      "sku": "HS-CMS-Simple",
+      "price": 5000,
+      "description": "Custom 1-10 page website using HubSpot CMS with tailored design, responsive layouts, SEO optimization.",
+      "category": "cms",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "2668587922",
+      "name": "SKS | CMS Simple | 11 to 20 Pages",
+      "sku": null,
+      "price": 10000,
+      "description": "Custom 11-20 page website with integrated blog functionality using HubSpot CMS.",
+      "category": "cms",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "2668587924",
+      "name": "SKS | CMS Simple | 21+ Pages & Advanced Functionality",
+      "sku": null,
+      "price": 20000,
+      "description": "Custom website with 21+ pages and advanced functionality using HubSpot CMS.",
+      "category": "cms",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "2674090047",
+      "name": "12-Week Content Training",
+      "sku": null,
+      "price": 0,
+      "description": "12-week training program to enhance in-house content team skills through 1-hour sessions.",
+      "category": "training",
+      "billingFrequency": "one-time"
+    },
+    {
+      "id": "1555944730",
+      "name": "Virtual Emcee Services",
+      "sku": null,
+      "price": 2500,
+      "description": "Virtual emcee services for webinar events and Friday Forum events.",
+      "category": "services",
+      "billingFrequency": "per-event"
+    },
+    {
+      "id": "1555944731",
+      "name": "Marketing Smarts Podcast & YouTube Live Show",
+      "sku": null,
+      "price": 4200,
+      "description": "Setup, scheduling, recording, editing, and publishing of Marketing Smarts podcast and YouTube live show.",
+      "category": "services",
+      "billingFrequency": "monthly"
+    }
+  ],
+  "categories": [
+    {"id": "consulting", "name": "Consulting", "order": 1},
+    {"id": "implementation", "name": "Implementation & Strategy", "order": 2},
+    {"id": "training", "name": "Training & Onboarding", "order": 3},
+    {"id": "onboarding", "name": "Onboarding", "order": 4},
+    {"id": "retainer", "name": "Retainer Packages", "order": 5},
+    {"id": "audit", "name": "Audits", "order": 6},
+    {"id": "coaching", "name": "Coaching", "order": 7},
+    {"id": "cms", "name": "CMS & Website", "order": 8},
+    {"id": "services", "name": "Other Services", "order": 9}
+  ]
+}
