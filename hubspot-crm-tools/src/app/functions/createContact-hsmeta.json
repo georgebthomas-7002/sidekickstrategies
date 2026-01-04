@@ -1,0 +1,12 @@
+{
+  "uid": "CRMTools_createContact",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/createContact.js",
+    "endpoint": {
+      "path": "/api/create-contact",
+      "methods": ["POST"]
+    },
+    "secretKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  }
+}

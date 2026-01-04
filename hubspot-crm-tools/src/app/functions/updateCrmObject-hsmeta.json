@@ -1,0 +1,12 @@
+{
+  "uid": "CRMTools_updateCrmObject",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/updateCrmObject.js",
+    "endpoint": {
+      "path": "/api/update-crm-object",
+      "methods": ["POST", "PATCH"]
+    },
+    "secretKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  }
+}

@@ -24,6 +24,7 @@
 - `.context/TEAM.md` - Team member information
 - `.context/RESEARCH.md` - Full website research
 - `.context/SKILLS.md` - Recommended Claude Skills
+- `.context/GOOGLE_INTEGRATION.md` - Google Calendar & Gmail setup guide
 
 ## Tech Stack
 | Layer | Technology | Version |
@@ -130,6 +131,7 @@ The project uses Model Context Protocol (MCP) servers to enhance Claude Code cap
 | Vercel | Remote (HTTP) | Deployment logs, project monitoring | OAuth (browser) |
 | HubSpot | Remote (HTTP) | CRM data - contacts, deals, companies | Token in .env.local |
 | Sentry | Remote (HTTP) | Error monitoring, debugging | OAuth (browser) |
+| Google | Local (stdio) | Gmail + Calendar (read/write) | OAuth (Google Cloud) |
 
 ### MCP Usage Examples
 ```
@@ -148,12 +150,55 @@ The project uses Model Context Protocol (MCP) servers to enhance Claude Code cap
 
 # Sentry
 "Show me recent errors from production"
+
+# Google (Calendar + Gmail)
+"What's on my calendar tomorrow?"
+"Check for unread emails from [client]"
+"Schedule a call for Tuesday at 2pm"
+"Draft a follow-up email to [contact]"
 ```
 
 ### MCP Configuration
 - **Config File**: `.mcp.json` (project root, committed to git)
 - **Secrets**: Store tokens in `frontend/.env.local` (gitignored)
 - **Verify Status**: Run `/mcp` in Claude Code
+
+## HubSpot CRM Integration
+
+Full HubSpot CRM control is configured with:
+- **MCP Server**: Read access to contacts, companies, deals (OAuth)
+- **Direct API**: Write access via Private App token for creating/updating objects
+- **Account ID**: 474711
+
+### Deal Creation Wizard
+A conversational workflow for creating complete deals. Invoke with:
+- `/create-deal` or "create deal for [name]"
+
+**What it does:**
+1. Looks up contact → finds associated company
+2. Asks deal type (Implementation, Training, Consulting, Audit, CMS, Retainer, Custom)
+3. Suggests products with prices
+4. Applies discounts (max 25%)
+5. Creates: Deal → Line Items → Quote → Invoice (optional)
+6. Returns HubSpot links
+
+**Context files** (in `.claude/context/deal-wizard/`):
+| File | Purpose |
+|------|---------|
+| `product-catalog.json` | 18 products with HubSpot IDs and prices |
+| `deal-templates.json` | 7 deal types + all pipeline/stage IDs |
+| `quote-terms.json` | 8 quote terms templates by deal type |
+| `sender-config.json` | George's owner ID (2740116), team, API token |
+
+**Skill file**: `.claude/skills/deal-wizard.md`
+
+**Key IDs:**
+- George's Owner ID: 2740116
+- Default Quote Template: 284147306418 (GBT - Quote 2024)
+- Master Pipeline + Retainer: 666933831
+- January Holding Stage: 978825825
+
+See `CLAUDE.md` → "Deal Creation Wizard" section for full documentation.
 
 ## Planned: HubSpot Content Migration
 
@@ -167,4 +212,4 @@ A detailed migration plan exists for importing 50+ pages from HubSpot CMS to San
 Key mapping: HubSpot modules → Sanity pageBuilder blocks (hero, callToAction, infoSection, etc.)
 
 ## Last Updated
-2026-01-04 - Added HubSpot migration plan, SEO/OG image support
+2026-01-04 - Added Google Calendar & Gmail integration guide (`.context/GOOGLE_INTEGRATION.md`)

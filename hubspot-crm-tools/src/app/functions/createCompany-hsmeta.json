@@ -1,0 +1,12 @@
+{
+  "uid": "CRMTools_createCompany",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/createCompany.js",
+    "endpoint": {
+      "path": "/api/create-company",
+      "methods": ["POST"]
+    },
+    "secretKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  }
+}

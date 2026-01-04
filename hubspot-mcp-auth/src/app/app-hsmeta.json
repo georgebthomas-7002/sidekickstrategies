@@ -1,0 +1,40 @@
+{
+  "uid": "HubSpotMCPAuth_app",
+  "type": "app",
+  "config": {
+    "description": "User-level OAuth app for authenticating with the HubSpot MCP server to read CRM data via AI assistants.",
+    "name": "HubSpot MCP Auth",
+    "distribution": "marketplace",
+    "isUserLevel": true,
+    "auth": {
+      "type": "oauth",
+      "redirectUrls": [
+        "http://localhost",
+        "http://localhost:3000",
+        "http://localhost:3000/oauth-callback"
+      ],
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read",
+        "crm.objects.companies.read",
+        "crm.objects.deals.read"
+      ],
+      "optionalScopes": [],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [
+        "https://api.hubapi.com",
+        "https://mcp.hubspot.com"
+      ],
+      "iframe": [],
+      "img": []
+    },
+    "support": {
+      "supportEmail": "support@sidekickstrategies.com",
+      "documentationUrl": "https://sidekickstrategies.com/docs",
+      "supportUrl": "https://sidekickstrategies.com/support",
+      "supportPhone": "+18005555555"
+    }
+  }
+}

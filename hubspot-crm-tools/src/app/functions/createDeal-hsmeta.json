@@ -1,0 +1,12 @@
+{
+  "uid": "CRMTools_createDeal",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/createDeal.js",
+    "endpoint": {
+      "path": "/api/create-deal",
+      "methods": ["POST"]
+    },
+    "secretKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  }
+}

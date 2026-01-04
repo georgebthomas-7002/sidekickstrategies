@@ -1,0 +1,9 @@
+{
+  "name": "crm-tools-functions",
+  "version": "1.0.0",
+  "description": "CRM serverless functions for managing contacts, companies, deals, and tasks",
+  "dependencies": {
+    "@hubspot/api-client": "^12.1.0",
+    "axios": "^1.9.0"
+  }
+}

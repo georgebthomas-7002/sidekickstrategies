@@ -23,6 +23,15 @@
     "sentry": {
       "type": "http",
       "url": "https://mcp.sentry.dev/mcp"
+    },
+    "clickup": {
+      "type": "http",
+      "url": "https://mcp.clickup.com/mcp"
+    },
+    "google": {
+      "type": "stdio",
+      "command": "/home/georgebthomas/.local/bin/uvx",
+      "args": ["workspace-mcp", "--tool-tier", "core"]
     }
   }
 }

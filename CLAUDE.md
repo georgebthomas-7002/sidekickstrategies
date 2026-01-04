@@ -68,19 +68,97 @@ cd studio && npx sanity deploy
 ## HubSpot Integration (Added January 2026)
 
 ### Overview
-Full HubSpot CRM control is set up with two components:
+Full HubSpot CRM control is set up with three methods:
 1. **Official HubSpot MCP Server** - For reading CRM data (contacts, companies, deals)
-2. **Custom Serverless Functions** - For writing/creating CRM data
+2. **Direct API Access via Private App Token** - For write operations (RECOMMENDED)
+3. **Custom Serverless Functions** - Alternative for write operations (deployed but not primary)
 
 ### HubSpot Account
 - **Account ID:** 474711
 - **Account Name:** sidekick-strategies-2026
 
-### MCP Server Configuration
+### Direct API Access (Primary Write Method)
+**IMPORTANT:** The MCP OAuth app is marketplace-distributed with user-level auth, which means it CANNOT have write scopes (HubSpot platform restriction). Use the Private App token for all write operations.
+
+**Private App Token:** Stored in `.env.local` as `HUBSPOT_ACCESS_TOKEN`
+
+**Capabilities with Direct API:**
+| Operation | Endpoint | Method |
+|-----------|----------|--------|
+| Create Deal | `/crm/v3/objects/deals` | POST |
+| Create Contact | `/crm/v3/objects/contacts` | POST |
+| Create Company | `/crm/v3/objects/companies` | POST |
+| Search Products | `/crm/v3/objects/products/search` | POST |
+| Create Line Item | `/crm/v3/objects/line_items` | POST |
+| Update Any Object | `/crm/v3/objects/{objectType}/{objectId}` | PATCH |
+
+**Example: Create a Deal with Line Item**
+```bash
+# 1. Create the deal
+curl -X POST 'https://api.hubapi.com/crm/v3/objects/deals' \
+  -H 'Authorization: Bearer $HUBSPOT_ACCESS_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "properties": {
+      "dealname": "Deal Name",
+      "amount": "5000",
+      "dealstage": "978825825",
+      "closedate": "2026-01-05"
+    },
+    "associations": [
+      {
+        "to": {"id": "CONTACT_ID"},
+        "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": 3}]
+      }
+    ]
+  }'
+
+# 2. Search for a product
+curl -X POST 'https://api.hubapi.com/crm/v3/objects/products/search' \
+  -H 'Authorization: Bearer $HUBSPOT_ACCESS_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "product name", "properties": ["name", "price", "hs_sku"]}'
+
+# 3. Add line item with discount
+curl -X POST 'https://api.hubapi.com/crm/v3/objects/line_items' \
+  -H 'Authorization: Bearer $HUBSPOT_ACCESS_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "properties": {
+      "hs_product_id": "PRODUCT_ID",
+      "quantity": "1",
+      "price": "5500",
+      "discount": "500"
+    },
+    "associations": [
+      {
+        "to": {"id": "DEAL_ID"},
+        "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": 20}]
+      }
+    ]
+  }'
+```
+
+**Common Deal Stages (January Holding pipeline):**
+| Stage | Value |
+|-------|-------|
+| January Holding | 978825825 |
+| January Sent | 1073811210 |
+| January Closed | 978825826 |
+
+**Association Type IDs:**
+| Association | Type ID |
+|-------------|---------|
+| Deal → Contact | 3 |
+| Deal → Company | 5 |
+| Line Item → Deal | 20 |
+
+### MCP Server Configuration (Read-Only)
 The `hubspot-crm` MCP server is configured in `~/.claude.json` with:
 - URL: `https://mcp.hubspot.com/`
 - OAuth Client ID: `87ec5e6f-9ad1-40fe-8f39-9fcb387e0f5c`
 - Token expires every 30 minutes - may need refresh
+- **Limitation:** Marketplace OAuth apps cannot have write scopes
 
 **To refresh the token:**
 1. Run the OAuth server: `cd hubspot-mcp-auth && HUBSPOT_CLIENT_SECRET=a8e74ed0-e9df-4f79-8911-ee5fd8501dc1 node oauth-server.js`
@@ -154,3 +232,184 @@ hs project open
 # List builds
 hs project list-builds
 ```
+
+## Deal Creation Wizard (Added January 2026)
+
+### Overview
+A conversational workflow for creating complete HubSpot deals with line items, quotes, and invoices.
+
+### How to Use
+Say any of these to start:
+- `/create-deal` - Explicit skill invocation
+- "create deal for [contact name]" - Natural language
+- "deal for [contact name]" - Short form
+
+### What It Does
+1. **Looks up contact** via MCP search
+2. **Finds associated company** automatically
+3. **Asks deal type** (Implementation, Training, Consulting, Audit, CMS, Retainer, Custom)
+4. **Suggests products** based on deal type with prices
+5. **Applies discounts** if requested (max 25%)
+6. **Creates all objects** sequentially:
+   - Deal with contact/company associations
+   - Line items for each product
+   - Quote with proper terms and sender (George)
+   - Invoice (optional)
+7. **Provides links** to created objects
+
+### Context Files
+Located in `.claude/context/deal-wizard/`:
+| File | Purpose |
+|------|---------|
+| `product-catalog.json` | All products with HubSpot IDs and prices |
+| `deal-templates.json` | Deal types, pipelines, stages |
+| `quote-terms.json` | Quote terms templates by deal type |
+| `sender-config.json` | George's owner ID, API token, team info |
+
+### Skill File
+Located at `.claude/skills/deal-wizard.md` - Contains full workflow logic and API patterns.
+
+### Key IDs
+- **George's Owner ID**: 2740116
+- **Default Quote Template**: 284147306418 (GBT - Quote 2024)
+- **January Holding Stage**: 978825825
+- **Master Pipeline + Retainer**: 666933831
+
+### Example Workflow
+```
+User: "create deal for Shaun Jones"
+
+Claude: I found Shaun Jones (jones@jonesfwm.com) at Jones Financial.
+        What type of deal? (1-7)
+
+User: "1" (Implementation Hours)
+
+Claude: For Implementation Hours, I recommend:
+        1. 10 Hours | Implementation & Strategy - $3,000
+        2. 20 Hours | Implementation & Strategy - $5,000
+        3. 30 Hours | Implementation & Strategy - $7,500
+        Which products? (enter numbers)
+
+User: "2"
+
+Claude: Subtotal: $5,000. Apply discount?
+
+User: "$500 off"
+
+Claude: [Shows summary]
+        Create deal? Also create quote? Also create invoice?
+
+User: "yes, yes, no"
+
+Claude: [Creates Deal → Line Items → Quote]
+        Done! Deal: https://app.hubspot.com/...
+        Quote: https://app.hubspot.com/...
+```
+
+### Updating Products
+To add new products:
+1. Add product in HubSpot first
+2. Get the product ID from HubSpot
+3. Add entry to `.claude/context/deal-wizard/product-catalog.json`
+
+### Updating Quote Terms
+To modify quote terms for a deal type:
+1. Edit `.claude/context/deal-wizard/quote-terms.json`
+2. Find the template by ID (e.g., "implementation_hours")
+3. Modify "comments" or "terms" arrays
+
+## Client Portal (Added January 2026)
+
+### Overview
+A client-facing portal where clients can log in, request help (creates ClickUp tasks), view project status, see billing, and schedule meetings.
+
+**Full Plan:** `/.claude/context/client-portal-project.md`
+
+### Architecture
+- **Authentication:** Magic links via Resend (no passwords)
+- **Client Mapping:** HubSpot Company → ClickUp Folder via custom properties
+- **Content:** Sanity for portal content and session tokens
+- **Tasks:** ClickUp for project delivery
+
+### Key IDs and Mappings
+
+**HubSpot Custom Properties:**
+| Object | Property | Purpose |
+|--------|----------|---------|
+| Contact | `portal_enabled` | Gates portal access |
+| Contact | `portal_last_login` | Analytics |
+| Company | `clickup_folder_id` | Maps to ClickUp folder |
+| Company | `clickup_list_id` | Default task list |
+| Company | `portal_enabled` | Company-level gate |
+| Company | `portal_tier` | standard/premium/enterprise |
+
+**Sanity Schemas:**
+| Schema | Purpose |
+|--------|---------|
+| `portalClient` | Client profiles, branding, enabled features |
+| `portalSession` | Magic link tokens (15min expiry, single-use) |
+
+**Pilot Client - Jones FWM:**
+| System | ID |
+|--------|-----|
+| HubSpot Company | `47522798621` |
+| HubSpot Contact (Shaun) | `186064128913` |
+| ClickUp Folder | `90117447414` |
+| ClickUp List | `901112804768` |
+| Sanity portalClient | `6694a5d5-e094-4466-b637-12612c57ef1f` |
+
+### Portal Routes (Planned)
+```
+/portal/login     - Magic link request
+/portal/verify    - Token verification
+/portal/dashboard - Welcome + summary
+/portal/help      - "Ask for Help" form
+/portal/projects  - Task list from ClickUp
+/portal/billing   - HubSpot deals view
+/portal/meetings  - Meeting scheduler
+```
+
+### Environment Variables Needed
+```
+PORTAL_JWT_SECRET=<32-byte-secret>
+RESEND_API_KEY=re_xxxx
+CLICKUP_API_TOKEN=pk_xxxx
+```
+
+### Client Onboarding Checklist
+1. Set `clickup_folder_id` on HubSpot Company
+2. Set `clickup_list_id` on HubSpot Company
+3. Set `portal_enabled = true` on Company
+4. Set `portal_enabled = true` on Contact(s)
+5. (Optional) Create portalClient in Sanity for branding
+
+## Gmail Integration (Added January 2026)
+
+### Overview
+Gmail access via MCP server for reading, searching, and sending emails.
+
+### Configuration
+- **MCP Server:** `@gongrzhe/server-gmail-autoauth-mcp`
+- **Config:** `.mcp.json` (gmail entry)
+- **Credentials:** `~/.gmail-mcp/gcp-oauth.keys.json`
+- **Tokens:** `~/.gmail-mcp/credentials.json` (auto-refreshed)
+
+### Capabilities
+| Tool | Description |
+|------|-------------|
+| `gmail_search` | Search with Gmail query syntax |
+| `gmail_get_message` | Get full email content |
+| `gmail_send` | Send new emails |
+| `gmail_reply` | Reply to emails |
+| `gmail_trash` / `gmail_mark_read` | Manage emails |
+
+### Usage
+Ask naturally:
+- "Check my recent emails"
+- "Show unread emails from today"
+- "Send an email to X about Y"
+
+### Troubleshooting
+If auth expires: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
+
+Full setup docs: `.claude/context/gmail-mcp-setup.md`

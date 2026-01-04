@@ -1,0 +1,12 @@
+{
+  "uid": "CRMTools_createTask",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/createTask.js",
+    "endpoint": {
+      "path": "/api/create-task",
+      "methods": ["POST"]
+    },
+    "secretKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "uid": "CRMTools_app",
+  "type": "app",
+  "config": {
+    "description": "CRM Tools for managing contacts, companies, deals, and tasks via serverless functions.",
+    "name": "CRM Tools",
+    "distribution": "private",
+    "auth": {
+      "type": "static",
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read",
+        "crm.objects.contacts.write",
+        "crm.objects.companies.read",
+        "crm.objects.companies.write",
+        "crm.objects.deals.read",
+        "crm.objects.deals.write"
+      ],
+      "optionalScopes": [],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [
+        "https://api.hubapi.com"
+      ],
+      "iframe": [],
+      "img": []
+    },
+    "support": {
+      "supportEmail": "support@sidekickstrategies.com",
+      "documentationUrl": "https://sidekickstrategies.com/docs",
+      "supportUrl": "https://sidekickstrategies.com/support",
+      "supportPhone": "+18005555555"
+    }
+  }
+}
