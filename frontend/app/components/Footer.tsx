@@ -45,10 +45,7 @@ export default function Footer() {
                     <li>
                       <a
                         href="mailto:hello@sidekickstrategies.com"
-                        className="font-sans text-sm transition-colors duration-200"
-                        style={{color: 'rgba(255, 255, 255, 0.7)'}}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)')}
+                        className="font-sans text-sm text-white/70 hover:text-white transition-colors duration-200"
                       >
                         hello@sidekickstrategies.com
                       </a>
