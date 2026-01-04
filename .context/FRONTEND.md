@@ -87,6 +87,31 @@
 |-----------|----------|---------|
 | `DownloadForm` | `app/resources/[slug]/DownloadForm.tsx` | Gated download form (client) |
 
+### Brand Bible Page (`app/brand-bible/page.tsx`)
+Comprehensive brand documentation with:
+
+**Button Styles (8 types)**:
+1. Primary Orange Solid - Main CTAs
+2. Teal Action - Secondary emphasis
+3. Navy Solid - Professional/authoritative
+4. Ghost Outline - Subtle, non-competing
+5. Tech Cut Orange - clipPath corners, tech feel
+6. Tech Cut Teal - Secondary tech variant
+7. Text Link Underline - Animated underline on hover
+8. Text Link Arrow - Premium text link with arrow
+
+**Iconography (40+ icons)**:
+- Marketing & Agency: Megaphone, Analytics, Target, Launch, Ideas, Audience, Email, Global, Schedule, Growth
+- HubSpot & CRM: Contacts, Pipeline, Deals, Automation, Inbox, Database, Workflow, Reports, Integrate, Dashboard
+- Sales: Partner, Success, Revenue, Business, Call, Award, Complete, Time, Premium, Goal
+- Hero & Strength: Shield, Power, Energy, Protect, Ignite, Navigate, Dawn, Summit, Anchor, Lead
+
+**Helper Components (local to page)**:
+- `TextLinkUnderline` - Animated underline reveal on hover
+- `TextLinkArrow` - Text link with arrow that translates
+- `TertiaryTextLink` - Ghost-style for dark backgrounds
+- `IconCard` - Icon display card with color prop (orange/teal/navy)
+
 ---
 
 ## Sanity Integration
@@ -197,4 +222,4 @@ fileType={download.fileType || undefined}
 - `tailwind.config.ts` - Design tokens
 
 ## Last Updated
-2026-01-03
+2026-01-04

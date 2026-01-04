@@ -90,21 +90,110 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 ---
 
-## Button Styles
+## Button Styles (8 Types)
 
-### Primary Button (Accent)
+### 01. Solid Buttons
+
+**Primary Orange Solid** - Main CTAs
 ```html
-<button class="bg-accent-500 text-white hover:bg-accent-600 rounded-full px-8 py-3 font-mono text-sm">
+<button style="background-color: #f65625;" class="text-white hover:bg-[#d9441a] rounded-full px-8 py-3 font-mono text-sm">
   Button Text
 </button>
 ```
 
-### Secondary Button (Outline)
+**Teal Action** - Secondary emphasis
 ```html
-<button class="border-2 border-brand-800 text-brand-800 hover:bg-brand-800 hover:text-white rounded-full px-8 py-3 font-mono text-sm">
-  Button Text
+<button style="background-color: #028393;" class="text-white hover:bg-[#026d7a] rounded-full px-8 py-3 font-mono text-sm">
+  Explore Services
 </button>
 ```
+
+**Navy Solid** - Professional/authoritative
+```html
+<button style="background-color: #142d63;" class="text-white hover:bg-[#0f2250] rounded-full px-8 py-3 font-mono text-sm">
+  Learn More
+</button>
+```
+
+**Ghost Outline** - Subtle, non-competing
+```html
+<button style="border: 2px solid #142d63; color: #142d63;" class="bg-transparent hover:bg-[#142d63] hover:text-white rounded-full px-8 py-3 font-mono text-sm">
+  View Details
+</button>
+```
+
+### 02. Tech Cut Corner Buttons
+
+**Tech Cut Orange** - clipPath corners, tech feel
+```html
+<button
+  style="background-color: #f65625; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));"
+  class="px-8 py-4 text-white font-mono text-sm uppercase tracking-wider">
+  Initialize
+</button>
+```
+
+**Tech Cut Teal** - Secondary tech variant
+```html
+<button
+  style="background-color: #028393; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));"
+  class="px-8 py-4 text-white font-mono text-sm uppercase tracking-wider">
+  Deploy
+</button>
+```
+
+### 03. Text Link Buttons
+
+**Text Link Underline** - Animated underline on hover
+- Navy text → Orange on hover
+- Underline reveals from left on hover
+- Right arrow icon translates on hover
+
+**Text Link Arrow** - Premium text link with arrow
+- Clean uppercase text + arrow
+- Arrow translates right on hover
+
+### 04. On Dark Backgrounds
+
+**Tertiary Text Link** - Ghost-style for dark backgrounds
+- White/80 opacity at rest
+- Full white on hover with underline reveal
+
+---
+
+## Iconography (40+ Icons)
+
+### Icon Categories
+
+| Category | Icons | Use Cases |
+|----------|-------|-----------|
+| Marketing & Agency | Megaphone, Analytics, Target, Launch, Ideas, Audience, Email, Global, Schedule, Growth | Marketing pages, agency services |
+| HubSpot & CRM | Contacts, Pipeline, Deals, Automation, Inbox, Database, Workflow, Reports, Integrate, Dashboard | HubSpot features, CRM content |
+| Sales | Partner, Success, Revenue, Business, Call, Award, Complete, Time, Premium, Goal | Sales pages, success stories |
+| Hero & Strength | Shield, Power, Energy, Protect, Ignite, Navigate, Dawn, Summit, Anchor, Lead | Hero sections, empowerment messaging |
+
+### Icon Specifications
+- **Style**: Stroke-based (consistent 1.5-2px stroke width)
+- **Size**: 24x24 base, scalable via w-6 h-6 class
+- **Colors**: Use brand colors (Orange #f65625, Teal #028393, Navy #142d63)
+- **Backgrounds**: Light tinted backgrounds (#fff5f0 for orange, #e6f7f9 for teal, #f0f4fa for navy)
+
+### Color Variants
+All icons work in:
+- Orange (#f65625) - Primary CTAs, energy
+- Teal (#028393) - Secondary, trust
+- Navy (#142d63) - Professional, authority
+- Peach (#faaa68) - Soft accents
+- Gray (#6b7280) - Neutral, subtle
+- White (#ffffff) - On dark backgrounds
+
+### Usage Notes
+- Use Orange icons for primary actions and energy
+- Use Teal icons for trust signals and secondary CTAs
+- Use Navy icons for professional/authority contexts
+- Use White icons on dark navy backgrounds
+
+See full icon library at `/brand-bible#iconography`
 
 ---
 
@@ -177,4 +266,4 @@ const ibmPlexMono = IBM_Plex_Mono({
 - `.context/RESEARCH.md` - Comprehensive website research
 
 ## Last Updated
-2026-01-03
+2026-01-04
