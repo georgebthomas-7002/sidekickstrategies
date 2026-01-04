@@ -150,20 +150,30 @@ export default function BrandBiblePage() {
                 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
               `}
             >
-              {/* Primary Button - Orange */}
+              {/* Primary Button - Orange (Primary Action) */}
               <a
                 href="#colors"
                 className="
                   group inline-flex items-center justify-center
                   px-8 py-4
-                  bg-accent-500 text-white
+                  text-white
                   font-heading text-sm tracking-wide uppercase font-semibold
                   rounded-lg
-                  shadow-lg shadow-accent-500/20
                   transition-all duration-300
-                  hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-0.5
-                  focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
+                  hover:-translate-y-0.5
                 "
+                style={{
+                  backgroundColor: '#f65625',
+                  boxShadow: '0 10px 15px -3px rgba(246, 86, 37, 0.2)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#d9441a'
+                  e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(246, 86, 37, 0.3)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f65625'
+                  e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(246, 86, 37, 0.2)'
+                }}
               >
                 View Colors
                 <svg
@@ -177,20 +187,30 @@ export default function BrandBiblePage() {
                 </svg>
               </a>
 
-              {/* Secondary Button - Light Blue */}
+              {/* Secondary Button - Teal (Teal Action) */}
               <a
                 href="#heroes"
                 className="
                   group inline-flex items-center justify-center
                   px-8 py-4
-                  bg-light-blue text-brand-900
+                  text-white
                   font-heading text-sm tracking-wide uppercase font-semibold
                   rounded-lg
-                  shadow-lg shadow-light-blue/20
                   transition-all duration-300
-                  hover:bg-[#7fb3cf] hover:shadow-xl hover:shadow-light-blue/30 hover:-translate-y-0.5
-                  focus:outline-none focus:ring-2 focus:ring-light-blue focus:ring-offset-2
+                  hover:-translate-y-0.5
                 "
+                style={{
+                  backgroundColor: '#028393',
+                  boxShadow: '0 10px 15px -3px rgba(2, 131, 147, 0.2)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#026d7a'
+                  e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(2, 131, 147, 0.3)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#028393'
+                  e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(2, 131, 147, 0.2)'
+                }}
               >
                 Hero Presets
                 <svg
