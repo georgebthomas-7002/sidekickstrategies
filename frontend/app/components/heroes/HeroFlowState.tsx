@@ -191,16 +191,7 @@ export default function HeroFlowState({
           >
             <a
               href={primaryCta.href}
-              className="
-                group inline-flex items-center justify-center
-                px-8 py-4
-                bg-accent-500 text-white
-                font-heading text-sm tracking-wide uppercase font-semibold
-                rounded-full
-                transition-all duration-300
-                hover:bg-accent-500 hover:scale-105 hover:shadow-xl hover:shadow-accent-500/25
-                focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-transparent
-              "
+              className="group inline-flex items-center justify-center px-8 py-4 bg-accent-500 text-white font-heading text-sm tracking-wide uppercase font-semibold rounded-full transition-all duration-300 hover:bg-accent-500 hover:scale-105 hover:shadow-xl hover:shadow-accent-500/25 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-transparent"
             >
               {primaryCta.label}
               <svg
@@ -216,18 +207,7 @@ export default function HeroFlowState({
 
             <a
               href={secondaryCta.href}
-              className="
-                inline-flex items-center justify-center
-                px-8 py-4
-                text-accent-500
-                font-heading text-sm tracking-wide uppercase
-                rounded-full
-                border border-accent-500/50
-                backdrop-blur-sm
-                transition-all duration-300
-                hover:bg-accent-500/10 hover:border-accent-500
-                focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-transparent
-              "
+              className="inline-flex items-center justify-center px-8 py-4 text-accent-500 font-heading text-sm tracking-wide uppercase rounded-full border border-accent-500/50 backdrop-blur-sm transition-all duration-300 hover:bg-accent-500/10 hover:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-transparent"
             >
               {secondaryCta.label}
             </a>

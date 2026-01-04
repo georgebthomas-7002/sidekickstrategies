@@ -3,18 +3,22 @@
  * HERO PRESET: Executive Suite
  * ═══════════════════════════════════════════════════════════════════════════
  *
- * STYLE: Ultra-Premium, Sophisticated, Luxurious
- * AESTHETIC: Dark elegance with peach/gold accents, refined details
+ * STYLE: Ultra-Premium Luxury - Refined Opulence
+ * AESTHETIC: Deep dark elegance with peach/gold accents, bespoke details
  * BEST FOR: Executive services, luxury brands, high-end consulting, finance
  *
+ * DESIGN PHILOSOPHY:
+ * "Understated excellence" - Every detail whispers quality. The dark
+ * background provides gravitas while warm peach/gold accents suggest
+ * prosperity and success. This is a hero for those who have arrived.
+ *
  * FEATURES:
- * - Deep dark background with subtle texture
- * - Peach/gold accents for warmth and luxury
- * - Ultra-refined typography with generous spacing
- * - Subtle pattern overlays
- * - Elegant micro-interactions
- * - Border accents and fine lines
- * - Premium card elements with soft shadows
+ * - Deep navy-black gradient background
+ * - Sophisticated peach/gold accent system
+ * - Corner accent lines with elegant animation
+ * - Premium testimonial card with glass effect
+ * - Trust indicators (Fortune 500, Value Created, Years)
+ * - Ultra-refined typography with generous tracking
  *
  * NOTE: Uses inline styles for brand colors to prevent Tailwind v4 purging
  *
@@ -30,9 +34,12 @@ const COLORS = {
   navy800: '#142d63',
   navy900: '#0f2250',
   navy950: '#0a1633',
+  navy1000: '#060d1a',
   orange500: '#f65625',
+  orangeHover: '#d9441a',
   teal500: '#028393',
   peach: '#faaa68',
+  gold: '#d4a84b',
 }
 
 interface HeroExecutiveSuiteProps {
@@ -67,12 +74,25 @@ export default function HeroExecutiveSuite({
       className="relative min-h-screen flex items-center overflow-hidden"
       aria-label="Hero section"
       style={{
-        background: 'linear-gradient(180deg, #0a1633 0%, #142d63 50%, #0f2250 100%)',
+        background: `linear-gradient(180deg, ${COLORS.navy1000} 0%, ${COLORS.navy950} 30%, ${COLORS.navy900} 70%, ${COLORS.navy950} 100%)`,
       }}
     >
-      {/* Sophisticated pattern overlay */}
+      {/* CSS Keyframes */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.3; }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
+
+      {/* Sophisticated pattern overlay - subtle diamond grid */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23faaa68' stroke-width='0.5'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px',
@@ -83,62 +103,63 @@ export default function HeroExecutiveSuite({
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(10,22,51,0.4) 100%)',
+          background: `radial-gradient(ellipse at center, transparent 0%, ${COLORS.navy1000}60 100%)`,
         }}
       />
 
-      {/* Golden accent lines */}
+      {/* Golden accent lines - corner decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Top left corner accent */}
+        {/* Top left corner */}
         <div
-          className={`
-            absolute top-0 left-0 w-32 h-[1px]
-            bg-gradient-to-r from-peach to-transparent
-            transition-all duration-1000 delay-500
-            ${mounted ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
-          `}
-          style={{ transformOrigin: 'left' }}
+          className="absolute top-0 left-0 w-40 h-px transition-all duration-1000"
+          style={{
+            background: `linear-gradient(90deg, ${COLORS.peach} 0%, transparent 100%)`,
+            opacity: mounted ? 0.4 : 0,
+            transform: mounted ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'left',
+            transitionDelay: '500ms',
+          }}
         />
         <div
-          className={`
-            absolute top-0 left-0 w-[1px] h-32
-            bg-gradient-to-b from-peach to-transparent
-            transition-all duration-1000 delay-500
-            ${mounted ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
-          `}
-          style={{ transformOrigin: 'top' }}
+          className="absolute top-0 left-0 w-px h-40 transition-all duration-1000"
+          style={{
+            background: `linear-gradient(180deg, ${COLORS.peach} 0%, transparent 100%)`,
+            opacity: mounted ? 0.4 : 0,
+            transform: mounted ? 'scaleY(1)' : 'scaleY(0)',
+            transformOrigin: 'top',
+            transitionDelay: '500ms',
+          }}
         />
 
-        {/* Bottom right corner accent */}
+        {/* Bottom right corner */}
         <div
-          className={`
-            absolute bottom-0 right-0 w-48 h-[1px]
-            bg-gradient-to-l from-peach/60 to-transparent
-            transition-all duration-1000 delay-700
-            ${mounted ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
-          `}
-          style={{ transformOrigin: 'right' }}
+          className="absolute bottom-0 right-0 w-56 h-px transition-all duration-1000"
+          style={{
+            background: `linear-gradient(270deg, ${COLORS.peach}60 0%, transparent 100%)`,
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'right',
+            transitionDelay: '700ms',
+          }}
         />
         <div
-          className={`
-            absolute bottom-0 right-0 w-[1px] h-48
-            bg-gradient-to-t from-peach/60 to-transparent
-            transition-all duration-1000 delay-700
-            ${mounted ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
-          `}
-          style={{ transformOrigin: 'bottom' }}
+          className="absolute bottom-0 right-0 w-px h-56 transition-all duration-1000"
+          style={{
+            background: `linear-gradient(0deg, ${COLORS.peach}60 0%, transparent 100%)`,
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? 'scaleY(1)' : 'scaleY(0)',
+            transformOrigin: 'bottom',
+            transitionDelay: '700ms',
+          }}
         />
 
         {/* Floating golden orb - very subtle */}
         <div
-          className={`
-            absolute top-1/4 right-1/4 w-96 h-96
-            rounded-full
-            bg-peach/5
-            blur-[100px]
-            transition-all duration-[2000ms]
-            ${mounted ? 'opacity-100' : 'opacity-0'}
-          `}
+          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] transition-all duration-[2000ms]"
+          style={{
+            backgroundColor: `${COLORS.peach}08`,
+            opacity: mounted ? 1 : 0,
+          }}
         />
       </div>
 
@@ -149,38 +170,42 @@ export default function HeroExecutiveSuite({
           <div className="lg:col-span-7">
             {/* Refined eyebrow */}
             <div
-              className={`
-                flex items-center gap-6 mb-12
-                transition-all duration-700
-                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-              `}
+              className="flex items-center gap-6 mb-12 transition-all duration-700"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? 'translateY(0)' : 'translateY(16px)',
+              }}
             >
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-peach" />
-                <div className="w-1 h-1 rounded-full bg-peach/50" />
-                <div className="w-1 h-1 rounded-full bg-peach/30" />
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS.peach }} />
+                <div className="w-1 h-1 rounded-full" style={{ backgroundColor: `${COLORS.peach}60` }} />
+                <div className="w-1 h-1 rounded-full" style={{ backgroundColor: `${COLORS.peach}30` }} />
               </div>
-              <span className="font-mono text-[11px] tracking-[0.4em] uppercase text-peach/80">
+              <span
+                className="font-mono text-[11px] tracking-[0.4em] uppercase"
+                style={{ color: `${COLORS.peach}cc` }}
+              >
                 Sidekick Strategies
               </span>
             </div>
 
-            {/* Premium headline */}
+            {/* Premium headline - words that contain punctuation get peach color */}
             <h1
-              className={`
-                font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
-                text-white leading-[1.05] tracking-tight
-                transition-all duration-1000 delay-100
-                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-              `}
+              className="font-serif leading-[1.05] tracking-tight transition-all duration-1000"
+              style={{
+                color: 'white',
+                fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? 'translateY(0)' : 'translateY(32px)',
+                transitionDelay: '100ms',
+              }}
             >
               {headline.split(' ').map((word, i) => (
                 <span
                   key={i}
-                  className={`
-                    inline-block
-                    ${word.includes(',') ? 'text-peach' : ''}
-                  `}
+                  style={{
+                    color: word.includes(',') || word.includes('.') ? COLORS.peach : 'white',
+                  }}
                 >
                   {word}{' '}
                 </span>
@@ -189,67 +214,66 @@ export default function HeroExecutiveSuite({
 
             {/* Elegant divider */}
             <div
-              className={`
-                mt-10 flex items-center gap-4
-                transition-all duration-700 delay-300
-                ${mounted ? 'opacity-100' : 'opacity-0'}
-              `}
+              className="mt-10 flex items-center gap-4 transition-all duration-700"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transitionDelay: '300ms',
+              }}
             >
-              <div className="w-16 h-[1px] bg-gradient-to-r from-peach to-peach/30" />
-              <div className="w-1.5 h-1.5 rotate-45 border border-peach/50" />
+              <div
+                className="w-16 h-px"
+                style={{ background: `linear-gradient(90deg, ${COLORS.peach} 0%, ${COLORS.peach}30 100%)` }}
+              />
+              <div
+                className="w-1.5 h-1.5 rotate-45"
+                style={{ border: `1px solid ${COLORS.peach}60` }}
+              />
             </div>
 
             {/* Subheadline */}
             <p
-              className={`
-                mt-8 font-sans text-lg md:text-xl text-gray-400
-                max-w-xl leading-relaxed
-                transition-all duration-700 delay-400
-                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
-              `}
+              className="mt-8 font-sans text-lg md:text-xl leading-relaxed max-w-xl transition-all duration-700"
+              style={{
+                color: 'rgba(255,255,255,0.55)',
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? 'translateY(0)' : 'translateY(24px)',
+                transitionDelay: '400ms',
+              }}
             >
               {subheadline}
             </p>
 
             {/* Premium CTAs */}
             <div
-              className={`
-                mt-14 flex flex-col sm:flex-row gap-6
-                transition-all duration-700 delay-500
-                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
-              `}
+              className="mt-14 flex flex-col sm:flex-row gap-6 transition-all duration-700"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? 'translateY(0)' : 'translateY(24px)',
+                transitionDelay: '500ms',
+              }}
             >
+              {/* Primary CTA - elegant orange with generous padding */}
               <a
                 href={primaryCta.href}
-                className="
-                  group relative inline-flex items-center justify-center
-                  px-10 py-5
-                  overflow-hidden
-                  font-heading text-sm tracking-[0.15em] uppercase
-                  text-white
-                  transition-all duration-500
-                "
+                className="group inline-flex items-center justify-center px-10 py-5 text-white font-heading text-sm tracking-[0.15em] uppercase transition-all duration-500"
                 style={{
-                  backgroundColor: COLORS.orange500,
-                  boxShadow: primaryHover ? `0 10px 25px -5px ${COLORS.orange500}40` : 'none',
+                  backgroundColor: primaryHover ? COLORS.orangeHover : COLORS.orange500,
+                  boxShadow: primaryHover
+                    ? `0 20px 50px -10px ${COLORS.orange500}50`
+                    : `0 10px 30px -10px ${COLORS.orange500}30`,
                 }}
                 onMouseEnter={() => setPrimaryHover(true)}
                 onMouseLeave={() => setPrimaryHover(false)}
               >
-                <span className="relative z-10">{primaryCta.label}</span>
+                {primaryCta.label}
               </a>
 
+              {/* Secondary CTA - refined text link */}
               <a
                 href={secondaryCta.href}
-                className="
-                  group inline-flex items-center gap-3
-                  px-2 py-5
-                  font-heading text-sm tracking-[0.15em] uppercase
-                  transition-all duration-300
-                "
+                className="group inline-flex items-center gap-3 px-2 py-5 font-heading text-sm tracking-[0.15em] uppercase transition-all duration-300"
                 style={{
-                  color: COLORS.orange500,
-                  opacity: secondaryHover ? 1 : 0.9,
+                  color: secondaryHover ? COLORS.peach : COLORS.orange500,
                 }}
                 onMouseEnter={() => setSecondaryHover(true)}
                 onMouseLeave={() => setSecondaryHover(false)}
@@ -268,34 +292,36 @@ export default function HeroExecutiveSuite({
             </div>
           </div>
 
-          {/* Right side - Premium testimonial/trust card */}
+          {/* Right side - Premium testimonial card */}
           <div className="hidden lg:block lg:col-span-5">
             <div
-              className={`
-                relative
-                transition-all duration-1000 delay-600
-                ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
-              `}
+              className="relative transition-all duration-1000"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? 'translateY(0)' : 'translateY(48px)',
+                transitionDelay: '600ms',
+              }}
             >
               {/* Premium card */}
               <div
-                className="
-                  relative p-10
-                  bg-gradient-to-br from-white/[0.03] to-transparent
-                  border border-white/[0.08]
-                  backdrop-blur-sm
-                "
+                className="relative p-10"
+                style={{
+                  background: `linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%)`,
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  backdropFilter: 'blur(10px)',
+                }}
               >
                 {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-6 h-[1px] bg-peach/40" />
-                <div className="absolute top-0 left-0 h-6 w-[1px] bg-peach/40" />
-                <div className="absolute bottom-0 right-0 w-6 h-[1px] bg-peach/40" />
-                <div className="absolute bottom-0 right-0 h-6 w-[1px] bg-peach/40" />
+                <div className="absolute top-0 left-0 w-6 h-px" style={{ backgroundColor: `${COLORS.peach}50` }} />
+                <div className="absolute top-0 left-0 h-6 w-px" style={{ backgroundColor: `${COLORS.peach}50` }} />
+                <div className="absolute bottom-0 right-0 w-6 h-px" style={{ backgroundColor: `${COLORS.peach}50` }} />
+                <div className="absolute bottom-0 right-0 h-6 w-px" style={{ backgroundColor: `${COLORS.peach}50` }} />
 
                 {/* Quote mark */}
                 <div className="mb-6">
                   <svg
-                    className="w-10 h-10 text-peach/30"
+                    className="w-10 h-10"
+                    style={{ color: `${COLORS.peach}40` }}
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -305,37 +331,68 @@ export default function HeroExecutiveSuite({
                 </div>
 
                 {/* Testimonial text */}
-                <blockquote className="font-serif text-xl text-white/80 leading-relaxed italic">
-                  "Their strategic insight transformed our approach entirely. A true partnership."
+                <blockquote
+                  className="font-serif text-xl leading-relaxed italic"
+                  style={{ color: 'rgba(255,255,255,0.8)' }}
+                >
+                  &ldquo;Their strategic insight transformed our approach entirely. A true partnership.&rdquo;
                 </blockquote>
 
                 {/* Attribution */}
                 <div className="mt-8 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-peach/20 to-secondary-500/20 flex items-center justify-center">
-                    <span className="font-serif text-lg text-peach">JM</span>
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: `linear-gradient(135deg, ${COLORS.peach}25 0%, ${COLORS.teal500}15 100%)`,
+                    }}
+                  >
+                    <span className="font-serif text-lg" style={{ color: COLORS.peach }}>JM</span>
                   </div>
                   <div>
                     <div className="font-heading text-sm text-white tracking-wide">James Mitchell</div>
-                    <div className="font-mono text-[10px] text-gray-500 tracking-wider uppercase">CEO, Apex Holdings</div>
+                    <div
+                      className="font-mono text-[10px] uppercase tracking-wider"
+                      style={{ color: 'rgba(255,255,255,0.4)' }}
+                    >
+                      CEO, Apex Holdings
+                    </div>
                   </div>
                 </div>
 
                 {/* Trust indicators */}
-                <div className="mt-10 pt-8 border-t border-white/[0.06]">
+                <div
+                  className="mt-10 pt-8"
+                  style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+                >
                   <div className="flex items-center justify-between">
                     <div className="text-center">
-                      <div className="font-serif text-2xl text-peach">50+</div>
-                      <div className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mt-1">Fortune 500</div>
+                      <div className="font-serif text-2xl" style={{ color: COLORS.peach }}>50+</div>
+                      <div
+                        className="font-mono text-[9px] uppercase tracking-widest mt-1"
+                        style={{ color: 'rgba(255,255,255,0.4)' }}
+                      >
+                        Fortune 500
+                      </div>
                     </div>
-                    <div className="w-[1px] h-10 bg-white/[0.06]" />
+                    <div className="w-px h-10" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
                     <div className="text-center">
-                      <div className="font-serif text-2xl text-peach">$2B+</div>
-                      <div className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mt-1">Value Created</div>
+                      <div className="font-serif text-2xl" style={{ color: COLORS.peach }}>$2B+</div>
+                      <div
+                        className="font-mono text-[9px] uppercase tracking-widest mt-1"
+                        style={{ color: 'rgba(255,255,255,0.4)' }}
+                      >
+                        Value Created
+                      </div>
                     </div>
-                    <div className="w-[1px] h-10 bg-white/[0.06]" />
+                    <div className="w-px h-10" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
                     <div className="text-center">
-                      <div className="font-serif text-2xl text-peach">20</div>
-                      <div className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mt-1">Years</div>
+                      <div className="font-serif text-2xl" style={{ color: COLORS.peach }}>20</div>
+                      <div
+                        className="font-mono text-[9px] uppercase tracking-widest mt-1"
+                        style={{ color: 'rgba(255,255,255,0.4)' }}
+                      >
+                        Years
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -347,8 +404,14 @@ export default function HeroExecutiveSuite({
 
       {/* Premium bottom bar */}
       <div className="absolute bottom-0 left-0 right-0">
-        <div className="h-[1px] bg-gradient-to-r from-transparent via-peach/20 to-transparent" />
-        <div className="h-12 bg-gradient-to-t from-black/20 to-transparent" />
+        <div
+          className="h-px"
+          style={{ background: `linear-gradient(90deg, transparent 0%, ${COLORS.peach}25 50%, transparent 100%)` }}
+        />
+        <div
+          className="h-16"
+          style={{ background: `linear-gradient(180deg, transparent 0%, ${COLORS.navy1000}40 100%)` }}
+        />
       </div>
     </section>
   )

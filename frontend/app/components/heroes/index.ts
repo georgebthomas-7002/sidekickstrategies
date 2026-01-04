@@ -3,9 +3,10 @@
  * HERO PRESETS - Sidekick Strategies
  * ═══════════════════════════════════════════════════════════════════════════
  *
- * A collection of 4 distinct hero section styles, ranging from minimalist
- * to ultra-premium. Each hero is production-ready and uses the Sidekick
- * Strategies brand system.
+ * A collection of 6 distinct hero section styles with animated backgrounds,
+ * ranging from minimalist to ultra-premium luxury. Each hero is production-ready
+ * and uses the Sidekick Strategies brand system with inline styles to prevent
+ * Tailwind v4 CSS purging issues.
  *
  * USAGE:
  *   import { HeroCleanSlate } from '@/app/components/heroes'
@@ -14,24 +15,22 @@
  *
  * AVAILABLE PRESETS:
  *
- * 1. HeroCleanSlate     - Minimalist, typography-focused, white background
- * 2. HeroBoldEdge       - Navy background, geometric shapes, accent pops
- * 3. HeroFlowState      - Gradient, floating orbs, modern movement
- * 4. HeroExecutiveSuite - Dark luxury, peach accents, ultra-premium
+ * 1. HeroCleanSlate     - Editorial minimalism, typography as art
+ * 2. HeroBoldEdge       - Architectural geometry, floating shapes
+ * 3. HeroGradientFlow   - 3-color animated gradient with glass orbs
+ * 4. HeroAuroraPulse    - Ethereal aurora/northern lights effect
+ * 5. HeroKineticGrid    - Tech-forward animated grid with data flows
+ * 6. HeroExecutiveSuite - Ultra-premium dark luxury with testimonial
  *
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
 export { default as HeroCleanSlate } from './HeroCleanSlate'
 export { default as HeroBoldEdge } from './HeroBoldEdge'
-export { default as HeroFlowState } from './HeroFlowState'
+export { default as HeroGradientFlow } from './HeroGradientFlow'
+export { default as HeroAuroraPulse } from './HeroAuroraPulse'
+export { default as HeroKineticGrid } from './HeroKineticGrid'
 export { default as HeroExecutiveSuite } from './HeroExecutiveSuite'
-
-// Type exports for props
-export type { default as HeroCleanSlateProps } from './HeroCleanSlate'
-export type { default as HeroBoldEdgeProps } from './HeroBoldEdge'
-export type { default as HeroFlowStateProps } from './HeroFlowState'
-export type { default as HeroExecutiveSuiteProps } from './HeroExecutiveSuite'
 
 /**
  * Hero preset metadata for use in a preset selector/CMS
@@ -41,37 +40,61 @@ export const heroPresets = [
     id: 'clean-slate',
     name: 'Clean Slate',
     component: 'HeroCleanSlate',
-    description: 'Minimalist, typography-focused. White background with elegant serif headlines.',
+    description: 'Editorial minimalism with asymmetric layout. Typography as art on white canvas.',
     style: 'minimal',
     background: 'light',
-    energy: 'calm',
+    energy: 'refined',
+    animation: 'subtle',
   },
   {
     id: 'bold-edge',
     name: 'Bold Edge',
     component: 'HeroBoldEdge',
-    description: 'Strong brand presence with navy background and geometric accent shapes.',
+    description: 'Architectural geometry with floating shapes. Navy background, confident presence.',
     style: 'geometric',
     background: 'dark',
-    energy: 'confident',
+    energy: 'commanding',
+    animation: 'floating',
   },
   {
-    id: 'flow-state',
-    name: 'Flow State',
-    component: 'HeroFlowState',
-    description: 'Fluid gradients and floating orbs with glassmorphic elements.',
+    id: 'gradient-flow',
+    name: 'Gradient Flow',
+    component: 'HeroGradientFlow',
+    description: 'Fluid 3-color gradient in motion. Glassmorphic orbs and centered glass card.',
     style: 'organic',
     background: 'gradient',
-    energy: 'modern',
+    energy: 'dynamic',
+    animation: 'flowing',
+  },
+  {
+    id: 'aurora-pulse',
+    name: 'Aurora Pulse',
+    component: 'HeroAuroraPulse',
+    description: 'Ethereal aurora borealis effect. Morphing gradient blobs with twinkling stars.',
+    style: 'ethereal',
+    background: 'dark',
+    energy: 'mesmerizing',
+    animation: 'aurora',
+  },
+  {
+    id: 'kinetic-grid',
+    name: 'Kinetic Grid',
+    component: 'HeroKineticGrid',
+    description: 'Tech-forward animated grid system. Flowing data lines and pulsing nodes.',
+    style: 'technical',
+    background: 'dark',
+    energy: 'precise',
+    animation: 'grid-flow',
   },
   {
     id: 'executive-suite',
     name: 'Executive Suite',
     component: 'HeroExecutiveSuite',
-    description: 'Ultra-premium dark theme with peach/gold accents and refined luxury details.',
+    description: 'Ultra-premium dark luxury. Peach/gold accents with testimonial card.',
     style: 'luxury',
     background: 'dark',
     energy: 'sophisticated',
+    animation: 'elegant',
   },
 ] as const
 
