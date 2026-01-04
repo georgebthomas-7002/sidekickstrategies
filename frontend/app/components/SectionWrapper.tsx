@@ -66,15 +66,15 @@ const paddingBottomClasses: Record<string, string> = {
   xl: 'pb-24 md:pb-32',
 }
 
-// Background color classes
+// Background color classes (using Tailwind 4 theme variables)
 const bgClasses: Record<string, string> = {
   transparent: '',
   white: 'bg-white',
   'gray-50': 'bg-gray-50',
   'gray-100': 'bg-gray-100',
-  primary: 'bg-primary text-white',
-  secondary: 'bg-secondary text-white',
-  accent: 'bg-accent text-white',
+  primary: 'bg-brand-primary text-white',
+  secondary: 'bg-brand-secondary text-white',
+  accent: 'bg-brand-accent text-white',
 }
 
 // Content alignment classes
