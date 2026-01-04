@@ -1,10 +1,17 @@
 ---
 name: frontend-design
-description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.
+description: Creative frontend design for client projects and new builds. Use when building web interfaces that need distinctive, memorable aesthetics WITHOUT brand constraints. Encourages bold creative choices, unexpected fonts, unique color palettes. For Sidekick Strategies brand work (sidekickstrategies.com), use /sidekick-brand instead.
 license: Complete terms in LICENSE.txt
 ---
 
 This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+**When to use this skill:**
+- ✅ Client projects (full creative freedom)
+- ✅ New experimental builds
+- ✅ Any project without specific brand guidelines
+- ❌ sidekickstrategies.com (use `/sidekick-brand`)
+- ❌ Sidekick internal tools (use `/sidekick-brand`)
 
 The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
 
