@@ -64,3 +64,93 @@ cd frontend && npm run typegen
 # Deploy Sanity Studio
 cd studio && npx sanity deploy
 ```
+
+## HubSpot Integration (Added January 2026)
+
+### Overview
+Full HubSpot CRM control is set up with two components:
+1. **Official HubSpot MCP Server** - For reading CRM data (contacts, companies, deals)
+2. **Custom Serverless Functions** - For writing/creating CRM data
+
+### HubSpot Account
+- **Account ID:** 474711
+- **Account Name:** sidekick-strategies-2026
+
+### MCP Server Configuration
+The `hubspot-crm` MCP server is configured in `~/.claude.json` with:
+- URL: `https://mcp.hubspot.com/`
+- OAuth Client ID: `87ec5e6f-9ad1-40fe-8f39-9fcb387e0f5c`
+- Token expires every 30 minutes - may need refresh
+
+**To refresh the token:**
+1. Run the OAuth server: `cd hubspot-mcp-auth && HUBSPOT_CLIENT_SECRET=a8e74ed0-e9df-4f79-8911-ee5fd8501dc1 node oauth-server.js`
+2. Visit the install URL in browser
+3. Update the token in Claude MCP config
+
+### HubSpot Projects
+
+#### 1. CRM Tools (`/hubspot-crm-tools`)
+Serverless functions for CRM write operations:
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/create-contact` | POST | Create contacts with email, name, phone, etc. |
+| `/api/create-company` | POST | Create companies with name, domain, industry |
+| `/api/create-deal` | POST | Create deals with pipeline, stage, associations |
+| `/api/create-task` | POST | Create tasks with subject, due date, associations |
+| `/api/update-crm-object` | POST/PATCH | Update any CRM object by type and ID |
+
+**Secret Required:** `HUBSPOT_ACCESS_TOKEN` (Private App token)
+- Token stored in HubSpot project secrets (use `hs secrets list` to verify)
+
+**View Project:** https://app.hubspot.com/developer-projects/474711/project/CRM%20Tools
+
+#### 2. HubSpot MCP Auth (`/hubspot-mcp-auth`)
+OAuth app for authenticating with the official HubSpot MCP server.
+- Distribution: Marketplace (user-level OAuth)
+- Scopes: contacts.read, companies.read, deals.read
+
+**View Project:** https://app.hubspot.com/developer-projects/474711/project/HubSpot%20MCP%20Auth
+
+### HubSpot CLI Authentication
+Personal Access Key is stored in `~/.hscli/config.yml`
+- Must include `developer` scope for project uploads
+- Refresh via: `hs account auth`
+
+### Key Files
+```
+hubspot-crm-tools/
+├── hsproject.json                    # Project config
+├── src/app/
+│   ├── app-hsmeta.json              # App config with scopes
+│   └── functions/
+│       ├── createContact.js         # Create contact function
+│       ├── createCompany.js         # Create company function
+│       ├── createDeal.js            # Create deal function
+│       ├── createTask.js            # Create task function
+│       └── updateCrmObject.js       # Update any CRM object
+
+hubspot-mcp-auth/
+├── hsproject.json                    # Project config
+├── oauth-server.js                   # Local OAuth token exchange server
+└── src/app/
+    └── app-hsmeta.json              # OAuth app config (isUserLevel: true)
+```
+
+### Common HubSpot Commands
+```bash
+# Upload project changes
+cd hubspot-crm-tools && hs project upload
+
+# Deploy specific build
+hs project deploy --build-number 2
+
+# Add/update secrets
+hs secrets add HUBSPOT_ACCESS_TOKEN "pat-na1-xxx"
+
+# View project in browser
+hs project open
+
+# List builds
+hs project list-builds
+```

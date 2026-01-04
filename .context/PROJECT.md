@@ -155,5 +155,16 @@ The project uses Model Context Protocol (MCP) servers to enhance Claude Code cap
 - **Secrets**: Store tokens in `frontend/.env.local` (gitignored)
 - **Verify Status**: Run `/mcp` in Claude Code
 
+## Planned: HubSpot Content Migration
+
+A detailed migration plan exists for importing 50+ pages from HubSpot CMS to Sanity:
+- **Plan File**: `~/.claude/plans/stateful-wobbling-wren.md`
+- **Scope**: Landing pages, website pages, blog posts
+- **Approach**: Direct import via HubSpot CMS API → NDJSON → Sanity CLI
+- **Timeline**: ~5 weeks when ready to execute
+- **Canvas**: Skipped for migration, available for new content
+
+Key mapping: HubSpot modules → Sanity pageBuilder blocks (hero, callToAction, infoSection, etc.)
+
 ## Last Updated
-2026-01-03 - Added MCP servers (Playwright, Sanity, Vercel, HubSpot, Sentry)
+2026-01-04 - Added HubSpot migration plan, SEO/OG image support
