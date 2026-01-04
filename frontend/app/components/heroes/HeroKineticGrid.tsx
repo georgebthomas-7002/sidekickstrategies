@@ -52,6 +52,11 @@ interface HeroKineticGridProps {
     label: string
     href: string
   }
+  image?: {
+    src: string
+    alt: string
+  }
+  eyebrowText?: string
 }
 
 export default function HeroKineticGrid({
@@ -59,6 +64,8 @@ export default function HeroKineticGrid({
   subheadline = "We engineer strategic frameworks that grow with your ambition. Precision planning meets adaptive execution.",
   primaryCta = { label: "Initialize", href: "/contact" },
   secondaryCta = { label: "View architecture", href: "/services" },
+  image,
+  eyebrowText = "System Online",
 }: HeroKineticGridProps) {
   const [mounted, setMounted] = useState(false)
   const [primaryHover, setPrimaryHover] = useState(false)
@@ -241,7 +248,7 @@ export default function HeroKineticGrid({
                 className="font-mono text-[10px] tracking-[0.4em] uppercase"
                 style={{ color: COLORS.teal400 }}
               >
-                System Online
+                {eyebrowText}
               </span>
             </div>
 
@@ -328,44 +335,89 @@ export default function HeroKineticGrid({
             </div>
           </div>
 
-          {/* Right side - Data visualization aesthetic */}
+          {/* Right side - Image or Data visualization */}
           <div
-            className="hidden lg:block relative h-80 transition-all duration-1000"
+            className="hidden lg:flex lg:items-center lg:justify-center relative transition-all duration-1000"
             style={{
               opacity: mounted ? 1 : 0,
               transitionDelay: '500ms',
             }}
           >
-            {/* Decorative circuit-like element */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320">
-              {/* Circuit paths */}
-              <path
-                d="M50,160 L150,160 L180,100 L280,100 L310,160 L380,160"
-                fill="none"
-                stroke={COLORS.teal500}
-                strokeWidth="1"
-                strokeDasharray="100"
-                style={{
-                  animation: mounted ? 'dataFlow 4s linear infinite' : 'none',
-                }}
-              />
-              <path
-                d="M50,200 L120,200 L150,250 L250,250 L280,200 L380,200"
-                fill="none"
-                stroke={COLORS.orange500}
-                strokeWidth="1"
-                strokeDasharray="100"
-                strokeOpacity="0.5"
-                style={{
-                  animation: mounted ? 'dataFlow 5s linear infinite 1s' : 'none',
-                }}
-              />
-              {/* Node points */}
-              <circle cx="150" cy="160" r="4" fill={COLORS.teal400} />
-              <circle cx="280" cy="100" r="4" fill={COLORS.teal400} />
-              <circle cx="180" cy="100" r="3" fill={COLORS.orange500} />
-              <circle cx="250" cy="250" r="3" fill={COLORS.peach} />
-            </svg>
+            {image ? (
+              /* Custom image with tech-styled frame */
+              <div className="relative">
+                {/* Glowing border effect */}
+                <div
+                  className="absolute -inset-1 rounded-lg opacity-50 blur-sm"
+                  style={{
+                    background: `linear-gradient(135deg, ${COLORS.teal500}, ${COLORS.orange500})`,
+                  }}
+                />
+                {/* Image container with tech corners */}
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
+                    border: `1px solid ${COLORS.teal500}40`,
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-auto max-w-[400px] object-cover"
+                    style={{
+                      filter: 'contrast(1.05) saturate(1.1)',
+                    }}
+                  />
+                  {/* Scan line overlay effect */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-10"
+                    style={{
+                      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, ${COLORS.teal500}20 2px, ${COLORS.teal500}20 4px)`,
+                    }}
+                  />
+                </div>
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-4 h-px" style={{ backgroundColor: COLORS.orange500 }} />
+                <div className="absolute top-0 left-0 w-px h-4" style={{ backgroundColor: COLORS.orange500 }} />
+                <div className="absolute bottom-0 right-0 w-4 h-px" style={{ backgroundColor: COLORS.teal400 }} />
+                <div className="absolute bottom-0 right-0 w-px h-4" style={{ backgroundColor: COLORS.teal400 }} />
+              </div>
+            ) : (
+              /* Default decorative circuit-like element */
+              <div className="relative h-80 w-full">
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320">
+                  {/* Circuit paths */}
+                  <path
+                    d="M50,160 L150,160 L180,100 L280,100 L310,160 L380,160"
+                    fill="none"
+                    stroke={COLORS.teal500}
+                    strokeWidth="1"
+                    strokeDasharray="100"
+                    style={{
+                      animation: mounted ? 'dataFlow 4s linear infinite' : 'none',
+                    }}
+                  />
+                  <path
+                    d="M50,200 L120,200 L150,250 L250,250 L280,200 L380,200"
+                    fill="none"
+                    stroke={COLORS.orange500}
+                    strokeWidth="1"
+                    strokeDasharray="100"
+                    strokeOpacity="0.5"
+                    style={{
+                      animation: mounted ? 'dataFlow 5s linear infinite 1s' : 'none',
+                    }}
+                  />
+                  {/* Node points */}
+                  <circle cx="150" cy="160" r="4" fill={COLORS.teal400} />
+                  <circle cx="280" cy="100" r="4" fill={COLORS.teal400} />
+                  <circle cx="180" cy="100" r="3" fill={COLORS.orange500} />
+                  <circle cx="250" cy="250" r="3" fill={COLORS.peach} />
+                </svg>
+              </div>
+            )}
           </div>
         </div>
       </div>

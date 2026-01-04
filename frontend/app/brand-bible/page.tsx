@@ -104,13 +104,18 @@ export default function BrandBiblePage() {
       </nav>
 
       {/* ═══════════════════════════════════════════════════════════════════════ */}
-      {/* MAIN HERO - Using HeroCleanSlate */}
+      {/* MAIN HERO - Using HeroKineticGrid */}
       {/* ═══════════════════════════════════════════════════════════════════════ */}
-      <HeroCleanSlate
+      <HeroKineticGrid
         headline="Brand Bible"
         subheadline="All the styles we use to build an amazing platform. Colors, typography, buttons, and component presets for Sidekick Strategies."
         primaryCta={{ label: "View Colors", href: "#colors" }}
         secondaryCta={{ label: "Hero Presets", href: "#heroes" }}
+        eyebrowText="Design System"
+        image={{
+          src: "https://cdn.sanity.io/images/canvases/caRI04Cg96Vv/c9eda9bc1ec993fbae5a161746136592a6f89714-1024x1024.png",
+          alt: "Sidekick Strategies Brand Visual"
+        }}
       />
 
       {/* Colors Section */}
