@@ -239,7 +239,18 @@ export async function getContactCompany(contactId: string): Promise<{
       return {found: false, error: 'No company associated with this contact'}
     }
 
-    const companyId = assocData.results[0].toObjectId
+    // Find the Primary company association, or fall back to the first one
+    let companyId = assocData.results[0].toObjectId
+    for (const assoc of assocData.results) {
+      const isPrimary = assoc.associationTypes?.some(
+        (t: {category: string; typeId: number; label: string | null}) =>
+          t.category === 'HUBSPOT_DEFINED' && t.typeId === 1
+      )
+      if (isPrimary) {
+        companyId = assoc.toObjectId
+        break
+      }
+    }
 
     // Get company details
     const compRes = await fetch(

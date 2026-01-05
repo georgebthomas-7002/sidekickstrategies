@@ -200,24 +200,6 @@ export default function BrandBiblePage() {
         </div>
       </nav>
 
-      {/* Sticky Portal Activation CTA - Right side */}
-      <div className="fixed right-0 top-1/3 z-50 hidden lg:block">
-        <Link
-          href="/portal/login"
-          className="group flex items-center gap-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-white px-7 py-6 rounded-l-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:translate-x-[-6px]"
-        >
-          <div className="flex flex-col items-end">
-            <span className="font-mono text-xs uppercase tracking-wider text-white/60">Client Access</span>
-            <span className="font-heading text-lg font-semibold">Portal Entrance</span>
-          </div>
-          <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-        </Link>
-      </div>
-
       {/* ═══════════════════════════════════════════════════════════════════════ */}
       {/* MAIN HERO - Using HeroKineticGrid */}
       {/* ═══════════════════════════════════════════════════════════════════════ */}

@@ -138,7 +138,7 @@ export default function PortalLoginPage() {
       {/* Help text */}
       <p className="text-center text-sm text-gray-500 mt-6">
         Having trouble?{' '}
-        <a href="mailto:hello@sidekickstrategies.com" className="text-brand-primary hover:text-brand-secondary">
+        <a href="mailto:george@georgebthomas.com" className="text-brand-primary hover:text-brand-secondary">
           Contact support
         </a>
       </p>

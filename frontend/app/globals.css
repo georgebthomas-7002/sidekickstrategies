@@ -132,6 +132,19 @@
   --color-brand-light-blue: #98c1d9;
   --color-brand-slate: #3d5a80;
 
+  /* Secondary (Teal) color scale for Tailwind classes like bg-secondary-500 */
+  --color-secondary-50: #e6f7f9;
+  --color-secondary-100: #cceff3;
+  --color-secondary-200: #99dfe7;
+  --color-secondary-300: #4dc5d4;
+  --color-secondary-400: #1aabb9;
+  --color-secondary-500: #028393;
+  --color-secondary-600: #026d7a;
+  --color-secondary-700: #025762;
+  --color-secondary-800: #014149;
+  --color-secondary-900: #012b31;
+  --color-secondary-950: #001518;
+
   --color-framework: #000;
   --color-black: #000000;
   --color-white: #ffffff;

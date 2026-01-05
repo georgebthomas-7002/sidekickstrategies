@@ -23,6 +23,12 @@ export default async function Header() {
             />
           </Link>
 
+          <Link
+            href="/portal/login"
+            className="rounded-full font-mono text-sm bg-secondary-500 text-white hover:bg-secondary-600 py-2.5 px-6 transition-colors duration-200"
+          >
+            Client Portal
+          </Link>
         </div>
       </div>
     </header>

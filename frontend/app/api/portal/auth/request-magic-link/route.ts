@@ -18,11 +18,14 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedEmail = email.toLowerCase().trim()
+    console.log('[Portal Auth] Processing login request for:', normalizedEmail)
 
     // 1. Look up contact in HubSpot
     const contactResult = await lookupHubSpotContact(normalizedEmail)
+    console.log('[Portal Auth] HubSpot contact lookup:', JSON.stringify(contactResult, null, 2))
 
     if (!contactResult.found || !contactResult.contact) {
+      console.log('[Portal Auth] Contact not found in HubSpot')
       // Don't reveal if email exists - always show same message
       return NextResponse.json({
         message: 'If this email is registered, you will receive a login link shortly.',
@@ -31,6 +34,7 @@ export async function POST(request: NextRequest) {
 
     // 2. Check if portal is enabled for this contact
     if (!contactResult.contact.portalEnabled) {
+      console.log('[Portal Auth] Portal not enabled for contact')
       // Don't reveal that portal is disabled
       return NextResponse.json({
         message: 'If this email is registered, you will receive a login link shortly.',
@@ -39,8 +43,10 @@ export async function POST(request: NextRequest) {
 
     // 3. Get associated company and check company portal access
     const companyResult = await getContactCompany(contactResult.contact.id)
+    console.log('[Portal Auth] Company lookup:', JSON.stringify(companyResult, null, 2))
 
     if (!companyResult.found || !companyResult.company) {
+      console.log('[Portal Auth] No company associated with contact')
       // No company associated
       return NextResponse.json({
         message: 'If this email is registered, you will receive a login link shortly.',
@@ -48,6 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!companyResult.company.portalEnabled) {
+      console.log('[Portal Auth] Portal not enabled for company')
       // Company doesn't have portal enabled
       return NextResponse.json({
         message: 'If this email is registered, you will receive a login link shortly.',
@@ -55,18 +62,23 @@ export async function POST(request: NextRequest) {
     }
 
     // 4. Create magic link token
+    console.log('[Portal Auth] Creating magic link token in Sanity...')
     const token = await createMagicLinkToken(
       normalizedEmail,
       contactResult.contact.id,
       companyResult.company.id
     )
+    console.log('[Portal Auth] Token created successfully')
 
     const magicLinkUrl = getMagicLinkUrl(token)
+    console.log('[Portal Auth] Magic link URL generated:', magicLinkUrl)
 
     // 5. Send email via Resend
+    console.log('[Portal Auth] RESEND_API_KEY present:', !!process.env.RESEND_API_KEY)
     if (process.env.RESEND_API_KEY) {
       try {
-        await resend.emails.send({
+        console.log('[Portal Auth] Sending email via Resend to:', normalizedEmail)
+        const emailResult = await resend.emails.send({
           from: 'Sidekick Strategies <george@georgebthomas.com>',
           to: normalizedEmail,
           subject: 'Your Sidekick Strategies Portal Login Link',
@@ -113,11 +125,13 @@ export async function POST(request: NextRequest) {
             </html>
           `,
         })
+        console.log('[Portal Auth] Resend response:', JSON.stringify(emailResult, null, 2))
       } catch (emailError) {
-        console.error('Failed to send email:', emailError)
+        console.error('[Portal Auth] Failed to send email:', emailError)
         return NextResponse.json({error: 'Failed to send login email. Please try again.'}, {status: 500})
       }
     } else {
+      console.log('[Portal Auth] No RESEND_API_KEY - falling back to dev mode')
       // Development mode - log the magic link
       console.log('\n========================================')
       console.log('MAGIC LINK (dev mode):')
@@ -125,11 +139,12 @@ export async function POST(request: NextRequest) {
       console.log('========================================\n')
     }
 
+    console.log('[Portal Auth] Magic link flow completed successfully')
     return NextResponse.json({
       message: 'If this email is registered, you will receive a login link shortly.',
     })
   } catch (error) {
-    console.error('Magic link request error:', error)
+    console.error('[Portal Auth] Magic link request error:', error)
     return NextResponse.json({error: 'Something went wrong. Please try again.'}, {status: 500})
   }
 }
