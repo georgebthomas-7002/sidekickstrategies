@@ -3,7 +3,7 @@ import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
 import type {Podcast} from '@/sanity.types'
 
-type EpisodeItem = Podcast & { _key: string }
+type EpisodeItem = Podcast
 
 type FeaturedPodcastsProps = {
   block: ExtractPageBuilderType<'featuredPodcasts'>
@@ -47,7 +47,7 @@ export default function FeaturedPodcasts({block}: FeaturedPodcastsProps) {
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-3']}`}
         >
           {episodes?.map((episode, idx) => (
-            <PodcastCard key={episode._key || idx} episode={episode as EpisodeItem} />
+            <PodcastCard key={episode._id || idx} episode={episode as unknown as EpisodeItem} />
           ))}
         </div>
 

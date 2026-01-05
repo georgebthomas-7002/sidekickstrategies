@@ -4,7 +4,7 @@ import {ExtractPageBuilderType} from '@/sanity/lib/types'
 import {format, parseISO} from 'date-fns'
 import type {Post} from '@/sanity.types'
 
-type ArticleItem = Post & { _key: string }
+type ArticleItem = Post
 
 type FeaturedArticlesProps = {
   block: ExtractPageBuilderType<'featuredArticles'>
@@ -51,7 +51,7 @@ export default function FeaturedArticles({block}: FeaturedArticlesProps) {
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-3']}`}
         >
           {articles?.map((article, idx) => (
-            <ArticleCard key={article._key || idx} article={article as ArticleItem} />
+            <ArticleCard key={article._id || idx} article={article as unknown as ArticleItem} />
           ))}
         </div>
 

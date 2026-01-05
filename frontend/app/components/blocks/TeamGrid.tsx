@@ -2,7 +2,7 @@ import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
 import type {Person} from '@/sanity.types'
 
-type TeamMemberItem = Person & { _key: string }
+type TeamMemberItem = Person
 
 type TeamGridProps = {
   block: ExtractPageBuilderType<'teamGrid'>
@@ -44,7 +44,7 @@ export default function TeamGrid({block}: TeamGridProps) {
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-4']}`}
         >
           {members?.map((member, idx) => (
-            <TeamMemberCard key={member._key || idx} member={member as TeamMemberItem} layout={layout} />
+            <TeamMemberCard key={idx} member={member as TeamMemberItem} layout={layout} />
           ))}
         </div>
       </div>

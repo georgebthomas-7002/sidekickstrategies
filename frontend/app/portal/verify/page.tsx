@@ -26,7 +26,7 @@ function VerifyContent() {
 
     async function verify() {
       try {
-        const res = await fetch(`/api/portal/auth/verify?token=${encodeURIComponent(token)}`)
+        const res = await fetch(`/api/portal/auth/verify?token=${encodeURIComponent(token!)}`)
         const data = await res.json()
 
         if (cancelled) return

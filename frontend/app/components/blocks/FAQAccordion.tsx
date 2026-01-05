@@ -9,7 +9,7 @@ import type {BlockContent} from '@/sanity.types'
 
 type FAQItemType = {
   question: string
-  answer: BlockContent
+  answer: PortableTextBlock[]
   _type: 'faqItem'
   _key: string
 }
@@ -73,7 +73,7 @@ export default function FAQAccordion({block}: FAQAccordionProps) {
           {safeItems.map((item) => (
             <FAQItem
               key={item._key}
-              item={item}
+              item={item as unknown as FAQItemType}
               isOpen={openItems.includes(item._key)}
               onToggle={() => toggleItem(item._key)}
               isDark={isDark}

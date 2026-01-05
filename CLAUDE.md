@@ -325,11 +325,52 @@ A client-facing portal where clients can log in, request help (creates ClickUp t
 
 **Full Plan:** `/.claude/context/client-portal-project.md`
 
+### Implementation Status (Updated January 4, 2026)
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Magic Link Auth | ✅ Complete | Resend integration, 15-min tokens |
+| Login/Verify Pages | ✅ Complete | Full flow working |
+| Dashboard | ✅ Complete | Welcome message, quick actions |
+| Ask for Help | ✅ Complete | Creates ClickUp tasks |
+| Projects View | ✅ Complete | Lists tasks from ClickUp |
+| Billing Page | ✅ Complete | Shows HubSpot deals |
+| Meetings Page | ⏳ Placeholder | Contact link only |
+| Sanity Schemas | ✅ Complete | portalSession, portalClient |
+
 ### Architecture
 - **Authentication:** Magic links via Resend (no passwords)
 - **Client Mapping:** HubSpot Company → ClickUp Folder via custom properties
 - **Content:** Sanity for portal content and session tokens
 - **Tasks:** ClickUp for project delivery
+
+### Key Files
+```
+frontend/app/
+├── portal/
+│   ├── layout.tsx              # Portal shell with auth check
+│   ├── login/page.tsx          # Magic link request
+│   ├── verify/page.tsx         # Token verification
+│   ├── dashboard/page.tsx      # Welcome + summary
+│   ├── help/page.tsx           # Ask for Help form
+│   ├── projects/page.tsx       # ClickUp task list
+│   ├── billing/
+│   │   ├── page.tsx            # Billing overview
+│   │   └── BillingContent.tsx  # Client component for deals
+│   └── meetings/page.tsx       # Meeting scheduler (placeholder)
+├── api/portal/
+│   ├── auth/
+│   │   ├── request-magic-link/route.ts
+│   │   ├── verify/route.ts
+│   │   └── logout/route.ts
+│   ├── tasks/route.ts          # GET/POST ClickUp tasks
+│   └── deals/route.ts          # GET HubSpot deals
+└── lib/portal/auth.ts          # Auth utilities
+
+studio/src/schemaTypes/documents/
+├── portalSession.ts            # Magic link tokens
+└── portalClient.ts             # Client profiles
+```
 
 ### Key IDs and Mappings
 
@@ -358,15 +399,15 @@ A client-facing portal where clients can log in, request help (creates ClickUp t
 | ClickUp List | `901112804768` |
 | Sanity portalClient | `6694a5d5-e094-4466-b637-12612c57ef1f` |
 
-### Portal Routes (Planned)
+### Portal Routes
 ```
-/portal/login     - Magic link request
-/portal/verify    - Token verification
-/portal/dashboard - Welcome + summary
-/portal/help      - "Ask for Help" form
-/portal/projects  - Task list from ClickUp
-/portal/billing   - HubSpot deals view
-/portal/meetings  - Meeting scheduler
+/portal/login     - Magic link request ✅
+/portal/verify    - Token verification ✅
+/portal/dashboard - Welcome + summary ✅
+/portal/help      - "Ask for Help" form ✅
+/portal/projects  - Task list from ClickUp ✅
+/portal/billing   - HubSpot deals view ✅
+/portal/meetings  - Meeting scheduler (placeholder)
 ```
 
 ### Environment Variables Needed
@@ -374,6 +415,7 @@ A client-facing portal where clients can log in, request help (creates ClickUp t
 PORTAL_JWT_SECRET=<32-byte-secret>
 RESEND_API_KEY=re_xxxx
 CLICKUP_API_TOKEN=pk_xxxx
+HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx
 ```
 
 ### Client Onboarding Checklist

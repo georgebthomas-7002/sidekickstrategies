@@ -3,7 +3,7 @@ import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
 import type {Download} from '@/sanity.types'
 
-type DownloadItem = Download & { _key: string }
+type DownloadItem = Download
 
 type DownloadsGridProps = {
   block: ExtractPageBuilderType<'downloadsGrid'>
@@ -46,7 +46,7 @@ export default function DownloadsGrid({block}: DownloadsGridProps) {
           className={`grid gap-6 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-3']}`}
         >
           {downloads?.map((download, idx) => (
-            <DownloadCard key={download._key || idx} download={download as DownloadItem} />
+            <DownloadCard key={download._id || idx} download={download as unknown as DownloadItem} />
           ))}
         </div>
 
