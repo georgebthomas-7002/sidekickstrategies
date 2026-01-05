@@ -9,6 +9,15 @@ type TestimonialProps = {
   pageId: string
 }
 
+// Brand colors (inline for Tailwind v4 purge safety)
+const COLORS = {
+  navy800: '#142d63',
+  navy900: '#0f2250',
+  teal500: '#028393',
+  orange500: '#f65625',
+  peach: '#faaa68',
+}
+
 export default function Testimonial({block}: TestimonialProps) {
   const {
     quote,
@@ -21,16 +30,14 @@ export default function Testimonial({block}: TestimonialProps) {
   } = block
 
   const cleanTheme = stegaClean(theme)
-
-  const themeClasses = {
-    light: 'text-gray-900',
-    dark: 'text-white',
-    accent: 'text-white',
-  }
+  const isDark = cleanTheme === 'dark' || cleanTheme === 'accent'
 
   return (
     <section
-      className={`py-16 ${themeClasses[cleanTheme as keyof typeof themeClasses] || themeClasses.light}`}
+      className="py-16 lg:py-24"
+      style={{
+        backgroundColor: isDark ? COLORS.navy800 : '#ffffff',
+      }}
     >
       <div className="container">
         <div className="max-w-4xl mx-auto text-center">
@@ -39,7 +46,8 @@ export default function Testimonial({block}: TestimonialProps) {
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className={`w-6 h-6 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                  className="w-6 h-6"
+                  style={{color: i < rating ? COLORS.peach : (isDark ? 'rgba(255,255,255,0.2)' : '#e5e7eb')}}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -49,8 +57,10 @@ export default function Testimonial({block}: TestimonialProps) {
             </div>
           )}
 
+          {/* Quote icon */}
           <svg
-            className={`w-12 h-12 mx-auto mb-6 ${cleanTheme === 'light' ? 'text-gray-300' : 'text-white/30'}`}
+            className="w-12 h-12 mx-auto mb-8"
+            style={{color: isDark ? 'rgba(255,255,255,0.2)' : COLORS.teal500, opacity: isDark ? 1 : 0.3}}
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -59,7 +69,8 @@ export default function Testimonial({block}: TestimonialProps) {
 
           {quote && (
             <blockquote
-              className={`text-xl md:text-2xl lg:text-3xl font-light leading-relaxed mb-8 ${cleanTheme === 'light' ? 'text-gray-700' : ''}`}
+              className="font-serif text-xl md:text-2xl lg:text-3xl italic leading-relaxed mb-8"
+              style={{color: isDark ? '#ffffff' : COLORS.navy800}}
             >
               &ldquo;{quote}&rdquo;
             </blockquote>
@@ -73,23 +84,33 @@ export default function Testimonial({block}: TestimonialProps) {
                 width={64}
                 height={64}
                 mode="cover"
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-16 h-16 rounded-full object-cover ring-2 ring-offset-2"
+                style={{ringColor: COLORS.teal500}}
               />
             )}
             <div className="text-left">
               {authorName && (
-                <div className="font-semibold">{authorName}</div>
+                <div
+                  className="font-heading font-semibold"
+                  style={{color: isDark ? '#ffffff' : COLORS.navy800}}
+                >
+                  {authorName}
+                </div>
               )}
               {authorTitle && (
                 <div
-                  className={`text-sm ${cleanTheme === 'light' ? 'text-gray-600' : 'text-white/70'}`}
+                  className="text-sm font-sans"
+                  style={{color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(20, 45, 99, 0.6)'}}
                 >
                   {authorTitle}
                 </div>
               )}
             </div>
             {companyLogo?.asset?._ref && (
-              <div className="ml-4 pl-4 border-l border-gray-300">
+              <div
+                className="ml-4 pl-4 border-l"
+                style={{borderColor: isDark ? 'rgba(255,255,255,0.2)' : '#e5e7eb'}}
+              >
                 <Image
                   id={companyLogo.asset._ref}
                   alt="Company logo"

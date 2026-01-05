@@ -10,6 +10,16 @@ type HeroProps = {
   pageId: string
 }
 
+// Brand colors (inline for Tailwind v4 purge safety)
+const COLORS = {
+  navy800: '#142d63',
+  navy900: '#0f2250',
+  teal500: '#028393',
+  teal600: '#026d7a',
+  orange500: '#f65625',
+  orange600: '#d9441a',
+}
+
 export default function Hero({block}: HeroProps) {
   const {
     eyebrow,
@@ -42,7 +52,11 @@ export default function Hero({block}: HeroProps) {
 
   return (
     <section
-      className={`relative flex items-center ${sizeClasses[cleanSize as keyof typeof sizeClasses] || sizeClasses.large} ${isDark ? 'text-white' : 'text-gray-900'}`}
+      className={`relative flex items-center ${sizeClasses[cleanSize as keyof typeof sizeClasses] || sizeClasses.large}`}
+      style={{
+        backgroundColor: isDark ? COLORS.navy800 : '#ffffff',
+        color: isDark ? '#ffffff' : COLORS.navy800,
+      }}
     >
       {backgroundImage?.asset?._ref && (
         <div className="absolute inset-0 z-0">
@@ -56,7 +70,10 @@ export default function Hero({block}: HeroProps) {
             className="w-full h-full object-cover"
           />
           <div
-            className={`absolute inset-0 ${isDark ? 'bg-gray-900/70' : 'bg-white/70'}`}
+            className="absolute inset-0"
+            style={{
+              backgroundColor: isDark ? 'rgba(20, 45, 99, 0.85)' : 'rgba(255, 255, 255, 0.85)',
+            }}
           />
         </div>
       )}
@@ -67,21 +84,26 @@ export default function Hero({block}: HeroProps) {
         >
           {eyebrow && (
             <span
-              className={`text-sm uppercase font-mono tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
+              className="text-xs uppercase font-heading font-medium tracking-[0.25em]"
+              style={{color: COLORS.teal500}}
             >
               {eyebrow}
             </span>
           )}
 
           {heading && (
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1
+              className="font-serif text-4xl md:text-5xl lg:text-7xl leading-tight"
+              style={{color: isDark ? '#ffffff' : COLORS.navy800}}
+            >
               {heading}
             </h1>
           )}
 
           {subheading && (
             <p
-              className={`text-lg md:text-xl max-w-2xl ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
+              className="font-sans text-lg md:text-xl max-w-2xl leading-relaxed"
+              style={{color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(20, 45, 99, 0.7)'}}
             >
               {subheading}
             </p>
@@ -89,12 +111,15 @@ export default function Hero({block}: HeroProps) {
 
           {(primaryButton?.buttonText || secondaryButton?.buttonText) && (
             <div
-              className={`flex flex-wrap gap-4 mt-4 ${cleanAlignment === 'center' ? 'justify-center' : cleanAlignment === 'right' ? 'justify-end' : 'justify-start'}`}
+              className={`flex flex-wrap gap-4 mt-6 ${cleanAlignment === 'center' ? 'justify-center' : cleanAlignment === 'right' ? 'justify-end' : 'justify-start'}`}
             >
               {primaryButton?.buttonText && primaryButton?.link && (
                 <ResolvedLink
                   link={primaryButton.link}
-                  className="rounded-full font-mono text-sm whitespace-nowrap bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 transition-colors duration-200"
+                  className="h-12 px-8 inline-flex items-center rounded-lg font-heading font-medium text-base text-white transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{
+                    backgroundColor: COLORS.orange500,
+                  }}
                 >
                   {primaryButton.buttonText}
                 </ResolvedLink>
@@ -102,7 +127,11 @@ export default function Hero({block}: HeroProps) {
               {secondaryButton?.buttonText && secondaryButton?.link && (
                 <ResolvedLink
                   link={secondaryButton.link}
-                  className={`rounded-full font-mono text-sm whitespace-nowrap border-2 py-3 px-8 transition-colors duration-200 ${isDark ? 'border-white text-white hover:bg-white hover:text-brand-800' : 'border-brand-800 text-brand-800 hover:bg-brand-800 hover:text-white'}`}
+                  className="h-12 px-8 inline-flex items-center rounded-lg font-heading font-medium text-base transition-all duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{
+                    backgroundColor: COLORS.teal500,
+                    color: '#ffffff',
+                  }}
                 >
                   {secondaryButton.buttonText}
                 </ResolvedLink>
@@ -120,7 +149,7 @@ export default function Hero({block}: HeroProps) {
               crop={foregroundImage.crop}
               hotspot={foregroundImage.hotspot}
               mode="cover"
-              className="rounded-lg shadow-xl mx-auto"
+              className="rounded-xl shadow-xl mx-auto"
             />
           </div>
         )}
