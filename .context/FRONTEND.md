@@ -205,6 +205,25 @@ export async function generateStaticParams() {
 
 ## Styling
 
+### Container Width Standard (1640px)
+All page builder sections use the `container` class which has:
+- **Max-width**: 1640px
+- **Horizontal padding**: 2rem (32px) on each side
+- **Centering**: `margin: 0 auto`
+
+**Defined in**: `app/globals.css` via `@utility container`
+
+**Usage in components**:
+```tsx
+<section className="...">
+  <div className="container">
+    {/* Content here */}
+  </div>
+</section>
+```
+
+**Note**: This applies to all PAGE content (Hero, CTA, InfoSection, etc.), NOT article/blog content which uses narrower widths for readability.
+
 ### Tailwind CSS 4
 - Config: `tailwind.config.ts`
 - Styles: `app/globals.css`
@@ -266,4 +285,4 @@ fileType={download.fileType || undefined}
 - `tailwind.config.ts` - Design tokens
 
 ## Last Updated
-2026-01-04
+2026-01-05

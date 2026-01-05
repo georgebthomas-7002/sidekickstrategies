@@ -392,7 +392,7 @@ function KineticHero({
       </div>
 
       {/* Content */}
-      <div className="relative container mx-auto px-6 md:px-12 lg:px-24">
+      <div className="relative container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div>
