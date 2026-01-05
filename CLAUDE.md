@@ -424,34 +424,3 @@ HUBSPOT_ACCESS_TOKEN=pat-na1-xxxx
 3. Set `portal_enabled = true` on Company
 4. Set `portal_enabled = true` on Contact(s)
 5. (Optional) Create portalClient in Sanity for branding
-
-## Gmail Integration (Added January 2026)
-
-### Overview
-Gmail access via MCP server for reading, searching, and sending emails.
-
-### Configuration
-- **MCP Server:** `@gongrzhe/server-gmail-autoauth-mcp`
-- **Config:** `.mcp.json` (gmail entry)
-- **Credentials:** `~/.gmail-mcp/gcp-oauth.keys.json`
-- **Tokens:** `~/.gmail-mcp/credentials.json` (auto-refreshed)
-
-### Capabilities
-| Tool | Description |
-|------|-------------|
-| `gmail_search` | Search with Gmail query syntax |
-| `gmail_get_message` | Get full email content |
-| `gmail_send` | Send new emails |
-| `gmail_reply` | Reply to emails |
-| `gmail_trash` / `gmail_mark_read` | Manage emails |
-
-### Usage
-Ask naturally:
-- "Check my recent emails"
-- "Show unread emails from today"
-- "Send an email to X about Y"
-
-### Troubleshooting
-If auth expires: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
-
-Full setup docs: `.claude/context/gmail-mcp-setup.md`

@@ -24,7 +24,6 @@
 - `.context/TEAM.md` - Team member information
 - `.context/RESEARCH.md` - Full website research
 - `.context/SKILLS.md` - Recommended Claude Skills
-- `.context/GOOGLE_INTEGRATION.md` - Google Calendar & Gmail setup guide
 
 ## Tech Stack
 | Layer | Technology | Version |
@@ -131,7 +130,6 @@ The project uses Model Context Protocol (MCP) servers to enhance Claude Code cap
 | Vercel | Remote (HTTP) | Deployment logs, project monitoring | OAuth (browser) |
 | HubSpot | Remote (HTTP) | CRM data - contacts, deals, companies | Token in .env.local |
 | Sentry | Remote (HTTP) | Error monitoring, debugging | OAuth (browser) |
-| Google | Local (stdio) | Gmail + Calendar (read/write) | OAuth (Google Cloud) |
 
 ### MCP Usage Examples
 ```
@@ -150,12 +148,6 @@ The project uses Model Context Protocol (MCP) servers to enhance Claude Code cap
 
 # Sentry
 "Show me recent errors from production"
-
-# Google (Calendar + Gmail)
-"What's on my calendar tomorrow?"
-"Check for unread emails from [client]"
-"Schedule a call for Tuesday at 2pm"
-"Draft a follow-up email to [contact]"
 ```
 
 ### MCP Configuration
@@ -212,4 +204,4 @@ A detailed migration plan exists for importing 50+ pages from HubSpot CMS to San
 Key mapping: HubSpot modules → Sanity pageBuilder blocks (hero, callToAction, infoSection, etc.)
 
 ## Last Updated
-2026-01-04 - Added Google Calendar & Gmail integration guide (`.context/GOOGLE_INTEGRATION.md`)
+2026-01-05 - Removed Google Calendar & Gmail integration (not functional in this environment)
