@@ -20,19 +20,25 @@ const JWT_SECRET = process.env.PORTAL_JWT_SECRET || 'default-dev-secret-change-m
 const HUBSPOT_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN
 const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || 'http://localhost:3000/portal'
 
-// Sanity client for portal session management (lazy-loaded to avoid build-time errors)
-let _portalSanityClient: ReturnType<typeof createClient> | null = null
+// Sanity clients for portal session management (lazy-loaded to avoid build-time errors)
+let _portalSanityReadClient: ReturnType<typeof createClient> | null = null
+let _portalSanityWriteClient: ReturnType<typeof createClient> | null = null
 
-function getPortalSanityClient() {
-  if (!_portalSanityClient) {
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+function getPortalSanityConfig() {
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 
-    if (!projectId || !dataset) {
-      throw new Error('Sanity configuration missing: NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET are required')
-    }
+  if (!projectId || !dataset) {
+    throw new Error('Sanity configuration missing: NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET are required')
+  }
 
-    _portalSanityClient = createClient({
+  return { projectId, dataset }
+}
+
+function getPortalSanityReadClient() {
+  if (!_portalSanityReadClient) {
+    const { projectId, dataset } = getPortalSanityConfig()
+    _portalSanityReadClient = createClient({
       projectId,
       dataset,
       apiVersion: '2025-09-25',
@@ -40,7 +46,26 @@ function getPortalSanityClient() {
       token: process.env.SANITY_API_READ_TOKEN,
     })
   }
-  return _portalSanityClient
+  return _portalSanityReadClient
+}
+
+function getPortalSanityWriteClient() {
+  if (!_portalSanityWriteClient) {
+    const { projectId, dataset } = getPortalSanityConfig()
+    // Use write token for mutations, fall back to read token if not available
+    const writeToken = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_API_READ_TOKEN
+    if (!writeToken) {
+      throw new Error('SANITY_API_WRITE_TOKEN is required for portal session management')
+    }
+    _portalSanityWriteClient = createClient({
+      projectId,
+      dataset,
+      apiVersion: '2025-09-25',
+      useCdn: false,
+      token: writeToken,
+    })
+  }
+  return _portalSanityWriteClient
 }
 
 /**
@@ -50,8 +75,8 @@ export async function createMagicLinkToken(email: string, contactId: string, com
   const token = nanoid(32)
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000) // 15 minutes
 
-  // Store token in Sanity
-  await getPortalSanityClient().create({
+  // Store token in Sanity (requires write permissions)
+  await getPortalSanityWriteClient().create({
     _type: 'portalSession',
     token,
     email,
@@ -88,7 +113,7 @@ export async function verifyMagicLinkToken(token: string): Promise<{
 
   // Using type assertion to handle Sanity client's strict typing
   const params = {token} as Record<string, string>
-  const session = await getPortalSanityClient().fetch<SessionResult>(query, params)
+  const session = await getPortalSanityReadClient().fetch<SessionResult>(query, params)
 
   if (!session) {
     return {valid: false, error: 'Invalid token'}
@@ -102,8 +127,8 @@ export async function verifyMagicLinkToken(token: string): Promise<{
     return {valid: false, error: 'Token expired'}
   }
 
-  // Mark token as used
-  await getPortalSanityClient().patch(session._id).set({used: true}).commit()
+  // Mark token as used (requires write permissions)
+  await getPortalSanityWriteClient().patch(session._id).set({used: true}).commit()
 
   return {
     valid: true,
