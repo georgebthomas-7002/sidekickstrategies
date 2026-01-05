@@ -244,7 +244,7 @@ export type Hero = {
   }
   size?: 'large' | 'medium' | 'small'
   alignment?: 'left' | 'center' | 'right'
-  theme?: 'light' | 'dark'
+  theme?: 'light' | 'dark' | 'kinetic'
   layout?: 'centered' | 'split-left' | 'split-right' | 'overlay'
   stylePreset?: StylePresetReference
   sectionSettings?: SectionSettings
@@ -386,6 +386,74 @@ export type Button = {
   link?: Link
 }
 
+export type PortalClient = {
+  _id: string
+  _type: 'portalClient'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  companyName: string
+  hubspotCompanyId: string
+  logo?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  primaryColor?: string
+  welcomeMessage?: string
+  tier?: 'standard' | 'premium' | 'enterprise'
+  features?: {
+    askForHelp?: boolean
+    projectStatus?: boolean
+    billing?: boolean
+    meetings?: boolean
+    resources?: boolean
+  }
+  announcements?: Array<{
+    title: string
+    message?: string
+    type?: 'info' | 'success' | 'warning'
+    expiresAt?: string
+    _type: 'announcement'
+    _key: string
+  }>
+  isActive?: boolean
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
+export type PortalSession = {
+  _id: string
+  _type: 'portalSession'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  token: string
+  email: string
+  contactId: string
+  companyId: string
+  expiresAt: string
+  used?: boolean
+  createdAt: string
+}
+
 export type StylePreset = {
   _id: string
   _type: 'stylePreset'
@@ -403,22 +471,6 @@ export type StylePreset = {
   }
   applicableBlocks?: Array<string>
   settings?: SectionSettings
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
 }
 
 export type SanityFileAssetReference = {
@@ -903,9 +955,11 @@ export type AllSanitySchemaTypes =
   | BlockContentTextOnly
   | BlockContent
   | Button
-  | StylePreset
+  | PortalClient
   | SanityImageCrop
   | SanityImageHotspot
+  | PortalSession
+  | StylePreset
   | SanityFileAssetReference
   | Download
   | Slug
@@ -1436,7 +1490,7 @@ export type GetPageQueryResult = {
         }
         size?: 'large' | 'medium' | 'small'
         alignment?: 'center' | 'left' | 'right'
-        theme?: 'dark' | 'light'
+        theme?: 'dark' | 'kinetic' | 'light'
         layout?: 'centered' | 'overlay' | 'split-left' | 'split-right'
         stylePreset?: StylePresetReference
         sectionSettings?: SectionSettings

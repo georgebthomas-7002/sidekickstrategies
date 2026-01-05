@@ -132,6 +132,7 @@ export const hero = defineType({
         list: [
           {title: 'Light', value: 'light'},
           {title: 'Dark', value: 'dark'},
+          {title: 'Kinetic (Tech-Forward)', value: 'kinetic'},
         ],
         layout: 'radio',
       },
