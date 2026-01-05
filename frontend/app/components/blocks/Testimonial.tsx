@@ -85,7 +85,7 @@ export default function Testimonial({block}: TestimonialProps) {
                 height={64}
                 mode="cover"
                 className="w-16 h-16 rounded-full object-cover ring-2 ring-offset-2"
-                style={{ringColor: COLORS.teal500}}
+                style={{'--tw-ring-color': COLORS.teal500} as React.CSSProperties}
               />
             )}
             <div className="text-left">
