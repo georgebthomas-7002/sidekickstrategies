@@ -665,6 +665,25 @@ Sidekick Strategies has six production-ready hero presets. Each uses inline styl
 import { HeroCleanSlate, HeroBoldEdge, HeroGradientFlow, HeroAuroraPulse, HeroKineticGrid, HeroExecutiveSuite } from '@/app/components/heroes'
 ```
 
+### ⚠️ DEFAULT HERO RULE
+
+**All hero sections use the "kinetic" style (HeroKineticGrid) by default** unless explicitly specified otherwise by the user.
+
+This is the standard brand treatment seen on:
+- `/brand-bible` page
+- `/fit` page
+
+**When to use a different hero:**
+- Only when the user explicitly requests a different style
+- When a specific page context calls for a different treatment (e.g., executive landing page)
+
+**Kinetic Grid characteristics:**
+- Dark navy background (#0a1628)
+- Animated data flow lines and grid pattern
+- Floating teal particles
+- Tech-forward aesthetic that reflects HubSpot expertise
+- Supports optional image on right side with tech frame
+
 ### Hero Selection Guide
 
 | Preset | Style | Background | Animation | Best For |

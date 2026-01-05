@@ -62,6 +62,8 @@
 | `HeroKineticGrid.tsx` | Tech-forward | Dark navy | Data flow lines |
 | `HeroExecutiveSuite.tsx` | Ultra-premium luxury | Dark navy | Corner accents |
 
+**⚠️ DEFAULT HERO RULE**: All hero sections should use the **"kinetic"** style (HeroKineticGrid) unless explicitly specified otherwise. This is the standard brand treatment seen on `/brand-bible` and `/fit` pages.
+
 **Hero Pattern**: All heroes use inline styles with hex color values to prevent Tailwind v4 CSS purging. Each has a COLORS constant and CSS keyframe animations via `<style jsx>`.
 
 **HeroKineticGrid Props** (most flexible):

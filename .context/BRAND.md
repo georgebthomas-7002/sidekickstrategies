@@ -257,6 +257,20 @@ See full icon library at `/brand-bible#iconography`
 
 ---
 
+## Design Rules
+
+### Default Hero Style
+**All hero sections use the "kinetic" style by default** unless explicitly specified otherwise.
+
+- **Style**: HeroKineticGrid (tech-forward with data flow lines)
+- **Background**: Dark navy (#0a1628)
+- **Elements**: Animated grid lines, floating particles, teal accents
+- **Reference**: See `/brand-bible` and `/fit` pages
+
+This creates brand consistency across the site with a modern, tech-forward aesthetic that reflects the HubSpot expertise and innovation-focused positioning.
+
+---
+
 ## Key Files
 - `frontend/tailwind.config.ts` - Design tokens, color scales
 - `frontend/app/globals.css` - @theme variables, base typography
