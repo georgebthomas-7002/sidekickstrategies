@@ -70,7 +70,7 @@ function TeamMemberCard({member, layout}: {member: TeamMemberItem; layout: strin
             alt={picture.alt || fullName}
             width={120}
             height={120}
-            crop={picture.crop}
+            crop={picture.crop as any}
             mode="cover"
             className="w-24 h-24 rounded-full object-cover flex-shrink-0"
           />
@@ -107,7 +107,7 @@ function TeamMemberCard({member, layout}: {member: TeamMemberItem; layout: strin
             alt={picture.alt || fullName}
             width={300}
             height={300}
-            crop={picture.crop}
+            crop={picture.crop as any}
             mode="cover"
             className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
           />

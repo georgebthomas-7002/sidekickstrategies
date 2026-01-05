@@ -13,11 +13,41 @@
  */
 
 // Source: ../studio/schema.json
+export type Video = {
+  source?: 'file' | 'youtube' | 'vimeo'
+  file?: VideoFile
+  url?: string
+  poster?: Poster
+  autoplay?: boolean
+  loop?: boolean
+}
+
+export type SanityFileAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+}
+
+export type VideoFile = {
+  asset?: SanityFileAssetReference
+  media?: unknown // Unable to locate the referenced type "file.media" in schema
+  _type: 'file'
+}
+
 export type SanityImageAssetReference = {
   _ref: string
   _type: 'reference'
   _weak?: boolean
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type Poster = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "poster.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
 }
 
 export type Seo = {
@@ -47,8 +77,8 @@ export type FaqAccordion = {
   heading?: string
   subheading?: string
   items?: Array<{
-    question: string
-    answer: BlockContent
+    question?: string
+    answer?: BlockContent
     _type: 'faqItem'
     _key: string
   }>
@@ -111,8 +141,8 @@ export type TeamGrid = {
 
 export type Testimonial = {
   _type: 'testimonial'
-  quote: string
-  authorName: string
+  quote?: string
+  authorName?: string
   authorTitle?: string
   authorImage?: {
     asset?: SanityImageAssetReference
@@ -222,7 +252,7 @@ export type FeaturedArticles = {
 export type Hero = {
   _type: 'hero'
   eyebrow?: string
-  heading: string
+  heading?: string
   subheading?: string
   primaryButton?: Button
   secondaryButton?: Button
@@ -301,7 +331,7 @@ export type Link = {
 export type CallToAction = {
   _type: 'callToAction'
   eyebrow?: string
-  heading: string
+  heading?: string
   body?: BlockContentTextOnly
   button?: Button
   image?: {
@@ -324,6 +354,17 @@ export type InfoSection = {
   heading?: string
   subheading?: string
   content?: BlockContent
+  mediaType?: 'none' | 'image' | 'video'
+  mediaPosition?: 'left' | 'right'
+  image?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  video?: Video
   stylePreset?: StylePresetReference
   sectionSettings?: SectionSettings
 }
@@ -392,8 +433,8 @@ export type PortalClient = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  companyName: string
-  hubspotCompanyId: string
+  companyName?: string
+  hubspotCompanyId?: string
   logo?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -413,7 +454,7 @@ export type PortalClient = {
     resources?: boolean
   }
   announcements?: Array<{
-    title: string
+    title?: string
     message?: string
     type?: 'info' | 'success' | 'warning'
     expiresAt?: string
@@ -425,18 +466,18 @@ export type PortalClient = {
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
+  x?: number
+  y?: number
+  height?: number
+  width?: number
 }
 
 export type PortalSession = {
@@ -445,13 +486,13 @@ export type PortalSession = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  token: string
-  email: string
-  contactId: string
-  companyId: string
-  expiresAt: string
+  token?: string
+  email?: string
+  contactId?: string
+  companyId?: string
+  expiresAt?: string
   used?: boolean
-  createdAt: string
+  createdAt?: string
 }
 
 export type StylePreset = {
@@ -460,7 +501,7 @@ export type StylePreset = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
+  name?: string
   description?: string
   previewImage?: {
     asset?: SanityImageAssetReference
@@ -473,21 +514,14 @@ export type StylePreset = {
   settings?: SectionSettings
 }
 
-export type SanityFileAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
-}
-
 export type Download = {
   _id: string
   _type: 'download'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   description?: BlockContent
   excerpt?: string
   thumbnail?: {
@@ -498,7 +532,7 @@ export type Download = {
     alt?: string
     _type: 'image'
   }
-  file: {
+  file?: {
     asset?: SanityFileAssetReference
     media?: unknown
     _type: 'file'
@@ -532,7 +566,7 @@ export type Download = {
 
 export type Slug = {
   _type: 'slug'
-  current: string
+  current?: string
   source?: string
 }
 
@@ -542,8 +576,8 @@ export type Podcast = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   description?: string
   showNotes?: BlockContent
   transistorUrl?: string
@@ -580,7 +614,7 @@ export type Settings = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   description?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -620,8 +654,8 @@ export type Page = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
-  slug: Slug
+  name?: string
+  slug?: Slug
   pageBuilder?: Array<
     | ({
         _key: string
@@ -663,8 +697,8 @@ export type Post = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   content?: BlockContent
   excerpt?: string
   coverImage?: {
@@ -686,9 +720,9 @@ export type Person = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  firstName: string
-  lastName: string
-  picture: {
+  firstName?: string
+  lastName?: string
+  picture?: {
     asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
@@ -745,7 +779,7 @@ export type AssistInstructionContextReference = {
 
 export type SanityAssistInstructionContext = {
   _type: 'sanity.assist.instruction.context'
-  reference: AssistInstructionContextReference
+  reference?: AssistInstructionContextReference
 }
 
 export type AssistInstructionContext = {
@@ -773,7 +807,7 @@ export type AssistInstructionContext = {
 
 export type SanityAssistInstructionUserInput = {
   _type: 'sanity.assist.instruction.userInput'
-  message: string
+  message?: string
   description?: string
 }
 
@@ -856,9 +890,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height: number
-  width: number
-  aspectRatio: number
+  height?: number
+  width?: number
+  aspectRatio?: number
 }
 
 export type SanityImageMetadata = {
@@ -932,7 +966,11 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Video
+  | SanityFileAssetReference
+  | VideoFile
   | SanityImageAssetReference
+  | Poster
   | Seo
   | StylePresetReference
   | FaqAccordion
@@ -960,7 +998,6 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | PortalSession
   | StylePreset
-  | SanityFileAssetReference
   | Download
   | Slug
   | Podcast
@@ -1001,7 +1038,7 @@ export type SettingsQueryResult = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   description?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -1041,8 +1078,8 @@ export type SettingsQueryResult = {
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
-  name: string
-  slug: Slug
+  name: string | null
+  slug: Slug | null
   seo: {
     metaTitle: string | null
     metaDescription: string | null
@@ -1051,8 +1088,8 @@ export type GetPageQueryResult = {
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -1065,7 +1102,7 @@ export type GetPageQueryResult = {
         _key: string
         _type: 'callToAction'
         eyebrow?: string
-        heading: string
+        heading?: string
         body?: BlockContentTextOnly
         button: {
           _type: 'button'
@@ -1116,7 +1153,7 @@ export type GetPageQueryResult = {
         contactAddress?: string
         theme?: 'dark' | 'light'
         stylePreset: {
-          name: string
+          name: string | null
           settings: {
             containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
             contentAlignment: 'center' | 'left' | 'right' | null
@@ -1186,8 +1223,8 @@ export type GetPageQueryResult = {
         downloads: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string
-          slug: string
+          title: string | 'Untitled'
+          slug: string | null
           excerpt: string | null
           thumbnail: {
             asset?: SanityImageAssetReference
@@ -1232,8 +1269,8 @@ export type GetPageQueryResult = {
                 url: string | null
                 metadata: {
                   dimensions: {
-                    width: number
-                    height: number
+                    width: number | null
+                    height: number | null
                   } | null
                 } | null
               } | null
@@ -1264,7 +1301,7 @@ export type GetPageQueryResult = {
         heading?: string
         subheading?: string
         items: Array<{
-          question: string
+          question?: string
           answer: Array<
             | {
                 children?: Array<{
@@ -1297,7 +1334,7 @@ export type GetPageQueryResult = {
                 _key: string
                 markDefs: null
               }
-          >
+          > | null
           _type: 'faqItem'
           _key: string
         }> | null
@@ -1317,8 +1354,8 @@ export type GetPageQueryResult = {
         articles: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string
-          slug: string
+          title: string | 'Untitled'
+          slug: string | null
           excerpt: string | null
           coverImage: {
             asset?: SanityImageAssetReference
@@ -1330,8 +1367,8 @@ export type GetPageQueryResult = {
           } | null
           date: string
           author: {
-            firstName: string
-            lastName: string
+            firstName: string | null
+            lastName: string | null
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1339,7 +1376,7 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
-            }
+            } | null
           } | null
           seo: {
             metaTitle: string | null
@@ -1349,8 +1386,8 @@ export type GetPageQueryResult = {
                 url: string | null
                 metadata: {
                   dimensions: {
-                    width: number
-                    height: number
+                    width: number | null
+                    height: number | null
                   } | null
                 } | null
               } | null
@@ -1375,8 +1412,8 @@ export type GetPageQueryResult = {
         episodes: Array<{
           _id: string
           status: 'draft' | 'published'
-          title: string
-          slug: string
+          title: string | 'Untitled'
+          slug: string | null
           description: string | null
           coverImage: {
             asset?: SanityImageAssetReference
@@ -1393,8 +1430,8 @@ export type GetPageQueryResult = {
           seasonNumber: number | null
           publishedAt: string
           guests: Array<{
-            firstName: string
-            lastName: string
+            firstName: string | null
+            lastName: string | null
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1402,11 +1439,11 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
-            }
+            } | null
           }> | null
           hosts: Array<{
-            firstName: string
-            lastName: string
+            firstName: string | null
+            lastName: string | null
             picture: {
               asset?: SanityImageAssetReference
               media?: unknown
@@ -1414,7 +1451,7 @@ export type GetPageQueryResult = {
               crop?: SanityImageCrop
               alt?: string
               _type: 'image'
-            }
+            } | null
           }> | null
           tags: Array<string> | null
           seo: {
@@ -1425,8 +1462,8 @@ export type GetPageQueryResult = {
                 url: string | null
                 metadata: {
                   dimensions: {
-                    width: number
-                    height: number
+                    width: number | null
+                    height: number | null
                   } | null
                 } | null
               } | null
@@ -1446,7 +1483,7 @@ export type GetPageQueryResult = {
         _key: string
         _type: 'hero'
         eyebrow?: string
-        heading: string
+        heading?: string
         subheading?: string
         primaryButton: {
           _type: 'button'
@@ -1533,8 +1570,19 @@ export type GetPageQueryResult = {
               markDefs: null
             }
         > | null
+        mediaType?: 'image' | 'none' | 'video'
+        mediaPosition?: 'left' | 'right'
+        image?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        video?: Video
         stylePreset: {
-          name: string
+          name: string | null
           settings: {
             containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
             contentAlignment: 'center' | 'left' | 'right' | null
@@ -1602,8 +1650,8 @@ export type GetPageQueryResult = {
         subheading?: string
         displayMode?: 'all' | 'selected'
         members: Array<{
-          firstName: string
-          lastName: string
+          firstName: string | null
+          lastName: string | null
           picture: {
             asset?: SanityImageAssetReference
             media?: unknown
@@ -1611,7 +1659,7 @@ export type GetPageQueryResult = {
             crop?: SanityImageCrop
             alt?: string
             _type: 'image'
-          }
+          } | null
         }> | null
         layout?: 'grid-2' | 'grid-3' | 'grid-4' | 'list'
         showBio?: boolean
@@ -1622,8 +1670,8 @@ export type GetPageQueryResult = {
     | {
         _key: string
         _type: 'testimonial'
-        quote: string
-        authorName: string
+        quote?: string
+        authorName?: string
         authorTitle?: string
         authorImage?: {
           asset?: SanityImageAssetReference
@@ -1643,7 +1691,7 @@ export type GetPageQueryResult = {
         theme?: 'accent' | 'dark' | 'light'
         layout?: 'card' | 'large-quote' | 'minimal' | 'photo-left' | 'photo-right'
         stylePreset: {
-          name: string
+          name: string | null
           settings: {
             containerWidth: 'default' | 'full' | 'narrow' | 'wide' | null
             contentAlignment: 'center' | 'left' | 'right' | null
@@ -1712,12 +1760,12 @@ export type GetPageQueryResult = {
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
 export type SitemapDataResult = Array<
   | {
-      slug: string
+      slug: string | null
       _type: 'page'
       _updatedAt: string
     }
   | {
-      slug: string
+      slug: string | null
       _type: 'post'
       _updatedAt: string
     }
@@ -1729,8 +1777,8 @@ export type SitemapDataResult = Array<
 export type AllPostsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1742,8 +1790,8 @@ export type AllPostsQueryResult = Array<{
   } | null
   date: string
   author: {
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1751,7 +1799,7 @@ export type AllPostsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   } | null
   seo: {
     metaTitle: string | null
@@ -1761,8 +1809,8 @@ export type AllPostsQueryResult = Array<{
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -1778,8 +1826,8 @@ export type AllPostsQueryResult = Array<{
 export type MorePostsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1791,8 +1839,8 @@ export type MorePostsQueryResult = Array<{
   } | null
   date: string
   author: {
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1800,7 +1848,7 @@ export type MorePostsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   } | null
   seo: {
     metaTitle: string | null
@@ -1810,8 +1858,8 @@ export type MorePostsQueryResult = Array<{
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -1860,8 +1908,8 @@ export type PostQueryResult = {
   > | null
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   excerpt: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1873,8 +1921,8 @@ export type PostQueryResult = {
   } | null
   date: string
   author: {
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1882,7 +1930,7 @@ export type PostQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   } | null
   seo: {
     metaTitle: string | null
@@ -1892,8 +1940,8 @@ export type PostQueryResult = {
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -1907,14 +1955,14 @@ export type PostQueryResult = {
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
 export type PostPagesSlugsResult = Array<{
-  slug: string
+  slug: string | null
 }>
 
 // Source: sanity/lib/queries.ts
 // Variable: pagesSlugs
 // Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
 export type PagesSlugsResult = Array<{
-  slug: string
+  slug: string | null
 }>
 
 // Source: sanity/lib/queries.ts
@@ -1923,8 +1971,8 @@ export type PagesSlugsResult = Array<{
 export type AllPodcastsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   description: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -1941,8 +1989,8 @@ export type AllPodcastsQueryResult = Array<{
   seasonNumber: number | null
   publishedAt: string
   guests: Array<{
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1950,11 +1998,11 @@ export type AllPodcastsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   }> | null
   hosts: Array<{
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -1962,7 +2010,7 @@ export type AllPodcastsQueryResult = Array<{
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   }> | null
   tags: Array<string> | null
   seo: {
@@ -1973,8 +2021,8 @@ export type AllPodcastsQueryResult = Array<{
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -1990,8 +2038,8 @@ export type AllPodcastsQueryResult = Array<{
 export type PodcastQueryResult = {
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   description: string | null
   coverImage: {
     asset?: SanityImageAssetReference
@@ -2008,8 +2056,8 @@ export type PodcastQueryResult = {
   seasonNumber: number | null
   publishedAt: string
   guests: Array<{
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -2017,11 +2065,11 @@ export type PodcastQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   }> | null
   hosts: Array<{
-    firstName: string
-    lastName: string
+    firstName: string | null
+    lastName: string | null
     picture: {
       asset?: SanityImageAssetReference
       media?: unknown
@@ -2029,7 +2077,7 @@ export type PodcastQueryResult = {
       crop?: SanityImageCrop
       alt?: string
       _type: 'image'
-    }
+    } | null
   }> | null
   tags: Array<string> | null
   seo: {
@@ -2040,8 +2088,8 @@ export type PodcastQueryResult = {
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -2088,7 +2136,7 @@ export type PodcastQueryResult = {
 // Variable: podcastPagesSlugs
 // Query: *[_type == "podcast" && defined(slug.current)]  {"slug": slug.current}
 export type PodcastPagesSlugsResult = Array<{
-  slug: string
+  slug: string | null
 }>
 
 // Source: sanity/lib/queries.ts
@@ -2097,8 +2145,8 @@ export type PodcastPagesSlugsResult = Array<{
 export type AllDownloadsQueryResult = Array<{
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   excerpt: string | null
   thumbnail: {
     asset?: SanityImageAssetReference
@@ -2143,8 +2191,8 @@ export type AllDownloadsQueryResult = Array<{
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -2160,8 +2208,8 @@ export type AllDownloadsQueryResult = Array<{
 export type DownloadQueryResult = {
   _id: string
   status: 'draft' | 'published'
-  title: string
-  slug: string
+  title: string | 'Untitled'
+  slug: string | null
   excerpt: string | null
   thumbnail: {
     asset?: SanityImageAssetReference
@@ -2206,8 +2254,8 @@ export type DownloadQueryResult = {
         url: string | null
         metadata: {
           dimensions: {
-            width: number
-            height: number
+            width: number | null
+            height: number | null
           } | null
         } | null
       } | null
@@ -2254,7 +2302,7 @@ export type DownloadQueryResult = {
 // Variable: downloadPagesSlugs
 // Query: *[_type == "download" && defined(slug.current)]  {"slug": slug.current}
 export type DownloadPagesSlugsResult = Array<{
-  slug: string
+  slug: string | null
 }>
 
 // Query TypeMap

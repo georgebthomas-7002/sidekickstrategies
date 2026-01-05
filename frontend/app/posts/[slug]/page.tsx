@@ -90,8 +90,8 @@ export default async function PostPage(props: Props) {
                     width={1024}
                     height={538}
                     mode="cover"
-                    hotspot={post.coverImage.hotspot}
-                    crop={post.coverImage.crop}
+                    hotspot={post.coverImage.hotspot as any}
+                    crop={post.coverImage.crop as any}
                   />
                 )}
               </div>

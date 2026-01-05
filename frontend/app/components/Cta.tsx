@@ -91,8 +91,8 @@ export default function CTA({block, index}: CtaProps) {
                 id={image.asset._ref}
                 alt={heading || 'Section image'}
                 width={704}
-                crop={image.crop}
-                hotspot={image.hotspot}
+                crop={image.crop as any}
+                hotspot={image.hotspot as any}
                 mode="cover"
                 className="rounded-xl shadow-lg"
               />

@@ -90,8 +90,8 @@ export default function Hero({block}: HeroProps) {
             id={backgroundImage.asset._ref}
             alt={backgroundImage.alt || ''}
             width={1920}
-            crop={backgroundImage.crop}
-            hotspot={backgroundImage.hotspot}
+            crop={backgroundImage.crop as any}
+            hotspot={backgroundImage.hotspot as any}
             mode="cover"
             className="w-full h-full object-cover"
           />
@@ -172,8 +172,8 @@ export default function Hero({block}: HeroProps) {
               id={foregroundImage.asset._ref}
               alt={foregroundImage.alt || ''}
               width={800}
-              crop={foregroundImage.crop}
-              hotspot={foregroundImage.hotspot}
+              crop={foregroundImage.crop as any}
+              hotspot={foregroundImage.hotspot as any}
               mode="cover"
               className="rounded-xl shadow-xl mx-auto"
             />
@@ -698,8 +698,8 @@ function KineticHero({
                     alt={foregroundImage.alt || ''}
                     width={420}
                     height={420}
-                    crop={foregroundImage.crop}
-                    hotspot={foregroundImage.hotspot}
+                    crop={foregroundImage.crop as any}
+                    hotspot={foregroundImage.hotspot as any}
                     mode="cover"
                     className="w-full h-full object-cover"
                     style={{

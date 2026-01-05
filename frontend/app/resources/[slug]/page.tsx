@@ -104,8 +104,8 @@ export default async function ResourcePage(props: Props) {
               alt={download.thumbnail.alt || download.title}
               width={600}
               height={400}
-              crop={download.thumbnail.crop}
-              hotspot={download.thumbnail.hotspot}
+              crop={download.thumbnail.crop as any}
+              hotspot={download.thumbnail.hotspot as any}
               mode="cover"
               className="w-full rounded-lg mb-8"
             />

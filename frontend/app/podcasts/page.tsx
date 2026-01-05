@@ -66,7 +66,7 @@ function PodcastCard({podcast}: {podcast: AllPodcastsQueryResult[number]}) {
             alt={coverImage.alt || title}
             width={160}
             height={160}
-            crop={coverImage.crop}
+            crop={coverImage.crop as any}
             mode="cover"
             className="w-32 h-32 md:w-40 md:h-40 rounded-lg object-cover"
           />

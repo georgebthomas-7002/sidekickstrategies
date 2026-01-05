@@ -94,7 +94,7 @@ function DownloadCard({download}: {download: DownloadItem}) {
             alt={thumbnail.alt || title}
             width={400}
             height={200}
-            crop={thumbnail.crop}
+            crop={thumbnail.crop as any}
             mode="cover"
             className="w-full h-40 object-cover"
           />

@@ -53,7 +53,7 @@ function ArticleCard({post}: {post: AllPostsQueryResult[number]}) {
             alt={coverImage.alt || title}
             width={400}
             height={250}
-            crop={coverImage.crop}
+            crop={coverImage.crop as any}
             mode="cover"
             className="w-full h-48 object-cover"
           />

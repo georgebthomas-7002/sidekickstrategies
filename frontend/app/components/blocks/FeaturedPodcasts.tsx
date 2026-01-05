@@ -84,7 +84,7 @@ function PodcastCard({episode}: {episode: EpisodeItem}) {
               alt={coverImage.alt || title}
               width={120}
               height={120}
-              crop={coverImage.crop}
+              crop={coverImage.crop as any}
               mode="cover"
               className="w-24 h-24 rounded-lg object-cover"
             />

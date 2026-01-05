@@ -120,7 +120,7 @@ export default async function PodcastPage(props: Props) {
               alt={podcast.coverImage.alt || podcast.title}
               width={400}
               height={400}
-              crop={podcast.coverImage.crop}
+              crop={podcast.coverImage.crop as any}
               mode="cover"
               className="w-full rounded-lg mb-6"
             />
