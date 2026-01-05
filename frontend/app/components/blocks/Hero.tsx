@@ -50,8 +50,8 @@ export default function Hero({block}: HeroProps) {
             id={backgroundImage.asset._ref}
             alt={backgroundImage.alt || ''}
             width={1920}
-            crop={backgroundImage.crop as any}
-            hotspot={backgroundImage.hotspot as any}
+            crop={backgroundImage.crop}
+            hotspot={backgroundImage.hotspot}
             mode="cover"
             className="w-full h-full object-cover"
           />
@@ -117,8 +117,8 @@ export default function Hero({block}: HeroProps) {
               id={foregroundImage.asset._ref}
               alt={foregroundImage.alt || ''}
               width={800}
-              crop={foregroundImage.crop as any}
-              hotspot={foregroundImage.hotspot as any}
+              crop={foregroundImage.crop}
+              hotspot={foregroundImage.hotspot}
               mode="cover"
               className="rounded-lg shadow-xl mx-auto"
             />

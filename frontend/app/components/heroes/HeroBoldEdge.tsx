@@ -66,6 +66,7 @@ export default function HeroBoldEdge({
   const [secondaryHover, setSecondaryHover] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Standard hydration safety pattern
     setMounted(true)
   }, [])
 

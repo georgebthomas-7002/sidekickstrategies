@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allDownloadsQuery} from '@/sanity/lib/queries'
+import type {AllDownloadsQueryResult} from '@/sanity.types'
 
 export const metadata: Metadata = {
   title: 'Resources',
@@ -36,7 +37,7 @@ export default async function ResourcesPage() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {downloads?.map((download: any) => (
+        {downloads?.map((download) => (
           <DownloadCard key={download._id} download={download} />
         ))}
 
@@ -50,7 +51,7 @@ export default async function ResourcesPage() {
   )
 }
 
-function DownloadCard({download}: {download: any}) {
+function DownloadCard({download}: {download: AllDownloadsQueryResult[number]}) {
   const {title, slug, thumbnail, excerpt, category, fileType, isGated} = download
 
   return (

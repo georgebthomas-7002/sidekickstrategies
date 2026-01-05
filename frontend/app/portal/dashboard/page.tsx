@@ -18,7 +18,7 @@ export default async function PortalDashboardPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">{greeting}</h1>
         <p className="text-gray-600">
-          Here's an overview of your account with Sidekick Strategies.
+          Here&apos;s an overview of your account with Sidekick Strategies.
         </p>
       </div>
 

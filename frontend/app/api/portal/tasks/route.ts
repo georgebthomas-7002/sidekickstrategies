@@ -23,7 +23,7 @@ const categoryTags: Record<string, string> = {
 /**
  * GET /api/portal/tasks - List tasks from client's ClickUp folder
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getPortalSession()
 

@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
+import type {Podcast} from '@/sanity.types'
+
+type EpisodeItem = Podcast & { _key: string }
 
 type FeaturedPodcastsProps = {
   block: ExtractPageBuilderType<'featuredPodcasts'>
@@ -43,8 +46,8 @@ export default function FeaturedPodcasts({block}: FeaturedPodcastsProps) {
         <div
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-3']}`}
         >
-          {episodes?.map((episode: any, idx: number) => (
-            <PodcastCard key={episode._key || idx} episode={episode} />
+          {episodes?.map((episode, idx) => (
+            <PodcastCard key={episode._key || idx} episode={episode as EpisodeItem} />
           ))}
         </div>
 
@@ -63,7 +66,7 @@ export default function FeaturedPodcasts({block}: FeaturedPodcastsProps) {
   )
 }
 
-function PodcastCard({episode}: {episode: any}) {
+function PodcastCard({episode}: {episode: EpisodeItem}) {
   const title = episode.title || 'Untitled Episode'
   const slug = episode.slug?.current || episode.slug
   const coverImage = episode.coverImage

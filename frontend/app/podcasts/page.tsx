@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allPodcastsQuery} from '@/sanity/lib/queries'
+import type {AllPodcastsQueryResult} from '@/sanity.types'
 
 export const metadata: Metadata = {
   title: 'Podcasts',
@@ -25,7 +26,7 @@ export default async function PodcastsPage() {
       </div>
 
       <div className="grid gap-6">
-        {podcasts?.map((podcast: any) => (
+        {podcasts?.map((podcast) => (
           <PodcastCard key={podcast._id} podcast={podcast} />
         ))}
 
@@ -39,7 +40,7 @@ export default async function PodcastsPage() {
   )
 }
 
-function PodcastCard({podcast}: {podcast: any}) {
+function PodcastCard({podcast}: {podcast: AllPodcastsQueryResult[number]}) {
   const {
     title,
     slug,
@@ -48,7 +49,6 @@ function PodcastCard({podcast}: {podcast: any}) {
     duration,
     episodeNumber,
     seasonNumber,
-    publishedAt,
   } = podcast
 
   const episodeLabel = seasonNumber

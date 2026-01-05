@@ -4,6 +4,9 @@ import {post} from './documents/post'
 import {podcast} from './documents/podcast'
 import {download} from './documents/download'
 import {stylePreset} from './documents/stylePreset'
+// Portal schemas
+import {portalSession} from './documents/portalSession'
+import {portalClient} from './documents/portalClient'
 import {callToAction} from './objects/callToAction'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
@@ -35,6 +38,9 @@ export const schemaTypes = [
   download,
   person,
   stylePreset,
+  // Portal documents
+  portalSession,
+  portalClient,
   // Objects
   button,
   blockContent,

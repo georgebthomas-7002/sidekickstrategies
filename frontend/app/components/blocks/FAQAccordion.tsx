@@ -5,6 +5,14 @@ import {stegaClean} from '@sanity/client/stega'
 import {type PortableTextBlock} from 'next-sanity'
 import PortableText from '@/app/components/PortableText'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
+import type {BlockContent} from '@/sanity.types'
+
+type FAQItemType = {
+  question: string
+  answer: BlockContent
+  _type: 'faqItem'
+  _key: string
+}
 
 type FAQAccordionProps = {
   block: ExtractPageBuilderType<'faqAccordion'>
@@ -62,7 +70,7 @@ export default function FAQAccordion({block}: FAQAccordionProps) {
         <div
           className={`max-w-4xl mx-auto ${isTwoColumn ? 'grid md:grid-cols-2 gap-6' : 'space-y-4'}`}
         >
-          {safeItems.map((item: any) => (
+          {safeItems.map((item) => (
             <FAQItem
               key={item._key}
               item={item}
@@ -83,7 +91,7 @@ function FAQItem({
   onToggle,
   isDark,
 }: {
-  item: any
+  item: FAQItemType
   isOpen: boolean
   onToggle: () => void
   isDark: boolean

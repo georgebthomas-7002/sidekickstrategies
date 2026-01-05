@@ -73,7 +73,7 @@ export default async function ArticlePage(props: Props) {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
           {post.author && post.author.firstName && post.author.lastName && (
             <div className="flex items-center gap-4">
-              <Avatar person={post.author as any} date={post.date} />
+              <Avatar person={post.author} date={post.date} />
             </div>
           )}
         </header>
@@ -86,8 +86,8 @@ export default async function ArticlePage(props: Props) {
             width={1024}
             height={538}
             mode="cover"
-            hotspot={post.coverImage.hotspot as any}
-            crop={post.coverImage.crop as any}
+            hotspot={post.coverImage.hotspot}
+            crop={post.coverImage.crop}
           />
         )}
 

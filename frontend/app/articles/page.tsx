@@ -5,6 +5,7 @@ import Image from '@/app/components/SanityImage'
 import {sanityFetch} from '@/sanity/lib/live'
 import {allPostsQuery} from '@/sanity/lib/queries'
 import {format, parseISO} from 'date-fns'
+import type {AllPostsQueryResult} from '@/sanity.types'
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -26,7 +27,7 @@ export default async function ArticlesPage() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts?.map((post: any) => (
+        {posts?.map((post) => (
           <ArticleCard key={post._id} post={post} />
         ))}
 
@@ -40,7 +41,7 @@ export default async function ArticlesPage() {
   )
 }
 
-function ArticleCard({post}: {post: any}) {
+function ArticleCard({post}: {post: AllPostsQueryResult[number]}) {
   const {title, slug, coverImage, excerpt, date, author} = post
 
   return (

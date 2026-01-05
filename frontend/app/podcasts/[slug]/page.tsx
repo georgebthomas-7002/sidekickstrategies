@@ -120,7 +120,7 @@ export default async function PodcastPage(props: Props) {
               alt={podcast.coverImage.alt || podcast.title}
               width={400}
               height={400}
-              crop={podcast.coverImage.crop as any}
+              crop={podcast.coverImage.crop}
               mode="cover"
               className="w-full rounded-lg mb-6"
             />
@@ -132,7 +132,7 @@ export default async function PodcastPage(props: Props) {
                 <div className="mb-6">
                   <h3 className="font-semibold mb-3">Hosted by</h3>
                   <div className="space-y-3">
-                    {podcast.hosts.map((host: any, idx: number) => (
+                    {podcast.hosts.map((host, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         {host.picture?.asset?._ref && (
                           <Image
@@ -155,7 +155,7 @@ export default async function PodcastPage(props: Props) {
                 <div>
                   <h3 className="font-semibold mb-3">Guests</h3>
                   <div className="space-y-3">
-                    {podcast.guests.map((guest: any, idx: number) => (
+                    {podcast.guests.map((guest, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         {guest.picture?.asset?._ref && (
                           <Image

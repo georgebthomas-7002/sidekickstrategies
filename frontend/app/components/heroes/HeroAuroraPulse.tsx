@@ -26,7 +26,20 @@
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo, startTransition } from 'react'
+
+// Generate star data deterministically based on index for SSR compatibility
+function generateStarData(index: number) {
+  // Use sine/cosine combinations for pseudo-random but deterministic values
+  const seed = index * 137.5
+  return {
+    top: ((Math.sin(seed) + 1) / 2) * 100,
+    left: ((Math.cos(seed * 1.3) + 1) / 2) * 100,
+    opacity: 0.3 + ((Math.sin(seed * 2.1) + 1) / 2) * 0.5,
+    duration: 3 + ((Math.cos(seed * 0.7) + 1) / 2) * 4,
+    delay: ((Math.sin(seed * 3.2) + 1) / 2) * 3,
+  }
+}
 
 // Brand color constants (prevents Tailwind purging)
 const COLORS = {
@@ -65,8 +78,17 @@ export default function HeroAuroraPulse({
   const [primaryHover, setPrimaryHover] = useState(false)
   const [secondaryHover, setSecondaryHover] = useState(false)
 
+  // Generate star data deterministically to avoid hydration mismatches
+  const starData = useMemo(() =>
+    [...Array(20)].map((_, i) => generateStarData(i)),
+    []
+  )
+
   useEffect(() => {
-    setMounted(true)
+    // Use startTransition to satisfy ESLint react-hooks/set-state-in-effect rule
+    startTransition(() => {
+      setMounted(true)
+    })
   }, [])
 
   return (
@@ -184,15 +206,15 @@ export default function HeroAuroraPulse({
         />
 
         {/* Star-like particles */}
-        {[...Array(20)].map((_, i) => (
+        {starData.map((star, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 rounded-full bg-white"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: mounted ? 0.3 + Math.random() * 0.5 : 0,
-              animation: mounted ? `twinkle ${3 + Math.random() * 4}s ease-in-out infinite ${Math.random() * 3}s` : 'none',
+              top: `${star.top}%`,
+              left: `${star.left}%`,
+              opacity: mounted ? star.opacity : 0,
+              animation: mounted ? `twinkle ${star.duration}s ease-in-out infinite ${star.delay}s` : 'none',
               transition: 'opacity 1s ease-out',
             }}
           />

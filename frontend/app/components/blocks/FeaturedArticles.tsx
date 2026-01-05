@@ -2,6 +2,9 @@ import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
 import {format, parseISO} from 'date-fns'
+import type {Post} from '@/sanity.types'
+
+type ArticleItem = Post & { _key: string }
 
 type FeaturedArticlesProps = {
   block: ExtractPageBuilderType<'featuredArticles'>
@@ -47,8 +50,8 @@ export default function FeaturedArticles({block}: FeaturedArticlesProps) {
         <div
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-3']}`}
         >
-          {articles?.map((article: any, idx: number) => (
-            <ArticleCard key={article._key || idx} article={article} />
+          {articles?.map((article, idx) => (
+            <ArticleCard key={article._key || idx} article={article as ArticleItem} />
           ))}
         </div>
 
@@ -67,7 +70,7 @@ export default function FeaturedArticles({block}: FeaturedArticlesProps) {
   )
 }
 
-function ArticleCard({article}: {article: any}) {
+function ArticleCard({article}: {article: ArticleItem}) {
   // Handle both expanded references and basic references
   const title = article.title || 'Untitled'
   const slug = article.slug?.current || article.slug

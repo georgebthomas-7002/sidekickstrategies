@@ -1,5 +1,8 @@
 import Image from '@/app/components/SanityImage'
 import {ExtractPageBuilderType} from '@/sanity/lib/types'
+import type {Person} from '@/sanity.types'
+
+type TeamMemberItem = Person & { _key: string }
 
 type TeamGridProps = {
   block: ExtractPageBuilderType<'teamGrid'>
@@ -40,8 +43,8 @@ export default function TeamGrid({block}: TeamGridProps) {
         <div
           className={`grid gap-8 ${gridClasses[layout as keyof typeof gridClasses] || gridClasses['grid-4']}`}
         >
-          {members?.map((member: any, idx: number) => (
-            <TeamMemberCard key={member._key || idx} member={member} layout={layout} />
+          {members?.map((member, idx) => (
+            <TeamMemberCard key={member._key || idx} member={member as TeamMemberItem} layout={layout} />
           ))}
         </div>
       </div>
@@ -49,7 +52,7 @@ export default function TeamGrid({block}: TeamGridProps) {
   )
 }
 
-function TeamMemberCard({member, layout}: {member: any; layout: string}) {
+function TeamMemberCard({member, layout}: {member: TeamMemberItem; layout: string | undefined}) {
   // Handle both expanded references and basic references
   const firstName = member.firstName || ''
   const lastName = member.lastName || ''

@@ -10,20 +10,26 @@ function VerifyContent() {
   const router = useRouter()
   const token = searchParams.get('token')
 
-  const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying')
-  const [message, setMessage] = useState('')
+  // Derive initial state from token presence
+  const [status, setStatus] = useState<'verifying' | 'success' | 'error'>(
+    token ? 'verifying' : 'error'
+  )
+  const [message, setMessage] = useState(
+    token ? '' : 'No verification token provided.'
+  )
 
   useEffect(() => {
-    if (!token) {
-      setStatus('error')
-      setMessage('No verification token provided.')
-      return
-    }
+    // Skip if no token (already handled in initial state)
+    if (!token) return
+
+    let cancelled = false
 
     async function verify() {
       try {
-        const res = await fetch(`/api/portal/auth/verify?token=${encodeURIComponent(token!)}`)
+        const res = await fetch(`/api/portal/auth/verify?token=${encodeURIComponent(token)}`)
         const data = await res.json()
+
+        if (cancelled) return
 
         if (res.ok) {
           setStatus('success')
@@ -37,12 +43,17 @@ function VerifyContent() {
           setMessage(data.error || 'Verification failed. Please try again.')
         }
       } catch {
+        if (cancelled) return
         setStatus('error')
         setMessage('Network error. Please try again.')
       }
     }
 
     verify()
+
+    return () => {
+      cancelled = true
+    }
   }, [token, router])
 
   return (

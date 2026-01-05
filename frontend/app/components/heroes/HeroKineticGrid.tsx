@@ -78,6 +78,7 @@ export default function HeroKineticGrid({
   const [tertiaryHover, setTertiaryHover] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Standard hydration safety pattern
     setMounted(true)
   }, [])
 

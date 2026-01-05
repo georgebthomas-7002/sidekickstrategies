@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import {
   HeroCleanSlate,
   HeroBoldEdge,
@@ -178,12 +178,6 @@ const heroComponents = {
 }
 
 export default function BrandBiblePage() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   return (
     <main className="bg-white">
       {/* Secondary Page Navigation - sits under global header */}
@@ -207,7 +201,7 @@ export default function BrandBiblePage() {
 
       {/* Sticky Portal Activation CTA - Right side */}
       <div className="fixed right-0 top-1/3 z-50 hidden lg:block">
-        <a
+        <Link
           href="/portal/login"
           className="group flex items-center gap-4 bg-gradient-to-r from-secondary-500 to-secondary-600 text-white px-7 py-6 rounded-l-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:translate-x-[-6px]"
         >
@@ -220,7 +214,7 @@ export default function BrandBiblePage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
-        </a>
+        </Link>
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════════ */}
@@ -1248,7 +1242,7 @@ export default function BrandBiblePage() {
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <p className="font-sans text-gray-600 mb-8">Each icon works across all brand colors. Here's the Shield icon in every variant:</p>
+              <p className="font-sans text-gray-600 mb-8">Each icon works across all brand colors. Here&apos;s the Shield icon in every variant:</p>
               <div className="flex flex-wrap gap-6 items-center justify-center">
                 {/* Orange */}
                 <div className="text-center">

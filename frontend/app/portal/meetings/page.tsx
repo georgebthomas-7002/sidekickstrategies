@@ -36,7 +36,7 @@ export default async function MeetingsPage() {
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900 mb-1">Book a Call</h2>
           <p className="text-gray-600 text-sm">
-            Select a time that works for you and we'll confirm the meeting.
+            Select a time that works for you and we&apos;ll confirm the meeting.
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export default async function MeetingsPage() {
       <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
         <h3 className="font-semibold text-gray-900 mb-2">Prefer to email?</h3>
         <p className="text-gray-600 text-sm mb-4">
-          If you'd prefer to schedule via email or have specific availability requirements,
+          If you&apos;d prefer to schedule via email or have specific availability requirements,
           feel free to reach out directly.
         </p>
         <a

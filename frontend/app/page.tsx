@@ -31,7 +31,7 @@ export default async function HomePage() {
       <div className="py-40 text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to Sidekick Strategies</h1>
         <p className="text-gray-600 mb-8">
-          Create a page in Sanity with slug "home" to customize this page.
+          Create a page in Sanity with slug &quot;home&quot; to customize this page.
         </p>
         <a
           href="https://sidekick-strategies.sanity.studio/"

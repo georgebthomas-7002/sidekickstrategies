@@ -28,7 +28,7 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
       <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
         {author && author.firstName && author.lastName && (
           <div className="flex items-center">
-            <Avatar person={author as any} small={true} />
+            <Avatar person={author} small={true} />
           </div>
         )}
         <time className="text-gray-500 text-xs font-mono" dateTime={date}>
