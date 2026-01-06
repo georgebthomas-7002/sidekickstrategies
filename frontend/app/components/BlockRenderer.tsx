@@ -12,6 +12,7 @@ import {
   TeamGrid,
   ContactForm,
   FAQAccordion,
+  ServicesGrid,
 } from '@/app/components/blocks'
 import {dataAttr} from '@/sanity/lib/utils'
 import {PageBuilderSection} from '@/sanity/lib/types'
@@ -40,6 +41,7 @@ const Blocks = {
   teamGrid: TeamGrid,
   contactForm: ContactForm,
   faqAccordion: FAQAccordion,
+  servicesGrid: ServicesGrid,
 } as unknown as BlocksType
 
 /**

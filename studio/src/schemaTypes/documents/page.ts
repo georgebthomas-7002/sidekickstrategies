@@ -44,6 +44,7 @@ export const page = defineType({
         {type: 'teamGrid'},
         {type: 'contactForm'},
         {type: 'faqAccordion'},
+        {type: 'servicesGrid'},
       ],
       options: {
         insertMenu: {
