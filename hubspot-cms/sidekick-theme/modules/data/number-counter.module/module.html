@@ -1,0 +1,79 @@
+{# Number Counter Module #}
+
+{% set section_classes = "counter-section" %}
+{% set section_classes = section_classes ~ " counter--cols-" ~ module.layout_group.columns %}
+{% set section_classes = section_classes ~ " counter--style-" ~ module.layout_group.style %}
+{% set section_classes = section_classes ~ " counter--align-" ~ module.layout_group.alignment %}
+{% set section_classes = section_classes ~ " counter--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " counter--padding-" ~ module.style_group.padding %}
+
+{% if module.style_group.background in ["dark", "primary", "secondary"] %}
+  {% set section_classes = section_classes ~ " counter--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " counter--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="counter__header">
+        {% if module.header_group.badge %}
+          <span class="counter__badge">{{ module.header_group.badge }}</span>
+        {% endif %}
+
+        {% if module.header_group.heading %}
+          <{{ module.header_group.heading_level }} class="counter__heading">
+            {{ module.header_group.heading }}
+          </{{ module.header_group.heading_level }}>
+        {% endif %}
+
+        {% if module.header_group.subheading %}
+          <p class="counter__subheading">{{ module.header_group.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Counters Grid #}
+    <div class="counter__grid"
+      {% if module.animation_group.animate %}
+        data-animate="true"
+        data-duration="{{ module.animation_group.duration }}"
+      {% endif %}
+    >
+      {% for counter in module.counters %}
+        <div class="counter__item">
+          {% if module.layout_group.style == "icon-top" and counter.icon.name %}
+            <div class="counter__icon">
+              {% icon
+                name="{{ counter.icon.name }}"
+                style="{{ counter.icon.type }}"
+                unicode="{{ counter.icon.unicode }}"
+              %}
+            </div>
+          {% endif %}
+
+          <div class="counter__value">
+            {% if counter.prefix %}
+              <span class="counter__prefix">{{ counter.prefix }}</span>
+            {% endif %}
+            <span class="counter__number" data-target="{{ counter.number }}">
+              {% if module.animation_group.animate %}0{% else %}{{ counter.number }}{% endif %}
+            </span>
+            {% if counter.suffix %}
+              <span class="counter__suffix">{{ counter.suffix }}</span>
+            {% endif %}
+          </div>
+
+          {% if counter.counter_label %}
+            <div class="counter__label">{{ counter.counter_label }}</div>
+          {% endif %}
+
+          {% if counter.description %}
+            <div class="counter__description">{{ counter.description }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

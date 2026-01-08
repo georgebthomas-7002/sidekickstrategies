@@ -1,0 +1,223 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Our Impact"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "counters",
+    "label": "Counters",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 8,
+      "default": 4
+    },
+    "default": [
+      {
+        "number": "150",
+        "prefix": "",
+        "suffix": "+",
+        "counter_label": "Clients Served",
+        "description": ""
+      },
+      {
+        "number": "98",
+        "prefix": "",
+        "suffix": "%",
+        "counter_label": "Client Satisfaction",
+        "description": ""
+      },
+      {
+        "number": "10",
+        "prefix": "",
+        "suffix": "+",
+        "counter_label": "Years Experience",
+        "description": ""
+      },
+      {
+        "number": "50",
+        "prefix": "$",
+        "suffix": "M+",
+        "counter_label": "Revenue Generated",
+        "description": ""
+      }
+    ],
+    "children": [
+      {
+        "name": "number",
+        "label": "Number",
+        "type": "text",
+        "default": "100"
+      },
+      {
+        "name": "prefix",
+        "label": "Prefix",
+        "type": "text",
+        "default": "",
+        "help_text": "e.g., $ or #"
+      },
+      {
+        "name": "suffix",
+        "label": "Suffix",
+        "type": "text",
+        "default": "",
+        "help_text": "e.g., +, %, K, M"
+      },
+      {
+        "name": "counter_label",
+        "label": "Label",
+        "type": "text",
+        "default": "Label"
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "icon",
+        "label": "Icon",
+        "type": "icon"
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "columns",
+        "label": "Columns",
+        "type": "choice",
+        "display": "select",
+        "default": "4",
+        "choices": [
+          ["2", "2 Columns"],
+          ["3", "3 Columns"],
+          ["4", "4 Columns"]
+        ]
+      },
+      {
+        "name": "style",
+        "label": "Style",
+        "type": "choice",
+        "display": "select",
+        "default": "minimal",
+        "choices": [
+          ["minimal", "Minimal"],
+          ["card", "Cards"],
+          ["bordered", "Bordered"],
+          ["icon-top", "With Icons"]
+        ]
+      },
+      {
+        "name": "alignment",
+        "label": "Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "center",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "animation_group",
+    "label": "Animation",
+    "type": "group",
+    "children": [
+      {
+        "name": "animate",
+        "label": "Animate Numbers",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "duration",
+        "label": "Animation Duration (ms)",
+        "type": "number",
+        "default": 2000,
+        "min": 500,
+        "max": 5000
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"],
+          ["primary", "Primary (Navy)"],
+          ["secondary", "Secondary (Teal)"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

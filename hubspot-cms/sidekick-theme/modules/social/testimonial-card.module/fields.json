@@ -1,0 +1,137 @@
+[
+  {
+    "name": "testimonial",
+    "label": "Testimonial",
+    "type": "group",
+    "children": [
+      {
+        "name": "quote",
+        "label": "Quote",
+        "type": "text",
+        "default": "Working with this team transformed our business. Their strategic insights and hands-on approach delivered results that exceeded our expectations."
+      },
+      {
+        "name": "rating",
+        "label": "Star Rating",
+        "type": "choice",
+        "display": "select",
+        "default": "5",
+        "choices": [
+          ["none", "No Rating"],
+          ["5", "5 Stars"],
+          ["4.5", "4.5 Stars"],
+          ["4", "4 Stars"],
+          ["3.5", "3.5 Stars"],
+          ["3", "3 Stars"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "author",
+    "label": "Author",
+    "type": "group",
+    "children": [
+      {
+        "name": "image",
+        "label": "Photo",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "author_name",
+        "label": "Name",
+        "type": "text",
+        "default": "Jane Smith"
+      },
+      {
+        "name": "title",
+        "label": "Title / Position",
+        "type": "text",
+        "default": "CEO"
+      },
+      {
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "default": "Acme Corp"
+      },
+      {
+        "name": "company_logo",
+        "label": "Company Logo",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Styling",
+    "type": "group",
+    "children": [
+      {
+        "name": "style",
+        "label": "Card Style",
+        "type": "choice",
+        "display": "select",
+        "default": "card",
+        "choices": [
+          ["card", "Card (Elevated)"],
+          ["bordered", "Bordered"],
+          ["minimal", "Minimal"],
+          ["featured", "Featured (Large Quote)"]
+        ]
+      },
+      {
+        "name": "alignment",
+        "label": "Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "left",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"]
+        ]
+      },
+      {
+        "name": "show_quote_mark",
+        "label": "Show Quote Mark",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"],
+          ["primary", "Primary (Navy)"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

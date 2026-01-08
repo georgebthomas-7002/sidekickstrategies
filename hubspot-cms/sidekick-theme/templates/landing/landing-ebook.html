@@ -1,0 +1,218 @@
+<!--
+  templateType: page
+  label: Landing Page - eBook/Download
+  isAvailableForNewContent: true
+  screenshotPath: ../images/template-previews/landing-ebook.png
+-->
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+<main class="landing-page landing-page--ebook">
+  {# Hero Section #}
+  <section class="landing-hero landing-hero--ebook">
+    <div class="landing-hero__background">
+      <div class="landing-hero__gradient"></div>
+      <div class="landing-hero__pattern"></div>
+    </div>
+
+    <div class="container">
+      <div class="landing-hero__grid landing-hero__grid--ebook">
+        {# Content Side #}
+        <div class="landing-hero__content">
+          {% module "hero_badge"
+            path="@hubspot/rich_text",
+            label="Badge",
+            html="<span class='badge'>Free Download</span>"
+          %}
+
+          <div class="landing-hero__heading">
+            {% module "hero_heading"
+              path="@hubspot/rich_text",
+              label="Heading",
+              html="<h1>The Ultimate Guide to Business Growth</h1><p>Download our comprehensive guide packed with actionable strategies, templates, and expert insights to accelerate your business growth.</p>"
+            %}
+          </div>
+
+          {# What's Inside #}
+          <div class="landing-ebook__includes">
+            <h3 class="landing-ebook__includes-title">What's Inside:</h3>
+            <ul class="landing-ebook__includes-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>50+ pages of actionable strategies</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>10 ready-to-use templates</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Real-world case studies</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Expert tips and best practices</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Bonus: Implementation checklist</span>
+              </li>
+            </ul>
+          </div>
+
+          {# Social Proof #}
+          <div class="landing-ebook__social-proof">
+            <div class="landing-ebook__downloads">
+              <span class="landing-ebook__downloads-count">5,000+</span>
+              <span class="landing-ebook__downloads-label">Downloads</span>
+            </div>
+            <div class="landing-ebook__rating">
+              <div class="landing-ebook__stars">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <span class="landing-ebook__rating-text">4.9 out of 5</span>
+            </div>
+          </div>
+        </div>
+
+        {# Form Side with Book Preview #}
+        <div class="landing-hero__form-wrapper">
+          {# Book Preview Image #}
+          <div class="landing-ebook__preview">
+            {% module "ebook_image"
+              path="@hubspot/linked_image",
+              label="eBook Cover Image"
+            %}
+          </div>
+
+          {# Download Form #}
+          <div class="landing-form-card landing-form-card--ebook">
+            <div class="landing-form-card__header">
+              {% module "form_title"
+                path="@hubspot/rich_text",
+                label="Form Title",
+                html="<h2>Get Your Free Copy</h2>"
+              %}
+            </div>
+
+            <div class="landing-form-card__body">
+              {% module "download_form"
+                path="@hubspot/form",
+                label="Download Form"
+              %}
+            </div>
+
+            <div class="landing-form-card__footer">
+              <p class="landing-form-card__privacy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                No spam. Unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Table of Contents Section #}
+  <section class="landing-section">
+    <div class="container">
+      <div class="landing-section__header">
+        {% module "toc_heading"
+          path="@hubspot/rich_text",
+          label="TOC Heading",
+          html="<h2>What's Inside the Guide</h2><p>A sneak peek at what you'll learn</p>"
+        %}
+      </div>
+
+      <div class="landing-ebook__toc">
+        {% module "table_of_contents"
+          path="../modules/content/accordion.module",
+          label="Table of Contents"
+        %}
+      </div>
+    </div>
+  </section>
+
+  {# Author Section #}
+  <section class="landing-section landing-section--alt">
+    <div class="container">
+      <div class="landing-section__header">
+        {% module "author_heading"
+          path="@hubspot/rich_text",
+          label="Author Heading",
+          html="<h2>About the Author</h2>"
+        %}
+      </div>
+
+      {% module "author_bio"
+        path="../modules/blog/author-bio.module",
+        label="Author Bio"
+      %}
+    </div>
+  </section>
+
+  {# Testimonials Section #}
+  <section class="landing-section">
+    <div class="container">
+      <div class="landing-section__header">
+        {% module "testimonials_heading"
+          path="@hubspot/rich_text",
+          label="Testimonials Heading",
+          html="<h2>What Readers Are Saying</h2>"
+        %}
+      </div>
+
+      {% module "testimonials"
+        path="../modules/social/testimonial-grid.module",
+        label="Reader Testimonials"
+      %}
+    </div>
+  </section>
+
+  {# Final CTA Section #}
+  <section class="landing-section landing-section--cta">
+    <div class="container">
+      <div class="landing-final-cta">
+        <div class="landing-final-cta__content">
+          {% module "final_cta_content"
+            path="@hubspot/rich_text",
+            label="Final CTA Content",
+            html="<h2>Ready to Transform Your Business?</h2><p>Download your free guide now and start implementing proven growth strategies today.</p>"
+          %}
+
+          <div class="landing-final-cta__form">
+            {% module "final_form"
+              path="@hubspot/form",
+              label="Final CTA Form"
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Drag and Drop Area #}
+  {% dnd_area "additional_content" label="Additional Content" %}
+  {% end_dnd_area %}
+</main>
+{% endblock body %}
+
+{% block body_classes %}landing-page-ebook{% endblock %}

@@ -1,0 +1,286 @@
+[
+  {
+    "name": "video_group",
+    "label": "Video",
+    "type": "group",
+    "children": [
+      {
+        "name": "video_type",
+        "label": "Video Type",
+        "type": "choice",
+        "display": "select",
+        "default": "youtube",
+        "choices": [
+          ["youtube", "YouTube"],
+          ["vimeo", "Vimeo"],
+          ["hubspot", "HubSpot Video"],
+          ["external", "External URL (MP4)"]
+        ]
+      },
+      {
+        "name": "youtube_url",
+        "label": "YouTube URL",
+        "type": "text",
+        "default": "",
+        "help_text": "Enter YouTube URL (e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "controlling_value_regex": "youtube",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "vimeo_url",
+        "label": "Vimeo URL",
+        "type": "text",
+        "default": "",
+        "help_text": "Enter Vimeo URL (e.g., https://vimeo.com/123456789)",
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "controlling_value_regex": "vimeo",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "hubspot_video",
+        "label": "HubSpot Video",
+        "type": "videoplayer",
+        "default": {
+          "player_id": null,
+          "height": null,
+          "width": null,
+          "conversion_asset": null
+        },
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "controlling_value_regex": "hubspot",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "external_url",
+        "label": "Video URL (MP4)",
+        "type": "text",
+        "default": "",
+        "help_text": "Direct URL to MP4 video file",
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "controlling_value_regex": "external",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "poster_image",
+        "label": "Poster/Thumbnail Image",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        },
+        "help_text": "Custom thumbnail image (overrides default for YouTube/Vimeo)"
+      }
+    ]
+  },
+  {
+    "name": "options_group",
+    "label": "Player Options",
+    "type": "group",
+    "children": [
+      {
+        "name": "autoplay",
+        "label": "Autoplay (Muted)",
+        "type": "boolean",
+        "default": false,
+        "help_text": "Videos must be muted to autoplay"
+      },
+      {
+        "name": "loop",
+        "label": "Loop Video",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "show_controls",
+        "label": "Show Controls",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "play_inline",
+        "label": "Play Inline (Mobile)",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "overlay_group",
+    "label": "Play Button Overlay",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_overlay",
+        "label": "Show Custom Play Overlay",
+        "type": "boolean",
+        "default": true,
+        "help_text": "Show custom play button over thumbnail (YouTube/Vimeo only)"
+      },
+      {
+        "name": "overlay_style",
+        "label": "Play Button Style",
+        "type": "choice",
+        "display": "select",
+        "default": "circle",
+        "choices": [
+          ["circle", "Circle"],
+          ["rounded", "Rounded Square"],
+          ["minimal", "Minimal (Icon Only)"]
+        ],
+        "visibility": {
+          "controlling_field_path": "overlay_group.show_overlay",
+          "controlling_value_regex": "true",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "overlay_color",
+        "label": "Play Button Color",
+        "type": "choice",
+        "display": "select",
+        "default": "primary",
+        "choices": [
+          ["primary", "Primary (Navy)"],
+          ["secondary", "Secondary (Teal)"],
+          ["accent", "Accent (Orange)"],
+          ["white", "White"]
+        ],
+        "visibility": {
+          "controlling_field_path": "overlay_group.show_overlay",
+          "controlling_value_regex": "true",
+          "operator": "MATCHES_REGEX"
+        }
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "aspect_ratio",
+        "label": "Aspect Ratio",
+        "type": "choice",
+        "display": "select",
+        "default": "16-9",
+        "choices": [
+          ["16-9", "16:9 (Widescreen)"],
+          ["4-3", "4:3 (Standard)"],
+          ["1-1", "1:1 (Square)"],
+          ["21-9", "21:9 (Cinematic)"]
+        ]
+      },
+      {
+        "name": "max_width",
+        "label": "Maximum Width",
+        "type": "choice",
+        "display": "select",
+        "default": "full",
+        "choices": [
+          ["small", "Small (640px)"],
+          ["medium", "Medium (800px)"],
+          ["large", "Large (1000px)"],
+          ["full", "Full Width"]
+        ]
+      },
+      {
+        "name": "alignment",
+        "label": "Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "center",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ]
+      },
+      {
+        "name": "border_radius",
+        "label": "Border Radius",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small (4px)"],
+          ["medium", "Medium (8px)"],
+          ["large", "Large (16px)"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "caption_group",
+    "label": "Caption",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_caption",
+        "label": "Show Caption",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "caption",
+        "label": "Caption Text",
+        "type": "text",
+        "default": "",
+        "visibility": {
+          "controlling_field_path": "caption_group.show_caption",
+          "controlling_value_regex": "true",
+          "operator": "MATCHES_REGEX"
+        }
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      },
+      {
+        "name": "shadow",
+        "label": "Add Shadow",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  }
+]

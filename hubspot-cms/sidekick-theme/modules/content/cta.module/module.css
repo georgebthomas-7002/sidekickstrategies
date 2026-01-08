@@ -1,0 +1,261 @@
+/* Call to Action Module Styles */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   STYLE VARIANTS
+   ========================================================================== */
+
+/* Banner Style (Full Width) */
+.cta--banner {
+  width: 100%;
+}
+
+/* Card Style */
+.cta--card {
+  padding: 2rem 0;
+}
+
+.cta__card {
+  background-color: inherit;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Inline Style */
+.cta--inline {
+  background: transparent !important;
+}
+
+.cta--inline .cta__content {
+  padding: 2rem 0;
+}
+
+/* ==========================================================================
+   BACKGROUND COLORS
+   ========================================================================== */
+
+.cta--bg-primary { background-color: var(--color-primary); }
+.cta--bg-secondary { background-color: var(--color-secondary); }
+.cta--bg-accent { background-color: var(--color-accent); }
+.cta--bg-dark { background-color: var(--color-bg-dark); }
+.cta--bg-light { background-color: var(--color-bg-light); }
+
+.cta--bg-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+/* Card background inherits but adds shadow */
+.cta--card.cta--bg-primary .cta__card,
+.cta--card.cta--bg-secondary .cta__card,
+.cta--card.cta--bg-accent .cta__card,
+.cta--card.cta--bg-dark .cta__card,
+.cta--card.cta--bg-gradient .cta__card {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.cta--card.cta--bg-light .cta__card {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   TEXT COLORS
+   ========================================================================== */
+
+.cta--text-light {
+  color: var(--color-text-light);
+}
+
+.cta--text-light .cta__heading {
+  color: var(--color-text-light);
+}
+
+.cta--text-dark {
+  color: var(--color-text-dark);
+}
+
+.cta--text-dark .cta__heading {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   PADDING
+   ========================================================================== */
+
+.cta--padding-small { padding: 2rem 0; }
+.cta--padding-medium { padding: 4rem 0; }
+.cta--padding-large { padding: 6rem 0; }
+
+.cta--card.cta--padding-small .cta__card { padding: 2rem; }
+.cta--card.cta--padding-medium .cta__card { padding: 3rem 2rem; }
+.cta--card.cta--padding-large .cta__card { padding: 4rem 3rem; }
+
+/* ==========================================================================
+   ALIGNMENT
+   ========================================================================== */
+
+.cta--align-center {
+  text-align: center;
+}
+
+.cta--align-center .cta__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta--align-center .cta__buttons {
+  justify-content: center;
+}
+
+.cta--align-left .cta__content {
+  max-width: 700px;
+}
+
+/* ==========================================================================
+   CONTENT ELEMENTS
+   ========================================================================== */
+
+.cta__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Badge */
+.cta__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+}
+
+.cta--text-light .cta__badge {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-light);
+}
+
+.cta--text-dark .cta__badge {
+  background-color: rgba(2, 131, 147, 0.1);
+  color: var(--color-secondary);
+}
+
+/* Heading */
+.cta__heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h2.cta__heading { font-size: 2.5rem; }
+h3.cta__heading { font-size: 2rem; }
+h4.cta__heading { font-size: 1.5rem; }
+
+/* Subheading */
+.cta__subheading {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* White button variant for colored backgrounds */
+.btn--white {
+  background-color: white;
+  color: var(--color-primary);
+  border: 2px solid white;
+}
+
+.btn--white:hover {
+  background-color: transparent;
+  color: white;
+}
+
+/* Light outline button */
+.btn--outline-light {
+  background-color: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn--outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* ==========================================================================
+   BACKGROUND PATTERNS
+   ========================================================================== */
+
+.cta__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Dots Pattern */
+.cta__pattern--dots {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Grid Pattern */
+.cta__pattern--grid {
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Waves Pattern */
+.cta__pattern--waves {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,128C672,128,768,160,864,181.3C960,203,1056,213,1152,202.7C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  opacity: 0.05;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  h2.cta__heading { font-size: 3rem; }
+  h3.cta__heading { font-size: 2.5rem; }
+
+  .cta__subheading {
+    font-size: 1.375rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .cta--padding-medium { padding: 5rem 0; }
+  .cta--padding-large { padding: 7rem 0; }
+
+  h2.cta__heading { font-size: 3.5rem; }
+
+  .cta--card.cta--padding-large .cta__card {
+    padding: 5rem 4rem;
+  }
+}

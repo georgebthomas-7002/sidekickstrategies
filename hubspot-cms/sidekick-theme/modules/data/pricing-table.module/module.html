@@ -1,0 +1,95 @@
+{# Pricing Table Module #}
+
+{% set section_classes = "pricing-section" %}
+{% set section_classes = section_classes ~ " pricing--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " pricing--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " pricing--cols-" ~ module.plans|length %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " pricing--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " pricing--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="pricing__header">
+        {% if module.header_group.badge %}
+          <span class="pricing__badge">{{ module.header_group.badge }}</span>
+        {% endif %}
+
+        {% if module.header_group.heading %}
+          <{{ module.header_group.heading_level }} class="pricing__heading">
+            {{ module.header_group.heading }}
+          </{{ module.header_group.heading_level }}>
+        {% endif %}
+
+        {% if module.header_group.subheading %}
+          <p class="pricing__subheading">{{ module.header_group.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Pricing Cards #}
+    <div class="pricing__grid">
+      {% for plan in module.plans %}
+        {% set card_classes = "pricing__card" %}
+        {% if plan.featured %}
+          {% set card_classes = card_classes ~ " pricing__card--featured" %}
+        {% endif %}
+
+        <div class="{{ card_classes }}">
+          {% if plan.featured and plan.badge_text %}
+            <div class="pricing__card-badge">{{ plan.badge_text }}</div>
+          {% endif %}
+
+          <div class="pricing__card-header">
+            <h3 class="pricing__plan-name">{{ plan.plan_name }}</h3>
+            {% if plan.description %}
+              <p class="pricing__plan-description">{{ plan.description }}</p>
+            {% endif %}
+          </div>
+
+          <div class="pricing__card-price">
+            {% if plan.price_prefix %}
+              <span class="pricing__price-prefix">{{ plan.price_prefix }}</span>
+            {% endif %}
+            <span class="pricing__price-value">{{ plan.price }}</span>
+            {% if plan.price_period %}
+              <span class="pricing__price-period">{{ plan.price_period }}</span>
+            {% endif %}
+          </div>
+
+          {% if plan.features %}
+            <ul class="pricing__features">
+              {% for feature in plan.features|split('\n') %}
+                {% if feature|trim %}
+                  <li class="pricing__feature">
+                    <svg class="pricing__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    {{ feature|trim }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if plan.button_text %}
+            <div class="pricing__card-footer">
+              <a
+                href="{{ plan.button_link.url.href }}"
+                class="btn {% if plan.featured %}btn--primary{% else %}btn--outline{% endif %}"
+                {% if plan.button_link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                {{ plan.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

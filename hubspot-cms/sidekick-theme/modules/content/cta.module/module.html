@@ -1,0 +1,81 @@
+{# Call to Action Module #}
+
+{% set section_classes = "cta" %}
+{% set section_classes = section_classes ~ " cta--" ~ module.style %}
+{% set section_classes = section_classes ~ " cta--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " cta--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " cta--align-" ~ module.style_group.alignment %}
+
+{# Determine text color based on background #}
+{% if module.style_group.background in ["primary", "secondary", "accent", "dark", "gradient"] %}
+  {% set section_classes = section_classes ~ " cta--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " cta--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  {# Background Pattern #}
+  {% if module.decoration_group.show_pattern %}
+    <div class="cta__pattern cta__pattern--{{ module.decoration_group.pattern_style }}"></div>
+  {% endif %}
+
+  <div class="container">
+    {% if module.style == "card" %}
+      <div class="cta__card">
+    {% endif %}
+
+    <div class="cta__content">
+      {% if module.content_group.badge %}
+        <span class="cta__badge">{{ module.content_group.badge }}</span>
+      {% endif %}
+
+      {% if module.content_group.heading %}
+        <{{ module.content_group.heading_level }} class="cta__heading">
+          {{ module.content_group.heading }}
+        </{{ module.content_group.heading_level }}>
+      {% endif %}
+
+      {% if module.content_group.subheading %}
+        <p class="cta__subheading">{{ module.content_group.subheading }}</p>
+      {% endif %}
+
+      {% if module.buttons_group.primary_button.text or module.buttons_group.secondary_button.text %}
+        <div class="cta__buttons">
+          {% if module.buttons_group.primary_button.text %}
+            {% set btn_class = "btn" %}
+            {% if module.style_group.background in ["primary", "secondary", "accent", "gradient"] %}
+              {% set btn_class = btn_class ~ " btn--white" %}
+            {% else %}
+              {% set btn_class = btn_class ~ " btn--primary" %}
+            {% endif %}
+            <a
+              href="{{ module.buttons_group.primary_button.link.url.href }}"
+              class="{{ btn_class }}"
+              {% if module.buttons_group.primary_button.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+            >
+              {{ module.buttons_group.primary_button.text }}
+            </a>
+          {% endif %}
+
+          {% if module.buttons_group.secondary_button.text %}
+            {% set btn_class = "btn btn--outline" %}
+            {% if module.style_group.background in ["primary", "secondary", "accent", "dark", "gradient"] %}
+              {% set btn_class = btn_class ~ "-light" %}
+            {% endif %}
+            <a
+              href="{{ module.buttons_group.secondary_button.link.url.href }}"
+              class="{{ btn_class }}"
+              {% if module.buttons_group.secondary_button.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+            >
+              {{ module.buttons_group.secondary_button.text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if module.style == "card" %}
+      </div>
+    {% endif %}
+  </div>
+</section>

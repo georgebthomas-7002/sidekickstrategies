@@ -1,0 +1,379 @@
+/* Recent Posts Module Styles */
+
+.recent-posts-section {
+  position: relative;
+}
+
+/* ==========================================================================
+   BACKGROUNDS
+   ========================================================================== */
+
+.recent-posts--bg-light { background-color: var(--color-bg-light); }
+.recent-posts--bg-alt { background-color: var(--color-bg-alt); }
+.recent-posts--bg-dark { background-color: var(--color-bg-dark); }
+
+/* Text colors */
+.recent-posts--text-dark {
+  color: var(--color-text-dark);
+}
+
+.recent-posts--text-dark .recent-posts__heading {
+  color: var(--color-primary);
+}
+
+.recent-posts--text-light {
+  color: var(--color-text-light);
+}
+
+.recent-posts--text-light .recent-posts__heading {
+  color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   PADDING
+   ========================================================================== */
+
+.recent-posts--padding-none { padding: 0; }
+.recent-posts--padding-small { padding: 2rem 0; }
+.recent-posts--padding-medium { padding: 4rem 0; }
+.recent-posts--padding-large { padding: 6rem 0; }
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+
+.recent-posts__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.recent-posts__heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h2.recent-posts__heading { font-size: 2rem; }
+h3.recent-posts__heading { font-size: 1.5rem; }
+h4.recent-posts__heading { font-size: 1.25rem; }
+
+.recent-posts__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-subheading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.recent-posts--text-dark .recent-posts__view-all {
+  color: var(--color-secondary);
+}
+
+.recent-posts--text-light .recent-posts__view-all {
+  color: var(--color-text-light);
+}
+
+.recent-posts__view-all:hover {
+  gap: 0.75rem;
+}
+
+.recent-posts__arrow {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   GRID LAYOUT
+   ========================================================================== */
+
+.recent-posts__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Column configurations */
+.recent-posts--grid.recent-posts--cols-2 .recent-posts__grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.recent-posts--grid.recent-posts--cols-3 .recent-posts__grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recent-posts--grid.recent-posts--cols-4 .recent-posts__grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Mobile: single column */
+@media (max-width: 575px) {
+  .recent-posts--grid .recent-posts__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 576px) and (max-width: 991px) {
+  .recent-posts--grid .recent-posts__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   LIST LAYOUT
+   ========================================================================== */
+
+.recent-posts--list .recent-posts__grid {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.recent-posts--list .recent-posts__card {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.recent-posts--list .recent-posts__image-link {
+  flex: 0 0 200px;
+}
+
+.recent-posts--list .recent-posts__image-wrapper {
+  aspect-ratio: 4 / 3;
+}
+
+.recent-posts--list .recent-posts__content {
+  flex: 1;
+  padding: 0;
+}
+
+@media (max-width: 575px) {
+  .recent-posts--list .recent-posts__card {
+    flex-direction: column;
+  }
+
+  .recent-posts--list .recent-posts__image-link {
+    flex: none;
+  }
+}
+
+/* ==========================================================================
+   FEATURED LAYOUT
+   ========================================================================== */
+
+.recent-posts--featured .recent-posts__grid {
+  grid-template-columns: 1fr;
+}
+
+.recent-posts--featured .recent-posts__card--featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.recent-posts--featured .recent-posts__card--featured .recent-posts__title {
+  font-size: 1.75rem;
+}
+
+.recent-posts--featured .recent-posts__card--featured .recent-posts__excerpt {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .recent-posts--featured .recent-posts__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recent-posts--featured .recent-posts__card--featured {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .recent-posts--featured .recent-posts__card--featured {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   CARD STYLES
+   ========================================================================== */
+
+.recent-posts__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-light);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-posts--text-light .recent-posts__card {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.recent-posts__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+
+.recent-posts__image-link {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.recent-posts__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-bg-alt);
+}
+
+.recent-posts__image-wrapper--16-9 { aspect-ratio: 16 / 9; }
+.recent-posts__image-wrapper--4-3 { aspect-ratio: 4 / 3; }
+.recent-posts__image-wrapper--1-1 { aspect-ratio: 1 / 1; }
+
+.recent-posts__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recent-posts__card:hover .recent-posts__image {
+  transform: scale(1.05);
+}
+
+.recent-posts__placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-slate);
+}
+
+.recent-posts__placeholder svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.recent-posts__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem;
+}
+
+/* Category */
+.recent-posts__category {
+  margin-bottom: 0.5rem;
+}
+
+.recent-posts__category-link {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.recent-posts--text-light .recent-posts__category-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.recent-posts__category-link:hover {
+  color: var(--color-primary);
+}
+
+.recent-posts__category-sep {
+  margin: 0 0.25rem;
+  color: var(--color-slate);
+}
+
+/* Title */
+.recent-posts__title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 0.5rem 0;
+}
+
+.recent-posts--text-dark .recent-posts__title {
+  color: var(--color-primary);
+}
+
+.recent-posts--text-light .recent-posts__title {
+  color: var(--color-text-light);
+}
+
+.recent-posts__title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.recent-posts__title-link:hover {
+  color: var(--color-secondary);
+}
+
+/* Excerpt */
+.recent-posts__excerpt {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin: 0 0 0.75rem 0;
+  flex: 1;
+}
+
+/* Meta */
+.recent-posts__meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+  margin-top: auto;
+}
+
+.recent-posts__author {
+  font-weight: 500;
+}
+
+.recent-posts__dot {
+  margin: 0 0.5rem;
+}
+
+.recent-posts__date {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  h2.recent-posts__heading { font-size: 2.5rem; }
+}
+
+@media (min-width: 992px) {
+  .recent-posts--padding-medium { padding: 5rem 0; }
+  .recent-posts--padding-large { padding: 7rem 0; }
+}

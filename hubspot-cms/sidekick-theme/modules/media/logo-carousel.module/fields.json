@@ -1,0 +1,231 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Trusted by Industry Leaders"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "logos",
+    "label": "Logos",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 20,
+      "default": 6
+    },
+    "default": [
+      { "company_name": "Company 1" },
+      { "company_name": "Company 2" },
+      { "company_name": "Company 3" },
+      { "company_name": "Company 4" },
+      { "company_name": "Company 5" },
+      { "company_name": "Company 6" }
+    ],
+    "children": [
+      {
+        "name": "logo",
+        "label": "Logo Image",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "company_name",
+        "label": "Company Name",
+        "type": "text",
+        "default": "Company Name"
+      },
+      {
+        "name": "link",
+        "label": "Link (Optional)",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "animation_group",
+    "label": "Animation",
+    "type": "group",
+    "children": [
+      {
+        "name": "animation_type",
+        "label": "Animation Type",
+        "type": "choice",
+        "display": "select",
+        "default": "scroll",
+        "choices": [
+          ["none", "None (Static Grid)"],
+          ["scroll", "Continuous Scroll"],
+          ["slide", "Slide (Manual)"]
+        ]
+      },
+      {
+        "name": "scroll_direction",
+        "label": "Scroll Direction",
+        "type": "choice",
+        "display": "select",
+        "default": "left",
+        "choices": [
+          ["left", "Left"],
+          ["right", "Right"]
+        ],
+        "visibility": {
+          "controlling_field_path": "animation_group.animation_type",
+          "controlling_value_regex": "scroll",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "scroll_speed",
+        "label": "Scroll Speed",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["slow", "Slow (60s)"],
+          ["medium", "Medium (40s)"],
+          ["fast", "Fast (20s)"]
+        ],
+        "visibility": {
+          "controlling_field_path": "animation_group.animation_type",
+          "controlling_value_regex": "scroll",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "pause_on_hover",
+        "label": "Pause on Hover",
+        "type": "boolean",
+        "default": true,
+        "visibility": {
+          "controlling_field_path": "animation_group.animation_type",
+          "controlling_value_regex": "scroll",
+          "operator": "MATCHES_REGEX"
+        }
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "columns",
+        "label": "Logos Per Row (Static Grid)",
+        "type": "choice",
+        "display": "select",
+        "default": "6",
+        "choices": [
+          ["3", "3 Logos"],
+          ["4", "4 Logos"],
+          ["5", "5 Logos"],
+          ["6", "6 Logos"]
+        ],
+        "visibility": {
+          "controlling_field_path": "animation_group.animation_type",
+          "controlling_value_regex": "none",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "logo_height",
+        "label": "Logo Height",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["small", "Small (40px)"],
+          ["medium", "Medium (60px)"],
+          ["large", "Large (80px)"]
+        ]
+      },
+      {
+        "name": "grayscale",
+        "label": "Grayscale Logos",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "color_on_hover",
+        "label": "Color on Hover",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

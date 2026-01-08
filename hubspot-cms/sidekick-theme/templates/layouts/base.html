@@ -1,0 +1,125 @@
+<!--
+  templateType: page
+  label: Base Layout
+  isAvailableForNewContent: false
+-->
+<!DOCTYPE html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ standard_header_includes }}
+
+  {# Google Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Sans:wght@400;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+  {# Theme CSS #}
+  {{ require_css(get_asset_url("../../css/main.css")) }}
+
+  {# CSS Variables from theme settings #}
+  <style>
+    :root {
+      {# Colors #}
+      --color-primary: {{ theme.colors.primary.color }};
+      --color-secondary: {{ theme.colors.secondary.color }};
+      --color-accent: {{ theme.colors.accent.color }};
+      --color-peach: {{ theme.colors.peach.color }};
+      --color-light-blue: {{ theme.colors.light_blue.color }};
+      --color-slate: {{ theme.colors.slate.color }};
+      --color-text-dark: {{ theme.colors.text_dark.color }};
+      --color-text-light: {{ theme.colors.text_light.color }};
+      --color-bg-light: {{ theme.colors.background_light.color }};
+      --color-bg-dark: {{ theme.colors.background_dark.color }};
+      --color-bg-alt: {{ theme.colors.background_alt.color }};
+
+      {# Typography #}
+      --font-heading: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --font-subheading: "Montserrat", system-ui, sans-serif;
+      --font-body: "PT Sans", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", Consolas, monospace;
+
+      {# Button Styles #}
+      --btn-primary-bg: {{ theme.buttons.primary_bg.color }};
+      --btn-primary-text: {{ theme.buttons.primary_text.color }};
+      --btn-secondary-bg: {{ theme.buttons.secondary_bg.color }};
+      --btn-secondary-text: {{ theme.buttons.secondary_text.color }};
+
+      {# Spacing #}
+      --section-padding-y: {{ theme.spacing.section_padding_top|default(80) }}px;
+      --container-max-width: {{ theme.spacing.container_max_width }}px;
+
+      {# Animation #}
+      --transition-duration: {{ theme.animation.transition_duration }}ms;
+
+      {# Header #}
+      --header-bg: {{ theme.header.header_background.color }};
+      --header-bg-scrolled: {{ theme.header.header_background_scrolled.color }};
+      --header-text: {{ theme.header.header_text_color.color }};
+
+      {# Footer #}
+      --footer-bg: {{ theme.footer.footer_background.color }};
+      --footer-text: {{ theme.footer.footer_text_color.color }};
+    }
+  </style>
+
+  {% block head %}{% endblock head %}
+</head>
+
+<body class="{% block body_class %}{% endblock body_class %}" {% if theme.animation.enable_animations %}data-animations="true"{% endif %}>
+
+  {# Skip to content link for accessibility #}
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  {# Header #}
+  {% block header %}
+    {% module "global_header"
+      path="../modules/core/header.module",
+      logo=theme.header.logo,
+      sticky_header=theme.header.sticky_header,
+      enable_search=theme.header.enable_search,
+      enable_mega_menu=theme.header.enable_mega_menu,
+      cta_button={
+        "show_cta": theme.header.cta_button.show_cta,
+        "cta_text": theme.header.cta_button.cta_text,
+        "cta_link": theme.header.cta_button.cta_link
+      }
+    %}
+  {% endblock header %}
+
+  {# Main Content #}
+  <main id="main-content" role="main">
+    {% block body %}
+      {# Page content goes here #}
+    {% endblock body %}
+  </main>
+
+  {# Footer #}
+  {% block footer %}
+    {% module "global_footer"
+      path="../modules/core/footer.module",
+      logo=theme.footer.footer_logo,
+      copyright_text=theme.footer.copyright_text,
+      newsletter={
+        "show_newsletter": theme.footer.show_newsletter,
+        "title": theme.footer.newsletter_title,
+        "description": theme.footer.newsletter_description
+      },
+      social_links={
+        "linkedin": theme.footer.social_links.linkedin,
+        "twitter": theme.footer.social_links.twitter,
+        "youtube": theme.footer.social_links.youtube,
+        "instagram": theme.footer.social_links.instagram
+      }
+    %}
+  {% endblock footer %}
+
+  {# Theme JavaScript #}
+  {{ require_js(get_asset_url("../../js/main.js"), "footer") }}
+
+  {% block footer_js %}{% endblock footer_js %}
+
+  {{ standard_footer_includes }}
+</body>
+</html>

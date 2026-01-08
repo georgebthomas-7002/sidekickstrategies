@@ -1,0 +1,15 @@
+{# Rich Text Module #}
+
+{% set section_classes = "rich-text-section" %}
+{% set section_classes = section_classes ~ " rich-text--width-" ~ module.max_width %}
+{% set section_classes = section_classes ~ " rich-text--align-" ~ module.alignment %}
+{% set section_classes = section_classes ~ " rich-text--bg-" ~ module.background %}
+{% set section_classes = section_classes ~ " rich-text--padding-" ~ module.padding %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    <div class="rich-text__content">
+      {{ module.content }}
+    </div>
+  </div>
+</section>

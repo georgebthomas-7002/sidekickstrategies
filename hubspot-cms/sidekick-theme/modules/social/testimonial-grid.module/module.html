@@ -1,0 +1,111 @@
+{# Testimonial Grid Module #}
+
+{% set section_classes = "testimonial-grid-section" %}
+{% set section_classes = section_classes ~ " testimonial-grid--cols-" ~ module.layout_group.columns %}
+{% set section_classes = section_classes ~ " testimonial-grid--style-" ~ module.layout_group.card_style %}
+{% set section_classes = section_classes ~ " testimonial-grid--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " testimonial-grid--padding-" ~ module.style_group.padding %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " testimonial-grid--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " testimonial-grid--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="testimonial-grid__header">
+        {% if module.header_group.badge %}
+          <span class="testimonial-grid__badge">{{ module.header_group.badge }}</span>
+        {% endif %}
+
+        {% if module.header_group.heading %}
+          <{{ module.header_group.heading_level }} class="testimonial-grid__heading">
+            {{ module.header_group.heading }}
+          </{{ module.header_group.heading_level }}>
+        {% endif %}
+
+        {% if module.header_group.subheading %}
+          <p class="testimonial-grid__subheading">{{ module.header_group.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Testimonials Grid #}
+    <div class="testimonial-grid__grid">
+      {% for testimonial in module.testimonials %}
+        <div class="testimonial-grid__item">
+          {# Star Rating #}
+          {% if module.layout_group.show_ratings and testimonial.rating != "none" %}
+            <div class="testimonial-grid__rating">
+              {% set full_stars = testimonial.rating|int %}
+              {% set has_half = testimonial.rating|float != testimonial.rating|int %}
+
+              {% for i in range(full_stars) %}
+                <svg class="testimonial-grid__star testimonial-grid__star--full" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% endfor %}
+
+              {% if has_half %}
+                <svg class="testimonial-grid__star testimonial-grid__star--half" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="half-grid-{{ loop.index }}">
+                      <stop offset="50%" stop-color="currentColor"/>
+                      <stop offset="50%" stop-color="transparent"/>
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#half-grid-{{ loop.index }})" stroke="currentColor" stroke-width="1" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% endif %}
+
+              {% set remaining = 5 - full_stars - (1 if has_half else 0) %}
+              {% for i in range(remaining|int) %}
+                <svg class="testimonial-grid__star testimonial-grid__star--empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {# Quote #}
+          <blockquote class="testimonial-grid__quote">
+            {{ testimonial.quote }}
+          </blockquote>
+
+          {# Author #}
+          <div class="testimonial-grid__author">
+            {% if testimonial.author_image.src %}
+              <img
+                src="{{ testimonial.author_image.src }}"
+                alt="{{ testimonial.author_image.alt or testimonial.author_name }}"
+                class="testimonial-grid__avatar"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="testimonial-grid__avatar-placeholder">
+                {{ testimonial.author_name|first|upper }}
+              </div>
+            {% endif %}
+
+            <div class="testimonial-grid__author-info">
+              {% if testimonial.author_name %}
+                <span class="testimonial-grid__name">{{ testimonial.author_name }}</span>
+              {% endif %}
+
+              {% if testimonial.author_title or testimonial.author_company %}
+                <span class="testimonial-grid__role">
+                  {% if testimonial.author_title %}{{ testimonial.author_title }}{% endif %}
+                  {% if testimonial.author_title and testimonial.author_company %}, {% endif %}
+                  {% if testimonial.author_company %}{{ testimonial.author_company }}{% endif %}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

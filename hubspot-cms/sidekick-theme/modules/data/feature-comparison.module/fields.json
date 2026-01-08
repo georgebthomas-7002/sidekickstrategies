@@ -1,0 +1,186 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Compare Plans"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": "See which plan is right for you."
+      }
+    ]
+  },
+  {
+    "name": "plans",
+    "label": "Plans (Columns)",
+    "type": "group",
+    "occurrence": {
+      "min": 2,
+      "max": 4,
+      "default": 3
+    },
+    "default": [
+      { "plan_name": "Starter", "featured": false },
+      { "plan_name": "Professional", "featured": true },
+      { "plan_name": "Enterprise", "featured": false }
+    ],
+    "children": [
+      {
+        "name": "plan_name",
+        "label": "Plan Name",
+        "type": "text",
+        "default": "Plan Name"
+      },
+      {
+        "name": "featured",
+        "label": "Featured (Highlighted)",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "button_text",
+        "label": "Button Text",
+        "type": "text",
+        "default": "Get Started"
+      },
+      {
+        "name": "button_link",
+        "label": "Button Link",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "feature_groups",
+    "label": "Feature Groups",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 10,
+      "default": 2
+    },
+    "default": [
+      {
+        "group_name": "Core Features",
+        "features": [
+          { "feature_name": "Team Members", "values": "5|25|Unlimited" },
+          { "feature_name": "Storage", "values": "5GB|50GB|Unlimited" },
+          { "feature_name": "Projects", "values": "3|20|Unlimited" }
+        ]
+      },
+      {
+        "group_name": "Support",
+        "features": [
+          { "feature_name": "Email Support", "values": "true|true|true" },
+          { "feature_name": "Priority Support", "values": "false|true|true" },
+          { "feature_name": "Dedicated Manager", "values": "false|false|true" }
+        ]
+      }
+    ],
+    "children": [
+      {
+        "name": "group_name",
+        "label": "Group Name",
+        "type": "text",
+        "default": "Feature Group"
+      },
+      {
+        "name": "features",
+        "label": "Features",
+        "type": "group",
+        "occurrence": {
+          "min": 1,
+          "max": 20,
+          "default": 3
+        },
+        "children": [
+          {
+            "name": "feature_name",
+            "label": "Feature Name",
+            "type": "text",
+            "default": "Feature"
+          },
+          {
+            "name": "values",
+            "label": "Values (pipe-separated)",
+            "type": "text",
+            "default": "true|true|true",
+            "help_text": "Use 'true' for checkmark, 'false' for X, or text value. Separate with | for each plan."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "large",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

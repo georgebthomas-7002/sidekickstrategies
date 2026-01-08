@@ -1,0 +1,206 @@
+[
+  {
+    "name": "layout",
+    "label": "Layout",
+    "type": "choice",
+    "display": "select",
+    "default": "image-left",
+    "choices": [
+      ["image-left", "Image Left, Text Right"],
+      ["image-right", "Image Right, Text Left"]
+    ]
+  },
+  {
+    "name": "image_group",
+    "label": "Image",
+    "type": "group",
+    "children": [
+      {
+        "name": "image",
+        "label": "Image",
+        "type": "image",
+        "responsive": true,
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "image_style",
+        "label": "Image Style",
+        "type": "choice",
+        "display": "select",
+        "default": "rounded",
+        "choices": [
+          ["rounded", "Rounded Corners"],
+          ["square", "Square"],
+          ["circle", "Circle"],
+          ["shadow", "Rounded with Shadow"]
+        ]
+      },
+      {
+        "name": "image_size",
+        "label": "Image Column Width",
+        "type": "choice",
+        "display": "select",
+        "default": "equal",
+        "choices": [
+          ["smaller", "Smaller (40%)"],
+          ["equal", "Equal (50%)"],
+          ["larger", "Larger (60%)"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "content_group",
+    "label": "Content",
+    "type": "group",
+    "children": [
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Section Heading"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "body_text",
+        "label": "Body Text",
+        "type": "richtext",
+        "default": "<p>Add your content here. Describe features, benefits, or tell your story.</p>"
+      },
+      {
+        "name": "content_alignment",
+        "label": "Vertical Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "center",
+        "choices": [
+          ["top", "Top"],
+          ["center", "Center"],
+          ["bottom", "Bottom"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "buttons_group",
+    "label": "Buttons",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_buttons",
+        "label": "Show Buttons",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "primary_button",
+        "label": "Primary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "text",
+            "label": "Text",
+            "type": "text",
+            "default": "Learn More"
+          },
+          {
+            "name": "link",
+            "label": "Link",
+            "type": "link",
+            "default": {
+              "url": {
+                "href": "#",
+                "type": "EXTERNAL"
+              },
+              "open_in_new_tab": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "secondary_button",
+        "label": "Secondary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "text",
+            "label": "Text",
+            "type": "text",
+            "default": ""
+          },
+          {
+            "name": "link",
+            "label": "Link",
+            "type": "link",
+            "default": {
+              "url": {
+                "href": "#",
+                "type": "EXTERNAL"
+              },
+              "open_in_new_tab": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      },
+      {
+        "name": "animate",
+        "label": "Animate on Scroll",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  }
+]

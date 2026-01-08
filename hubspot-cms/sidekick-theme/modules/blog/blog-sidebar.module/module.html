@@ -1,0 +1,142 @@
+{# Blog Sidebar Module #}
+
+{% set sidebar_classes = "blog-sidebar" %}
+{% if module.style_group.sticky %}
+  {% set sidebar_classes = sidebar_classes ~ " blog-sidebar--sticky" %}
+{% endif %}
+{% set sidebar_classes = sidebar_classes ~ " blog-sidebar--" ~ module.style_group.widget_style %}
+
+<aside class="{{ sidebar_classes }}">
+  {% for widget in module.widgets %}
+    <div class="sidebar-widget sidebar-widget--{{ widget.widget_type }}">
+      {% if widget.show_widget_title and widget.widget_title %}
+        <h4 class="sidebar-widget__title">{{ widget.widget_title }}</h4>
+      {% endif %}
+
+      <div class="sidebar-widget__content">
+        {# Search Widget #}
+        {% if widget.widget_type == "search" %}
+          <form action="{{ site_search_url }}" class="sidebar-search" method="GET">
+            <div class="sidebar-search__field">
+              <input
+                type="search"
+                name="term"
+                placeholder="Search..."
+                class="sidebar-search__input"
+                aria-label="Search"
+              >
+              <button type="submit" class="sidebar-search__button" aria-label="Search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+        {# Categories Widget #}
+        {% elif widget.widget_type == "categories" %}
+          {% if module.blog %}
+            {% set topics = blog_topics(module.blog, 250) %}
+            {% if topics %}
+              <ul class="sidebar-categories">
+                {% for topic in topics %}
+                  <li class="sidebar-categories__item">
+                    <a href="{{ blog_tag_url(module.blog, topic.slug) }}" class="sidebar-categories__link">
+                      {{ topic.name }}
+                      <span class="sidebar-categories__count">{{ topic.post_count }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="sidebar-widget__empty">No categories found.</p>
+            {% endif %}
+          {% else %}
+            <p class="sidebar-widget__empty">Select a blog in module settings.</p>
+          {% endif %}
+
+        {# Recent Posts Widget #}
+        {% elif widget.widget_type == "recent_posts" %}
+          {% if module.blog %}
+            {% set posts = blog_recent_posts(module.blog, widget.recent_posts_count) %}
+            {% if posts %}
+              <ul class="sidebar-recent">
+                {% for post in posts %}
+                  <li class="sidebar-recent__item">
+                    {% if post.featured_image %}
+                      <a href="{{ post.absolute_url }}" class="sidebar-recent__image-link">
+                        <img
+                          src="{{ post.featured_image }}"
+                          alt="{{ post.featured_image_alt_text|default(post.name) }}"
+                          class="sidebar-recent__image"
+                          loading="lazy"
+                        >
+                      </a>
+                    {% endif %}
+                    <div class="sidebar-recent__content">
+                      <a href="{{ post.absolute_url }}" class="sidebar-recent__title">
+                        {{ post.name }}
+                      </a>
+                      {% if post.publish_date %}
+                      <time class="sidebar-recent__date" datetime="{{ post.publish_date|datetimeformat('%Y-%m-%d') }}">
+                        {{ post.publish_date|datetimeformat('%B %d, %Y') }}
+                      </time>
+                      {% endif %}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="sidebar-widget__empty">No posts found.</p>
+            {% endif %}
+          {% else %}
+            <p class="sidebar-widget__empty">Select a blog in module settings.</p>
+          {% endif %}
+
+        {# Newsletter Widget #}
+        {% elif widget.widget_type == "newsletter" %}
+          <div class="sidebar-newsletter">
+            {% if widget.newsletter_heading %}
+              <p class="sidebar-newsletter__heading">{{ widget.newsletter_heading }}</p>
+            {% endif %}
+            {% if widget.newsletter_description %}
+              <p class="sidebar-newsletter__description">{{ widget.newsletter_description }}</p>
+            {% endif %}
+            {% if widget.newsletter_form %}
+              {% form widget.newsletter_form %}
+            {% else %}
+              <p class="sidebar-widget__empty">Select a form in module settings.</p>
+            {% endif %}
+          </div>
+
+        {# CTA Widget #}
+        {% elif widget.widget_type == "cta" %}
+          <div class="sidebar-cta sidebar-cta--{{ widget.cta_style }}">
+            {% if widget.cta_heading %}
+              <p class="sidebar-cta__heading">{{ widget.cta_heading }}</p>
+            {% endif %}
+            {% if widget.cta_description %}
+              <p class="sidebar-cta__description">{{ widget.cta_description }}</p>
+            {% endif %}
+            {% if widget.cta_button_text %}
+              <a
+                href="{{ widget.cta_button_link.url.href }}"
+                class="sidebar-cta__button btn {% if widget.cta_style == 'light' %}btn--primary{% else %}btn--white{% endif %}"
+                {% if widget.cta_button_link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                {{ widget.cta_button_text }}
+              </a>
+            {% endif %}
+          </div>
+
+        {# Custom HTML Widget #}
+        {% elif widget.widget_type == "custom_html" %}
+          <div class="sidebar-custom">
+            {{ widget.custom_html }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</aside>

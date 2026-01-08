@@ -1,0 +1,422 @@
+[
+  {
+    "name": "colors",
+    "label": "Colors",
+    "type": "group",
+    "children": [
+      {
+        "name": "primary",
+        "label": "Primary Color (Navy)",
+        "type": "color",
+        "help_text": "Main brand color for headers, primary text, brand identity",
+        "default": {"color": "#142d63"}
+      },
+      {
+        "name": "secondary",
+        "label": "Secondary Color (Teal)",
+        "type": "color",
+        "help_text": "Accents, links, secondary elements",
+        "default": {"color": "#028393"}
+      },
+      {
+        "name": "accent",
+        "label": "Accent Color (Orange)",
+        "type": "color",
+        "help_text": "Buttons, CTAs, highlights",
+        "default": {"color": "#f65625"}
+      },
+      {
+        "name": "peach",
+        "label": "Peach",
+        "type": "color",
+        "help_text": "Soft accents",
+        "default": {"color": "#faaa68"}
+      },
+      {
+        "name": "light_blue",
+        "label": "Light Blue",
+        "type": "color",
+        "help_text": "Backgrounds, subtle accents",
+        "default": {"color": "#98c1d9"}
+      },
+      {
+        "name": "slate",
+        "label": "Slate",
+        "type": "color",
+        "help_text": "Secondary text, borders",
+        "default": {"color": "#3d5a80"}
+      },
+      {
+        "name": "text_dark",
+        "label": "Dark Text",
+        "type": "color",
+        "help_text": "Primary body text color",
+        "default": {"color": "#1a1a1a"}
+      },
+      {
+        "name": "text_light",
+        "label": "Light Text",
+        "type": "color",
+        "help_text": "Text on dark backgrounds",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "background_light",
+        "label": "Light Background",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "background_dark",
+        "label": "Dark Background",
+        "type": "color",
+        "default": {"color": "#0a1628"}
+      },
+      {
+        "name": "background_alt",
+        "label": "Alternate Background",
+        "type": "color",
+        "help_text": "For alternating sections",
+        "default": {"color": "#f8f9fa"}
+      }
+    ]
+  },
+  {
+    "name": "typography",
+    "label": "Typography",
+    "type": "group",
+    "children": [
+      {
+        "name": "heading_font",
+        "label": "Heading Font (H1-H2)",
+        "type": "font",
+        "help_text": "Palatino Linotype for main headings",
+        "default": {
+          "font": "Palatino Linotype",
+          "fallback": "Palatino, Georgia, Times New Roman, serif",
+          "color": "#142d63",
+          "size": 48,
+          "size_unit": "px"
+        }
+      },
+      {
+        "name": "subheading_font",
+        "label": "Subheading Font (H3-H6)",
+        "type": "font",
+        "help_text": "Montserrat for subheadings",
+        "default": {
+          "font": "Montserrat",
+          "fallback": "system-ui, sans-serif",
+          "color": "#142d63",
+          "size": 24,
+          "size_unit": "px"
+        }
+      },
+      {
+        "name": "body_font",
+        "label": "Body Font",
+        "type": "font",
+        "help_text": "PT Sans for body text",
+        "default": {
+          "font": "PT Sans",
+          "fallback": "system-ui, sans-serif",
+          "color": "#1a1a1a",
+          "size": 18,
+          "size_unit": "px"
+        }
+      },
+      {
+        "name": "mono_font",
+        "label": "Monospace Font",
+        "type": "font",
+        "help_text": "IBM Plex Mono for buttons and labels",
+        "default": {
+          "font": "IBM Plex Mono",
+          "fallback": "Consolas, monospace",
+          "color": "#1a1a1a",
+          "size": 14,
+          "size_unit": "px"
+        }
+      }
+    ]
+  },
+  {
+    "name": "header",
+    "label": "Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "logo",
+        "label": "Logo",
+        "type": "image",
+        "help_text": "Main site logo",
+        "default": {
+          "src": "",
+          "alt": "Sidekick Strategies",
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "name": "logo_sticky",
+        "label": "Sticky Header Logo",
+        "type": "image",
+        "help_text": "Logo for sticky/scrolled header (optional)",
+        "default": {
+          "src": "",
+          "alt": "Sidekick Strategies"
+        }
+      },
+      {
+        "name": "sticky_header",
+        "label": "Enable Sticky Header",
+        "type": "boolean",
+        "help_text": "Header stays fixed at top on scroll",
+        "default": true
+      },
+      {
+        "name": "header_background",
+        "label": "Header Background",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "header_background_scrolled",
+        "label": "Header Background (Scrolled)",
+        "type": "color",
+        "help_text": "Background when sticky header is active",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "header_text_color",
+        "label": "Header Text Color",
+        "type": "color",
+        "default": {"color": "#142d63"}
+      },
+      {
+        "name": "enable_search",
+        "label": "Enable Search",
+        "type": "boolean",
+        "help_text": "Show search icon in header",
+        "default": true
+      },
+      {
+        "name": "enable_mega_menu",
+        "label": "Enable Mega Menu",
+        "type": "boolean",
+        "help_text": "Use mega menu for dropdowns",
+        "default": true
+      },
+      {
+        "name": "show_header_cta",
+        "label": "Show Header CTA Button",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "footer",
+    "label": "Footer",
+    "type": "group",
+    "children": [
+      {
+        "name": "footer_background",
+        "label": "Footer Background",
+        "type": "color",
+        "default": {"color": "#0a1628"}
+      },
+      {
+        "name": "footer_text_color",
+        "label": "Footer Text Color",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "footer_logo",
+        "label": "Footer Logo",
+        "type": "image",
+        "help_text": "Logo for footer (light version)",
+        "default": {
+          "src": "",
+          "alt": "Sidekick Strategies"
+        }
+      },
+      {
+        "name": "footer_columns",
+        "label": "Number of Columns",
+        "type": "choice",
+        "display": "select",
+        "default": "4",
+        "choices": [
+          ["1", "1 Column"],
+          ["2", "2 Columns"],
+          ["3", "3 Columns"],
+          ["4", "4 Columns"]
+        ]
+      },
+      {
+        "name": "show_newsletter",
+        "label": "Show Newsletter Signup",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "blog",
+    "label": "Blog Settings",
+    "type": "group",
+    "children": [
+      {
+        "name": "posts_per_page",
+        "label": "Posts Per Page",
+        "type": "number",
+        "default": 12
+      },
+      {
+        "name": "sidebar_position",
+        "label": "Sidebar Position",
+        "type": "choice",
+        "display": "select",
+        "default": "right",
+        "choices": [
+          ["none", "No Sidebar"],
+          ["left", "Left"],
+          ["right", "Right"]
+        ]
+      },
+      {
+        "name": "show_featured_image",
+        "label": "Show Featured Images",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_author_bio",
+        "label": "Show Author Bio",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_table_of_contents",
+        "label": "Show Table of Contents",
+        "type": "boolean",
+        "help_text": "Auto-generate TOC for long posts (SEO benefit)",
+        "default": true
+      },
+      {
+        "name": "show_reading_time",
+        "label": "Show Reading Time",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "buttons",
+    "label": "Button Styles",
+    "type": "group",
+    "children": [
+      {
+        "name": "border_radius",
+        "label": "Button Border Radius",
+        "type": "choice",
+        "display": "select",
+        "default": "full",
+        "choices": [
+          ["none", "None (Square)"],
+          ["sm", "Small (4px)"],
+          ["md", "Medium (8px)"],
+          ["lg", "Large (16px)"],
+          ["full", "Full (Pill)"]
+        ]
+      },
+      {
+        "name": "primary_bg",
+        "label": "Primary Button Background",
+        "type": "color",
+        "default": {"color": "#f65625"}
+      },
+      {
+        "name": "primary_text",
+        "label": "Primary Button Text",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "secondary_bg",
+        "label": "Secondary Button Background",
+        "type": "color",
+        "default": {"color": "#028393"}
+      },
+      {
+        "name": "secondary_text",
+        "label": "Secondary Button Text",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      }
+    ]
+  },
+  {
+    "name": "spacing",
+    "label": "Spacing",
+    "type": "group",
+    "children": [
+      {
+        "name": "section_padding_top",
+        "label": "Section Padding Top (px)",
+        "type": "number",
+        "help_text": "Default top padding for sections",
+        "default": 80
+      },
+      {
+        "name": "section_padding_bottom",
+        "label": "Section Padding Bottom (px)",
+        "type": "number",
+        "help_text": "Default bottom padding for sections",
+        "default": 80
+      },
+      {
+        "name": "container_max_width",
+        "label": "Container Max Width",
+        "type": "number",
+        "help_text": "Maximum width of content container in pixels",
+        "default": 1280
+      }
+    ]
+  },
+  {
+    "name": "animation",
+    "label": "Animation Settings",
+    "type": "group",
+    "children": [
+      {
+        "name": "enable_animations",
+        "label": "Enable Animations",
+        "type": "boolean",
+        "help_text": "Global toggle for hover and scroll animations",
+        "default": true
+      },
+      {
+        "name": "transition_duration",
+        "label": "Transition Duration",
+        "type": "choice",
+        "display": "select",
+        "default": "300",
+        "choices": [
+          ["150", "Fast (150ms)"],
+          ["300", "Normal (300ms)"],
+          ["500", "Slow (500ms)"]
+        ]
+      },
+      {
+        "name": "enable_scroll_animations",
+        "label": "Enable Scroll Animations",
+        "type": "boolean",
+        "help_text": "Fade in elements on scroll",
+        "default": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,281 @@
+/* Feature Comparison Module Styles */
+
+.comparison-section {
+  position: relative;
+}
+
+/* ==========================================================================
+   BACKGROUNDS
+   ========================================================================== */
+
+.comparison--bg-light { background-color: var(--color-bg-light); }
+.comparison--bg-alt { background-color: var(--color-bg-alt); }
+.comparison--bg-dark { background-color: var(--color-bg-dark); }
+
+/* Text colors */
+.comparison--text-dark {
+  color: var(--color-text-dark);
+}
+
+.comparison--text-dark .comparison__heading {
+  color: var(--color-primary);
+}
+
+.comparison--text-light {
+  color: var(--color-text-light);
+}
+
+.comparison--text-light .comparison__heading {
+  color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   PADDING
+   ========================================================================== */
+
+.comparison--padding-none { padding: 0; }
+.comparison--padding-small { padding: 2rem 0; }
+.comparison--padding-medium { padding: 4rem 0; }
+.comparison--padding-large { padding: 6rem 0; }
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+
+.comparison__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.comparison__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.comparison--text-dark .comparison__badge {
+  background-color: rgba(2, 131, 147, 0.1);
+  color: var(--color-secondary);
+}
+
+.comparison--text-light .comparison__badge {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-light);
+}
+
+.comparison__heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h2.comparison__heading { font-size: 2.5rem; }
+h3.comparison__heading { font-size: 2rem; }
+h4.comparison__heading { font-size: 1.5rem; }
+
+.comparison__subheading {
+  font-size: 1.125rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   TABLE WRAPPER
+   ========================================================================== */
+
+.comparison__table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.comparison__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+/* ==========================================================================
+   TABLE HEADER
+   ========================================================================== */
+
+.comparison__feature-header {
+  text-align: left;
+  padding: 1.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--color-slate);
+  vertical-align: bottom;
+}
+
+.comparison--text-light .comparison__feature-header {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.comparison__plan-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--color-slate);
+  min-width: 140px;
+}
+
+.comparison--text-light .comparison__plan-header {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.comparison__plan-header--featured {
+  background-color: rgba(2, 131, 147, 0.05);
+  border-bottom-color: var(--color-secondary);
+}
+
+.comparison--text-light .comparison__plan-header--featured {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.comparison__plan-name {
+  display: block;
+  font-family: var(--font-subheading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.comparison--text-dark .comparison__plan-name {
+  color: var(--color-primary);
+}
+
+.comparison__plan-header .btn {
+  display: inline-block;
+}
+
+.btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+}
+
+/* ==========================================================================
+   TABLE BODY
+   ========================================================================== */
+
+/* Group Row */
+.comparison__group-row {
+  background-color: var(--color-bg-alt);
+}
+
+.comparison--bg-dark .comparison__group-row {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.comparison__group-name {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comparison--text-dark .comparison__group-name {
+  color: var(--color-secondary);
+}
+
+/* Feature Row */
+.comparison__feature-row {
+  border-bottom: 1px solid var(--color-slate);
+}
+
+.comparison--text-light .comparison__feature-row {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.comparison__feature-row:last-child {
+  border-bottom: none;
+}
+
+.comparison__feature-name {
+  padding: 1rem;
+  font-size: 0.9375rem;
+}
+
+.comparison__feature-value {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9375rem;
+}
+
+.comparison__feature-value--featured {
+  background-color: rgba(2, 131, 147, 0.03);
+}
+
+.comparison--text-light .comparison__feature-value--featured {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Check/X Icons */
+.comparison__check,
+.comparison__x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.comparison__check {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.comparison__check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.comparison__x {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.comparison__x svg {
+  width: 12px;
+  height: 12px;
+}
+
+.comparison__text {
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  h2.comparison__heading { font-size: 3rem; }
+  h3.comparison__heading { font-size: 2.5rem; }
+
+  .comparison__plan-header {
+    min-width: 160px;
+  }
+}
+
+@media (min-width: 992px) {
+  .comparison--padding-medium { padding: 5rem 0; }
+  .comparison--padding-large { padding: 7rem 0; }
+
+  .comparison__plan-header {
+    min-width: 180px;
+  }
+}

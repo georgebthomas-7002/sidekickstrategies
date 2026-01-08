@@ -1,0 +1,101 @@
+{# Feature Comparison Module #}
+
+{% set section_classes = "comparison-section" %}
+{% set section_classes = section_classes ~ " comparison--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " comparison--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " comparison--cols-" ~ module.plans|length %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " comparison--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " comparison--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="comparison__header">
+        {% if module.header_group.badge %}
+          <span class="comparison__badge">{{ module.header_group.badge }}</span>
+        {% endif %}
+
+        {% if module.header_group.heading %}
+          <{{ module.header_group.heading_level }} class="comparison__heading">
+            {{ module.header_group.heading }}
+          </{{ module.header_group.heading_level }}>
+        {% endif %}
+
+        {% if module.header_group.subheading %}
+          <p class="comparison__subheading">{{ module.header_group.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Comparison Table #}
+    <div class="comparison__table-wrapper">
+      <table class="comparison__table">
+        {# Table Header with Plan Names #}
+        <thead>
+          <tr>
+            <th class="comparison__feature-header">Features</th>
+            {% for plan in module.plans %}
+              <th class="comparison__plan-header {% if plan.featured %}comparison__plan-header--featured{% endif %}">
+                <span class="comparison__plan-name">{{ plan.plan_name }}</span>
+                {% if plan.button_text %}
+                  <a
+                    href="{{ plan.button_link.url.href }}"
+                    class="btn btn--sm {% if plan.featured %}btn--primary{% else %}btn--outline{% endif %}"
+                    {% if plan.button_link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+                  >
+                    {{ plan.button_text }}
+                  </a>
+                {% endif %}
+              </th>
+            {% endfor %}
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for group in module.feature_groups %}
+            {# Feature Group Header #}
+            <tr class="comparison__group-row">
+              <td colspan="{{ module.plans|length + 1 }}" class="comparison__group-name">
+                {{ group.group_name }}
+              </td>
+            </tr>
+
+            {# Feature Rows #}
+            {% for feature in group.features %}
+              {% set values = feature.values|split('|') %}
+              <tr class="comparison__feature-row">
+                <td class="comparison__feature-name">{{ feature.feature_name }}</td>
+                {% for plan in module.plans %}
+                  {% set value = values[loop.index0]|default('')|trim %}
+                  <td class="comparison__feature-value {% if plan.featured %}comparison__feature-value--featured{% endif %}">
+                    {% if value == 'true' %}
+                      <span class="comparison__check" aria-label="Included">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </span>
+                    {% elif value == 'false' %}
+                      <span class="comparison__x" aria-label="Not included">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      </span>
+                    {% else %}
+                      <span class="comparison__text">{{ value }}</span>
+                    {% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

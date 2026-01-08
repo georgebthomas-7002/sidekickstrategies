@@ -1,0 +1,143 @@
+{# Blog Post Card Module #}
+
+{% if module.post %}
+  {% set post = module.post %}
+
+  {% set card_classes = "post-card" %}
+  {% set card_classes = card_classes ~ " post-card--" ~ module.layout_group.layout %}
+  {% set card_classes = card_classes ~ " post-card--" ~ module.style_group.style %}
+  {% set card_classes = card_classes ~ " post-card--hover-" ~ module.style_group.hover_effect %}
+  {% set card_classes = card_classes ~ " post-card--ratio-" ~ module.layout_group.image_ratio %}
+
+  <article class="{{ card_classes }}">
+    {# Featured Image #}
+    {% if module.content_group.show_image and post.featured_image %}
+      <a href="{{ post.absolute_url }}" class="post-card__image-link">
+        <div class="post-card__image-wrapper">
+          <img
+            src="{{ post.featured_image }}"
+            alt="{{ post.featured_image_alt_text|default(post.name) }}"
+            class="post-card__image"
+            loading="lazy"
+          >
+          {% if module.layout_group.layout == "overlay" %}
+            <div class="post-card__overlay"></div>
+          {% endif %}
+        </div>
+      </a>
+    {% elif module.content_group.show_image %}
+      <a href="{{ post.absolute_url }}" class="post-card__image-link">
+        <div class="post-card__image-wrapper post-card__image-wrapper--placeholder">
+          <div class="post-card__placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+        </div>
+      </a>
+    {% endif %}
+
+    <div class="post-card__content">
+      {# Category/Topic #}
+      {% if module.content_group.show_category and post.topic_list %}
+        <div class="post-card__category">
+          {% for topic in post.topic_list %}
+            <a href="{{ blog_tag_url(group.id, topic.slug) }}" class="post-card__category-link">
+              {{ topic.name }}
+            </a>
+            {% if not loop.last %}<span class="post-card__category-sep">,</span>{% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {# Title #}
+      <h3 class="post-card__title">
+        <a href="{{ post.absolute_url }}" class="post-card__title-link">
+          {{ post.name }}
+        </a>
+      </h3>
+
+      {# Excerpt #}
+      {% if module.content_group.show_excerpt %}
+        {% set excerpt = post.post_summary|default(post.post_body|striptags|truncate(module.content_group.excerpt_length, true, "...")) %}
+        <p class="post-card__excerpt">{{ excerpt|truncate(module.content_group.excerpt_length, true, "...") }}</p>
+      {% endif %}
+
+      {# Meta Info #}
+      <div class="post-card__meta">
+        {# Author #}
+        {% if module.content_group.show_author %}
+          <div class="post-card__author">
+            {% if module.content_group.show_author_image and post.blog_author.avatar %}
+              <img
+                src="{{ post.blog_author.avatar }}"
+                alt="{{ post.blog_author.display_name }}"
+                class="post-card__author-image"
+                loading="lazy"
+              >
+            {% elif module.content_group.show_author_image %}
+              <div class="post-card__author-placeholder">
+                {{ post.blog_author.display_name|first|upper }}
+              </div>
+            {% endif %}
+            <span class="post-card__author-name">{{ post.blog_author.display_name }}</span>
+          </div>
+        {% endif %}
+
+        {# Date and Reading Time #}
+        <div class="post-card__details">
+          {% if module.content_group.show_date and post.publish_date %}
+            <time class="post-card__date" datetime="{{ post.publish_date|datetimeformat('%Y-%m-%d') }}">
+              {{ post.publish_date|datetimeformat('%B %d, %Y') }}
+            </time>
+          {% endif %}
+
+          {% if module.content_group.show_read_time %}
+            {% set word_count = post.post_body|striptags|wordcount %}
+            {% set read_time = (word_count / 200)|round(0, 'ceil')|int %}
+            {% if read_time < 1 %}{% set read_time = 1 %}{% endif %}
+            <span class="post-card__read-time">
+              {% if module.content_group.show_date %}<span class="post-card__dot">&middot;</span>{% endif %}
+              {{ read_time }} min read
+            </span>
+          {% endif %}
+        </div>
+      </div>
+
+      {# Read More Link #}
+      {% if module.content_group.show_read_more %}
+        <a href="{{ post.absolute_url }}" class="post-card__read-more">
+          {{ module.content_group.read_more_text }}
+          <svg class="post-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </article>
+{% else %}
+  {# Preview/Placeholder State #}
+  <article class="post-card post-card--{{ module.layout_group.layout }} post-card--{{ module.style_group.style }} post-card--placeholder">
+    <div class="post-card__image-wrapper post-card__image-wrapper--placeholder">
+      <div class="post-card__placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+      </div>
+    </div>
+    <div class="post-card__content">
+      <div class="post-card__category">
+        <span class="post-card__category-link">Category</span>
+      </div>
+      <h3 class="post-card__title">
+        <span class="post-card__title-link">Select a Blog Post</span>
+      </h3>
+      <p class="post-card__excerpt">Choose a blog post from the module settings to display its content here.</p>
+    </div>
+  </article>
+{% endif %}

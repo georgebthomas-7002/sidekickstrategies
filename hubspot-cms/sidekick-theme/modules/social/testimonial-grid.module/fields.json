@@ -1,0 +1,198 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": "Testimonials"
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "What Our Clients Say"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "testimonials",
+    "label": "Testimonials",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 12,
+      "default": 3
+    },
+    "default": [
+      {
+        "quote": "Their strategic guidance helped us increase revenue by 40% in just six months. Truly exceptional partners.",
+        "rating": "5",
+        "author_name": "Sarah Johnson",
+        "author_title": "CEO",
+        "author_company": "TechStart Inc"
+      },
+      {
+        "quote": "The team's expertise in implementation made our digital transformation seamless. Highly recommended!",
+        "rating": "5",
+        "author_name": "Michael Chen",
+        "author_title": "Director of Operations",
+        "author_company": "Growth Labs"
+      },
+      {
+        "quote": "Professional, knowledgeable, and results-driven. They exceeded our expectations at every turn.",
+        "rating": "5",
+        "author_name": "Emily Rodriguez",
+        "author_title": "Marketing VP",
+        "author_company": "Brand Forward"
+      }
+    ],
+    "children": [
+      {
+        "name": "quote",
+        "label": "Quote",
+        "type": "text",
+        "default": "Add testimonial quote here."
+      },
+      {
+        "name": "rating",
+        "label": "Star Rating",
+        "type": "choice",
+        "display": "select",
+        "default": "5",
+        "choices": [
+          ["none", "No Rating"],
+          ["5", "5 Stars"],
+          ["4.5", "4.5 Stars"],
+          ["4", "4 Stars"],
+          ["3.5", "3.5 Stars"],
+          ["3", "3 Stars"]
+        ]
+      },
+      {
+        "name": "author_image",
+        "label": "Author Photo",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "author_name",
+        "label": "Author Name",
+        "type": "text",
+        "default": "John Doe"
+      },
+      {
+        "name": "author_title",
+        "label": "Author Title",
+        "type": "text",
+        "default": "CEO"
+      },
+      {
+        "name": "author_company",
+        "label": "Author Company",
+        "type": "text",
+        "default": "Company Name"
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "columns",
+        "label": "Columns",
+        "type": "choice",
+        "display": "select",
+        "default": "3",
+        "choices": [
+          ["2", "2 Columns"],
+          ["3", "3 Columns"],
+          ["4", "4 Columns"]
+        ]
+      },
+      {
+        "name": "card_style",
+        "label": "Card Style",
+        "type": "choice",
+        "display": "select",
+        "default": "card",
+        "choices": [
+          ["card", "Card (Elevated)"],
+          ["bordered", "Bordered"],
+          ["minimal", "Minimal"]
+        ]
+      },
+      {
+        "name": "show_ratings",
+        "label": "Show Star Ratings",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "alt",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "large",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

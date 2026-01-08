@@ -1,0 +1,205 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Recent Posts"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "show_view_all",
+        "label": "Show View All Link",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "view_all_text",
+        "label": "View All Text",
+        "type": "text",
+        "default": "View All Posts"
+      },
+      {
+        "name": "view_all_link",
+        "label": "View All Link",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "posts_group",
+    "label": "Posts Settings",
+    "type": "group",
+    "children": [
+      {
+        "name": "blog",
+        "label": "Select Blog",
+        "type": "blog"
+      },
+      {
+        "name": "post_count",
+        "label": "Number of Posts",
+        "type": "number",
+        "default": 3,
+        "min": 1,
+        "max": 12
+      },
+      {
+        "name": "exclude_current",
+        "label": "Exclude Current Post",
+        "type": "boolean",
+        "default": true,
+        "help_text": "Excludes the current post when on a blog post page"
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "layout",
+        "label": "Layout Style",
+        "type": "choice",
+        "display": "select",
+        "default": "grid",
+        "choices": [
+          ["grid", "Grid (Cards)"],
+          ["list", "List (Compact)"],
+          ["featured", "Featured (First Large)"]
+        ]
+      },
+      {
+        "name": "columns",
+        "label": "Columns (Grid Layout)",
+        "type": "choice",
+        "display": "select",
+        "default": "3",
+        "choices": [
+          ["2", "2 Columns"],
+          ["3", "3 Columns"],
+          ["4", "4 Columns"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "card_group",
+    "label": "Card Options",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_image",
+        "label": "Show Featured Image",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "image_ratio",
+        "label": "Image Aspect Ratio",
+        "type": "choice",
+        "display": "select",
+        "default": "16-9",
+        "choices": [
+          ["16-9", "16:9 (Widescreen)"],
+          ["4-3", "4:3 (Standard)"],
+          ["1-1", "1:1 (Square)"]
+        ]
+      },
+      {
+        "name": "show_category",
+        "label": "Show Category",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_date",
+        "label": "Show Date",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_author",
+        "label": "Show Author",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "show_excerpt",
+        "label": "Show Excerpt",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "excerpt_length",
+        "label": "Excerpt Length",
+        "type": "number",
+        "default": 100,
+        "min": 50,
+        "max": 200
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "large",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

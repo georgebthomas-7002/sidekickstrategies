@@ -1,0 +1,134 @@
+[
+  {
+    "name": "layout_group",
+    "label": "Card Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "layout",
+        "label": "Layout Style",
+        "type": "choice",
+        "display": "select",
+        "default": "vertical",
+        "choices": [
+          ["vertical", "Vertical (Image Top)"],
+          ["horizontal", "Horizontal (Image Left)"],
+          ["overlay", "Overlay (Text on Image)"]
+        ]
+      },
+      {
+        "name": "image_ratio",
+        "label": "Image Aspect Ratio",
+        "type": "choice",
+        "display": "select",
+        "default": "16-9",
+        "choices": [
+          ["16-9", "16:9 (Widescreen)"],
+          ["4-3", "4:3 (Standard)"],
+          ["1-1", "1:1 (Square)"],
+          ["3-2", "3:2 (Classic)"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "content_group",
+    "label": "Content Options",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_image",
+        "label": "Show Featured Image",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_category",
+        "label": "Show Category/Topic",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_date",
+        "label": "Show Publish Date",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_author",
+        "label": "Show Author",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_author_image",
+        "label": "Show Author Image",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_excerpt",
+        "label": "Show Excerpt",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "excerpt_length",
+        "label": "Excerpt Length (characters)",
+        "type": "number",
+        "default": 150,
+        "min": 50,
+        "max": 300
+      },
+      {
+        "name": "show_read_time",
+        "label": "Show Reading Time",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_read_more",
+        "label": "Show Read More Link",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "read_more_text",
+        "label": "Read More Text",
+        "type": "text",
+        "default": "Read More"
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Card Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "style",
+        "label": "Card Style",
+        "type": "choice",
+        "display": "select",
+        "default": "shadow",
+        "choices": [
+          ["shadow", "Shadow"],
+          ["bordered", "Bordered"],
+          ["minimal", "Minimal (No Border)"]
+        ]
+      },
+      {
+        "name": "hover_effect",
+        "label": "Hover Effect",
+        "type": "choice",
+        "display": "select",
+        "default": "lift",
+        "choices": [
+          ["none", "None"],
+          ["lift", "Lift Up"],
+          ["glow", "Shadow Glow"]
+        ]
+      }
+    ]
+  }
+]

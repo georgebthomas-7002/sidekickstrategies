@@ -1,0 +1,633 @@
+{# SIDEKICK HERO MODULE - Premium hero with Executive Suite styling #}
+
+{# Brand Colors #}
+{% set colors = {
+  "navy800": "#142d63",
+  "navy900": "#0f2250",
+  "navy950": "#0a1633",
+  "navy1000": "#060d1a",
+  "orange500": "#f65625",
+  "orangeHover": "#d9441a",
+  "teal500": "#028393",
+  "peach": "#faaa68"
+} %}
+
+{# Background preset styles #}
+{% if module.bg_preset == "executive" %}
+  {% set bg_gradient = "linear-gradient(180deg, " ~ colors.navy1000 ~ " 0%, " ~ colors.navy950 ~ " 30%, " ~ colors.navy900 ~ " 70%, " ~ colors.navy950 ~ " 100%)" %}
+  {% set text_color = "#ffffff" %}
+  {% set text_muted = "rgba(255,255,255,0.55)" %}
+  {% set is_dark = true %}
+{% elif module.bg_preset == "light" %}
+  {% set bg_gradient = "linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)" %}
+  {% set text_color = colors.navy800 %}
+  {% set text_muted = "rgba(20, 45, 99, 0.65)" %}
+  {% set is_dark = false %}
+{% else %}
+  {% set bg_gradient = "linear-gradient(135deg, " ~ colors.navy900 ~ " 0%, " ~ colors.teal500 ~ " 50%, " ~ colors.orange500 ~ " 100%)" %}
+  {% set text_color = "#ffffff" %}
+  {% set text_muted = "rgba(255,255,255,0.7)" %}
+  {% set is_dark = true %}
+{% endif %}
+
+{# Layout settings #}
+{% set min_height = module.full_height ? "100vh" : "600px" %}
+
+{# Dynamic styles #}
+{% require_css %}
+<style>
+{% scope_css %}
+
+.sidekick-hero {
+  --font-serif: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-heading: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", Monaco, Consolas, monospace;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: {{ bg_gradient }};
+  min-height: {{ min_height }};
+}
+
+.sidekick-hero__pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23faaa68' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+.sidekick-hero__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(6, 13, 26, 0.6) 100%);
+}
+
+.sidekick-hero__corners {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sidekick-hero__corner-line--top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 1px;
+  background: linear-gradient(90deg, {{ colors.peach }} 0%, transparent 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+}
+
+.sidekick-hero__corner-line--top-left-v {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 160px;
+  background: linear-gradient(180deg, {{ colors.peach }} 0%, transparent 100%);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+}
+
+.sidekick-hero__corner-line--bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 224px;
+  height: 1px;
+  background: linear-gradient(270deg, rgba(250, 170, 104, 0.6) 0%, transparent 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: opacity 1s ease 0.7s, transform 1s ease 0.7s;
+}
+
+.sidekick-hero__corner-line--bottom-right-v {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 224px;
+  background: linear-gradient(0deg, rgba(250, 170, 104, 0.6) 0%, transparent 100%);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: opacity 1s ease 0.7s, transform 1s ease 0.7s;
+}
+
+.sidekick-hero.is-mounted .sidekick-hero__corner-line--top-left,
+.sidekick-hero.is-mounted .sidekick-hero__corner-line--top-left-v {
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+.sidekick-hero.is-mounted .sidekick-hero__corner-line--bottom-right,
+.sidekick-hero.is-mounted .sidekick-hero__corner-line--bottom-right-v {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sidekick-hero__orb {
+  position: absolute;
+  top: 25%;
+  right: 25%;
+  width: 384px;
+  height: 384px;
+  border-radius: 50%;
+  filter: blur(120px);
+  background-color: rgba(250, 170, 104, 0.03);
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.sidekick-hero.is-mounted .sidekick-hero__orb {
+  opacity: 1;
+}
+
+.sidekick-hero__container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+@media (min-width: 768px) {
+  .sidekick-hero__container {
+    padding: 100px 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidekick-hero__container {
+    padding: 120px 96px;
+  }
+}
+
+.sidekick-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .sidekick-hero__grid {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.sidekick-hero__content {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.sidekick-hero.is-mounted .sidekick-hero__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidekick-hero__eyebrow-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.sidekick-hero__eyebrow-dots {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidekick-hero__eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: {{ colors.peach }};
+}
+
+.sidekick-hero__eyebrow-dot--faded {
+  width: 4px;
+  height: 4px;
+  background-color: rgba(250, 170, 104, 0.6);
+}
+
+.sidekick-hero__eyebrow-dot--faint {
+  width: 4px;
+  height: 4px;
+  background-color: rgba(250, 170, 104, 0.3);
+}
+
+.sidekick-hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(250, 170, 104, 0.8);
+}
+
+.sidekick-hero__headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: {{ text_color }};
+}
+
+.sidekick-hero__headline-accent {
+  color: {{ colors.peach }};
+}
+
+.sidekick-hero__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.sidekick-hero__divider-line {
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, {{ colors.peach }} 0%, rgba(250, 170, 104, 0.3) 100%);
+}
+
+.sidekick-hero__divider-diamond {
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(250, 170, 104, 0.6);
+}
+
+.sidekick-hero__subheadline {
+  margin-top: 32px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 560px;
+  color: {{ text_muted }};
+}
+
+@media (min-width: 768px) {
+  .sidekick-hero__subheadline {
+    font-size: 20px;
+  }
+}
+
+.sidekick-hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 56px;
+}
+
+@media (min-width: 640px) {
+  .sidekick-hero__ctas {
+    flex-direction: row;
+  }
+}
+
+.sidekick-hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: {{ colors.orange500 }};
+  box-shadow: 0 10px 30px -10px rgba(246, 86, 37, 0.3);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.sidekick-hero__cta-primary:hover {
+  background-color: {{ colors.orangeHover }};
+  box-shadow: 0 20px 50px -10px rgba(246, 86, 37, 0.5);
+}
+
+.sidekick-hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 8px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: {{ colors.orange500 }};
+  transition: color 0.3s ease;
+}
+
+.sidekick-hero__cta-secondary:hover {
+  color: {{ colors.peach }};
+}
+
+.sidekick-hero__cta-arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.sidekick-hero__cta-secondary:hover .sidekick-hero__cta-arrow {
+  transform: translateX(8px);
+}
+
+.sidekick-hero__testimonial-wrapper {
+  display: none;
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+}
+
+@media (min-width: 1024px) {
+  .sidekick-hero__testimonial-wrapper {
+    display: block;
+  }
+}
+
+.sidekick-hero.is-mounted .sidekick-hero__testimonial-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidekick-hero__card {
+  position: relative;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sidekick-hero__card-corner {
+  position: absolute;
+  background-color: rgba(250, 170, 104, 0.3);
+}
+
+.sidekick-hero__card-corner--tl-h { top: 0; left: 0; width: 24px; height: 1px; }
+.sidekick-hero__card-corner--tl-v { top: 0; left: 0; width: 1px; height: 24px; }
+.sidekick-hero__card-corner--br-h { bottom: 0; right: 0; width: 24px; height: 1px; }
+.sidekick-hero__card-corner--br-v { bottom: 0; right: 0; width: 1px; height: 24px; }
+
+.sidekick-hero__quote-icon {
+  width: 40px;
+  height: 40px;
+  color: rgba(250, 170, 104, 0.4);
+  margin-bottom: 24px;
+}
+
+.sidekick-hero__quote-text {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+  color: rgba(255,255,255,0.8);
+}
+
+.sidekick-hero__author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.sidekick-hero__author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(250, 170, 104, 0.25) 0%, rgba(2, 131, 147, 0.15) 100%);
+}
+
+.sidekick-hero__author-initials {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: {{ colors.peach }};
+}
+
+.sidekick-hero__author-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.sidekick-hero__author-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  color: rgba(255,255,255,0.4);
+}
+
+.sidekick-hero__trust {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidekick-hero__trust-divider {
+  width: 1px;
+  height: 40px;
+  background-color: rgba(255,255,255,0.06);
+}
+
+.sidekick-hero__trust-item {
+  text-align: center;
+}
+
+.sidekick-hero__trust-value {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: {{ colors.peach }};
+}
+
+.sidekick-hero__trust-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 4px;
+  color: rgba(255,255,255,0.4);
+}
+
+.sidekick-hero__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidekick-hero__bottom-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(250, 170, 104, 0.25) 50%, transparent 100%);
+}
+
+.sidekick-hero__bottom-fade {
+  height: 64px;
+  background: linear-gradient(180deg, transparent 0%, rgba(6, 13, 26, 0.4) 100%);
+}
+
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{# Hero Section #}
+<section class="sidekick-hero" aria-label="Hero section" data-animate="{{ module.enable_animations }}">
+
+  {% if is_dark %}
+  <div class="sidekick-hero__pattern"></div>
+  <div class="sidekick-hero__vignette"></div>
+  {% endif %}
+
+  {% if module.enable_animations %}
+  <div class="sidekick-hero__corners">
+    <div class="sidekick-hero__corner-line--top-left"></div>
+    <div class="sidekick-hero__corner-line--top-left-v"></div>
+    <div class="sidekick-hero__corner-line--bottom-right"></div>
+    <div class="sidekick-hero__corner-line--bottom-right-v"></div>
+  </div>
+  {% endif %}
+
+  {% if is_dark %}
+  <div class="sidekick-hero__orb"></div>
+  {% endif %}
+
+  <div class="sidekick-hero__container">
+    <div class="sidekick-hero__grid">
+
+      <div class="sidekick-hero__content">
+
+        {% if module.eyebrow %}
+        <div class="sidekick-hero__eyebrow-wrapper">
+          <div class="sidekick-hero__eyebrow-dots">
+            <div class="sidekick-hero__eyebrow-dot"></div>
+            <div class="sidekick-hero__eyebrow-dot sidekick-hero__eyebrow-dot--faded"></div>
+            <div class="sidekick-hero__eyebrow-dot sidekick-hero__eyebrow-dot--faint"></div>
+          </div>
+          <span class="sidekick-hero__eyebrow">{{ module.eyebrow }}</span>
+        </div>
+        {% endif %}
+
+        <h1 class="sidekick-hero__headline">
+          {% set words = module.headline|split(" ") %}
+          {% for word in words %}
+            {% if "," in word or "." in word or "!" in word or "?" in word %}
+              <span class="sidekick-hero__headline-accent">{{ word }} </span>
+            {% else %}
+              {{ word }}
+            {% endif %}
+          {% endfor %}
+        </h1>
+
+        <div class="sidekick-hero__divider">
+          <div class="sidekick-hero__divider-line"></div>
+          <div class="sidekick-hero__divider-diamond"></div>
+        </div>
+
+        {% if module.subheadline %}
+        <p class="sidekick-hero__subheadline">{{ module.subheadline }}</p>
+        {% endif %}
+
+        <div class="sidekick-hero__ctas">
+          {% if module.primary_cta_show and module.primary_cta_text %}
+          <a href="{{ module.primary_cta_link.url.href }}" class="sidekick-hero__cta-primary">
+            {{ module.primary_cta_text }}
+          </a>
+          {% endif %}
+
+          {% if module.secondary_cta_show and module.secondary_cta_text %}
+          <a href="{{ module.secondary_cta_link.url.href }}" class="sidekick-hero__cta-secondary">
+            {{ module.secondary_cta_text }}
+            <svg class="sidekick-hero__cta-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if module.show_testimonial %}
+      <div class="sidekick-hero__testimonial-wrapper">
+        <div class="sidekick-hero__card">
+          <div class="sidekick-hero__card-corner sidekick-hero__card-corner--tl-h"></div>
+          <div class="sidekick-hero__card-corner sidekick-hero__card-corner--tl-v"></div>
+          <div class="sidekick-hero__card-corner sidekick-hero__card-corner--br-h"></div>
+          <div class="sidekick-hero__card-corner sidekick-hero__card-corner--br-v"></div>
+
+          <svg class="sidekick-hero__quote-icon" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+
+          <blockquote class="sidekick-hero__quote-text">
+            &ldquo;{{ module.quote_text }}&rdquo;
+          </blockquote>
+
+          <div class="sidekick-hero__author">
+            <div class="sidekick-hero__author-avatar">
+              <span class="sidekick-hero__author-initials">{{ module.author_initials }}</span>
+            </div>
+            <div class="sidekick-hero__author-info">
+              <div class="sidekick-hero__author-name">{{ module.author_name }}</div>
+              <div class="sidekick-hero__author-title">{{ module.author_title }}</div>
+            </div>
+          </div>
+
+          {% if module.show_trust %}
+          <div class="sidekick-hero__trust">
+            <div class="sidekick-hero__trust-item">
+              <div class="sidekick-hero__trust-value">{{ module.stat1_value }}</div>
+              <div class="sidekick-hero__trust-label">{{ module.stat1_label }}</div>
+            </div>
+            <div class="sidekick-hero__trust-divider"></div>
+            <div class="sidekick-hero__trust-item">
+              <div class="sidekick-hero__trust-value">{{ module.stat2_value }}</div>
+              <div class="sidekick-hero__trust-label">{{ module.stat2_label }}</div>
+            </div>
+            <div class="sidekick-hero__trust-divider"></div>
+            <div class="sidekick-hero__trust-item">
+              <div class="sidekick-hero__trust-value">{{ module.stat3_value }}</div>
+              <div class="sidekick-hero__trust-label">{{ module.stat3_label }}</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% if is_dark %}
+  <div class="sidekick-hero__bottom">
+    <div class="sidekick-hero__bottom-line"></div>
+    <div class="sidekick-hero__bottom-fade"></div>
+  </div>
+  {% endif %}
+
+</section>

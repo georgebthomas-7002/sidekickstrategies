@@ -1,0 +1,204 @@
+{# Global Header Module #}
+
+{# Defaults for site info #}
+{% set site_url = '/' %}
+{% set site_name = 'Site Name' %}
+
+{% set header_classes = "site-header" %}
+{% if module.sticky_header %}
+  {% set header_classes = header_classes ~ " site-header--sticky" %}
+{% endif %}
+{% if module.header_style == "transparent" %}
+  {% set header_classes = header_classes ~ " site-header--transparent" %}
+{% elif module.header_style == "dark" %}
+  {% set header_classes = header_classes ~ " site-header--dark" %}
+{% endif %}
+
+<header class="{{ header_classes }}" data-mobile-breakpoint="{{ module.mobile_breakpoint }}">
+  <div class="container">
+    <div class="header-inner">
+      {# Logo #}
+      <div class="site-logo">
+        <a href="{{ site_url }}" aria-label="{{ site_name }}">
+          {% if module.logo.src %}
+            <img src="{{ module.logo.src }}"
+                 alt="{{ module.logo.alt|default(site_name) }}"
+                 width="{{ module.logo.width }}"
+                 height="{{ module.logo.height }}"
+                 loading="eager">
+          {% else %}
+            <span class="site-name">{{ site_name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      {# Main Navigation #}
+      <nav class="main-nav" aria-label="Main navigation">
+        {% if module.menu %}
+          {% set menu = menu(module.menu) %}
+          <ul class="nav-list">
+            {% for item in menu.children %}
+              <li class="nav-item{% if item.children %} has-dropdown{% endif %}{% if item.activeNode %} is-active{% endif %}">
+                <a href="{{ item.url }}"
+                   class="nav-link"
+                   {% if item.children %}aria-haspopup="true" aria-expanded="false"{% endif %}
+                   {% if item.linkTarget == "_blank" %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  {{ item.label }}
+                  {% if item.children %}
+                    <svg class="nav-arrow" width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
+                      <path d="M1 1l4 4 4-4"/>
+                    </svg>
+                  {% endif %}
+                </a>
+
+                {# Dropdown / Mega Menu #}
+                {% if item.children %}
+                  {% if module.enable_mega_menu %}
+                    <div class="mega-menu">
+                      <div class="mega-menu-inner">
+                        {% for child in item.children %}
+                          <div class="mega-menu-column">
+                            {% if child.url != "#" %}
+                              <a href="{{ child.url }}" class="mega-menu-title">{{ child.label }}</a>
+                            {% else %}
+                              <span class="mega-menu-title">{{ child.label }}</span>
+                            {% endif %}
+                            {% if child.children %}
+                              <ul class="mega-menu-list">
+                                {% for subchild in child.children %}
+                                  <li>
+                                    <a href="{{ subchild.url }}"{% if subchild.linkTarget == "_blank" %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                                      {{ subchild.label }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% else %}
+                    <ul class="dropdown-menu">
+                      {% for child in item.children %}
+                        <li class="dropdown-item{% if child.children %} has-dropdown{% endif %}">
+                          <a href="{{ child.url }}"{% if child.linkTarget == "_blank" %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                            {{ child.label }}
+                          </a>
+                          {% if child.children %}
+                            <ul class="dropdown-submenu">
+                              {% for subchild in child.children %}
+                                <li>
+                                  <a href="{{ subchild.url }}"{% if subchild.linkTarget == "_blank" %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                                    {{ subchild.label }}
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </nav>
+
+      {# Header Actions (Search + CTA) #}
+      <div class="header-actions">
+        {# Search #}
+        {% if module.enable_search %}
+          <button class="search-toggle" aria-label="Open search" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="9" r="7"/>
+              <line x1="14" y1="14" x2="18" y2="18"/>
+            </svg>
+          </button>
+        {% endif %}
+
+        {# CTA Button #}
+        {% if module.cta_button.show_cta %}
+          {% set cta_class = "btn btn--" ~ module.cta_button.cta_style %}
+          <a href="{{ module.cta_button.cta_link.url.href }}"
+             class="{{ cta_class }} header-cta"
+             {% if module.cta_button.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {{ module.cta_button.cta_text }}
+          </a>
+        {% endif %}
+
+        {# Mobile Menu Toggle #}
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {# Search Overlay #}
+  {% if module.enable_search %}
+    <div class="search-overlay" aria-hidden="true">
+      <div class="search-overlay-inner">
+        <form action="{{ site_url }}/hs-search-results" method="get" class="search-form">
+          <input type="text" name="term" placeholder="Search..." class="search-input" autocomplete="off">
+          <button type="submit" class="search-submit" aria-label="Submit search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="9" r="7"/>
+              <line x1="14" y1="14" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </form>
+        <button class="search-close" aria-label="Close search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Mobile Navigation #}
+  <div class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-inner">
+      {% if module.menu %}
+        {% set menu = menu(module.menu) %}
+        <ul class="mobile-nav-list">
+          {% for item in menu.children %}
+            <li class="mobile-nav-item{% if item.children %} has-children{% endif %}">
+              <a href="{{ item.url }}" class="mobile-nav-link">{{ item.label }}</a>
+              {% if item.children %}
+                <button class="mobile-nav-toggle" aria-label="Toggle submenu" aria-expanded="false">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path class="plus-v" d="M6 0v12"/>
+                    <path class="plus-h" d="M0 6h12"/>
+                  </svg>
+                </button>
+                <ul class="mobile-nav-submenu">
+                  {% for child in item.children %}
+                    <li>
+                      <a href="{{ child.url }}">{{ child.label }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {# Mobile CTA #}
+      {% if module.cta_button.show_cta %}
+        <div class="mobile-nav-cta">
+          <a href="{{ module.cta_button.cta_link.url.href }}" class="btn btn--primary btn--full">
+            {{ module.cta_button.cta_text }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

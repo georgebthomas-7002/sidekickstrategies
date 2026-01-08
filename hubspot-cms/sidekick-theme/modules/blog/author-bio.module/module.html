@@ -1,0 +1,67 @@
+{# Author Bio Module #}
+
+{# Determine author data source #}
+{% if module.source == "auto" and content.blog_author %}
+  {% set author_name = content.blog_author.display_name %}
+  {% set author_title = content.blog_author.title|default("") %}
+  {% set author_bio = content.blog_author.bio|default("") %}
+  {% set author_avatar = content.blog_author.avatar %}
+{% else %}
+  {% set author_name = module.author_name %}
+  {% set author_title = module.author_title %}
+  {% set author_bio = module.author_bio %}
+  {% set author_avatar = module.author_avatar.src %}
+{% endif %}
+
+{% set bio_classes = "author-bio" %}
+{% set bio_classes = bio_classes ~ " author-bio--" ~ module.layout_group.layout %}
+{% set bio_classes = bio_classes ~ " author-bio--" ~ module.style_group.style %}
+{% set bio_classes = bio_classes ~ " author-bio--bg-" ~ module.style_group.background %}
+{% set bio_classes = bio_classes ~ " author-bio--avatar-" ~ module.layout_group.avatar_size %}
+{% set bio_classes = bio_classes ~ " author-bio--avatar-" ~ module.layout_group.avatar_shape %}
+
+{% if module.style_group.background == "dark" %}
+  {% set bio_classes = bio_classes ~ " author-bio--text-light" %}
+{% else %}
+  {% set bio_classes = bio_classes ~ " author-bio--text-dark" %}
+{% endif %}
+
+<div class="{{ bio_classes }}">
+  {# Avatar #}
+  <div class="author-bio__avatar-wrapper">
+    {% if author_avatar %}
+      <img
+        src="{{ author_avatar }}"
+        alt="{{ author_name }}"
+        class="author-bio__avatar"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="author-bio__avatar-placeholder">
+        {{ author_name|first|upper }}
+      </div>
+    {% endif %}
+  </div>
+
+  {# Content #}
+  <div class="author-bio__content">
+    {# Label #}
+    {% if module.content_group.show_label %}
+      <span class="author-bio__label">{{ module.content_group.label_text }}</span>
+    {% endif %}
+
+    {# Name #}
+    <h3 class="author-bio__name">{{ author_name }}</h3>
+
+    {# Title #}
+    {% if module.content_group.show_title and author_title %}
+      <p class="author-bio__title">{{ author_title }}</p>
+    {% endif %}
+
+    {# Bio #}
+    {% if module.content_group.show_bio and author_bio %}
+      <p class="author-bio__bio">{{ author_bio }}</p>
+    {% endif %}
+
+  </div>
+</div>

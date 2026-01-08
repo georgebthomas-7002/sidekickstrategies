@@ -1,0 +1,105 @@
+[
+  {
+    "name": "logo",
+    "label": "Logo",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "Site Logo",
+      "width": 200,
+      "height": 60
+    }
+  },
+  {
+    "name": "menu",
+    "label": "Menu",
+    "type": "menu",
+    "default": "default"
+  },
+  {
+    "name": "enable_mega_menu",
+    "label": "Enable Mega Menu",
+    "type": "boolean",
+    "help_text": "Use mega menu style for dropdown items",
+    "default": true
+  },
+  {
+    "name": "sticky_header",
+    "label": "Enable Sticky Header",
+    "type": "boolean",
+    "default": true
+  },
+  {
+    "name": "header_style",
+    "label": "Header Style",
+    "type": "choice",
+    "display": "select",
+    "default": "standard",
+    "choices": [
+      ["standard", "Standard"],
+      ["transparent", "Transparent (for hero sections)"],
+      ["dark", "Dark Background"]
+    ]
+  },
+  {
+    "name": "cta_button",
+    "label": "CTA Button",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_cta",
+        "label": "Show CTA Button",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "cta_text",
+        "label": "CTA Text",
+        "type": "text",
+        "default": "Let's Talk"
+      },
+      {
+        "name": "cta_link",
+        "label": "CTA Link",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "/contact",
+            "type": "CONTENT"
+          },
+          "open_in_new_tab": false
+        }
+      },
+      {
+        "name": "cta_style",
+        "label": "CTA Style",
+        "type": "choice",
+        "display": "select",
+        "default": "primary",
+        "choices": [
+          ["primary", "Primary (Orange)"],
+          ["secondary", "Secondary (Teal)"],
+          ["ghost", "Ghost/Outline"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enable_search",
+    "label": "Enable Search",
+    "type": "boolean",
+    "default": true
+  },
+  {
+    "name": "mobile_breakpoint",
+    "label": "Mobile Menu Breakpoint",
+    "type": "choice",
+    "display": "select",
+    "default": "992",
+    "choices": [
+      ["768", "Tablet (768px)"],
+      ["992", "Desktop (992px)"],
+      ["1200", "Large Desktop (1200px)"]
+    ]
+  }
+]

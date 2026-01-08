@@ -1,0 +1,130 @@
+{# Hero Section Module #}
+
+{# Determine background and text colors #}
+{% set bg_class = "hero--bg-" ~ module.styling.background_color %}
+{% if module.styling.background_color == "custom" %}
+  {% set bg_style = "background-color: " ~ module.styling.custom_bg_color.color ~ ";" %}
+{% else %}
+  {% set bg_style = "" %}
+{% endif %}
+
+{% set is_dark_bg = module.styling.background_color in ["dark", "primary", "secondary"] or module.style == "kinetic" %}
+{% if module.styling.text_color == "auto" %}
+  {% set text_class = is_dark_bg ? "hero--text-light" : "hero--text-dark" %}
+{% else %}
+  {% set text_class = "hero--text-" ~ module.styling.text_color %}
+{% endif %}
+
+{# Build hero classes #}
+{% set hero_classes = "hero hero--" ~ module.style ~ " " ~ bg_class ~ " " ~ text_class ~ " hero--height-" ~ module.styling.height %}
+{% if module.styling.enable_animation %}
+  {% set hero_classes = hero_classes ~ " hero--animated" %}
+{% endif %}
+
+<section class="{{ hero_classes }}" style="{{ bg_style }}">
+
+  {# Background Image (Standard style) #}
+  {% if module.style == "standard" and module.media.background_image.src %}
+    <div class="hero__background">
+      <img src="{{ module.media.background_image.src }}"
+           alt="{{ module.media.background_image.alt }}"
+           loading="eager">
+      {% if module.media.background_overlay %}
+        <div class="hero__overlay" style="opacity: {{ module.media.overlay_opacity / 100 }};"></div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Kinetic Background Elements #}
+  {% if module.style == "kinetic" %}
+    <div class="hero__kinetic-bg" data-accent="{{ module.kinetic_options.accent_color }}">
+      {% if module.kinetic_options.show_grid_lines %}
+        <div class="kinetic-grid"></div>
+      {% endif %}
+      {% if module.kinetic_options.show_particles %}
+        <div class="kinetic-particles"></div>
+      {% endif %}
+      <div class="kinetic-glow kinetic-glow--1"></div>
+      <div class="kinetic-glow kinetic-glow--2"></div>
+    </div>
+  {% endif %}
+
+  <div class="container">
+    {% if module.style == "split" %}
+      {# Split Layout #}
+      <div class="hero__split {% if module.media.image_position == 'left' %}hero__split--reverse{% endif %}">
+        <div class="hero__content" style="text-align: {{ module.content.alignment }};">
+          {% if module.content.badge %}
+            <span class="hero__badge">{{ module.content.badge }}</span>
+          {% endif %}
+
+          <h1 class="hero__heading">{{ module.content.heading }}</h1>
+
+          {% if module.content.subheading %}
+            <p class="hero__subheading">{{ module.content.subheading }}</p>
+          {% endif %}
+
+          {% if module.buttons.primary_button.show or module.buttons.secondary_button.show %}
+            <div class="hero__buttons">
+              {% if module.buttons.primary_button.show %}
+                <a href="{{ module.buttons.primary_button.link.url.href }}"
+                   class="btn btn--{{ module.buttons.primary_button.style }}"
+                   {% if module.buttons.primary_button.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  {{ module.buttons.primary_button.text }}
+                </a>
+              {% endif %}
+              {% if module.buttons.secondary_button.show %}
+                <a href="{{ module.buttons.secondary_button.link.url.href }}"
+                   class="btn btn--{{ module.buttons.secondary_button.style }}"
+                   {% if module.buttons.secondary_button.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  {{ module.buttons.secondary_button.text }}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="hero__media">
+          {% if module.media.image.src %}
+            <img src="{{ module.media.image.src }}"
+                 alt="{{ module.media.image.alt }}"
+                 class="hero__image"
+                 loading="eager">
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      {# Standard & Kinetic Layout (Centered) #}
+      <div class="hero__inner" style="text-align: {{ module.content.alignment }};">
+        {% if module.content.badge %}
+          <span class="hero__badge">{{ module.content.badge }}</span>
+        {% endif %}
+
+        <h1 class="hero__heading">{{ module.content.heading }}</h1>
+
+        {% if module.content.subheading %}
+          <p class="hero__subheading">{{ module.content.subheading }}</p>
+        {% endif %}
+
+        {% if module.buttons.primary_button.show or module.buttons.secondary_button.show %}
+          <div class="hero__buttons" style="justify-content: {{ module.content.alignment }};">
+            {% if module.buttons.primary_button.show %}
+              <a href="{{ module.buttons.primary_button.link.url.href }}"
+                 class="btn btn--{{ module.buttons.primary_button.style }}"
+                 {% if module.buttons.primary_button.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                {{ module.buttons.primary_button.text }}
+              </a>
+            {% endif %}
+            {% if module.buttons.secondary_button.show %}
+              <a href="{{ module.buttons.secondary_button.link.url.href }}"
+                 class="btn btn--{{ module.buttons.secondary_button.style }}"
+                 {% if module.buttons.secondary_button.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                {{ module.buttons.secondary_button.text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

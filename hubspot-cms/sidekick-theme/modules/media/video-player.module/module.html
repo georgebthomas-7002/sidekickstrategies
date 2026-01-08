@@ -1,0 +1,145 @@
+{# Video Player Module #}
+
+{% set section_classes = "video-player-section" %}
+{% set section_classes = section_classes ~ " video-player--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " video-player--padding-" ~ module.style_group.padding %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " video-player--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " video-player--text-dark" %}
+{% endif %}
+
+{% set wrapper_classes = "video-player__wrapper" %}
+{% set wrapper_classes = wrapper_classes ~ " video-player__wrapper--" ~ module.layout_group.max_width %}
+{% set wrapper_classes = wrapper_classes ~ " video-player__wrapper--" ~ module.layout_group.alignment %}
+
+{% set container_classes = "video-player__container" %}
+{% set container_classes = container_classes ~ " video-player__container--ratio-" ~ module.layout_group.aspect_ratio %}
+{% set container_classes = container_classes ~ " video-player__container--radius-" ~ module.layout_group.border_radius %}
+
+{% if module.style_group.shadow %}
+  {% set container_classes = container_classes ~ " video-player__container--shadow" %}
+{% endif %}
+
+{% if module.overlay_group.show_overlay and (module.video_group.video_type == "youtube" or module.video_group.video_type == "vimeo") %}
+  {% set container_classes = container_classes ~ " video-player__container--has-overlay" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    <div class="{{ wrapper_classes }}">
+      <figure class="video-player__figure">
+        <div class="{{ container_classes }}">
+          {# YouTube #}
+          {% if module.video_group.video_type == "youtube" and module.video_group.youtube_url %}
+            {% set youtube_id = module.video_group.youtube_url|regex_replace('.*(?:youtu.be/|v/|u/\\w/|embed/|watch\\?v=)([^#&?]*).*', '$1') %}
+
+            {% if module.overlay_group.show_overlay %}
+              {# Poster with Play Button #}
+              <div class="video-player__poster" data-video-type="youtube" data-video-id="{{ youtube_id }}">
+                {% if module.video_group.poster_image.src %}
+                  <img src="{{ module.video_group.poster_image.src }}" alt="{{ module.video_group.poster_image.alt }}" class="video-player__poster-image" loading="lazy">
+                {% else %}
+                  <img src="https://img.youtube.com/vi/{{ youtube_id }}/maxresdefault.jpg" alt="Video thumbnail" class="video-player__poster-image" loading="lazy">
+                {% endif %}
+                <button type="button" class="video-player__play-button video-player__play-button--{{ module.overlay_group.overlay_style }} video-player__play-button--{{ module.overlay_group.overlay_color }}" aria-label="Play video">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+              </div>
+              <div class="video-player__embed-container"></div>
+            {% else %}
+              {# Direct Embed #}
+              <iframe
+                src="https://www.youtube.com/embed/{{ youtube_id }}?rel=0{% if module.options_group.autoplay %}&autoplay=1&mute=1{% endif %}{% if module.options_group.loop %}&loop=1&playlist={{ youtube_id }}{% endif %}{% if not module.options_group.show_controls %}&controls=0{% endif %}{% if module.options_group.play_inline %}&playsinline=1{% endif %}"
+                title="YouTube video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                class="video-player__iframe"
+              ></iframe>
+            {% endif %}
+
+          {# Vimeo #}
+          {% elif module.video_group.video_type == "vimeo" and module.video_group.vimeo_url %}
+            {% set vimeo_id = module.video_group.vimeo_url|regex_replace('.*vimeo.com/([0-9]+).*', '$1') %}
+
+            {% if module.overlay_group.show_overlay %}
+              {# Poster with Play Button #}
+              <div class="video-player__poster" data-video-type="vimeo" data-video-id="{{ vimeo_id }}">
+                {% if module.video_group.poster_image.src %}
+                  <img src="{{ module.video_group.poster_image.src }}" alt="{{ module.video_group.poster_image.alt }}" class="video-player__poster-image" loading="lazy">
+                {% else %}
+                  <div class="video-player__poster-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                  </div>
+                {% endif %}
+                <button type="button" class="video-player__play-button video-player__play-button--{{ module.overlay_group.overlay_style }} video-player__play-button--{{ module.overlay_group.overlay_color }}" aria-label="Play video">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+              </div>
+              <div class="video-player__embed-container"></div>
+            {% else %}
+              {# Direct Embed #}
+              <iframe
+                src="https://player.vimeo.com/video/{{ vimeo_id }}?{% if module.options_group.autoplay %}autoplay=1&muted=1{% endif %}{% if module.options_group.loop %}&loop=1{% endif %}{% if not module.options_group.show_controls %}&controls=0{% endif %}{% if module.options_group.play_inline %}&playsinline=1{% endif %}"
+                title="Vimeo video"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                class="video-player__iframe"
+              ></iframe>
+            {% endif %}
+
+          {# HubSpot Video #}
+          {% elif module.video_group.video_type == "hubspot" and module.video_group.hubspot_video.player_id %}
+            <div class="video-player__hubspot-video"
+                 id="hs-video-{{ module.video_group.hubspot_video.player_id }}"
+                 data-player-id="{{ module.video_group.hubspot_video.player_id }}"
+                 data-autoplay="{{ module.options_group.autoplay|yesno('true','false') }}"
+                 data-loop="{{ module.options_group.loop|yesno('true','false') }}"
+                 data-controls="{{ module.options_group.show_controls|yesno('true','false') }}">
+            </div>
+            {{ require_js("https://play.vidyard.com/embed/v4.js", {"async": true}) }}
+
+          {# External MP4 #}
+          {% elif module.video_group.video_type == "external" and module.video_group.external_url %}
+            <video
+              class="video-player__video"
+              {% if module.video_group.poster_image.src %}poster="{{ module.video_group.poster_image.src }}"{% endif %}
+              {% if module.options_group.autoplay %}autoplay muted{% endif %}
+              {% if module.options_group.loop %}loop{% endif %}
+              {% if module.options_group.show_controls %}controls{% endif %}
+              {% if module.options_group.play_inline %}playsinline{% endif %}
+            >
+              <source src="{{ module.video_group.external_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+          {# Placeholder #}
+          {% else %}
+            <div class="video-player__placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Add a video URL in module settings</span>
+            </div>
+          {% endif %}
+        </div>
+
+        {# Caption #}
+        {% if module.caption_group.show_caption and module.caption_group.caption %}
+          <figcaption class="video-player__caption">{{ module.caption_group.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    </div>
+  </div>
+</section>

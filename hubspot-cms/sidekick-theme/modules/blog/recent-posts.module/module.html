@@ -1,0 +1,154 @@
+{# Recent Posts Module #}
+
+{% set section_classes = "recent-posts-section" %}
+{% set section_classes = section_classes ~ " recent-posts--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " recent-posts--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " recent-posts--" ~ module.layout_group.layout %}
+{% set section_classes = section_classes ~ " recent-posts--cols-" ~ module.layout_group.columns %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " recent-posts--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " recent-posts--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="recent-posts__header">
+        <{{ module.header_group.heading_level }} class="recent-posts__heading">
+          {{ module.header_group.heading }}
+        </{{ module.header_group.heading_level }}>
+
+        {% if module.header_group.show_view_all %}
+          <a
+            href="{{ module.header_group.view_all_link.url.href }}"
+            class="recent-posts__view-all"
+            {% if module.header_group.view_all_link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+          >
+            {{ module.header_group.view_all_text }}
+            <svg class="recent-posts__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Posts Grid/List #}
+    {% if module.posts_group.blog %}
+      {% set post_limit = module.posts_group.post_count %}
+      {% if module.posts_group.exclude_current and content.content_type_category == "BLOG_POST" %}
+        {% set post_limit = post_limit + 1 %}
+      {% endif %}
+
+      {% set posts = blog_recent_posts(module.posts_group.blog, post_limit) %}
+
+      <div class="recent-posts__grid">
+        {% set displayed = 0 %}
+        {% for post in posts %}
+          {% if module.posts_group.exclude_current and content.content_type_category == "BLOG_POST" and post.absolute_url == content.absolute_url %}
+            {# Skip current post #}
+          {% elif displayed < module.posts_group.post_count %}
+            {% set displayed = displayed + 1 %}
+            {% set is_featured = module.layout_group.layout == "featured" and loop.first %}
+
+            <article class="recent-posts__card {% if is_featured %}recent-posts__card--featured{% endif %}">
+              {# Featured Image #}
+              {% if module.card_group.show_image %}
+                <a href="{{ post.absolute_url }}" class="recent-posts__image-link">
+                  <div class="recent-posts__image-wrapper recent-posts__image-wrapper--{{ module.card_group.image_ratio }}">
+                    {% if post.featured_image %}
+                      <img
+                        src="{{ post.featured_image }}"
+                        alt="{{ post.featured_image_alt_text|default(post.name) }}"
+                        class="recent-posts__image"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      <div class="recent-posts__placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                          <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                      </div>
+                    {% endif %}
+                  </div>
+                </a>
+              {% endif %}
+
+              <div class="recent-posts__content">
+                {# Category #}
+                {% if module.card_group.show_category and post.topic_list %}
+                  <div class="recent-posts__category">
+                    {% for topic in post.topic_list %}
+                      <a href="{{ blog_tag_url(group.id, topic.slug) }}" class="recent-posts__category-link">
+                        {{ topic.name }}
+                      </a>
+                      {% if not loop.last %}<span class="recent-posts__category-sep">,</span>{% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {# Title #}
+                <h3 class="recent-posts__title">
+                  <a href="{{ post.absolute_url }}" class="recent-posts__title-link">
+                    {{ post.name }}
+                  </a>
+                </h3>
+
+                {# Excerpt #}
+                {% if module.card_group.show_excerpt %}
+                  {% set excerpt = post.post_summary|default(post.post_body|striptags|truncate(module.card_group.excerpt_length, true, "...")) %}
+                  <p class="recent-posts__excerpt">{{ excerpt|truncate(module.card_group.excerpt_length, true, "...") }}</p>
+                {% endif %}
+
+                {# Meta #}
+                <div class="recent-posts__meta">
+                  {% if module.card_group.show_author and post.blog_author %}
+                    <span class="recent-posts__author">{{ post.blog_author.display_name }}</span>
+                  {% endif %}
+                  {% if module.card_group.show_date and post.publish_date %}
+                    {% if module.card_group.show_author %}<span class="recent-posts__dot">&middot;</span>{% endif %}
+                    <time class="recent-posts__date" datetime="{{ post.publish_date|datetimeformat('%Y-%m-%d') }}">
+                      {{ post.publish_date|datetimeformat('%B %d, %Y') }}
+                    </time>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      {# Placeholder when no blog selected #}
+      <div class="recent-posts__grid">
+        {% for i in range(module.posts_group.post_count) %}
+          <article class="recent-posts__card recent-posts__card--placeholder">
+            <div class="recent-posts__image-wrapper recent-posts__image-wrapper--{{ module.card_group.image_ratio }}">
+              <div class="recent-posts__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="recent-posts__content">
+              <div class="recent-posts__category">
+                <span class="recent-posts__category-link">Category</span>
+              </div>
+              <h3 class="recent-posts__title">
+                <span class="recent-posts__title-link">Select a Blog</span>
+              </h3>
+              <p class="recent-posts__excerpt">Choose a blog from the module settings to display recent posts.</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

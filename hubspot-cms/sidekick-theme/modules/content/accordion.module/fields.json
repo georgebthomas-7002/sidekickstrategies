@@ -1,0 +1,172 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Frequently Asked Questions"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "items",
+    "label": "Accordion Items",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 20,
+      "default": 3
+    },
+    "default": [
+      {
+        "question": "What services do you offer?",
+        "answer": "<p>We offer a comprehensive range of consulting services including strategy development, implementation support, and ongoing optimization.</p>"
+      },
+      {
+        "question": "How long does a typical engagement last?",
+        "answer": "<p>Engagement length varies based on scope and complexity. Most projects range from 3-6 months, though we also offer ongoing retainer arrangements.</p>"
+      },
+      {
+        "question": "What makes you different from other consultants?",
+        "answer": "<p>We combine deep industry expertise with a hands-on approach. We don't just advise - we work alongside your team to implement solutions.</p>"
+      }
+    ],
+    "children": [
+      {
+        "name": "question",
+        "label": "Question / Title",
+        "type": "text",
+        "default": "Question goes here"
+      },
+      {
+        "name": "answer",
+        "label": "Answer / Content",
+        "type": "richtext",
+        "default": "<p>Answer content goes here.</p>"
+      }
+    ]
+  },
+  {
+    "name": "settings_group",
+    "label": "Settings",
+    "type": "group",
+    "children": [
+      {
+        "name": "allow_multiple",
+        "label": "Allow Multiple Open",
+        "type": "boolean",
+        "default": false,
+        "help_text": "When disabled, opening one item closes others"
+      },
+      {
+        "name": "first_open",
+        "label": "Open First Item by Default",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "icon_style",
+        "label": "Icon Style",
+        "type": "choice",
+        "display": "select",
+        "default": "plus",
+        "choices": [
+          ["plus", "Plus/Minus"],
+          ["chevron", "Chevron"],
+          ["none", "No Icon"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Styling",
+    "type": "group",
+    "children": [
+      {
+        "name": "layout",
+        "label": "Layout",
+        "type": "choice",
+        "display": "select",
+        "default": "stacked",
+        "choices": [
+          ["stacked", "Stacked (Full Width)"],
+          ["centered", "Centered (Narrow)"],
+          ["two-column", "Two Columns"]
+        ]
+      },
+      {
+        "name": "style",
+        "label": "Visual Style",
+        "type": "choice",
+        "display": "select",
+        "default": "bordered",
+        "choices": [
+          ["bordered", "Bordered"],
+          ["card", "Cards"],
+          ["minimal", "Minimal (Lines Only)"]
+        ]
+      },
+      {
+        "name": "background",
+        "label": "Section Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      }
+    ]
+  }
+]

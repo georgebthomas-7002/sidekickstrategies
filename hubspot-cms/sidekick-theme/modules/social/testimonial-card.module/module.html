@@ -1,0 +1,101 @@
+{# Testimonial Card Module #}
+
+{% set section_classes = "testimonial-card-section" %}
+{% set section_classes = section_classes ~ " testimonial-card--style-" ~ module.style_group.style %}
+{% set section_classes = section_classes ~ " testimonial-card--align-" ~ module.style_group.alignment %}
+{% set section_classes = section_classes ~ " testimonial-card--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " testimonial-card--padding-" ~ module.style_group.padding %}
+
+{% if module.style_group.background in ["dark", "primary"] %}
+  {% set section_classes = section_classes ~ " testimonial-card--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " testimonial-card--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    <div class="testimonial-card">
+      {# Quote Mark #}
+      {% if module.style_group.show_quote_mark %}
+        <div class="testimonial-card__quote-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+          </svg>
+        </div>
+      {% endif %}
+
+      {# Star Rating #}
+      {% if module.testimonial.rating != "none" %}
+        <div class="testimonial-card__rating">
+          {% set full_stars = module.testimonial.rating|int %}
+          {% set has_half = module.testimonial.rating|float != module.testimonial.rating|int %}
+
+          {% for i in range(full_stars) %}
+            <svg class="testimonial-card__star testimonial-card__star--full" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {% endfor %}
+
+          {% if has_half %}
+            <svg class="testimonial-card__star testimonial-card__star--half" viewBox="0 0 24 24">
+              <defs>
+                <linearGradient id="half-star-{{ module.testimonial.rating }}">
+                  <stop offset="50%" stop-color="currentColor"/>
+                  <stop offset="50%" stop-color="transparent"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#half-star-{{ module.testimonial.rating }})" stroke="currentColor" stroke-width="1" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {% endif %}
+
+          {% set remaining = 5 - full_stars - (1 if has_half else 0) %}
+          {% for i in range(remaining|int) %}
+            <svg class="testimonial-card__star testimonial-card__star--empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {# Quote #}
+      <blockquote class="testimonial-card__quote">
+        {{ module.testimonial.quote }}
+      </blockquote>
+
+      {# Author #}
+      <div class="testimonial-card__author">
+        {% if module.author.image.src %}
+          <img
+            src="{{ module.author.image.src }}"
+            alt="{{ module.author.image.alt or module.author.author_name }}"
+            class="testimonial-card__avatar"
+            loading="lazy"
+          >
+        {% endif %}
+
+        <div class="testimonial-card__author-info">
+          {% if module.author.author_name %}
+            <span class="testimonial-card__name">{{ module.author.author_name }}</span>
+          {% endif %}
+
+          {% if module.author.title or module.author.company %}
+            <span class="testimonial-card__role">
+              {% if module.author.title %}{{ module.author.title }}{% endif %}
+              {% if module.author.title and module.author.company %}, {% endif %}
+              {% if module.author.company %}{{ module.author.company }}{% endif %}
+            </span>
+          {% endif %}
+        </div>
+
+        {% if module.author.company_logo.src %}
+          <img
+            src="{{ module.author.company_logo.src }}"
+            alt="{{ module.author.company_logo.alt or module.author.company }}"
+            class="testimonial-card__company-logo"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

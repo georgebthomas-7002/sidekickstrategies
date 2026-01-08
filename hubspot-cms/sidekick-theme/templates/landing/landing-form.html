@@ -1,0 +1,124 @@
+<!--
+  templateType: page
+  label: Landing Page - Form
+  isAvailableForNewContent: true
+  screenshotPath: ../images/template-previews/landing-form.png
+-->
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+<main class="landing-page landing-page--form">
+  {# Hero Section #}
+  <section class="landing-hero">
+    <div class="landing-hero__background">
+      <div class="landing-hero__gradient"></div>
+      <div class="landing-hero__shapes">
+        <div class="landing-hero__shape landing-hero__shape--1"></div>
+        <div class="landing-hero__shape landing-hero__shape--2"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="landing-hero__grid">
+        {# Content Side #}
+        <div class="landing-hero__content">
+          {% module "hero_badge"
+            path="@hubspot/rich_text",
+            label="Badge",
+            html="<span class='badge'>Free Consultation</span>"
+          %}
+
+          {% module "hero_heading"
+            path="@hubspot/rich_text",
+            label="Heading",
+            html="<h1>Transform Your Business with Expert Strategy</h1><p>Schedule a free consultation with our team and discover how we can help you achieve your goals.</p>"
+          %}
+
+          <div class="landing-hero__benefits">
+            {% module "hero_benefits"
+              path="@hubspot/rich_text",
+              label="Benefits List",
+              html="<ul><li>Personalized strategy session</li><li>Expert insights for your business</li><li>Actionable recommendations</li></ul>"
+            %}
+          </div>
+
+          <div class="landing-hero__trust">
+            {% module "hero_trust"
+              path="../modules/media/logo-carousel.module",
+              label="Trust Logos",
+              title="Trusted by leading companies"
+            %}
+          </div>
+        </div>
+
+        {# Form Side #}
+        <div class="landing-hero__form-wrapper">
+          <div class="landing-form-card">
+            <div class="landing-form-card__header">
+              {% module "form_title"
+                path="@hubspot/rich_text",
+                label="Form Title",
+                html="<h2>Get Started Today</h2><p>Fill out the form below and we'll be in touch within 24 hours.</p>"
+              %}
+            </div>
+
+            <div class="landing-form-card__body">
+              {% module "landing_form"
+                path="@hubspot/form",
+                label="Lead Form"
+              %}
+            </div>
+
+            <div class="landing-form-card__footer">
+              <p class="landing-form-card__privacy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Your information is secure and never shared.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Social Proof Section #}
+  <section class="landing-section landing-section--alt">
+    <div class="container">
+      {% module "testimonials"
+        path="../modules/social/testimonial-grid.module",
+        label="Testimonials"
+      %}
+    </div>
+  </section>
+
+  {# Benefits Section #}
+  <section class="landing-section">
+    <div class="container">
+      {% module "benefits_section"
+        path="@hubspot/rich_text",
+        label="Benefits Grid",
+        html="<h2>Why Choose Us</h2><p>Our team of experts delivers results that matter.</p>"
+      %}
+    </div>
+  </section>
+
+  {# CTA Section #}
+  <section class="landing-section landing-section--cta">
+    <div class="container">
+      {% module "bottom_cta"
+        path="../modules/content/cta.module",
+        label="Bottom CTA"
+      %}
+    </div>
+  </section>
+
+  {# Drag and Drop Area for Additional Content #}
+  {% dnd_area "additional_content" label="Additional Content" %}
+  {% end_dnd_area %}
+</main>
+{% endblock body %}
+
+{% block body_classes %}landing-page-form{% endblock %}

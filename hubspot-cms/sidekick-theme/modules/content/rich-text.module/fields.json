@@ -1,0 +1,58 @@
+[
+  {
+    "name": "content",
+    "label": "Content",
+    "type": "richtext",
+    "default": "<p>Add your content here. You can include headings, paragraphs, lists, links, and more.</p>"
+  },
+  {
+    "name": "max_width",
+    "label": "Maximum Width",
+    "type": "choice",
+    "display": "select",
+    "default": "medium",
+    "choices": [
+      ["small", "Small (600px)"],
+      ["medium", "Medium (800px)"],
+      ["large", "Large (1000px)"],
+      ["full", "Full Width"]
+    ]
+  },
+  {
+    "name": "alignment",
+    "label": "Content Alignment",
+    "type": "choice",
+    "display": "select",
+    "default": "left",
+    "choices": [
+      ["left", "Left"],
+      ["center", "Center"]
+    ]
+  },
+  {
+    "name": "background",
+    "label": "Background",
+    "type": "choice",
+    "display": "select",
+    "default": "none",
+    "choices": [
+      ["none", "None (Transparent)"],
+      ["light", "Light"],
+      ["alt", "Alternate (Light Gray)"],
+      ["dark", "Dark"]
+    ]
+  },
+  {
+    "name": "padding",
+    "label": "Section Padding",
+    "type": "choice",
+    "display": "select",
+    "default": "medium",
+    "choices": [
+      ["none", "None"],
+      ["small", "Small"],
+      ["medium", "Medium"],
+      ["large", "Large"]
+    ]
+  }
+]

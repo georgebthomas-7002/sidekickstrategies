@@ -1,0 +1,114 @@
+/* Rich Text Module Styles */
+
+.rich-text-section {
+  /* Base styles inherited from theme */
+}
+
+/* Background variants */
+.rich-text--bg-light { background-color: var(--color-bg-light); }
+.rich-text--bg-alt { background-color: var(--color-bg-alt); }
+.rich-text--bg-dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
+
+.rich-text--bg-dark h1,
+.rich-text--bg-dark h2,
+.rich-text--bg-dark h3,
+.rich-text--bg-dark h4,
+.rich-text--bg-dark h5,
+.rich-text--bg-dark h6 {
+  color: var(--color-text-light);
+}
+
+.rich-text--bg-dark a {
+  color: var(--color-peach);
+}
+
+/* Padding variants */
+.rich-text--padding-none { padding: 0; }
+.rich-text--padding-small { padding: 2rem 0; }
+.rich-text--padding-medium { padding: 4rem 0; }
+.rich-text--padding-large { padding: 6rem 0; }
+
+/* Content wrapper */
+.rich-text__content {
+  max-width: 100%;
+}
+
+/* Width variants */
+.rich-text--width-small .rich-text__content { max-width: 600px; }
+.rich-text--width-medium .rich-text__content { max-width: 800px; }
+.rich-text--width-large .rich-text__content { max-width: 1000px; }
+.rich-text--width-full .rich-text__content { max-width: 100%; }
+
+/* Alignment */
+.rich-text--align-center .rich-text__content {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.rich-text--align-center .rich-text__content ul,
+.rich-text--align-center .rich-text__content ol {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Typography enhancements */
+.rich-text__content h2 {
+  margin-top: 2.5rem;
+}
+
+.rich-text__content h3 {
+  margin-top: 2rem;
+}
+
+.rich-text__content h2:first-child,
+.rich-text__content h3:first-child {
+  margin-top: 0;
+}
+
+.rich-text__content blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--color-accent);
+  background-color: var(--color-bg-alt);
+  font-style: italic;
+}
+
+.rich-text--bg-dark .rich-text__content blockquote {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.rich-text__content img {
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.rich-text__content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.rich-text__content th,
+.rich-text__content td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-slate);
+  text-align: left;
+}
+
+.rich-text__content th {
+  background-color: var(--color-bg-alt);
+  font-weight: 600;
+}
+
+.rich-text--bg-dark .rich-text__content th {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rich-text--bg-dark .rich-text__content th,
+.rich-text--bg-dark .rich-text__content td {
+  border-color: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,104 @@
+<!--
+  templateType: error_page
+  label: 500 Error Page
+  isAvailableForNewContent: false
+  screenshotPath: ../images/template-previews/500.png
+-->
+<!DOCTYPE html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ standard_header_includes }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  {{ require_css(get_asset_url("../../css/main.css")) }}
+  {{ require_css(get_asset_url("../../css/system.css")) }}
+
+  <style>
+    :root {
+      --color-primary: {{ theme.colors.primary.color|default('#1B2B4B') }};
+      --color-secondary: {{ theme.colors.secondary.color|default('#2A9D8F') }};
+      --color-accent: {{ theme.colors.accent.color|default('#E76F51') }};
+      --color-text-dark: {{ theme.colors.text_dark.color|default('#1B2B4B') }};
+      --color-text-light: {{ theme.colors.text_light.color|default('#FFFFFF') }};
+      --color-bg-light: {{ theme.colors.background_light.color|default('#FFFFFF') }};
+      --font-heading: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --font-body: "PT Sans", system-ui, sans-serif;
+    }
+  </style>
+</head>
+
+<body class="error-page-500">
+  <header class="site-header site-header--simple">
+    <div class="container">
+      <div class="header-inner">
+        <div class="site-logo">
+          <a href="/">
+            {% if theme.header.logo.src %}
+              <img src="{{ theme.header.logo.src }}" alt="{{ theme.header.logo.alt|default('Logo') }}" loading="eager">
+            {% else %}
+              <span class="site-name">Sidekick Strategies</span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="error-page error-page--500">
+    <div class="error-page__background">
+      <div class="error-page__shapes">
+        <div class="error-page__shape error-page__shape--1"></div>
+        <div class="error-page__shape error-page__shape--2"></div>
+        <div class="error-page__shape error-page__shape--3"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="error-page__content">
+        <div class="error-page__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="80" height="80">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div class="error-page__code">500</div>
+        <h1 class="error-page__title">Something Went Wrong</h1>
+        <p class="error-page__description">
+          We're experiencing technical difficulties. Our team has been notified and is working to fix the issue.
+        </p>
+
+        <div class="error-page__actions">
+          <button onclick="location.reload()" class="error-page__button error-page__button--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            Try Again
+          </button>
+          <a href="/" class="error-page__button error-page__button--secondary">
+            Go Home
+          </a>
+        </div>
+
+        <div class="error-page__help">
+          <p>If the problem persists, please <a href="/contact">contact us</a> for assistance.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer--simple">
+    <div class="container">
+      <p>&copy; {{ local_dt|datetimeformat('%Y', 'UTC')|default('2026') }} Sidekick Strategies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  {{ standard_footer_includes }}
+</body>
+</html>

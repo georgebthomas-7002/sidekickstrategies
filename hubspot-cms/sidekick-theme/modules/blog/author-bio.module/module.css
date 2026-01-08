@@ -1,0 +1,312 @@
+/* Author Bio Module Styles */
+
+.author-bio {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   CARD STYLES
+   ========================================================================== */
+
+.author-bio--card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.author-bio--bordered {
+  background: transparent;
+  border: 1px solid var(--color-slate);
+  box-shadow: none;
+}
+
+.author-bio--minimal {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 1.5rem 0;
+}
+
+/* ==========================================================================
+   BACKGROUNDS
+   ========================================================================== */
+
+.author-bio--bg-light {
+  background-color: var(--color-bg-light);
+}
+
+.author-bio--bg-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.author-bio--bg-dark {
+  background-color: var(--color-bg-dark);
+}
+
+.author-bio--bordered.author-bio--bg-light,
+.author-bio--bordered.author-bio--bg-alt,
+.author-bio--bordered.author-bio--bg-dark {
+  background: transparent;
+}
+
+/* Text colors */
+.author-bio--text-dark {
+  color: var(--color-text-dark);
+}
+
+.author-bio--text-dark .author-bio__name {
+  color: var(--color-primary);
+}
+
+.author-bio--text-light {
+  color: var(--color-text-light);
+}
+
+.author-bio--text-light .author-bio__name {
+  color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   LAYOUT - HORIZONTAL
+   ========================================================================== */
+
+.author-bio--horizontal {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* ==========================================================================
+   LAYOUT - VERTICAL
+   ========================================================================== */
+
+.author-bio--vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.author-bio--vertical .author-bio__avatar-wrapper {
+  margin-bottom: 1rem;
+}
+
+.author-bio--vertical .author-bio__social {
+  justify-content: center;
+}
+
+/* ==========================================================================
+   LAYOUT - COMPACT
+   ========================================================================== */
+
+.author-bio--compact {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.author-bio--compact .author-bio__label {
+  display: none;
+}
+
+.author-bio--compact .author-bio__name {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.author-bio--compact .author-bio__title {
+  font-size: 0.8125rem;
+  margin-bottom: 0;
+}
+
+.author-bio--compact .author-bio__bio {
+  display: none;
+}
+
+.author-bio--compact .author-bio__social {
+  margin-top: 0.5rem;
+}
+
+.author-bio--compact .author-bio__social-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   AVATAR
+   ========================================================================== */
+
+.author-bio__avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.author-bio__avatar,
+.author-bio__avatar-placeholder {
+  display: block;
+  object-fit: cover;
+}
+
+/* Avatar Sizes */
+.author-bio--avatar-small .author-bio__avatar,
+.author-bio--avatar-small .author-bio__avatar-placeholder {
+  width: 64px;
+  height: 64px;
+}
+
+.author-bio--avatar-medium .author-bio__avatar,
+.author-bio--avatar-medium .author-bio__avatar-placeholder {
+  width: 96px;
+  height: 96px;
+}
+
+.author-bio--avatar-large .author-bio__avatar,
+.author-bio--avatar-large .author-bio__avatar-placeholder {
+  width: 128px;
+  height: 128px;
+}
+
+/* Avatar Shapes */
+.author-bio--avatar-circle .author-bio__avatar,
+.author-bio--avatar-circle .author-bio__avatar-placeholder {
+  border-radius: 50%;
+}
+
+.author-bio--avatar-square .author-bio__avatar,
+.author-bio--avatar-square .author-bio__avatar-placeholder {
+  border-radius: 0;
+}
+
+.author-bio--avatar-rounded .author-bio__avatar,
+.author-bio--avatar-rounded .author-bio__avatar-placeholder {
+  border-radius: 8px;
+}
+
+/* Avatar Placeholder */
+.author-bio__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.author-bio--avatar-small .author-bio__avatar-placeholder {
+  font-size: 1.5rem;
+}
+
+.author-bio--avatar-medium .author-bio__avatar-placeholder {
+  font-size: 2rem;
+}
+
+.author-bio--avatar-large .author-bio__avatar-placeholder {
+  font-size: 2.5rem;
+}
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.author-bio__content {
+  flex: 1;
+}
+
+.author-bio__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.author-bio--text-dark .author-bio__label {
+  color: var(--color-secondary);
+}
+
+.author-bio--text-light .author-bio__label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.author-bio__name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 0.25rem 0;
+}
+
+.author-bio__title {
+  font-family: var(--font-subheading);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0 0 0.75rem 0;
+  opacity: 0.8;
+}
+
+.author-bio__bio {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   SOCIAL LINKS
+   ========================================================================== */
+
+.author-bio__social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.author-bio__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.author-bio--text-dark .author-bio__social-link {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-dark);
+}
+
+.author-bio--text-dark .author-bio__social-link:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.author-bio--text-light .author-bio__social-link {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-light);
+}
+
+.author-bio--text-light .author-bio__social-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.author-bio__social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  .author-bio--horizontal {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .author-bio--horizontal .author-bio__social {
+    justify-content: center;
+  }
+}

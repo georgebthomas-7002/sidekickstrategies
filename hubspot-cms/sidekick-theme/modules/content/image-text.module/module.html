@@ -1,0 +1,83 @@
+{# Image + Text Module #}
+
+{% set section_classes = "image-text" %}
+{% set section_classes = section_classes ~ " image-text--" ~ module.layout %}
+{% set section_classes = section_classes ~ " image-text--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " image-text--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " image-text--align-" ~ module.content_group.content_alignment %}
+{% set section_classes = section_classes ~ " image-text--size-" ~ module.image_group.image_size %}
+
+{% if module.style_group.animate %}
+  {% set section_classes = section_classes ~ " image-text--animated" %}
+{% endif %}
+
+{% if module.style_group.background == "dark" %}
+  {% set text_class = "image-text--text-light" %}
+{% else %}
+  {% set text_class = "image-text--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }} {{ text_class }}">
+  <div class="container">
+    <div class="image-text__grid">
+      {# Image Column #}
+      <div class="image-text__media">
+        {% if module.image_group.image.src %}
+          <img
+            src="{{ module.image_group.image.src }}"
+            alt="{{ module.image_group.image.alt }}"
+            class="image-text__image image-text__image--{{ module.image_group.image_style }}"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="image-text__placeholder">
+            <span>Add Image</span>
+          </div>
+        {% endif %}
+      </div>
+
+      {# Content Column #}
+      <div class="image-text__content">
+        {% if module.content_group.badge %}
+          <span class="image-text__badge">{{ module.content_group.badge }}</span>
+        {% endif %}
+
+        {% if module.content_group.heading %}
+          <{{ module.content_group.heading_level }} class="image-text__heading">
+            {{ module.content_group.heading }}
+          </{{ module.content_group.heading_level }}>
+        {% endif %}
+
+        {% if module.content_group.body_text %}
+          <div class="image-text__body">
+            {{ module.content_group.body_text }}
+          </div>
+        {% endif %}
+
+        {% if module.buttons_group.show_buttons and (module.buttons_group.primary_button.text or module.buttons_group.secondary_button.text) %}
+          <div class="image-text__buttons">
+            {% if module.buttons_group.primary_button.text %}
+              <a
+                href="{{ module.buttons_group.primary_button.link.url.href }}"
+                class="btn btn--primary"
+                {% if module.buttons_group.primary_button.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                {{ module.buttons_group.primary_button.text }}
+              </a>
+            {% endif %}
+
+            {% if module.buttons_group.secondary_button.text %}
+              <a
+                href="{{ module.buttons_group.secondary_button.link.url.href }}"
+                class="btn btn--secondary"
+                {% if module.buttons_group.secondary_button.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+              >
+                {{ module.buttons_group.secondary_button.text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

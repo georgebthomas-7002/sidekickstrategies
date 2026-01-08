@@ -1,0 +1,226 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Home Page
+  screenshotPath: ../images/template-previews/home.png
+-->
+
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+
+{# Hero Section #}
+{% dnd_area "hero_section"
+  label="Hero Section",
+  class="hero-area"
+%}
+  {% dnd_section %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module
+          path="../modules/core/hero.module",
+          style="standard",
+          content_group={
+            "badge": "Welcome",
+            "heading": "We Help Businesses Grow",
+            "subheading": "Strategic consulting and implementation services to accelerate your success."
+          },
+          buttons_group={
+            "primary_button": {
+              "text": "Get Started",
+              "link": {
+                "url": {
+                  "href": "/contact",
+                  "type": "CONTENT"
+                }
+              }
+            },
+            "secondary_button": {
+              "text": "Learn More",
+              "link": {
+                "url": {
+                  "href": "/about",
+                  "type": "CONTENT"
+                }
+              }
+            }
+          },
+          styling_group={
+            "height": "large",
+            "background": "primary",
+            "text_color": "light"
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+{% end_dnd_area %}
+
+{# Features/Services Section #}
+{% dnd_area "features_section"
+  label="Features Section",
+  class="features-area"
+%}
+  {% dnd_section %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module
+          path="../modules/content/image-text.module",
+          layout="image-right",
+          image_group={
+            "image_style": "shadow",
+            "image_size": "equal"
+          },
+          content_group={
+            "badge": "Our Approach",
+            "heading": "Strategic Partnership",
+            "heading_level": "h2",
+            "body": "<p>We work alongside your team to understand your unique challenges and develop tailored solutions that drive real results.</p><ul><li>Custom strategy development</li><li>Hands-on implementation</li><li>Ongoing optimization</li></ul>",
+            "content_alignment": "center"
+          },
+          buttons_group={
+            "show_buttons": true,
+            "primary_button": {
+              "text": "Our Services",
+              "link": {
+                "url": {
+                  "href": "/services",
+                  "type": "CONTENT"
+                }
+              }
+            }
+          },
+          style_group={
+            "background": "none",
+            "padding": "large",
+            "animate": true
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+{% end_dnd_area %}
+
+{# Alternating Content Section #}
+{% dnd_area "content_section"
+  label="Content Section",
+  class="content-area"
+%}
+  {% dnd_section %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module
+          path="../modules/content/image-text.module",
+          layout="image-left",
+          image_group={
+            "image_style": "rounded",
+            "image_size": "equal"
+          },
+          content_group={
+            "badge": "Why Us",
+            "heading": "Experience That Matters",
+            "heading_level": "h2",
+            "body": "<p>With years of experience across multiple industries, we bring proven methodologies and fresh perspectives to every engagement.</p>",
+            "content_alignment": "center"
+          },
+          buttons_group={
+            "show_buttons": true,
+            "primary_button": {
+              "text": "About Us",
+              "link": {
+                "url": {
+                  "href": "/about",
+                  "type": "CONTENT"
+                }
+              }
+            }
+          },
+          style_group={
+            "background": "alt",
+            "padding": "large",
+            "animate": true
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+{% end_dnd_area %}
+
+{# Rich Text Section (Optional) #}
+{% dnd_area "text_section"
+  label="Text Section",
+  class="text-area"
+%}
+  {% dnd_section %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module
+          path="../modules/content/rich-text.module",
+          content="<h2>Our Process</h2><p>We follow a proven methodology to ensure your success:</p><ol><li><strong>Discovery</strong> - Understanding your goals and challenges</li><li><strong>Strategy</strong> - Developing a customized action plan</li><li><strong>Implementation</strong> - Executing with precision and care</li><li><strong>Optimization</strong> - Continuously improving results</li></ol>",
+          max_width="medium",
+          alignment="center",
+          background="none",
+          padding="medium"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+{% end_dnd_area %}
+
+{# CTA Section #}
+{% dnd_area "cta_section"
+  label="Call to Action",
+  class="cta-area"
+%}
+  {% dnd_section %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module
+          path="../modules/content/cta.module",
+          style="banner",
+          content_group={
+            "heading": "Ready to Transform Your Business?",
+            "heading_level": "h2",
+            "subheading": "Let's start a conversation about how we can help you achieve your goals."
+          },
+          buttons_group={
+            "primary_button": {
+              "text": "Schedule a Call",
+              "link": {
+                "url": {
+                  "href": "/contact",
+                  "type": "CONTENT"
+                }
+              }
+            },
+            "secondary_button": {
+              "text": "View Case Studies",
+              "link": {
+                "url": {
+                  "href": "/case-studies",
+                  "type": "CONTENT"
+                }
+              }
+            }
+          },
+          style_group={
+            "background": "gradient",
+            "padding": "large",
+            "alignment": "center"
+          },
+          decoration_group={
+            "show_pattern": true,
+            "pattern_style": "dots"
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+{% end_dnd_area %}
+
+{% endblock body %}

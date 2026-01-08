@@ -1,0 +1,290 @@
+[
+  {
+    "name": "style",
+    "label": "Hero Style",
+    "type": "choice",
+    "display": "select",
+    "default": "standard",
+    "choices": [
+      ["standard", "Standard (Centered)"],
+      ["split", "Split (Image + Text)"],
+      ["kinetic", "Kinetic (Dark Tech)"]
+    ],
+    "help_text": "Choose the hero layout style"
+  },
+  {
+    "name": "content",
+    "label": "Content",
+    "type": "group",
+    "children": [
+      {
+        "name": "badge",
+        "label": "Badge Text",
+        "type": "text",
+        "help_text": "Optional badge/label above heading",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Your Heading Here"
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": "Supporting text that provides more context about your value proposition."
+      },
+      {
+        "name": "alignment",
+        "label": "Text Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "center",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "buttons",
+    "label": "Buttons",
+    "type": "group",
+    "children": [
+      {
+        "name": "primary_button",
+        "label": "Primary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "show",
+            "label": "Show Primary Button",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "text",
+            "label": "Button Text",
+            "type": "text",
+            "default": "Get Started"
+          },
+          {
+            "name": "link",
+            "label": "Button Link",
+            "type": "link",
+            "default": {
+              "url": {"href": "#"},
+              "open_in_new_tab": false
+            }
+          },
+          {
+            "name": "style",
+            "label": "Button Style",
+            "type": "choice",
+            "display": "select",
+            "default": "primary",
+            "choices": [
+              ["primary", "Primary (Orange)"],
+              ["secondary", "Secondary (Teal)"],
+              ["navy", "Navy"],
+              ["ghost", "Ghost/Outline"],
+              ["ghost-light", "Ghost Light (for dark bg)"]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "secondary_button",
+        "label": "Secondary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "show",
+            "label": "Show Secondary Button",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "text",
+            "label": "Button Text",
+            "type": "text",
+            "default": "Learn More"
+          },
+          {
+            "name": "link",
+            "label": "Button Link",
+            "type": "link",
+            "default": {
+              "url": {"href": "#"},
+              "open_in_new_tab": false
+            }
+          },
+          {
+            "name": "style",
+            "label": "Button Style",
+            "type": "choice",
+            "display": "select",
+            "default": "ghost",
+            "choices": [
+              ["primary", "Primary (Orange)"],
+              ["secondary", "Secondary (Teal)"],
+              ["navy", "Navy"],
+              ["ghost", "Ghost/Outline"],
+              ["ghost-light", "Ghost Light (for dark bg)"]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "media",
+    "label": "Media",
+    "type": "group",
+    "children": [
+      {
+        "name": "image",
+        "label": "Hero Image",
+        "type": "image",
+        "help_text": "Used in Split style or as background",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "image_position",
+        "label": "Image Position (Split style)",
+        "type": "choice",
+        "display": "select",
+        "default": "right",
+        "choices": [
+          ["left", "Left"],
+          ["right", "Right"]
+        ]
+      },
+      {
+        "name": "background_image",
+        "label": "Background Image",
+        "type": "image",
+        "help_text": "Optional background image (Standard style)",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "background_overlay",
+        "label": "Background Overlay",
+        "type": "boolean",
+        "help_text": "Add dark overlay on background image",
+        "default": true
+      },
+      {
+        "name": "overlay_opacity",
+        "label": "Overlay Opacity",
+        "type": "number",
+        "help_text": "0-100",
+        "default": 50,
+        "min": 0,
+        "max": 100
+      }
+    ]
+  },
+  {
+    "name": "styling",
+    "label": "Styling",
+    "type": "group",
+    "children": [
+      {
+        "name": "background_color",
+        "label": "Background Color",
+        "type": "choice",
+        "display": "select",
+        "default": "light",
+        "choices": [
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark (Navy)"],
+          ["primary", "Primary (Navy)"],
+          ["secondary", "Secondary (Teal)"],
+          ["custom", "Custom Color"]
+        ]
+      },
+      {
+        "name": "custom_bg_color",
+        "label": "Custom Background Color",
+        "type": "color",
+        "default": {"color": "#ffffff"}
+      },
+      {
+        "name": "text_color",
+        "label": "Text Color",
+        "type": "choice",
+        "display": "select",
+        "default": "auto",
+        "choices": [
+          ["auto", "Auto (based on background)"],
+          ["dark", "Dark"],
+          ["light", "Light"]
+        ]
+      },
+      {
+        "name": "height",
+        "label": "Hero Height",
+        "type": "choice",
+        "display": "select",
+        "default": "large",
+        "choices": [
+          ["small", "Small (400px)"],
+          ["medium", "Medium (500px)"],
+          ["large", "Large (600px)"],
+          ["full", "Full Viewport"]
+        ]
+      },
+      {
+        "name": "enable_animation",
+        "label": "Enable Animations",
+        "type": "boolean",
+        "help_text": "Fade-in animations on load",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "kinetic_options",
+    "label": "Kinetic Style Options",
+    "type": "group",
+    "help_text": "Options specific to Kinetic (Dark Tech) style",
+    "children": [
+      {
+        "name": "show_grid_lines",
+        "label": "Show Grid Lines",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_particles",
+        "label": "Show Floating Particles",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "accent_color",
+        "label": "Accent Glow Color",
+        "type": "choice",
+        "display": "select",
+        "default": "teal",
+        "choices": [
+          ["teal", "Teal"],
+          ["orange", "Orange"],
+          ["blue", "Light Blue"]
+        ]
+      }
+    ]
+  }
+]

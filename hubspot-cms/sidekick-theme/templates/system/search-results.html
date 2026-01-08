@@ -1,0 +1,195 @@
+<!--
+  templateType: search_results_page
+  label: Search Results
+  isAvailableForNewContent: false
+  screenshotPath: ../images/template-previews/search-results.png
+-->
+<!DOCTYPE html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ standard_header_includes }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  {{ require_css(get_asset_url("../../css/main.css")) }}
+  {{ require_css(get_asset_url("../../css/system.css")) }}
+
+  <style>
+    :root {
+      --color-primary: {{ theme.colors.primary.color|default('#1B2B4B') }};
+      --color-secondary: {{ theme.colors.secondary.color|default('#2A9D8F') }};
+      --color-accent: {{ theme.colors.accent.color|default('#E76F51') }};
+      --color-text-dark: {{ theme.colors.text_dark.color|default('#1B2B4B') }};
+      --color-text-light: {{ theme.colors.text_light.color|default('#FFFFFF') }};
+      --color-bg-light: {{ theme.colors.background_light.color|default('#FFFFFF') }};
+      --font-heading: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --font-body: "PT Sans", system-ui, sans-serif;
+    }
+  </style>
+</head>
+
+<body class="search-results-page">
+  <header class="site-header site-header--simple">
+    <div class="container">
+      <div class="header-inner">
+        <div class="site-logo">
+          <a href="/">
+            {% if theme.header.logo.src %}
+              <img src="{{ theme.header.logo.src }}" alt="{{ theme.header.logo.alt|default('Logo') }}" loading="eager">
+            {% else %}
+              <span class="site-name">Sidekick Strategies</span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="search-results">
+    <section class="search-results__header">
+      <div class="container">
+        <h1 class="search-results__title">Search Results</h1>
+
+        <form action="/hs-search-results" method="GET" class="search-results__form">
+          <div class="search-results__input-wrapper">
+            <input
+              type="search"
+              name="term"
+              value="{{ request.query_dict.term }}"
+              placeholder="Search..."
+              class="search-results__input"
+              aria-label="Search"
+              autocomplete="off"
+            >
+            <button type="submit" class="search-results__submit" aria-label="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        {% if request.query_dict.term %}
+          <p class="search-results__summary">
+            {% if search_results.total > 0 %}
+              Found <strong>{{ search_results.total }}</strong> result{% if search_results.total != 1 %}s{% endif %} for "<strong>{{ request.query_dict.term }}</strong>"
+            {% else %}
+              No results found for "<strong>{{ request.query_dict.term }}</strong>"
+            {% endif %}
+          </p>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="search-results__content">
+      <div class="container">
+        {% if search_results.total > 0 %}
+          <div class="search-results__list">
+            {% for result in search_results.results %}
+              <article class="search-result">
+                <div class="search-result__type">
+                  {% if result.type == "SITE_PAGE" %}
+                    <span class="search-result__badge search-result__badge--page">Page</span>
+                  {% elif result.type == "BLOG_POST" %}
+                    <span class="search-result__badge search-result__badge--blog">Blog</span>
+                  {% elif result.type == "LANDING_PAGE" %}
+                    <span class="search-result__badge search-result__badge--landing">Landing Page</span>
+                  {% else %}
+                    <span class="search-result__badge">{{ result.type|replace("_", " ")|title }}</span>
+                  {% endif %}
+                </div>
+
+                <h2 class="search-result__title">
+                  <a href="{{ result.url }}" class="search-result__link">{{ result.title }}</a>
+                </h2>
+
+                {% if result.description %}
+                  <p class="search-result__description">{{ result.description|truncate(200, true, "...") }}</p>
+                {% endif %}
+
+                <div class="search-result__url">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span>{{ result.url }}</span>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          {% if search_results.total > search_results.limit %}
+            <nav class="search-results__pagination" aria-label="Search results pagination">
+              {% set total_pages = (search_results.total / search_results.limit)|round(0, 'ceil')|int %}
+              {% set current_page = (search_results.offset / search_results.limit)|int + 1 %}
+
+              {% if current_page > 1 %}
+                <a href="{{ request.path }}?term={{ request.query_dict.term|urlencode }}&offset={{ (current_page - 2) * search_results.limit }}" class="pagination__link pagination__link--prev">
+                  Previous
+                </a>
+              {% endif %}
+
+              <div class="pagination__info">Page {{ current_page }} of {{ total_pages }}</div>
+
+              {% if current_page < total_pages %}
+                <a href="{{ request.path }}?term={{ request.query_dict.term|urlencode }}&offset={{ current_page * search_results.limit }}" class="pagination__link pagination__link--next">
+                  Next
+                </a>
+              {% endif %}
+            </nav>
+          {% endif %}
+
+        {% elif request.query_dict.term %}
+          <div class="search-results__empty">
+            <div class="search-results__empty-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h2 class="search-results__empty-title">No Results Found</h2>
+            <p class="search-results__empty-description">
+              We couldn't find any content matching your search. Try adjusting your search terms.
+            </p>
+            <div class="search-results__suggestions">
+              <h3>Suggestions:</h3>
+              <ul>
+                <li>Check your spelling</li>
+                <li>Try more general keywords</li>
+                <li>Try different keywords</li>
+              </ul>
+            </div>
+          </div>
+
+        {% else %}
+          <div class="search-results__initial">
+            <div class="search-results__initial-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h2 class="search-results__initial-title">What are you looking for?</h2>
+            <p class="search-results__initial-description">
+              Enter a search term above to find content across our website.
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer--simple">
+    <div class="container">
+      <p>&copy; {{ local_dt|datetimeformat('%Y', 'UTC')|default('2026') }} Sidekick Strategies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  {{ standard_footer_includes }}
+</body>
+</html>

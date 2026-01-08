@@ -1,0 +1,178 @@
+[
+  {
+    "name": "style",
+    "label": "CTA Style",
+    "type": "choice",
+    "display": "select",
+    "default": "banner",
+    "choices": [
+      ["banner", "Full-Width Banner"],
+      ["card", "Centered Card"],
+      ["inline", "Inline (No Background)"]
+    ]
+  },
+  {
+    "name": "content_group",
+    "label": "Content",
+    "type": "group",
+    "children": [
+      {
+        "name": "badge",
+        "label": "Badge/Label",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Ready to get started?"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": "Let's discuss how we can help you achieve your goals."
+      }
+    ]
+  },
+  {
+    "name": "buttons_group",
+    "label": "Buttons",
+    "type": "group",
+    "children": [
+      {
+        "name": "primary_button",
+        "label": "Primary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "text",
+            "label": "Text",
+            "type": "text",
+            "default": "Get Started"
+          },
+          {
+            "name": "link",
+            "label": "Link",
+            "type": "link",
+            "default": {
+              "url": {
+                "href": "#",
+                "type": "EXTERNAL"
+              },
+              "open_in_new_tab": false
+            }
+          }
+        ]
+      },
+      {
+        "name": "secondary_button",
+        "label": "Secondary Button",
+        "type": "group",
+        "children": [
+          {
+            "name": "text",
+            "label": "Text",
+            "type": "text",
+            "default": ""
+          },
+          {
+            "name": "link",
+            "label": "Link",
+            "type": "link",
+            "default": {
+              "url": {
+                "href": "#",
+                "type": "EXTERNAL"
+              },
+              "open_in_new_tab": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Styling",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background Color",
+        "type": "choice",
+        "display": "select",
+        "default": "primary",
+        "choices": [
+          ["primary", "Primary (Navy)"],
+          ["secondary", "Secondary (Teal)"],
+          ["accent", "Accent (Orange)"],
+          ["dark", "Dark"],
+          ["light", "Light"],
+          ["gradient", "Gradient (Navy to Teal)"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      },
+      {
+        "name": "alignment",
+        "label": "Content Alignment",
+        "type": "choice",
+        "display": "select",
+        "default": "center",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "decoration_group",
+    "label": "Decoration",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_pattern",
+        "label": "Show Background Pattern",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "pattern_style",
+        "label": "Pattern Style",
+        "type": "choice",
+        "display": "select",
+        "default": "dots",
+        "choices": [
+          ["dots", "Dots"],
+          ["grid", "Grid Lines"],
+          ["waves", "Waves"]
+        ]
+      }
+    ]
+  }
+]

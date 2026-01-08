@@ -1,0 +1,361 @@
+/* Blog Sidebar Module Styles */
+
+.blog-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-sidebar--sticky {
+  position: sticky;
+  top: 100px;
+}
+
+/* ==========================================================================
+   WIDGET BASE STYLES
+   ========================================================================== */
+
+.sidebar-widget {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* Card Style */
+.blog-sidebar--card .sidebar-widget {
+  background-color: var(--color-bg-alt);
+}
+
+/* Minimal Style */
+.blog-sidebar--minimal .sidebar-widget {
+  background: transparent;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-slate);
+}
+
+.blog-sidebar--minimal .sidebar-widget:last-child {
+  border-bottom: none;
+}
+
+/* Bordered Style */
+.blog-sidebar--bordered .sidebar-widget {
+  background: transparent;
+  border: 1px solid var(--color-slate);
+}
+
+/* Widget Title */
+.sidebar-widget__title {
+  font-family: var(--font-subheading);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+/* Empty State */
+.sidebar-widget__empty {
+  font-size: 0.875rem;
+  color: var(--color-slate);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SEARCH WIDGET
+   ========================================================================== */
+
+.sidebar-search__field {
+  position: relative;
+  display: flex;
+}
+
+.sidebar-search__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  padding-right: 3rem;
+  font-size: 0.9375rem;
+  border: 1px solid var(--color-slate);
+  border-radius: 4px;
+  background: var(--color-bg-light);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-search__input:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(2, 131, 147, 0.1);
+}
+
+.sidebar-search__button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-slate);
+  transition: color 0.2s ease;
+}
+
+.sidebar-search__button:hover {
+  color: var(--color-secondary);
+}
+
+.sidebar-search__button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================================================
+   CATEGORIES WIDGET
+   ========================================================================== */
+
+.sidebar-categories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-categories__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-categories__item:last-child {
+  border-bottom: none;
+}
+
+.sidebar-categories__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+  text-decoration: none;
+  color: var(--color-text-dark);
+  font-size: 0.9375rem;
+  transition: color 0.2s ease;
+}
+
+.sidebar-categories__link:hover {
+  color: var(--color-secondary);
+}
+
+.sidebar-categories__count {
+  font-size: 0.75rem;
+  color: var(--color-slate);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   RECENT POSTS WIDGET
+   ========================================================================== */
+
+.sidebar-recent {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-recent__item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-recent__item:first-child {
+  padding-top: 0;
+}
+
+.sidebar-recent__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sidebar-recent__image-link {
+  flex: 0 0 64px;
+}
+
+.sidebar-recent__image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.sidebar-recent__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar-recent__title {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sidebar-recent__title:hover {
+  color: var(--color-secondary);
+}
+
+.sidebar-recent__date {
+  font-size: 0.75rem;
+  color: var(--color-slate);
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   NEWSLETTER WIDGET
+   ========================================================================== */
+
+.sidebar-newsletter__heading {
+  font-family: var(--font-subheading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.sidebar-newsletter__description {
+  font-size: 0.875rem;
+  color: var(--color-text-dark);
+  opacity: 0.8;
+  margin: 0 0 1rem 0;
+}
+
+/* HubSpot Form Override */
+.sidebar-newsletter .hs-form {
+  margin: 0;
+}
+
+.sidebar-newsletter .hs-form-field {
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-newsletter .hs-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-slate);
+  border-radius: 4px;
+}
+
+.sidebar-newsletter .hs-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar-newsletter .hs-button:hover {
+  background: var(--color-primary);
+}
+
+/* ==========================================================================
+   CTA WIDGET
+   ========================================================================== */
+
+.sidebar-cta {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.sidebar-cta--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.sidebar-cta--secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.sidebar-cta--light {
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-slate);
+}
+
+.sidebar-cta__heading {
+  font-family: var(--font-subheading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.sidebar-cta--light .sidebar-cta__heading {
+  color: var(--color-primary);
+}
+
+.sidebar-cta__description {
+  font-size: 0.9375rem;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+}
+
+.sidebar-cta__button {
+  display: inline-block;
+}
+
+/* White button variant */
+.btn--white {
+  background: white;
+  color: var(--color-primary);
+  border: none;
+}
+
+.btn--white:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   CUSTOM HTML WIDGET
+   ========================================================================== */
+
+.sidebar-custom {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.sidebar-custom p:first-child {
+  margin-top: 0;
+}
+
+.sidebar-custom p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .blog-sidebar--sticky {
+    position: static;
+  }
+}

@@ -1,0 +1,145 @@
+[
+  {
+    "name": "source",
+    "label": "Author Source",
+    "type": "choice",
+    "display": "select",
+    "default": "auto",
+    "choices": [
+      ["auto", "Auto (From Blog Post)"],
+      ["manual", "Manual Entry"]
+    ]
+  },
+  {
+    "name": "author_name",
+    "label": "Author Name (Manual)",
+    "type": "text",
+    "default": "Author Name"
+  },
+  {
+    "name": "author_title",
+    "label": "Job Title (Manual)",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "name": "author_bio",
+    "label": "Biography (Manual)",
+    "type": "richtext",
+    "default": ""
+  },
+  {
+    "name": "author_avatar",
+    "label": "Avatar Image (Manual)",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": ""
+    }
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "layout",
+        "label": "Layout Style",
+        "type": "choice",
+        "display": "select",
+        "default": "horizontal",
+        "choices": [
+          ["horizontal", "Horizontal (Image Left)"],
+          ["vertical", "Vertical (Image Top)"],
+          ["compact", "Compact (Small)"]
+        ]
+      },
+      {
+        "name": "avatar_size",
+        "label": "Avatar Size",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["small", "Small (64px)"],
+          ["medium", "Medium (96px)"],
+          ["large", "Large (128px)"]
+        ]
+      },
+      {
+        "name": "avatar_shape",
+        "label": "Avatar Shape",
+        "type": "choice",
+        "display": "select",
+        "default": "circle",
+        "choices": [
+          ["circle", "Circle"],
+          ["square", "Square"],
+          ["rounded", "Rounded Square"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "content_group",
+    "label": "Content Options",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_label",
+        "label": "Show Written by Label",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "label_text",
+        "label": "Label Text",
+        "type": "text",
+        "default": "Written by"
+      },
+      {
+        "name": "show_title",
+        "label": "Show Job Title",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_bio",
+        "label": "Show Biography",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "style",
+        "label": "Card Style",
+        "type": "choice",
+        "display": "select",
+        "default": "card",
+        "choices": [
+          ["card", "Card (With Background)"],
+          ["bordered", "Bordered"],
+          ["minimal", "Minimal"]
+        ]
+      },
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "light",
+        "choices": [
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,209 @@
+[
+  {
+    "name": "widgets",
+    "label": "Sidebar Widgets",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 8,
+      "default": 3
+    },
+    "default": [
+      {
+        "widget_type": "search",
+        "widget_title": "Search"
+      },
+      {
+        "widget_type": "categories",
+        "widget_title": "Categories"
+      },
+      {
+        "widget_type": "recent_posts",
+        "widget_title": "Recent Posts",
+        "recent_posts_count": 5
+      }
+    ],
+    "children": [
+      {
+        "name": "widget_type",
+        "label": "Widget Type",
+        "type": "choice",
+        "display": "select",
+        "default": "search",
+        "choices": [
+          ["search", "Search"],
+          ["categories", "Categories/Topics"],
+          ["recent_posts", "Recent Posts"],
+          ["newsletter", "Newsletter Signup"],
+          ["cta", "Call to Action"],
+          ["custom_html", "Custom HTML"]
+        ]
+      },
+      {
+        "name": "widget_title",
+        "label": "Widget Title",
+        "type": "text",
+        "default": "Widget"
+      },
+      {
+        "name": "show_widget_title",
+        "label": "Show Widget Title",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "recent_posts_count",
+        "label": "Number of Posts (Recent Posts)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "recent_posts",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "newsletter_heading",
+        "label": "Newsletter Heading",
+        "type": "text",
+        "default": "Subscribe to our newsletter",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "newsletter",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "newsletter_description",
+        "label": "Newsletter Description",
+        "type": "text",
+        "default": "Get the latest updates and insights delivered to your inbox.",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "newsletter",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "newsletter_form",
+        "label": "Newsletter Form",
+        "type": "form",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "newsletter",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "cta_heading",
+        "label": "CTA Heading",
+        "type": "text",
+        "default": "Need Help?",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "cta",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "cta_description",
+        "label": "CTA Description",
+        "type": "text",
+        "default": "Contact us to learn how we can help you.",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "cta",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "cta_button_text",
+        "label": "CTA Button Text",
+        "type": "text",
+        "default": "Contact Us",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "cta",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "cta_button_link",
+        "label": "CTA Button Link",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": false
+        },
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "cta",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "cta_style",
+        "label": "CTA Style",
+        "type": "choice",
+        "display": "select",
+        "default": "primary",
+        "choices": [
+          ["primary", "Primary Background"],
+          ["secondary", "Secondary Background"],
+          ["light", "Light Background"]
+        ],
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "cta",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "custom_html",
+        "label": "Custom HTML",
+        "type": "richtext",
+        "default": "<p>Add your custom content here.</p>",
+        "visibility": {
+          "controlling_field_path": "widgets.widget_type",
+          "controlling_value_regex": "custom_html",
+          "operator": "MATCHES_REGEX"
+        }
+      }
+    ]
+  },
+  {
+    "name": "blog",
+    "label": "Blog (for Categories & Recent Posts)",
+    "type": "blog"
+  },
+  {
+    "name": "style_group",
+    "label": "Sidebar Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "sticky",
+        "label": "Sticky Sidebar",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "widget_style",
+        "label": "Widget Style",
+        "type": "choice",
+        "display": "select",
+        "default": "card",
+        "choices": [
+          ["card", "Card (With Background)"],
+          ["minimal", "Minimal (No Background)"],
+          ["bordered", "Bordered"]
+        ]
+      }
+    ]
+  }
+]

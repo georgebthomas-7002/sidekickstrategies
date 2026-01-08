@@ -1,0 +1,141 @@
+{# Logo Carousel Module #}
+
+{% set section_classes = "logo-carousel-section" %}
+{% set section_classes = section_classes ~ " logo-carousel--bg-" ~ module.style_group.background %}
+{% set section_classes = section_classes ~ " logo-carousel--padding-" ~ module.style_group.padding %}
+{% set section_classes = section_classes ~ " logo-carousel--height-" ~ module.layout_group.logo_height %}
+{% set section_classes = section_classes ~ " logo-carousel--" ~ module.animation_group.animation_type %}
+
+{% if module.animation_group.animation_type == "scroll" %}
+  {% set section_classes = section_classes ~ " logo-carousel--scroll-" ~ module.animation_group.scroll_direction %}
+  {% set section_classes = section_classes ~ " logo-carousel--speed-" ~ module.animation_group.scroll_speed %}
+  {% if module.animation_group.pause_on_hover %}
+    {% set section_classes = section_classes ~ " logo-carousel--pause-hover" %}
+  {% endif %}
+{% endif %}
+
+{% if module.layout_group.grayscale %}
+  {% set section_classes = section_classes ~ " logo-carousel--grayscale" %}
+{% endif %}
+
+{% if module.layout_group.color_on_hover %}
+  {% set section_classes = section_classes ~ " logo-carousel--color-hover" %}
+{% endif %}
+
+{% if module.style_group.background == "dark" %}
+  {% set section_classes = section_classes ~ " logo-carousel--text-light" %}
+{% else %}
+  {% set section_classes = section_classes ~ " logo-carousel--text-dark" %}
+{% endif %}
+
+<section class="{{ section_classes }}">
+  <div class="container">
+    {# Section Header #}
+    {% if module.header_group.show_header %}
+      <div class="logo-carousel__header">
+        {% if module.header_group.heading %}
+          <{{ module.header_group.heading_level }} class="logo-carousel__heading">
+            {{ module.header_group.heading }}
+          </{{ module.header_group.heading_level }}>
+        {% endif %}
+
+        {% if module.header_group.subheading %}
+          <p class="logo-carousel__subheading">{{ module.header_group.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Logo Display #}
+    {% if module.animation_group.animation_type == "scroll" %}
+      {# Continuous Scroll Animation #}
+      <div class="logo-carousel__scroll-wrapper">
+        <div class="logo-carousel__scroll-track">
+          {# First set of logos #}
+          {% for logo in module.logos %}
+            <div class="logo-carousel__item">
+              {% if logo.link.url.href %}
+                <a href="{{ logo.link.url.href }}" class="logo-carousel__link" {% if logo.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+              {% endif %}
+                {% if logo.logo.src %}
+                  <img src="{{ logo.logo.src }}" alt="{{ logo.logo.alt|default(logo.company_name) }}" class="logo-carousel__logo" loading="lazy">
+                {% else %}
+                  <span class="logo-carousel__placeholder">{{ logo.company_name }}</span>
+                {% endif %}
+              {% if logo.link.url.href %}
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+          {# Duplicate for seamless scroll #}
+          {% for logo in module.logos %}
+            <div class="logo-carousel__item" aria-hidden="true">
+              {% if logo.link.url.href %}
+                <a href="{{ logo.link.url.href }}" class="logo-carousel__link" tabindex="-1" {% if logo.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+              {% endif %}
+                {% if logo.logo.src %}
+                  <img src="{{ logo.logo.src }}" alt="" class="logo-carousel__logo" loading="lazy">
+                {% else %}
+                  <span class="logo-carousel__placeholder">{{ logo.company_name }}</span>
+                {% endif %}
+              {% if logo.link.url.href %}
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% elif module.animation_group.animation_type == "slide" %}
+      {# Manual Slide Carousel #}
+      <div class="logo-carousel__slider" role="region" aria-label="Logo carousel">
+        <div class="logo-carousel__slider-track">
+          {% for logo in module.logos %}
+            <div class="logo-carousel__item">
+              {% if logo.link.url.href %}
+                <a href="{{ logo.link.url.href }}" class="logo-carousel__link" {% if logo.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+              {% endif %}
+                {% if logo.logo.src %}
+                  <img src="{{ logo.logo.src }}" alt="{{ logo.logo.alt|default(logo.company_name) }}" class="logo-carousel__logo" loading="lazy">
+                {% else %}
+                  <span class="logo-carousel__placeholder">{{ logo.company_name }}</span>
+                {% endif %}
+              {% if logo.link.url.href %}
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <button class="logo-carousel__nav logo-carousel__nav--prev" aria-label="Previous logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="logo-carousel__nav logo-carousel__nav--next" aria-label="Next logos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+    {% else %}
+      {# Static Grid #}
+      <div class="logo-carousel__grid logo-carousel__grid--cols-{{ module.layout_group.columns }}">
+        {% for logo in module.logos %}
+          <div class="logo-carousel__item">
+            {% if logo.link.url.href %}
+              <a href="{{ logo.link.url.href }}" class="logo-carousel__link" {% if logo.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {% endif %}
+              {% if logo.logo.src %}
+                <img src="{{ logo.logo.src }}" alt="{{ logo.logo.alt|default(logo.company_name) }}" class="logo-carousel__logo" loading="lazy">
+              {% else %}
+                <span class="logo-carousel__placeholder">{{ logo.company_name }}</span>
+              {% endif %}
+            {% if logo.link.url.href %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

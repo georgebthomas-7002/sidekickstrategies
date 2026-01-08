@@ -1,0 +1,244 @@
+[
+  {
+    "name": "header_group",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_header",
+        "label": "Show Section Header",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "heading",
+        "label": "Heading",
+        "type": "text",
+        "default": "Gallery"
+      },
+      {
+        "name": "heading_level",
+        "label": "Heading Level",
+        "type": "choice",
+        "display": "select",
+        "default": "h2",
+        "choices": [
+          ["h2", "H2"],
+          ["h3", "H3"],
+          ["h4", "H4"]
+        ]
+      },
+      {
+        "name": "subheading",
+        "label": "Subheading",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "images",
+    "label": "Images",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 24,
+      "default": 6
+    },
+    "default": [
+      { "caption": "Image 1" },
+      { "caption": "Image 2" },
+      { "caption": "Image 3" },
+      { "caption": "Image 4" },
+      { "caption": "Image 5" },
+      { "caption": "Image 6" }
+    ],
+    "children": [
+      {
+        "name": "image",
+        "label": "Image",
+        "type": "image",
+        "default": {
+          "src": "",
+          "alt": ""
+        }
+      },
+      {
+        "name": "caption",
+        "label": "Caption",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "link",
+        "label": "Link (Optional)",
+        "type": "link",
+        "default": {
+          "url": {
+            "href": "",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "layout_group",
+    "label": "Layout",
+    "type": "group",
+    "children": [
+      {
+        "name": "layout",
+        "label": "Gallery Layout",
+        "type": "choice",
+        "display": "select",
+        "default": "grid",
+        "choices": [
+          ["grid", "Grid"],
+          ["masonry", "Masonry"],
+          ["carousel", "Carousel"]
+        ]
+      },
+      {
+        "name": "columns",
+        "label": "Columns",
+        "type": "choice",
+        "display": "select",
+        "default": "3",
+        "choices": [
+          ["2", "2 Columns"],
+          ["3", "3 Columns"],
+          ["4", "4 Columns"],
+          ["5", "5 Columns"]
+        ]
+      },
+      {
+        "name": "aspect_ratio",
+        "label": "Image Aspect Ratio (Grid)",
+        "type": "choice",
+        "display": "select",
+        "default": "1-1",
+        "choices": [
+          ["16-9", "16:9 (Widescreen)"],
+          ["4-3", "4:3 (Standard)"],
+          ["1-1", "1:1 (Square)"],
+          ["3-4", "3:4 (Portrait)"]
+        ],
+        "visibility": {
+          "controlling_field_path": "layout_group.layout",
+          "controlling_value_regex": "grid",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "gap",
+        "label": "Gap Between Images",
+        "type": "choice",
+        "display": "select",
+        "default": "medium",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small (8px)"],
+          ["medium", "Medium (16px)"],
+          ["large", "Large (24px)"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "interaction_group",
+    "label": "Interaction",
+    "type": "group",
+    "children": [
+      {
+        "name": "enable_lightbox",
+        "label": "Enable Lightbox",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "show_caption",
+        "label": "Show Captions",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "caption_position",
+        "label": "Caption Position",
+        "type": "choice",
+        "display": "select",
+        "default": "hover",
+        "choices": [
+          ["hover", "On Hover (Overlay)"],
+          ["below", "Below Image"],
+          ["hidden", "Hidden (Lightbox Only)"]
+        ],
+        "visibility": {
+          "controlling_field_path": "interaction_group.show_caption",
+          "controlling_value_regex": "true",
+          "operator": "MATCHES_REGEX"
+        }
+      },
+      {
+        "name": "hover_effect",
+        "label": "Hover Effect",
+        "type": "choice",
+        "display": "select",
+        "default": "zoom",
+        "choices": [
+          ["none", "None"],
+          ["zoom", "Zoom"],
+          ["brightness", "Brightness"],
+          ["overlay", "Dark Overlay"]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "style_group",
+    "label": "Section Style",
+    "type": "group",
+    "children": [
+      {
+        "name": "background",
+        "label": "Background",
+        "type": "choice",
+        "display": "select",
+        "default": "none",
+        "choices": [
+          ["none", "None (Transparent)"],
+          ["light", "Light"],
+          ["alt", "Alternate (Light Gray)"],
+          ["dark", "Dark"]
+        ]
+      },
+      {
+        "name": "padding",
+        "label": "Section Padding",
+        "type": "choice",
+        "display": "select",
+        "default": "large",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"]
+        ]
+      },
+      {
+        "name": "image_border_radius",
+        "label": "Image Border Radius",
+        "type": "choice",
+        "display": "select",
+        "default": "small",
+        "choices": [
+          ["none", "None"],
+          ["small", "Small (4px)"],
+          ["medium", "Medium (8px)"],
+          ["large", "Large (16px)"]
+        ]
+      }
+    ]
+  }
+]

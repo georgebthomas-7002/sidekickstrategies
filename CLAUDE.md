@@ -7,7 +7,9 @@ When starting a new session, read the context files in order:
 3. `.context/SANITY.md` - CMS schemas and configuration
 4. `.context/FRONTEND.md` - Next.js components and routing
 5. `.context/DEPLOYMENT.md` - Vercel, environment variables
-6. `.context/KNOWN_ISSUES.md` - Gotchas and fixes applied
+6. `.context/HUBSPOT.md` - HubSpot CLI config, multi-project setup, API access
+7. `.context/HUBSPOT_CMS.md` - HubSpot CMS themes, modules, HubL reference
+8. `.context/KNOWN_ISSUES.md` - Gotchas and fixes applied
 
 ## Context Management Rules
 
@@ -23,6 +25,8 @@ After completing significant work, update the relevant context file:
 - Component changes → Update `.context/FRONTEND.md`
 - Deployment fixes → Update `.context/DEPLOYMENT.md` and `.context/KNOWN_ISSUES.md`
 - Brand/styling changes → Update `.context/BRAND.md`
+- HubSpot/API changes → Update `.context/HUBSPOT.md`
+- HubSpot CMS/theme changes → Update `.context/HUBSPOT_CMS.md`
 
 ### Rule 3: Session Handoff
 Before ending a session or when context is low:
@@ -39,6 +43,8 @@ Before ending a session or when context is low:
 ├── SANITY.md           # CMS schemas and configuration
 ├── FRONTEND.md         # Next.js components and pages
 ├── DEPLOYMENT.md       # Vercel, env vars, hosting
+├── HUBSPOT.md          # HubSpot CLI, multi-project setup, API access
+├── HUBSPOT_CMS.md      # HubSpot CMS themes, modules, HubL
 ├── KNOWN_ISSUES.md     # Bugs, gotchas, applied fixes
 └── sessions/           # Session summaries (optional)
     └── YYYY-MM-DD.md
@@ -76,6 +82,34 @@ Full HubSpot CRM control is set up with three methods:
 ### HubSpot Account
 - **Account ID:** 474711
 - **Account Name:** sidekick-strategies-2026
+
+### Multi-Project Folder Setup (Added January 8, 2026)
+
+The project uses per-folder HubSpot configuration for multi-client support:
+
+```
+~/projects/sidekickstrategies/
+├── .hsaccount                    → CLI uses portal 474711 automatically
+├── .env.hubspot                  → Private App Token for API calls
+└── sidekickstrategies/
+    └── (project files)
+```
+
+**Two Authentication Types:**
+| Type | Purpose | File |
+|------|---------|------|
+| Personal Access Key | CLI commands (`hs project upload`, etc.) | `.hsaccount` |
+| Private App Token | CRM API calls (contacts, deals, etc.) | `.env.hubspot` |
+
+**Adding Another Client:**
+```bash
+hs account auth                    # Authenticate new portal
+cd /path/to/client-project
+hs account create-override         # Creates .hsaccount
+# Then create .env.hubspot with that client's token
+```
+
+**Full details:** See `.context/HUBSPOT.md`
 
 ### Direct API Access (Primary Write Method)
 **IMPORTANT:** The MCP OAuth app is marketplace-distributed with user-level auth, which means it CANNOT have write scopes (HubSpot platform restriction). Use the Private App token for all write operations.
@@ -191,9 +225,11 @@ OAuth app for authenticating with the official HubSpot MCP server.
 **View Project:** https://app.hubspot.com/developer-projects/474711/project/HubSpot%20MCP%20Auth
 
 ### HubSpot CLI Authentication
-Personal Access Key is stored in `~/.hscli/config.yml`
+Personal Access Key is stored in `~/.hscli/config.yml` with per-project override via `.hsaccount`
 - Must include `developer` scope for project uploads
 - Refresh via: `hs account auth`
+- Per-folder override: `hs account create-override` (creates `.hsaccount`)
+- Current project auto-uses portal **474711** when in `/home/georgebthomas/projects/sidekickstrategies/`
 
 ### Key Files
 ```
@@ -232,6 +268,44 @@ hs project open
 # List builds
 hs project list-builds
 ```
+
+## HubSpot CMS Development (Added January 2026)
+
+### Overview
+Build professional HubSpot CMS themes, modules, and templates for client websites.
+
+### Skills Location
+All HubSpot CMS skills are in `.claude/skills/hubspot-cms/`:
+
+| Skill | File | Purpose |
+|-------|------|---------|
+| Main Entry | `SKILL.md` | Overview, triggers, quick reference |
+| Theme Creation | `theme-creation.md` | Theme structure, theme.json, fields.json |
+| HubL Reference | `hubl-reference.md` | Complete syntax, functions, filters, tags |
+| Module Creation | `module-creation.md` | Module structure, all field types |
+| Template Creation | `template-creation.md` | Template types, drag-and-drop areas |
+
+### Triggers
+- `/hubspot-theme` - Create a new HubSpot theme
+- `/hubspot-module` - Create a new module
+- `/hubspot-template` - Create a new template
+- Natural language: "create hubspot theme", "build a module for [purpose]"
+
+### Quick CLI Commands
+```bash
+# Theme development
+hs create theme my-theme          # Create new theme
+hs watch ./my-theme @hubspot/my-theme   # Watch and upload
+
+# Module development
+hs create module my-module        # Create new module
+
+# Template development
+hs create template my-page        # Create new template
+```
+
+### Context File
+Full reference: `.context/HUBSPOT_CMS.md`
 
 ## Deal Creation Wizard (Added January 2026)
 

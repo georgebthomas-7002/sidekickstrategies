@@ -1,0 +1,149 @@
+[
+  {
+    "name": "logo",
+    "label": "Footer Logo",
+    "type": "image",
+    "help_text": "Light version of logo for dark background",
+    "default": {
+      "src": "",
+      "alt": "Site Logo"
+    }
+  },
+  {
+    "name": "tagline",
+    "label": "Footer Tagline",
+    "type": "text",
+    "help_text": "Short tagline or description",
+    "default": "Your sidekick in the HubSpot journey."
+  },
+  {
+    "name": "columns",
+    "label": "Footer Columns",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 4,
+      "default": 3
+    },
+    "children": [
+      {
+        "name": "title",
+        "label": "Column Title",
+        "type": "text",
+        "default": "Column Title"
+      },
+      {
+        "name": "menu",
+        "label": "Column Menu",
+        "type": "menu",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "newsletter",
+    "label": "Newsletter Signup",
+    "type": "group",
+    "children": [
+      {
+        "name": "show_newsletter",
+        "label": "Show Newsletter Section",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "title",
+        "label": "Newsletter Title",
+        "type": "text",
+        "default": "Stay Updated"
+      },
+      {
+        "name": "description",
+        "label": "Newsletter Description",
+        "type": "text",
+        "default": "Get the latest insights delivered to your inbox."
+      },
+      {
+        "name": "form_id",
+        "label": "HubSpot Form ID",
+        "type": "text",
+        "help_text": "Enter the HubSpot form ID for newsletter signup",
+        "default": ""
+      },
+      {
+        "name": "placeholder",
+        "label": "Input Placeholder",
+        "type": "text",
+        "default": "Enter your email"
+      },
+      {
+        "name": "button_text",
+        "label": "Button Text",
+        "type": "text",
+        "default": "Subscribe"
+      }
+    ]
+  },
+  {
+    "name": "social_links",
+    "label": "Social Links",
+    "type": "group",
+    "children": [
+      {
+        "name": "linkedin",
+        "label": "LinkedIn URL",
+        "type": "link",
+        "default": {"url": {"href": ""}}
+      },
+      {
+        "name": "twitter",
+        "label": "Twitter/X URL",
+        "type": "link",
+        "default": {"url": {"href": ""}}
+      },
+      {
+        "name": "youtube",
+        "label": "YouTube URL",
+        "type": "link",
+        "default": {"url": {"href": ""}}
+      },
+      {
+        "name": "instagram",
+        "label": "Instagram URL",
+        "type": "link",
+        "default": {"url": {"href": ""}}
+      },
+      {
+        "name": "facebook",
+        "label": "Facebook URL",
+        "type": "link",
+        "default": {"url": {"href": ""}}
+      }
+    ]
+  },
+  {
+    "name": "copyright_text",
+    "label": "Copyright Text",
+    "type": "text",
+    "help_text": "Year will be added automatically",
+    "default": "Sidekick Strategies. All rights reserved."
+  },
+  {
+    "name": "bottom_links",
+    "label": "Bottom Links Menu",
+    "type": "menu",
+    "help_text": "Privacy Policy, Terms of Service, etc.",
+    "default": ""
+  },
+  {
+    "name": "footer_style",
+    "label": "Footer Style",
+    "type": "choice",
+    "display": "select",
+    "default": "dark",
+    "choices": [
+      ["dark", "Dark Background"],
+      ["light", "Light Background"]
+    ]
+  }
+]

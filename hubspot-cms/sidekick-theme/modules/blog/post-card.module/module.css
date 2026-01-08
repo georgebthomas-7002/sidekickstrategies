@@ -1,0 +1,379 @@
+/* Blog Post Card Module Styles */
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-bg-light);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   CARD STYLES
+   ========================================================================== */
+
+.post-card--shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.post-card--bordered {
+  border: 1px solid var(--color-slate);
+  box-shadow: none;
+}
+
+.post-card--minimal {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   HOVER EFFECTS
+   ========================================================================== */
+
+.post-card--hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.post-card--hover-glow:hover {
+  box-shadow: 0 0 0 3px rgba(2, 131, 147, 0.2), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.post-card--minimal.post-card--hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+
+.post-card__image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.post-card__image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aspect Ratios */
+.post-card--ratio-16-9 .post-card__image-wrapper {
+  aspect-ratio: 16 / 9;
+}
+
+.post-card--ratio-4-3 .post-card__image-wrapper {
+  aspect-ratio: 4 / 3;
+}
+
+.post-card--ratio-1-1 .post-card__image-wrapper {
+  aspect-ratio: 1 / 1;
+}
+
+.post-card--ratio-3-2 .post-card__image-wrapper {
+  aspect-ratio: 3 / 2;
+}
+
+.post-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-card__image {
+  transform: scale(1.05);
+}
+
+.post-card__image-wrapper--placeholder {
+  background-color: var(--color-bg-alt);
+}
+
+.post-card__placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-slate);
+}
+
+.post-card__placeholder svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Overlay Style */
+.post-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.post-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.post-card--minimal .post-card__content {
+  padding: 1.5rem 0;
+}
+
+/* Category */
+.post-card__category {
+  margin-bottom: 0.75rem;
+}
+
+.post-card__category-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-card__category-link:hover {
+  color: var(--color-primary);
+}
+
+.post-card__category-sep {
+  margin: 0 0.25rem;
+  color: var(--color-slate);
+}
+
+/* Title */
+.post-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-primary);
+}
+
+.post-card__title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.post-card__title-link:hover {
+  color: var(--color-secondary);
+}
+
+/* Excerpt */
+.post-card__excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  opacity: 0.8;
+  margin: 0 0 1rem 0;
+  flex: 1;
+}
+
+/* ==========================================================================
+   META
+   ========================================================================== */
+
+.post-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-slate);
+}
+
+.post-card--minimal .post-card__meta {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Author */
+.post-card__author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-card__author-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-card__author-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.post-card__author-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+/* Date and Read Time */
+.post-card__details {
+  display: flex;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--color-text-dark);
+  opacity: 0.7;
+}
+
+.post-card__date {
+  white-space: nowrap;
+}
+
+.post-card__read-time {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.post-card__dot {
+  margin: 0 0.5rem;
+}
+
+/* Read More */
+.post-card__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-subheading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: gap 0.2s ease;
+}
+
+.post-card__read-more:hover {
+  gap: 0.75rem;
+}
+
+.post-card__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   HORIZONTAL LAYOUT
+   ========================================================================== */
+
+@media (min-width: 576px) {
+  .post-card--horizontal {
+    flex-direction: row;
+  }
+
+  .post-card--horizontal .post-card__image-link {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+
+  .post-card--horizontal .post-card__image-wrapper {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .post-card--horizontal .post-card__content {
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   OVERLAY LAYOUT
+   ========================================================================== */
+
+.post-card--overlay {
+  position: relative;
+}
+
+.post-card--overlay .post-card__image-link {
+  position: absolute;
+  inset: 0;
+}
+
+.post-card--overlay .post-card__image-wrapper {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.post-card--overlay .post-card__content {
+  position: relative;
+  z-index: 1;
+  min-height: 280px;
+  justify-content: flex-end;
+  color: white;
+}
+
+.post-card--overlay .post-card__category-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.post-card--overlay .post-card__category-link:hover {
+  color: white;
+}
+
+.post-card--overlay .post-card__title {
+  color: white;
+}
+
+.post-card--overlay .post-card__title-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.post-card--overlay .post-card__excerpt {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.post-card--overlay .post-card__meta {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.post-card--overlay .post-card__author-name,
+.post-card--overlay .post-card__details {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}
+
+.post-card--overlay .post-card__read-more {
+  color: white;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .post-card__title {
+    font-size: 1.375rem;
+  }
+
+  .post-card--overlay .post-card__content {
+    min-height: 320px;
+  }
+}
